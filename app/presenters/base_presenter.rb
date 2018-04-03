@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Base class for presenters
 class BasePresenter
   def initialize(model, view)
     @view = view
@@ -13,7 +16,7 @@ end
 #   def full_name
 #    "#{@model.first_name} #{@model.last_name}"
 #   end
-#   
+#
 #   def avatar
 #     @model.link
 #   end
@@ -26,12 +29,12 @@ end
 #       presenter = klass.new(model, self)
 #       yield(presenter) if block_given?
 #     end
-#   end  
+#   end
 # end
 
 # If you don`t pass class name it will use instance class name with Presenter
 
-# <%= presenter(@user, TestPresenter) %> 
+# <%= presenter(@user, TestPresenter) %>
 
 # You can pass a block
 

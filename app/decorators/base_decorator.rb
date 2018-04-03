@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 # Base Class for Decorators pattern
-class BaseDecorator
+class BaseDecorator < SimpleDelegator
   def initialize; end
 end
