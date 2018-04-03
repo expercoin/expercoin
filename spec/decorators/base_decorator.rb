@@ -2,12 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe FormObject do
+RSpec.describe BaseDecorator do
   describe '.initialize' do
     pending 'tests for initalize'
-  end
-
-  describe '.update' do
-    pending 'tests for update'
   end
 end

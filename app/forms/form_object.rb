@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Form Object base class
 class FormObject
   include ActiveModel::Model
