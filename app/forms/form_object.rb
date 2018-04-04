@@ -7,13 +7,12 @@ class FormObject
 
   def initialize(*attrs)
     attrs.each do |attr|
-      if attr.is_a?(ActiveRecord::Base)
-        self.attributes = attr.attributes
-      else
-        self.attributes = attr
-      end
+      next self.attributes = attr.attributes if attr.is_a?(ActiveRecord::Base)
+      self.attributes = attr
     end
   end
 
-  def update; end
+  def update(object)
+    object.update(attributes.compact)
+  end
 end
