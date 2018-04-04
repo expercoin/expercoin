@@ -2,5 +2,4 @@
 
 # Base Class for Decorators pattern
 class BaseDecorator < SimpleDelegator
-  def initialize; end
 end
