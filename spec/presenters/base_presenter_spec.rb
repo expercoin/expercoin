@@ -15,13 +15,13 @@ RSpec.describe BasePresenter do
 
   describe '@model' do
     it 'is not nil' do
-      expect(base_presenter.instance_variable_get(:@model).nil?).to eq false
+      expect(base_presenter.instance_variable_get(:@model)).not_to be_nil
     end
   end
 
   describe '@view' do
     it 'is not nil' do
-      expect(base_presenter.instance_variable_get(:@view).nil?).to eq false
+      expect(base_presenter.instance_variable_get(:@view)).not_to be_nil
     end
   end
 end
