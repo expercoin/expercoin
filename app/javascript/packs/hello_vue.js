@@ -57,15 +57,18 @@
 import TurbolinksAdapter from 'vue-turbolinks';
 import Vue from 'vue/dist/vue.esm'
 import App from '../app.vue'
+import Hello from '../hello.vue'
+import Split from '../split.vue'
+
 //
 Vue.use(TurbolinksAdapter)
 
 document.addEventListener('turbolinks:load', () => {
   const app = new Vue({
-    el: '#hello',
+    el: '#root',
     data: {
-      message: "Can you say hello?"
+      message: "Im Root Component I call components"
     },
-    components: { App }
+    components: { App, Hello, Split }
   })
 })
