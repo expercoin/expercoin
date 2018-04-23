@@ -1,5 +1,6 @@
 // Karma configuration
 // Generated on Mon Apr 23 2018 16:13:39 GMT+0200 (CEST)
+// karma start spec/karma/config/karma.conf.js
 
 module.exports = function(config) {
   config.set({
@@ -11,10 +12,12 @@ module.exports = function(config) {
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
+    autoWatch: true,
 
 
     // list of files / patterns to load in the browser
     files: [
+      "spec/javascripts/*spec.js"
     ],
 
 
