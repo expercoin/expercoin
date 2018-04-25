@@ -1,6 +1,8 @@
 <template>
   <div id="hello">
     <p>{{ message }}</p>
+    <input v-model="number" />
+    <button  v-on:click="increment">Click me</button>
   </div>
 </template>
 
@@ -8,7 +10,13 @@
 export default {
   data: function () {
     return {
-      message: "Hello Now!"
+      message: "Hello Now!",
+      number: 0
+    }
+  },
+  methods: {
+    increment: function () {
+      this.number = 1;
     }
   }
 }
