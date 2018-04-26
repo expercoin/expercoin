@@ -19,5 +19,8 @@
     "karma-jasmine": "^1.1.1",
     "karma-webpack": "^3.0.0",
     "webpack-dev-server": "2.11.2"
+  },
+  "scripts": {
+    "test": "karma start spec/karma/config/karma.conf.js"
   }
 }
