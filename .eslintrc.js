@@ -3,11 +3,15 @@ module.exports = {
     "browser": true,
     "es6": true
   },
-  "extends": "eslint:recommended",
+  "extends": [
+    "eslint:recommended",
+    'plugin:vue/essential'
+  ],
+  "parser": "vue-eslint-parser",
   "parserOptions": {
-    "sourceType": "module"
+    "sourceType": "module",
+    "parser": "typescript-eslint-parser"
   },
-  "parser": "typescript-eslint-parser",
   "rules": {
     "indent": [
       "error",
@@ -24,6 +28,10 @@ module.exports = {
     "semi": [
       "error",
       "always"
+    ],
+    "plugins": [
+      "vue",
+      "html"
     ]
   }
 };
