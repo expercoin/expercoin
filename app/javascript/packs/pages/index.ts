@@ -1,6 +1,6 @@
-import Hello from '../../hello.vue';
-import Split from '../../split.vue';
-import App from '../../app.vue';
+import Hello from '../../components/hello.vue';
+import Split from '../../components/split.vue';
+import App from '../../components/app.vue';
 import Vue from 'vue/dist/vue.esm';
 import vSelect from 'vue-select';
 
