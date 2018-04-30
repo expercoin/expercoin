@@ -1,6 +1,6 @@
 import TurbolinksAdapter from 'vue-turbolinks';
 import Vue from 'vue/dist/vue.esm';
-import Hello from '../../app/javascript/hello.vue';
+import Hello from '../../app/javascript/components/hello.vue';
 import  {  shallow } from '@vue/test-utils'
 
 describe('Hello.vue', function () {

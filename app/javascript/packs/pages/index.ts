@@ -7,6 +7,7 @@ import vSelect from 'vue-select';
 Vue.component('v-select', vSelect)
 
 document.addEventListener('turbolinks:load', () => {
+  if(!document.querySelector("#root")) return;
   const app = new Vue({
     el: '#root',
     data: {
