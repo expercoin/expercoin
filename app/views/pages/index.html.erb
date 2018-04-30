@@ -12,7 +12,7 @@ Expercoin Homepage
     <input v-model="selected">
   </modal>
 
-  <v-select v-model="selected" :options="['foo','bar']"></v-select>
+  <v-select v-model="selected" :options="['foo','bar']" name="customer[kind]"></v-select>
 
   <%= text_field_tag "s", {}, "v-model": "selected" %>
 </div>
