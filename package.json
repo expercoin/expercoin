@@ -31,6 +31,6 @@
   },
   "scripts": {
     "test": "karma start spec/karma/config/karma.conf.js",
-    "eslint": "eslint app/javascript/packs/*"
+    "eslint": "eslint app/javascript/*"
   }
 }
