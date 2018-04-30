@@ -27,6 +27,7 @@
     "karma-chrome-launcher": "^2.2.0",
     "karma-jasmine": "^1.1.1",
     "karma-webpack": "^3.0.0",
+    "sinon": "^5.0.1",
     "webpack-dev-server": "2.11.2"
   },
   "scripts": {
