@@ -10,16 +10,22 @@ describe('toggleInput.vue', function () {
   })
 });
 
-describe('methods', () => {
+describe('Methods', () => {
+  const vueApp = new Vue(toggleInput)
+  const wrapper = mount(toggleInput)
+
   it('toggle - should be a function', () => {
-    const wrapper = mount(toggleInput)
     expect(typeof wrapper.vm.toggle).toBe('function')
   });
-  it('toggle - should change true to false and false to true', () => {
-    const vueApp = new Vue(toggleInput)
+
+  it('toggle - should change active true to false', () => {
     vueApp.active = true
     vueApp.toggle()
     expect(vueApp.active).toBe(false)
+  });
+
+  it('toggle - should change active false to true', () => {
+    vueApp.active = false
     vueApp.toggle()
     expect(vueApp.active).toBe(true)
   });
