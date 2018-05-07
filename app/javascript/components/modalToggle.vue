@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1 class="text-blue">teeeest</h1>
     <button @click='show'>Show Modal</button>
     <modal name="hello-world">
     <button @click='hide'>Hide Modal</button>
@@ -31,4 +32,7 @@ export default {
 </script>
 
 <style scoped>
+.text-blue {
+  color: blue;
+}
 </style>
