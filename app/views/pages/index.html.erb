@@ -3,13 +3,6 @@ Expercoin Homepage
   <app></app>
   <hello></hello>
   <split></split>
-  <button @click='show'>Show Modal</button>
-  <modal name="hello-world">
-    <button @click='hide'>Hide Modal</button>
-    <button @click='submit'>Submit Modal</button>
-    <input v-model="selected">
-  </modal>
+  <modal-toggle></modal-toggle>
 
-  <v-select v-model="selected" :options="['foo','bar']" name="customer[kind]"></v-select>
-
-  <%= text_field_tag "s", {}, "v-model": "selected" %>
+  <select-test :options="['foo','bar']" :name="'customer[kind]'"></select-test>
