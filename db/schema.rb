@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_08_082713) do
+ActiveRecord::Schema.define(version: 2018_05_08_091445) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -51,6 +51,13 @@ ActiveRecord::Schema.define(version: 2018_05_08_082713) do
     t.text "banner"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "categories_profiles", id: false, force: :cascade do |t|
+    t.integer "category_id", null: false
+    t.integer "profile_id", null: false
+    t.index ["category_id", "profile_id"], name: "index_categories_profiles_on_category_id_and_profile_id"
+    t.index ["profile_id", "category_id"], name: "index_categories_profiles_on_profile_id_and_category_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
