@@ -1,11 +1,13 @@
 ActiveAdmin.register Category do
-  permit_params :name, :banner, :parent_id
+  permit_params :name, :banner, :logo, :hover_logo, :parent_id
 
   form do |f|
     f.inputs  do
       f.input :name
       f.input :description
       f.input :banner, label: "Banner", as: :file
+      f.input :logo, label: "Logo", as: :file
+      f.input :hover_logo, label: "Hover Logo", as: :file
       f.input :parent_id, as: :select, collection: Category.main
     end
     f.actions
