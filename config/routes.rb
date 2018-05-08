@@ -19,4 +19,5 @@ Rails.application.routes.draw do
 
   get 'calls(/history)', to: 'calls#index'
   resources :dashboard, only: [:index]
+  resources :account, only: [:index]
 end
