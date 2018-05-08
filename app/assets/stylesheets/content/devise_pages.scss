@@ -1,0 +1,33 @@
+// Devise Pages
+//---------------------------------------------
+
+.registration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 40px 0;
+}
+
+// Devise Errors
+//--------------------------------------------- 
+
+#error_explanation {
+  color: #dc3545;
+
+  h2  {
+    font-size: 16px;
+    font-weight: 400;
+    color: #dc3545;
+  }
+}
+
+.form-flash {
+  margin-bottom: 16px;
+
+  &.alert {
+    border: none;
+    padding: 0;
+    color: #dc3545;
+  }
+}
