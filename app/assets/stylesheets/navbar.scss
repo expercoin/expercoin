@@ -8,6 +8,12 @@
   .navbar-brand {
     padding-top: 8px;
     padding-bottom: 8px;
+    color: #fff;
+    font-weight: 600;
+
+    img {
+      max-height: 36px;
+    }
   }
 
   .navbar-nav {
