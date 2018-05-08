@@ -33,3 +33,31 @@
     }
   } 
 }
+
+// Profile Dropdown
+//---------------------------------------------
+
+.profile-dropdown {
+  .dropdown-menu {
+    right: -1px;
+    left: auto;
+    margin: 0;
+    border-radius: 0;
+    border-top-color: #fff;
+
+    .dropdown-item {
+      padding: 8px 20px;
+
+      &:hover,
+      &:focus {
+        background: #e5f4f7;
+      }
+    }
+  }
+
+  &.show {
+    .dropdown-toggle {
+      background: #fff;
+    }
+  }
+}
