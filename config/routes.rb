@@ -11,12 +11,13 @@ Rails.application.routes.draw do
                     confirmations: 'confirmations', 
                     sessions: 'sessions' }
 
-  resources :pages, only: [:show]
-  root 'pages#mentors_home'
+  # resources :pages, only: [:show]
+  root 'pages#business_home'
   resources :categories do
     get ':subcategory_id', to: 'subcategories#show', as: :subcategory
   end
 
+  get 'for-mentors', to: 'pages#mentors_home'
   get 'calls(/history)', to: 'calls#index'
   resources :dashboard, only: [:index]
   resources :account, only: [:index]
