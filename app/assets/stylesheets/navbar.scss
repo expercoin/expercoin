@@ -20,6 +20,12 @@
     .nav-link {
       padding: 16px 16px;
       cursor: pointer;
+      color: #318fd2;
+
+      &:hover,
+      &:focus {
+        color: darken(#318fd2, 5%);
+      }
     }
   }
 }
