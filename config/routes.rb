@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :categories do
     get ':subcategory_id', to: 'subcategories#show', as: :subcategory
   end
+  resources :profiles, only: %i[show edit update]
 end
