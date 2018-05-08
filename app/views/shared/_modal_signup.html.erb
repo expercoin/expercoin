@@ -1,19 +1,38 @@
 <div class="modal fade" id="modal_signup" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%= devise_error_messages! %>
+          <div class="form-group">
+            <%= f.text_field :first_name, autofocus: true, placeholder: t('form.fields.first_name'), class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.text_field :last_name, autofocus: true, placeholder: t('form.fields.last_name'), class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.email_field :email, autofocus: true, placeholder: t('form.fields.email'), class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.password_field :password, autocomplete: "off", placeholder: t('form.fields.password'), class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: t('form.fields.password_confirmation'), class: 'form-control' %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
       </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
+    <% end %>
   </div>
 </div>
