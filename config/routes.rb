@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
   resources :pages, only: [:show]
-  root 'pages#index'
+  root 'pages#mentors_home'
   resources :categories do
     get ':subcategory_id', to: 'subcategories#show', as: :subcategory
   end
