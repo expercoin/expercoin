@@ -64,9 +64,10 @@
 
 .business-home-categories {
   background: image_url('business_home/business_home_categories.jpg') center bottom / cover no-repeat scroll;
+  padding: 80px 0;
   min-height: 800px;
 
   h3 {
-    color: #fff;
+    color: rgba(#fff, 0.8);
   }
 }
