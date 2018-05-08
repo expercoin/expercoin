@@ -17,6 +17,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'virtus'
 gem 'devise'
 gem 'activeadmin'
+gem 'autoprefixer-rails'
+gem 'bootstrap', '~> 4.1.1'
+gem 'jquery-rails'
 
 # gem 'devise'
 

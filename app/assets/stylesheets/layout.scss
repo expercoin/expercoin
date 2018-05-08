@@ -1,0 +1,33 @@
+// HTML
+//---------------------------------------------
+
+html,
+body {
+  height: 100%;
+}
+
+// Body
+//---------------------------------------------
+
+body {
+  position: relative;
+  font-size: 16px;
+  font-family: 'Proxima Nova', 'Open Sans', sans-serif;
+  line-height: 1.25;
+  color: #555;
+}
+
+// Page
+//---------------------------------------------
+
+.page {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+  padding-top: 50px;
+
+  .page-content {
+    flex: 1;
+  }
+}
