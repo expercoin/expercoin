@@ -15,7 +15,13 @@ h3 {
   }
 }
 
-h6 {
+h5,
+.h5 {
+  font-size: 20px;
+}
+
+h6,
+.h6 {
   font-size: 18px;
 }
 
@@ -41,4 +47,9 @@ p {
 
 .ac {
   text-align: center;
+}
+
+strong,
+.strong {
+  font-weight: 600;
 }
