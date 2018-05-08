@@ -1,0 +1,22 @@
+// Color Overrides
+//---------------------------------------------
+
+$gray-600: #86afae !default;
+
+$blue:    #00bceb !default;
+$green:   #06b86f !default;
+
+// Grid Breakpoints Overrides
+//---------------------------------------------
+
+$container-max-widths: (
+  sm: 540px,
+  md: 680px,
+  lg: 920px,
+  xl: 1024px
+) !default;
+
+// Grid Gutter Override
+//---------------------------------------------
+
+$grid-gutter-width: 12px !default;

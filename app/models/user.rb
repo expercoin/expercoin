@@ -11,6 +11,8 @@ class User < ApplicationRecord
 
   after_commit :create_profile, on: :create
 
+  accepts_nested_attributes_for :profile
+
   def create_profile
     Profile.create!(user_id: id, first_name: first_name, last_name: last_name)
   end
