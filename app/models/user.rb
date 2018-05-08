@@ -16,4 +16,8 @@ class User < ApplicationRecord
   def create_profile
     Profile.create!(user_id: id, first_name: first_name, last_name: last_name)
   end
+
+  def send_confirmation_notification?
+    false
+  end
 end
