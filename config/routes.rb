@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   resources :pages, only: [:show]
   root 'pages#index'
+  resources :categories
 end

@@ -124,6 +124,8 @@ GEM
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
+    friendly_id (5.1.0)
+      activerecord (>= 4.0.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     has_scope (0.7.2)
@@ -181,12 +183,9 @@ GEM
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
     pg (1.0.0)
-<<<<<<< HEAD
-    popper_js (1.12.9)
-=======
     polyamorous (1.3.3)
       activerecord (>= 3.0)
->>>>>>> 835bfbc103ba82d8d7b92f136b84c167431227e2
+    popper_js (1.12.9)
     public_suffix (3.0.2)
     puma (3.11.3)
     rack (2.0.4)
@@ -319,11 +318,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-<<<<<<< HEAD
-  autoprefixer-rails
-=======
   activeadmin
->>>>>>> 835bfbc103ba82d8d7b92f136b84c167431227e2
+  autoprefixer-rails
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.1.1)
   byebug
@@ -333,6 +329,7 @@ DEPENDENCIES
   devise
   factory_bot_rails
   faker
+  friendly_id (~> 5.1.0)
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
