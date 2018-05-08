@@ -1,0 +1,30 @@
+// Spacings
+//---------------------------------------------
+
+@for $i from 0 through 10 {
+  .m-t-#{$i} {
+    margin-top: ($i * 10px)!important;
+  }
+
+  .m-b-#{$i} {
+    margin-bottom: ($i * 10px)!important;
+  }
+
+  .m-y-#{$i} {
+    margin-top: ($i * 10px);
+    margin-bottom: ($i * 10px)!important;
+  }
+
+  .m-l-#{$i} {
+    margin-left: ($i * 10px)!important;
+  }
+
+  .m-r-#{$i} {
+    margin-right: ($i * 10px)!important;
+  }
+
+  .m-x-#{$i} {
+    margin-left: ($i * 10px);
+    margin-right: ($i * 10px)!important;
+  }
+}
