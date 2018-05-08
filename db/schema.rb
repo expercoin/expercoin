@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_08_091445) do
+ActiveRecord::Schema.define(version: 2018_05_08_140551) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 2018_05_08_091445) do
     t.string "slug"
     t.text "description"
     t.text "banner"
+    t.text "logo"
+    t.text "hover_logo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -88,6 +90,31 @@ ActiveRecord::Schema.define(version: 2018_05_08_091445) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.string "title"
+    t.text "message"
+    t.integer "session_length"
+    t.integer "requested_length"
+    t.string "cell_number"
+    t.integer "country_number"
+    t.date "first_date"
+    t.date "second_date"
+    t.date "third_date"
+    t.string "first_time"
+    t.string "second_time"
+    t.string "third_time"
+    t.datetime "selected_date"
+    t.boolean "recording"
+    t.integer "status"
+    t.string "time_zone"
+    t.string "room_sid"
+    t.integer "requester_id"
+    t.integer "expert_id"
+    t.integer "updated_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

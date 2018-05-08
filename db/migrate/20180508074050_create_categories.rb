@@ -6,7 +6,8 @@ class CreateCategories < ActiveRecord::Migration[5.2]
       t.string :slug
       t.text :description
       t.text :banner
-
+      t.text :logo
+      t.text :hover_logo
       t.timestamps
     end
   end
