@@ -2,7 +2,7 @@
 //---------------------------------------------
 
 .content-section {
-  padding: 40px 0 80px;
+  padding: 40px 0 60px;
 
   .content-section-title {
     text-align: center;
@@ -10,6 +10,22 @@
 
   &.section-alternate {
     background-color: #f7f9f6;
+  }
+}
+
+// Trusted
+//---------------------------------------------
+
+.trusted {
+  padding: 40px 0;
+
+  .brands {
+    align-items: center;
+    margin-top: 24px;
+
+    img {
+      max-width: 100%;
+    }
   }
 }
 

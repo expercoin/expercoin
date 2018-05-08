@@ -1,3 +1,27 @@
+// Mentors Banner
+//---------------------------------------------
+
+.mentors-home-header {
+  background: image_url('mentors_home/mentors_home_banner.jpg') center bottom / cover no-repeat scroll;
+  color: #fff;
+  position: relative;
+  min-height: 400px;
+  padding: 60px 0 40px;
+
+  h1 {
+    font-size: 36px;
+    font-weight: 600;
+    max-width: 80%;
+  }
+
+  p {
+    font-size: 18px;
+    font-weight: 200;
+    max-width: 75%;
+  }
+}
+
+
 // Mentors Features
 //---------------------------------------------
 
@@ -14,6 +38,8 @@
   .feature {
     flex: 1;
     background-color: #fff;
+    border: 1px solid #e3e2df;
+    border-radius: 5px;
     padding: 24px 24px;
 
     .feature-header {
@@ -40,6 +66,36 @@
 // Mentors Tips
 //---------------------------------------------
 
+.mentors-home-tips {
+  background: image_url('mentors_home/mentors_home_tips.jpg') center bottom / cover no-repeat scroll;
+
+  h3.content-section-title,
+  p.ac {
+    color: #fff;
+  }
+}
+
 .mentors-tips {
   display: flex;
+  background-color: #f7f9f6; 
+  border-radius: 5px;
+  margin: 10px 0 30px;
+
+  .tip {
+    width: percentage(1/4);
+    padding: 32px 20px 16px;
+
+    h6 {
+      text-align: center;
+      min-height: 42px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
+
+  .tip + .tip {
+    border-left: 1px solid #e3e2df;
+  }
 }
