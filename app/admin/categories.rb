@@ -11,6 +11,20 @@ ActiveAdmin.register Category do
     f.actions
   end
 
+  index do
+    column :id
+    column :parent  
+    column :name  
+    column 'Preview', :preview do |c|
+      if c.parent
+        link_to('Preview', category_subcategory_path(c.parent.slug, c.slug), target: "_blank" )
+      else
+        link_to('Preview', category_path(c.slug), target: "_blank" )
+      end
+    end 
+    actions
+  end 
+
   controller do
     def find_resource
       scoped_collection.friendly.find(params[:id])
