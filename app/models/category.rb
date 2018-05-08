@@ -5,6 +5,9 @@ class Category < ApplicationRecord
   validates :name, uniqueness: true
 
   scope :main, -> { where(parent_id: nil ) }
+  scope :children, -> { where.not(parent_id: nil ) }
+
+  mount_uploader :banner, PhotoUploader
 
   extend FriendlyId
   friendly_id :name, use: :slugged
