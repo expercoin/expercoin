@@ -32,4 +32,23 @@ body {
   }
 }
 
+// Page banner
+//---------------------------------------------
+
+.page-banner {
+  display: flex;
+  align-items: center; 
+  position: relative; 
+
+  .banner-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  h1,
+  p {
+    font-family: 'Circular';
+  }
+}
+
 

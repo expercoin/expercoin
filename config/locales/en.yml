@@ -31,3 +31,10 @@
 
 en:
   hello: "Hello world"
+  form:
+    fields: 
+      first_name: "First Name"
+      last_name: "Last Name"
+      email: "Email Address"
+      password: "Password"
+      password_confirmation: "Password Confirmation"
