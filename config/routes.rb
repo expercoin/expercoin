@@ -16,4 +16,7 @@ Rails.application.routes.draw do
   resources :categories do
     get ':subcategory_id', to: 'subcategories#show', as: :subcategory
   end
+
+  get 'calls(/history)', to: 'calls#index'
+  resources :dashboard, only: [:index]
 end
