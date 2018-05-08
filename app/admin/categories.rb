@@ -1,5 +1,5 @@
 ActiveAdmin.register Category do
-  permit_params :name, :photo, :parent_id
+  permit_params :name, :banner, :parent_id
 
   form do |f|
     f.inputs  do

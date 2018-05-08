@@ -9,3 +9,4 @@
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 User.create!(email: 'johnsnow@got.com', password: '123456', password_confirmation: '123456') if Rails.env.development?
 Profile.create!(user: User.first, first_name: 'John', last_name: 'Snow', title: 'King in the North', rate: 200) if Rails.env.development?
+Category.create!(name: 'Business', description: 'Get advice on all aspects of business from international strategy to leading a team of innovators.') if Rails.env.development?

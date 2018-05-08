@@ -8,6 +8,8 @@ class Category < ApplicationRecord
   scope :main, -> { where(parent_id: nil ) }
   scope :children, -> { where.not(parent_id: nil ) }
 
+  mount_uploader :banner, PhotoUploader
+
   extend FriendlyId
   friendly_id :name, use: :slugged
 end
