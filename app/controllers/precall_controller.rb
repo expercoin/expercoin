@@ -6,6 +6,6 @@ class PrecallController < ApplicationController
   private
 
   def set_profile
-    @profile = Profile.friendly.find(params[:profile_id])
+    @profile = Profile.friendly.find(params[:expert_id])
   end
 end
