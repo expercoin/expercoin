@@ -15,7 +15,7 @@ Vue.component('hello', Hello)
 Vue.component('toggle-input', toggleInput)
 
 document.addEventListener('turbolinks:load', () => {
-  const app = new Vue({
-    el: '[data-behaviour="vue"]',
-  })
+  // const app = new Vue({
+  //   el: '[data-behaviour="vue"]',
+  // })
 })
