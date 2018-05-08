@@ -1,0 +1,42 @@
+// Business Banner
+//---------------------------------------------
+
+// Business Intro
+//---------------------------------------------
+
+.business-intro {
+  padding: 40px 0;
+
+  p {
+    font-size: 18px;
+  }
+}
+
+// Business How it Works
+//---------------------------------------------
+
+.business-hiw {
+  padding: 60px 0 0; 
+
+  .hiw-title {
+    h2 {
+      color: #00abda;
+      text-align: center;
+      font-size: 50px;
+    }
+  }
+
+  .hiw-step {
+    padding: 20px 0 0;
+
+    h3 {
+      .step-number {
+        color: #00abda;
+      }
+    }
+
+    .step-img {
+      max-width: 100%;
+    }
+  }
+}
