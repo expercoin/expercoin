@@ -53,7 +53,7 @@
   </div>
   <div>
     <label>Categories</label>
-    <%= f.collection_select :category_ids, @categories, :id, :name, {}, { class: 'selectpicker', 'data-live-search':"true" } %>
+    <%= f.collection_select :category_ids, @categories, :id, :name, {}, { multiple:"multiple", class: 'selectpicker', 'data-live-search':"true" } %>
   </div>
 
   <%= f.submit %>
