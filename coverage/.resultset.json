@@ -1,0 +1,41 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/home/muhamed/Apps/expercoin/app/forms/form_object.rb": [
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/home/muhamed/Apps/expercoin/spec/services/base_service_spec.rb": [
+        1,
+        null,
+        1,
+        null
+      ],
+      "/home/muhamed/Apps/expercoin/app/services/base_service.rb": [
+        null,
+        1,
+        null
+      ],
+      "/home/muhamed/Apps/expercoin/spec/validators/base_validator_spec.rb": [
+        1,
+        null,
+        1,
+        null
+      ],
+      "/home/muhamed/Apps/expercoin/app/validators/base_validator.rb": [
+        null,
+        1,
+        1,
+        null
+      ]
+    },
+    "timestamp": 1522755585
+  }
+}
