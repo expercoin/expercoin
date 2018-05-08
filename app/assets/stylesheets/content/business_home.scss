@@ -2,7 +2,7 @@
 //---------------------------------------------
 
 .business-home-header {
-  background: image_url('business_home/business_home_banner.jpg') center bottom / cover no-repeat scroll;
+  background: image_url('business_home/business_home_banner.jpg') center center / cover no-repeat scroll;
   color: #fff;
   position: relative;
   min-height: 600px;
@@ -56,5 +56,17 @@
     .step-img {
       max-width: 100%;
     }
+  }
+}
+
+// Business Categories
+//---------------------------------------------
+
+.business-home-categories {
+  background: image_url('business_home/business_home_categories.jpg') center bottom / cover no-repeat scroll;
+  min-height: 800px;
+
+  h3 {
+    color: #fff;
   }
 }
