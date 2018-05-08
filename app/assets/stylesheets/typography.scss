@@ -1,9 +1,10 @@
-// Hreaing
+// Headings
 //---------------------------------------------
 
 h3,
 h4,
-h5 {
+h5,
+h6 {
   font-weight: 600;
   color: #444;
 }
@@ -12,4 +13,43 @@ h3 {
   &.h3-lg {
     font-size: 36px;
   }
+}
+
+h5,
+.h5 {
+  font-size: 20px;
+}
+
+h6,
+.h6 {
+  font-size: 18px;
+}
+
+// Paragraph
+//---------------------------------------------
+
+p {
+  &.p-light {
+    color: #777;
+  }
+
+  &.p-sm {
+    font-size: 14px;
+  }
+}
+
+// Text tags
+//---------------------------------------------
+
+.uc {
+  text-transform: uppercase;
+}
+
+.ac {
+  text-align: center;
+}
+
+strong,
+.strong {
+  font-weight: 600;
 }
