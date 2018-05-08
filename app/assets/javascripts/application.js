@@ -4,8 +4,8 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
-//= require bootstrap-select
+//= require select2
 
 document.addEventListener("turbolinks:load", function() {
-  $('.selectpicker').selectpicker();
+  $('.selectpicker').select2();
 });
