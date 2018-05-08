@@ -11,8 +11,14 @@
   </head>
 
   <body>
-    <div data-behaviour="vue">
-      <%= yield %>
-    </div>
+    <div class="page">
+      <%= render 'shared/navbar' %>
+      
+      <div class="page-content">
+        <%= yield %>
+      </div>
+        
+      <%= render 'shared/footer' %>
+    </div>   
   </body>
 </html>
