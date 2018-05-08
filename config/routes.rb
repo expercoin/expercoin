@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :pages, only: [:show]
-  root 'pages#index'
+  root 'pages#mentors_home'
 end
