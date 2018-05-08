@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   resources :dashboard, only: [:index]
   resources :account, only: [:index]
   resources :profiles, only: %i[edit update]
-  resources :profiles, path: '', only: :show do
+
+  #always last route
+  resources :profiles, path: '', as: :expert, only: :show do
     resources :precall, only: :index
   end
 end
