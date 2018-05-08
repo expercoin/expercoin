@@ -1,6 +1,24 @@
 // Business Banner
 //---------------------------------------------
 
+.business-home-header {
+  background: image_url('business_home/business_home_banner.jpg') center center / cover no-repeat scroll;
+  color: #fff;
+  position: relative;
+  min-height: 600px;
+  padding: 60px 0 160px;
+
+  h1 {
+    font-size: 42px;
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 24px;
+    font-weight: 200;
+  }
+}
+
 // Business Intro
 //---------------------------------------------
 
@@ -38,5 +56,17 @@
     .step-img {
       max-width: 100%;
     }
+  }
+}
+
+// Business Categories
+//---------------------------------------------
+
+.business-home-categories {
+  background: image_url('business_home/business_home_categories.jpg') center bottom / cover no-repeat scroll;
+  min-height: 800px;
+
+  h3 {
+    color: #fff;
   }
 }
