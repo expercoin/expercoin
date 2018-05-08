@@ -6,6 +6,7 @@ class CreateProfiles < ActiveRecord::Migration[5.2]
       t.string :last_name
       t.string :title
       t.integer :rate
+      t.string :photo
 
       t.timestamps
     end
