@@ -7,5 +7,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
-User.create!(first_name: 'John', last_name: 'Snow', email: 'johnsnow@got.com', password: '123456', password_confirmation: '123456') if Rails.env.development?
+user = User.create!(first_name: 'John', last_name: 'Snow', email: 'johnsnow@got.com', password: '123456', password_confirmation: '123456') if Rails.env.development?
+user.confirm
 Rake::Task['categories:create_blockchain'].invoke
