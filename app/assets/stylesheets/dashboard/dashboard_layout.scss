@@ -1,4 +1,8 @@
 .content {
+  background-color: #f7f9f6;
+  flex: 1;
+  padding-bottom: 40px;
+
   &.content-with-nav {
     padding-top: 76px;
 
@@ -18,7 +22,7 @@
 }
 
 .content-breadcrumb {
-  padding: 32px 32px 16px;
+  padding: 20px 16px 16px;
   border-bottom: 1px solid #e3e2df;
 }
 
@@ -37,7 +41,7 @@
 
 .content-container{
   position: relative;
-  max-width: 1024px;
+  max-width: 980px;
   padding-left: 16px;
   padding-right: 16px;
   margin: 0 auto;
@@ -137,6 +141,13 @@
 
   .mentor-image {
     padding-right: 20px;
+
+    img {
+      background-color: #fff;
+      border-radius: 50%;
+      width: 160px;
+      height: 160px;
+    }  
   }
 
   .mentor-info {
@@ -248,6 +259,11 @@
 
 .mentor-panel-bio {
   font-size: 14px;
+
+  h5 {
+    font-size: 18px;
+    font-weight: 600;
+  }
 }
 
 .mentors-filters {

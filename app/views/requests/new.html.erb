@@ -56,7 +56,7 @@
               <div class='circle centered'>
                 <span class='number'>1</span>
               </div>
-              <h2>Request Information</h2>
+              <h4>Request Information</h4>
             </div>
             <div class='form-group'>
               <%= f.label :title, 'What do you need help with?' %>
@@ -98,7 +98,7 @@
               <div class='circle centered'>
                 <span class='number'>2</span>
               </div>
-              <h2>Suggest Time</h2>
+              <h4>Suggest Time</h4>
             </div>
             <div class='section-subtitle'>
               Suggested 3 times to <%= @profile.first_name %> to schedule the call. <%= @profile.first_name %> can accept a time or suggest outer times.
@@ -140,7 +140,7 @@
             </div>
           </section>
 
-          <%= f.submit 'Continue', class: 'btn btn-primary form-control' %>
+          <%= f.submit 'Continue', class: 'btn btn-success btn-block' %>
         <% end %>
 
       </div>

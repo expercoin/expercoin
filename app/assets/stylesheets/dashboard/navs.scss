@@ -42,6 +42,12 @@
         background: #00b0eb; 
       }
 
+      &:hover,
+      &:focus {
+        text-decoration: none;
+        background-color: #fdfdfd;
+      }
+
       &.active {
         &:after {
           height: 10px;
@@ -52,6 +58,10 @@
 
   li {
     border-right: 1px solid #e3e2df;
+
+    &:first-child {
+      border-left: 1px solid #e3e2df;
+    }
   }
 }
 
@@ -59,7 +69,7 @@
   padding: 0 30px;
 
   .btn-live {
-    width: 250px;
+    width: 240px;
   }
 
   .msp-icon-live {
