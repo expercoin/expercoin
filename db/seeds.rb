@@ -9,4 +9,6 @@
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 user = User.create!(first_name: 'John', last_name: 'Snow', email: 'johnsnow@got.com', password: '123456', password_confirmation: '123456') if Rails.env.development?
 user.confirm
+user.profile.update(rate: 2000)
 Rake::Task['categories:create_blockchain'].invoke
+user.profile.categories << Category.third if Rails.env.development?

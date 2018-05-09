@@ -19,6 +19,7 @@ gem 'devise'
 gem 'activeadmin'
 gem 'autoprefixer-rails'
 gem 'bootstrap', '~> 4.1.1'
+gem "font-awesome-rails"
 gem 'jquery-rails'
 gem 'friendly_id', '~> 5.1.0'
 gem 'carrierwave', '~> 1.0'
