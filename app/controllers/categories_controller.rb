@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
 
   def show
     @profiles = @category.children_profiles.except(current_user&.profile)
+    @subcategories = @category.categories
   end
 
   def index
