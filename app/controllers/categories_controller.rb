@@ -1,8 +1,13 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show]
 
-  def show; end
-  def index; end
+  def show
+    @profiles = @category.children_profiles.except(current_user&.profile)
+  end
+
+  def index
+    @categories = Category.main
+  end
 
   private
 

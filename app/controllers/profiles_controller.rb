@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
 
   def edit
     @profile_form = ProfileForm.new(@profile, photo_url: @profile.photo_url)
-    @categories = Category.all
+    @categories = Category.children
   end
 
   def show; end
