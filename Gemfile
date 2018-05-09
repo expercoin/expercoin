@@ -23,6 +23,7 @@ gem "font-awesome-rails"
 gem 'jquery-rails'
 gem 'friendly_id', '~> 5.1.0'
 gem 'carrierwave', '~> 1.0'
+gem 'kaminari'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
