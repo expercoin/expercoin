@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show]
+  layout 'dashboard'
 
   def show
     @profiles = @category.children_profiles.except(current_user&.profile)

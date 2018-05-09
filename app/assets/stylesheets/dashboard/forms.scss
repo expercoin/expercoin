@@ -1,0 +1,139 @@
+// Forms form mentorshi
+.request-form {
+
+  .sub-label {
+    color: #AAAAAA;
+    font-size: 0.625rem;
+    font-weight: normal;
+  }
+
+  .form-section {
+    padding: 1.75rem;
+  }
+
+  input[type=text].form-control {
+    height: 38px;
+  }
+
+  .section-title {
+    @include display(flex);
+    color: #00b0eb;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+  }
+
+  .section-body {
+  }
+
+  .section-body-row {
+    @include display(flex);
+    @include justify-content(space-between);
+    position: relative;
+    padding: 0 0 0 2rem;
+  }
+
+  .section-row {
+    padding: 0 0 0 2rem;
+    margin: 0.5rem 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .summary-icon {
+    position: absolute;
+    font-size: 1.5rem;
+    left: 0;
+  }
+
+  .select2-choices {
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+  }
+
+  .select2-choice {
+    border: 1px solid #ccc;
+    background: #f6f6f4;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .circle {
+    margin-right: 0.5rem;
+  }
+
+  .number {
+    text-align: center;
+  }
+
+  label {
+    font-weight: bold;
+  }
+}
+
+// Pickers in forms
+.datetime-picker-container {
+  @include display(flex);
+  @include align-items(center);
+  @include justify-content(space-between);
+
+  .picker {
+  }
+
+  .date {
+    width: 60%;
+    position: relative;
+
+    .form-control {
+      padding-right: 30px;
+    }
+
+    .icon-calendar-color {
+      content: '';
+      background: image-url('msp/icons/calendar-color.png') center center no-repeat scroll;
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      right: 8px;
+      top: 8px;
+      cursor: pointer;
+    }
+  }
+
+  .date-picker-input {
+    width: 100%;
+  }
+
+  .time {
+    width: 30%;
+  }
+
+  .pick-time {
+    width: 100%;
+  }
+}
+
+.filter-checkbox {
+  position: relative;
+  padding-left: 18px; 
+  margin-bottom: 2px;
+
+  input {
+    position: absolute;
+    left: 0;
+    top: 5px;
+  }
+
+  label {
+    font-size: 14px;
+    margin: 0;
+  }
+}
