@@ -22,7 +22,6 @@ class RequestsController < ApplicationController
 
   def update
     return render :edit unless @request.update(request_params)
-    MSP::Email::Request.new(@request).email_to_expert
     render :thankyou
   end
 
@@ -31,7 +30,7 @@ class RequestsController < ApplicationController
       request_params.merge(requester: current_user&.profile, status: 0)
     )
     return render_error_messages :new unless @request.save
-    redirect_to request_path(@request.id)
+    redirect_to edit_request_path(@request.id)
   end
 
   private
