@@ -1,6 +1,8 @@
 class Profile < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :categories
+  has_many :reviews
+  has_many :created_reviews, class_name: 'Review', foreign_key: :author_id
 
   validates_presence_of :first_name, :last_name
 

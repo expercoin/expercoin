@@ -1,7 +1,9 @@
 class PrecallController < ApplicationController
   before_action :authenticate_user!, :set_profile
 
-  def index; end
+  def index
+    @request = Request.new(requester: current_user.profile)
+  end
   
   private
 
