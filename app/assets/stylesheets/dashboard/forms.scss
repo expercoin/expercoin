@@ -2,8 +2,8 @@
 .request-form {
 
   .sub-label {
-    color: #AAAAAA;
-    font-size: 0.625rem;
+    color: #aaa;
+    font-size: 10px;
     font-weight: normal;
   }
 
@@ -16,30 +16,30 @@
   }
 
   .section-title {
-    @include display(flex);
+    display: flex;
     color: #00b0eb;
-    font-weight: bold;
-    margin-bottom: 1rem;
+    font-weight: 800;
+    margin-bottom: 16px;
   }
 
   .section-subtitle {
-    font-size: 1.125rem;
-    margin-bottom: 1rem;
+    font-size: 20px;
+    margin-bottom: 16px;
   }
 
   .section-body {
   }
 
   .section-body-row {
-    @include display(flex);
-    @include justify-content(space-between);
+    display: flex;
+    justify-content: space-between;
     position: relative;
-    padding: 0 0 0 2rem;
+    padding: 0 0 0 32px;
   }
 
   .section-row {
-    padding: 0 0 0 2rem;
-    margin: 0.5rem 0;
+    padding: 0 0 0 32px;
+    margin: 8px 0;
 
     &:last-child {
       margin-bottom: 0;
@@ -48,13 +48,13 @@
 
   .summary-icon {
     position: absolute;
-    font-size: 1.5rem;
+    font-size: 24px;
     left: 0;
   }
 
   .select2-choices {
     border: 1px solid #ccc;
-    border-radius: 0.25rem;
+    border-radius: 4px;
   }
 
   .select2-choice {
@@ -67,7 +67,7 @@
   }
 
   .circle {
-    margin-right: 0.5rem;
+    margin-right: 8px;
   }
 
   .number {
@@ -80,10 +80,11 @@
 }
 
 // Pickers in forms
+
 .datetime-picker-container {
-  @include display(flex);
-  @include align-items(center);
-  @include justify-content(space-between);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   .picker {
   }
