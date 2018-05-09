@@ -91,7 +91,7 @@
   padding: 2rem;
   height: 100%;
   color: #fff;
-  font-size: 1.25rem;
+  font-size: 1.375rem;
   font-weight: 600;
 
   &:hover {
@@ -99,13 +99,17 @@
     color: #fff;
   }
   
+  .fa {
+    margin-left: .5rem;
+    font-weight: 600;
+  }
 
   p {
     font-size: .9375rem;
     font-weight: 400;
     text-transform: uppercase;
     color: rgb(59, 60, 61);
-    color: rgba(0, 0, 0, 0.6);
+    color: rgba(0, 0, 0, 0.45);
     margin-bottom: 0.25rem;
   }
 
