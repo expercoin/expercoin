@@ -1,6 +1,17 @@
 <nav class="content-nav">
   <%= render "shared/subnavbar", active: "requests" %>
 </nav>
+<% if @request.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@request.errors.count, "error") %> prohibited this request from being saved:</h2>
+
+    <ul>
+      <% @request.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 <main class="content content-with-nav">
   <div class="content-breadcrumb">
     <ul class="breadcrumb">
@@ -94,7 +105,7 @@
             </div>
             <div class='form-group'>
               <%= f.label :time_zone, 'Your Timezone' %>
-              <%= time_zone_select_dst("msp_request", "time_zone", nil, {default: "Eastern Time (US & Canada)"}, { class: 'select-picker select-picker-with-padding full-width'}) %>
+              <%= time_zone_select_dst("request", "time_zone", nil, {default: "Eastern Time (US & Canada)"}, { class: 'select-picker select-picker-with-padding full-width'}) %>
             </div>
             <h4>Suggest 3 times</h4>
             <div class='form-group datetime-picker-container'>
