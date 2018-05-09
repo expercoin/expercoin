@@ -24,7 +24,7 @@
                 <div class="category-subcategories" data-id="<%= category.id %>">
                   <div class="category-name"><%= category.name %></div>
                   <% category.subcategories.each do |subcategory| %>
-                    <a class="dropdown-item subcategory-item" href="<%= category_subcategory_path(category, subcategory)%>"><%= subcategory.name %></a>
+                    <a class="dropdown-item subcategory-item" href="<%= category_subcategory_path(category, subcategory) %>"><%= subcategory.name %></a>
                   <% end %>
                 </div>    
               <% end %>

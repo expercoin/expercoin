@@ -12,5 +12,10 @@
       
       <%= yield %>
     </div>  
+
+    <% unless current_user  %>
+      <%= render 'shared/modal_signup' %>
+      <%= render 'shared/modal_login' %>
+    <% end %>
   </body>
 </html>
