@@ -12,6 +12,7 @@ namespace :users do
       user.profile.update(
         rate: Faker::Number.between(10, 1000),
         title: Faker::Job.title,
+        about: Faker::Lorem.paragraph,
         address: Faker::Address.street_address,
         state: Faker::Address.state,
         country: 'United States'
