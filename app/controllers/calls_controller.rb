@@ -1,9 +1,9 @@
 class CallsController < ApplicationController
   before_action :authenticate_user!
   layout 'dashboard'
-  
+
   def index
-    @requests = current_user.profile.requests
+    @requests = current_user.profile.requests.page(params[:page]).per(8)
     @history = request.url.match('history')
   end
 

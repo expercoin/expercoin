@@ -1,8 +1,5 @@
-<aside class="sidebar">
-  <%# <%= render "shared/corporate/sidebar", active: "mentorship" %>
-</aside>
 <nav class="content-nav">
-  <%# <%= render "shared/corporate/msp/navbar", active: "mentors" %>
+  <%= render "shared/subnavbar", active: "mentors" %>
 </nav>
 <main class="content content-with-nav">
   <div class="content-breadcrumb">
@@ -17,7 +14,7 @@
   <header class="content-container content-with-aside">
     <div class="mentor-header content-main">
       <div class="mentor-image">
-        <%# <%= render "shared/profile_photo_medium", locals: { profile: @user.expert, linkedin: true } %>
+        <%= render "shared/profile_photo", photo: @profile.photo_url %>
       </div>
       <div class="mentor-info">
         <h1><%= decorate(@profile).full_name %></h1>
