@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 2018_05_09_091347) do
     t.integer "rate"
     t.integer "profile_id"
     t.integer "author_id"
+    t.integer "request_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
