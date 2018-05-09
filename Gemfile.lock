@@ -343,6 +343,7 @@ DEPENDENCIES
   friendly_id (~> 5.1.0)
   jbuilder (~> 2.5)
   jquery-rails
+  kaminari
   listen (>= 3.0.5, < 3.2)
   pg
   puma (~> 3.11)

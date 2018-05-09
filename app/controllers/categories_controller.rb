@@ -3,7 +3,8 @@ class CategoriesController < ApplicationController
   layout 'dashboard'
 
   def show
-    @profiles = @category.children_profiles.except(current_user&.profile)
+    @profiles = @category.children_profiles
+      .except(current_user&.profile).page(params[:page]).per(8)
     @subcategories = @category.categories
   end
 

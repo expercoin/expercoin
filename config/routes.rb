@@ -19,11 +19,14 @@ Rails.application.routes.draw do
 
   get 'for-mentors', to: 'pages#mentors_home'
   get 'calls(/history)', to: 'calls#index'
+  resources :calls, only: [:show]
+
   resources :dashboard, only: [:index]
   resources :account, only: [:index]
   resources :profiles, only: %i[edit show update]
   resources :requests
   get 'requests/:id/thankyou', to: 'requests#thankyou', as: :requests_thankyou
+  resources :reviews
 
   #always last route
   resources :profiles, path: '', as: :expert, only: :show do

@@ -6,7 +6,7 @@ class RequestsController < ApplicationController
   before_action :set_request_and_expert, only: %i[show edit update]
 
   def index
-    @requests = current_user.profile.requests.page(params[:page]).per(8)
+    @requests = current_user.profile.created_requests.page(params[:page]).per(8)
   end
 
   def show
@@ -22,7 +22,6 @@ class RequestsController < ApplicationController
 
   def update
     return render :edit unless @request.update(request_params)
-    MSP::Email::Request.new(@request).email_to_expert
     render :thankyou
   end
 
@@ -31,7 +30,7 @@ class RequestsController < ApplicationController
       request_params.merge(requester: current_user&.profile, status: 0)
     )
     return render_error_messages :new unless @request.save
-    redirect_to request_path(@request.id)
+    redirect_to edit_request_path(@request.id)
   end
 
   private
@@ -60,7 +59,7 @@ class RequestsController < ApplicationController
   end
 
   def set_request_and_expert
-    @request = Request.find_by_id(params[:id])
+    @request = current_user.profile.created_requests.find_by_id(params[:id])
     @profile = @request.expert
   end
 
