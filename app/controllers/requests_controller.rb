@@ -1,4 +1,6 @@
 class RequestsController < ApplicationController
+
+  layout 'dashboard'
   before_action :authenticate_user!
   before_action :set_profile, only: %i[new]
   before_action :set_request_and_expert, only: %i[show edit update]

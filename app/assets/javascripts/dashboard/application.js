@@ -6,3 +6,6 @@
 //= require bootstrap
 //= require select2
 //= require categories_dropdown
+//= require request_form
+//= require bootstrap-datepicker
+//= require bootstrap-timepicker
