@@ -57,7 +57,7 @@
 
 .panel-stats {
   .stats {
-    @include display(flex);
+    display: flex;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -65,11 +65,11 @@
     border-bottom: 1px solid #e3e2df;
 
     li {
-      @include display(flex);
-      @include flex-direction(column);
-      @include flex(0 0 percentage(1/3));
-      @include align-items(center);
-      @include justify-content(center);
+      display: flex;
+      flex-direction: column;
+      flex: 0 0 percentage(1/3);
+      align-items: center;
+      justify-content: center;
       max-width: percentage(1/3);
       padding: 20px 8px 10px;
 
