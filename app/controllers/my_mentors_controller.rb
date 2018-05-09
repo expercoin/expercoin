@@ -9,6 +9,6 @@ class MyMentorsController < ApplicationController
 
   def set_my_mentors
     requests = Request.where(requester: current_user)
-    @mentors = requests.map(&:expert)
+    @mentors = requests.map(&:expert).uniq
   end
 end
