@@ -37,7 +37,7 @@
                   <%#= render "shared/profile_square_photo", locals: {profile: expert, linkedin: true} %>
                 </div>
                 <div class="card-body">
-                  <h4><%= link_to decorate(profile).full_name, '#' %></h4>
+                  <h4><%= link_to decorate(profile).full_name, profile_path(profile) %></h4>
                   <div class="mentor-title">
                     <%= profile.title %>
                   </div>
@@ -53,8 +53,8 @@
                   <div class="footer-block mentor-price-and-reviews">
                     <span class="mentor-price"><strong>EXC <%= profile.rate %></strong>/min</span>
                     <span class="mentor-reviews">
-                      <%#= MentorRating.new(expert.profile).average_rating %>
-                      <%= display_stars(3.75) %>
+                      <%= rating = ProfileRating.new(profile).average_rating %>
+                      <%= display_stars(rating) %>
                     </span>
                   </div>
                   <div class="footer-block mentor-actions">

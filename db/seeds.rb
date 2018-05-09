@@ -9,4 +9,5 @@
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 Rake::Task['categories:create_blockchain'].invoke
 Rake::Task['users:create_test_users'].invoke if Rails.env.development?
+Rake::Task['reviews:create_test_reviews'].invoke if Rails.env.development?
 
