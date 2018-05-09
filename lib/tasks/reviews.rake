@@ -1,7 +1,7 @@
 namespace :reviews do
   desc "TODO"
   task create_test_reviews: :environment do
-    requests = Request.last(15)
+    requests = Request.last(50)
     requests.each do |request|
       Review.create!(
         profile: request.expert,
