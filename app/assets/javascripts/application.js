@@ -9,6 +9,7 @@
 //= require request_form
 //= require bootstrap-datepicker
 //= require bootstrap-timepicker
+//= require commission_fee
 
 document.addEventListener("turbolinks:load", function() {
   $('.selectpicker').select2();

@@ -98,14 +98,14 @@
                   <div class="card-body">
                     <div class="row form-group">
                       <div class="col-sm-3 offset-md-2">
-                          <label>Experfy Rate:</label>
+                          <label>Expercoin Rate:</label>
                       </div>
                       <div class="col-sm-4">
                         <div class="input-group">
                           <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">EXPR</span>
+                            <span class="input-group-text" id="basic-addon1">EXC</span>
                           </div>
-                          <%= f.text_field :rate, :class => "form-control" %>
+                          <%= f.text_field :expercoin_rate,'data-rate': 'expercoin', 'data-fee': @profile.commission_fee, :class => "form-control" %>
                         </div>
                       </div>
                     </div>
@@ -116,14 +116,14 @@
                         <div class="col-sm-4">
                           <div class="input-group">
                             <div class="input-group-prepend">
-                              <span class="input-group-text" id="basic-addon1">EXPR</span>
+                              <span class="input-group-text" id="basic-addon1">EXC</span>
                             </div>
-                            <%= f.text_field :expercoin_rate, :class => "form-control" %>
+                            <%= f.text_field :rate, class: "form-control", 'data-rate': 'hourly', 'data-fee': @profile.commission_fee %>
                           </div>
                         </div>
                         <div class="col-sm-3">
                             <p>
-                                (20% commission fee)
+                                (<%= @profile.commission_fee %>% commission fee)
                               </p>
                         </div>
                       </div>
