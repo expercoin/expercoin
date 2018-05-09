@@ -57,3 +57,69 @@
     }
   }
 }
+
+// Categories Dropdown
+//---------------------------------------------
+
+.categories-dropdown {
+  .dropdown-menu {
+    padding: 0;
+    width: 500px;
+    left: -1px;
+    margin: 0;
+    border-radius: 0;
+    border-top-color: #fff;
+  }
+
+  &.show {
+    .dropdown-toggle {
+      background: #fff;
+    }
+  }
+
+  .inner-menu {
+    display: flex;
+    min-height: 200px;
+
+    .menu-block {
+      width: 50%;
+      padding: 0.5rem 0;
+    }
+  }
+
+  .categories-menu {
+    .category-item {
+      padding: 8px 20px;
+
+      &:hover,
+      &:focus {
+        background: #e5f4f7;
+      }
+    }
+  }
+
+  .subcategories-menu {
+    background-color: #f7f9f6;
+    border-left: 1px solid #e3e2df;
+
+    .category-name {
+      font-size: 18px;
+      font-weight: 600;
+      padding: 8px 15px;
+    }
+
+    .subcategory-item {
+      font-size: 14px;
+      padding: 4px 15px;
+
+      &:hover,
+      &:focus {
+        background-color: darken(#f7f9f6, 5%);
+      }
+    }
+
+    .category-subcategories {
+      display: none;
+    }
+  }
+}
