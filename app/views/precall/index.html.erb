@@ -20,9 +20,9 @@
         <h1>Schedule session with <%= @profile&.first_name %></h1>
         <p><%= @profile.title %></p>
         <div class="location">
-          <% unless @profile&.display_location_with_abbreviation.empty? %>
+          <% unless decorate(@profile).display_location_with_abbreviation.empty? %>
             <i class="fa fa-map-marker"></i>
-            <%= @profile.display_location_with_abbreviation %>
+            <%= decorate(@profile).display_location_with_abbreviation %>
           <% end %>
         </div>
       </div>
@@ -30,7 +30,7 @@
     <div class="mentor-pricing-and-rating content-aside">   
       <p class="pricing"><span class="currency">$</span>2.50<span class="per">/min</span></h2>
       <p class="rating">
-        <%= display_stars(MentorRating.new(@expert).average_rating, 'Rating') %>
+        <%= display_stars(3.75, 'Rating') %>
       </p>   
     </div>  
   </header>
@@ -39,6 +39,7 @@
     <div class="content-main">
       <div class='request-form'>
         <%= form_for @request, url: requests_path do |f| %>
+         <%= f.hidden_field :expert_id, value: @profile.id %>
           <section class='panel form-section'>
             <div class='section-title'>
               <div class='circle centered'>
@@ -61,17 +62,8 @@
             </div>
 
             <div class='form-group'>
-              <%= f.label :category_id, 'Pick Expertise/Skill Area' %>
-              <%= f.select :category_id, options_for_select(@categories), {}, { class: 'select-picker select-picker-with-padding full-width' } %>
-            </div>
-            <div class='form-group'>
-              <%= f.label 'tags', 'Add Tags' %>
-              <%= f.text_field :tag_list, {class: 'select-picker-tags select-picker-with-padding full-width', data: { existing_tags: all_tags}, value: '' } %>
-            </div>
-
-            <div class='form-group'>
               <%= f.label :requested_length, 'Aproximate Session Length' %>
-              <%= f.select :requested_length, options_for_select(MSP::Request.requested_lengths.keys.map {|k| ["#{k}", k]} ), {}, { class: 'select-picker select-picker-with-padding full-width' } %>
+              <%= f.select :requested_length, options_for_select(Request.requested_lengths.keys.map {|k| ["#{k}", k]} ), {}, { class: 'select-picker select-picker-with-padding full-width' } %>
             </div>
 
             <div class='form-group'>
@@ -143,7 +135,7 @@
       </div>
     </div>
     <div class="content-aside">
-      <%= render 'shared/msp/how_it_works' %>
+      <%= render 'shared/how_it_works' %>
     </div>   
   </div>    
 </main>
