@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
 
   def show
     @profiles = @category.children_profiles
-      .except(current_user&.profile).page(params[:page]).per(8)
+      .except(current_user&.profile).page(params[:page]).per(9)
     @subcategories = @category.categories
   end
 

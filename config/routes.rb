@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :requests
   get 'requests/:id/thankyou', to: 'requests#thankyou', as: :requests_thankyou
   resources :reviews
+  resources :my_mentors, only: [:index]
 
   #always last route
   resources :profiles, path: '', as: :expert, only: :show do
