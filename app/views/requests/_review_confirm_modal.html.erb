@@ -1,0 +1,16 @@
+<div class="modal fade mentorship-modal" tabindex="-1" role="dialog" id="review-confirm-modal">
+  <div class="modal-dialog vertical-align-center" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Submit Review</h4>
+      </div>
+      <div class="modal-body text-center">
+        <p>Are you sure you want to submit this review?</p>
+      </div>
+      <div class="modal-footer">
+        <%= link_to 'Yes', "#", :onclick => "$('#new_msp_review').submit()", class: "btn btn-primary" %>
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>

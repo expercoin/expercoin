@@ -1,0 +1,211 @@
+<aside class="sidebar">
+  <%= render "shared/corporate/sidebar", active: "mentorship" %>
+</aside>
+<nav class="content-nav">
+  <%= render "shared/corporate/msp/navbar", active: "mentors" %>
+</nav>
+<% if @request.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@request.errors.count, "error") %> prohibited this request from being saved:</h2>
+
+    <ul>
+      <% @request.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<main class="content content-with-nav">
+  <div class="content-breadcrumb">
+    <ul class="breadcrumb">
+      <li>
+        <%= link_to corporate_mentorship_requests_path do %>
+          <i class="fa fa-angle-left" aria-hidden="true"></i> Go Back
+        <% end %>
+      </li>
+    </ul>
+  </div>
+  <header class="content-container content-with-aside">
+    <div class="mentor-header mentor-header-sm content-main">
+      <div class="mentor-image">
+        <%= render "shared/profile_photo_medium", locals: { profile: @expert.expert, linkedin: true, p_width: 108 } %>    
+      </div>
+      <div class="mentor-info">
+        <h1><%= @expert&.first_name + ' ' + @expert&.last_name %></h1>
+        <p><%= @expert.expert.title %></p>
+        <div class="location">
+          <% unless @expert.expert.display_location_with_abbreviation.empty? %>
+            <i class="fa fa-map-marker"></i>
+            <%= @expert.expert.display_location_with_abbreviation %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="mentor-pricing-and-rating content-aside">   
+      <p class="pricing"><span class="currency">$</span>2.50<span class="per">/min</span></h2>
+      <p class="rating">
+        <%= display_stars(MentorRating.new(@expert).average_rating, 'Rating') %>
+      </p>   
+    </div>  
+  </header>
+  <div class='content-container content-with-aside'>
+    <div class="content-main">
+      <div class='request-form'>
+        <%= form_for @request, url: corporate_mentorship_request_path(@request.id), remote: true do |f| %>
+          <section class='panel form-section'>
+            <div class='section-title'>
+              <h2>Summary</h2>
+            </div>
+            <div class='section-body'>
+              <div class='section-body-row section-body-title'>
+                <span class='msp-icon-phone summary-icon'></span>
+                <h3>Reason for Call</h3>
+                <a href='#' data-block="message-toggle">Change</a>
+              </div>
+              <div data-block="message-info" class='section-body-row'>
+                <p><%= @request.message %></p>
+              </div>
+              <div data-block="message-form" class="section-row">
+                <div class='form-group'>
+                  <%= f.label :message, 'Request Details' %>
+                  <small class='sub-label'>150 characters left</small>
+                  <%= f.text_area :message, { class: 'form-control', rows: '5' }%>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class='panel form-section'>
+            <div class='section-body'>
+              <div class='section-body-row section-body-title'>
+                <span class='msp-icon-clock summary-icon'></span>
+                <h3>Suggested Times</h3>
+                <a href="#" data-block="time-toggle">Change</a>
+              </div>
+              <div data-block="time-info">
+                <div class='section-body-row'>
+                  <%= @request.first_date.strftime('%a, %b %d %Y') %> at <%= @request.first_time %>
+                </div>
+                <div class='section-body-row'>
+                  <%= @request.second_date.strftime('%a, %b %d %Y') %> at <%= @request.second_time %>
+                </div>
+                <div class='section-body-row'>
+                  <%= @request.third_date.strftime('%a, %b %d %Y') %> at <%= @request.third_time %>
+                </div>
+                <div class='section-body-row'>
+                  <small><%= @request.time_zone %></small>
+                </div>
+              </div>
+              <div data-block="time-form" class="section-row">
+                <div class='form-group datetime-picker-container'>
+                  <div class='picker date'>
+                    <%= f.text_field :first_date, class: 'date-picker-input form-control', placeholder: 'Option 1' %>
+                  </div>
+                  <span class='at-divider'>at</span>
+                  <div class='picker time'>
+                    <%= f.text_field :first_time, class: 'pick-time form-control' %>
+                  </div>
+                </div>
+                <div class='form-group datetime-picker-container'>
+                  <div class='picker date'>
+                    <%= f.text_field :second_date,  class: 'date-picker-input form-control', placeholder: 'Option 2' %>
+                  </div>
+                  <span class='at-divider'>at</span>
+                  <div class='picker time'>
+                    <%= f.text_field :second_time, class: 'pick-time form-control' %>
+                  </div>
+                </div>
+                <div class='form-group datetime-picker-container'>
+                  <div class='picker date'>
+                    <%= f.text_field :third_date, class: 'date-picker-input form-control', placeholder: 'Option 3' %>
+                  </div>
+                  <span class='at-divider'>at</span>
+                  <div class='picker time'>
+                    <%= f.text_field :third_time, class: 'pick-time form-control' %>
+                  </div>
+                </div>
+                <div class='form-group'>
+                  <%= f.label :time_zone, 'Your Timezone' %>
+                  <%= time_zone_select_dst("msp_request", "time_zone", nil, {default: "Eastern Time (US & Canada)"}, { class: 'form-control'}) %>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class='panel form-section'>
+            <div class='section-body'>
+              <div class='section-body-row section-body-title'>
+                <span class='msp-icon-dollar summary-icon'></span>
+                <h3>Estimated Payment</h3>
+                <a href='#' data-block="length-toggle">Change</a>
+              </div>
+              <div data-block="length-info">
+                <div class='section-body-row'>
+                  <span>Rate per minute</span>
+                  <span>$1.67</span>
+                </div>
+                <div class='section-body-row'>
+                  <span>Requested call length</span>
+                  <span><%= @request.requested_length %></span>
+                </div>
+                <div class='section-body-row'>
+                  <span>Estimated cost</span>
+                  <span>$25.05</span>
+                </div>
+              </div>
+              <div data-block="length-form" class="section-row">
+                <div class='form-group'>
+                  <%= f.label :requested_length, 'Aproximate Session Length' %>
+                  <%= f.select :requested_length, options_for_select(MSP::Request.requested_lengths.keys.map {|k| ["#{k}", k]} ), {}, { class: 'form-control' } %>
+                </div>
+              </div>
+              <div class='section-body-row section-body-title m-t-1'>
+                <h3>Credit Card</h3>
+                <a href='#' data-block="credit-toggle">Change</a>
+              </div>
+              <div data-block="credit-info">
+                <div class='section-body-row m-b-1'>
+                  Visa: **********1903
+                </div>
+                <div class='section-body-row'>
+                  <small class='text-center'>The conference line number will be provided once the call is confirmed. The call is changed per minute even if you exceed the request length of time.</small>
+                </div>
+              </div>
+            </div>
+            <div data-block="credit-form">
+              <div class="section-row">
+                <div class='form-group'>
+                  <div class='row'>
+                    <div class='col-md-8'>
+                      <input type='text' class='form-control' placeholder='Credit Card #'>
+                    </div>
+                    <div class='col-md-4'>
+                      <input type='text' class='form-control' placeholder='CVC'>
+                    </div>
+                  </div>
+                </div>
+                <div class='form-group'>
+                  <div class='row'>
+                    <div class='col-md-8'>
+                      <%= select_month(Date.today, {}, { class: 'form-control' }) %>
+                    </div>
+                    <div class='col-md-4'>
+                      <%= select_year(Date.today, { start_year: Date.today.year, end_year: 5.years.from_now.year }, { class: 'form-control' }) %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </section>
+          <%= f.submit 'Submit Request', class: 'btn btn-primary form-control', data: { toggle: 'modal', target: '#request-sent-modal'} %>
+        <% end %>
+      </div>
+    </div>
+    <div class="content-aside">
+      <%= render 'shared/msp/how_it_works' %>
+    </div>
+  </div>
+</main>
+<%= render 'request_sent_modal' %>

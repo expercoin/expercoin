@@ -5,6 +5,7 @@
 // Libraries
 @import 'bootstrap-variables';
 @import 'bootstrap';
+@import 'font-awesome';
 
 // Styles
 @import 'layout';
@@ -18,3 +19,7 @@
 
 // Content
 @import 'content';
+
+
+@import 'dashboard/datepicker';
+@import 'dashboard/timepicker';

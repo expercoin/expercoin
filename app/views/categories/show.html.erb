@@ -1,0 +1,84 @@
+<aside class="sidebar">
+  <%#= render "shared/corporate/sidebar", active: "mentorship" %>
+</aside>
+<nav class="content-nav">
+  <%#= render "shared/corporate/msp/navbar", active: "mentors" %>
+</nav>
+<main class="content content-with-nav">
+  <section class="mentors-hero">
+    <div class="content-container mentors-hero-content">
+      <h2><%= @category.description %></h2>
+      <div class="mentor-hero-search">
+        <form>
+          <label>What you want help with?</label>
+          <div class="search-input-group">
+            <input type="text" placeholder="Find mentors for" class="form-control" id="mentor_search" />
+            <a class="search-clear">Clear</a>
+          </div>
+        </form>
+        <a class="search-box-close"></a>
+      </div>
+    </div>
+  </section>
+  <section class="mentors-filterable">
+    <div class="content-container">
+      <div class="content-title">
+        <h3>Top Experfy Mentors</h3>
+      </div>
+      <div class="mentors-with-filters">
+        <div class="mentors mentors-panoramic">
+          <% @profiles.each do |profile| %>
+            <div class="mentor-container">
+              <div class="mentor-card mentor-card-panoramic">
+                <%# <% if expert.country_from?("US") %>
+                <%#   <%= image_tag "usa_flag.png", class: "card-flag" %>
+                <%# <% end %>
+                <div class="card-hero">
+                  <%#= render "shared/profile_square_photo", locals: {profile: expert, linkedin: true} %>
+                </div>
+                <div class="card-body">
+                  <h4><%= link_to decorate(profile).full_name, profile_path(profile) %></h4>
+                  <div class="mentor-title">
+                    <%= profile.title %>
+                  </div>
+                  <div class="mentor-bio">
+                    <%= profile.about %>
+                  </div>
+                  <div class="mentor-location">
+                    <i class="fa fa-map-marker"></i>
+                    <%= decorate(profile).display_location_with_abbreviation %>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div class="footer-block mentor-price-and-reviews">
+                    <span class="mentor-price"><strong>EXC <%= profile.rate %></strong>/min</span>
+                    <span class="mentor-reviews">
+                      <%= rating = ProfileRating.new(profile).average_rating %>
+                      <%= display_stars(rating) %>
+                    </span>
+                  </div>
+                  <div class="footer-block mentor-actions">
+                    <%= link_to "Schedule Session", '#', class: 'btn btn-footer' %>
+                    <a class="btn btn-footer-icon btn-message" href="#" data-toggle="modal" data-target="#message-mentor-modal-<%= profile.id %>"></a>
+                    <a class="btn btn-footer-icon btn-add"></a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+              <%#= render 'shared/corporate/msp/message_mentor_modal', expert: expert %>
+          <% end %>
+        </div>
+        <div class="mentors-filters">
+          <div class="filter-group">
+            <h5>Categories</h5>
+            <% @subcategories.each do |subcategory| %>
+              <%= link_to subcategory.name, category_subcategory_path(@category, subcategory) %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+

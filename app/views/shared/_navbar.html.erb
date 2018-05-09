@@ -8,7 +8,30 @@
   </button>
   <div class="collapse navbar-collapse" id="navbar_content">
     <ul class="navbar-nav mr-auto">
-
+      <li class="nav-item dropdown categories-dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Categories
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="inner-menu">
+            <div class="categories-menu menu-block">  
+              <% Category.main.each do |category| %>
+                <a class="dropdown-item category-item" href="#" data-id="<%= category.id %>"><%= category.name %></a>
+              <% end %>
+            </div>
+            <div class="subcategories-menu menu-block">
+              <% Category.main.each do |category| %>
+                <div class="category-subcategories" data-id="<%= category.id %>">
+                  <div class="category-name"><%= category.name %></div>
+                  <% category.subcategories.each do |subcategory| %>
+                    <a class="dropdown-item subcategory-item" href="#"><%= subcategory.name %></a>
+                  <% end %>
+                </div>    
+              <% end %>
+            </div>
+          </div>  
+        </div>
+      </li>
     </ul>
     <ul class="navbar-nav ml-auto">
       <% if current_user %>
