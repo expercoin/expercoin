@@ -1,21 +1,19 @@
 class RequestsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_profile, only: %i[new]
   before_action :set_request_and_expert, only: %i[show edit update]
-
-  layout 'corporate/application'
 
   def index
     @requests = current_user.profile.requests.page(params[:page]).per(8)
   end
 
   def show
-    @category = Category.find_by(id: @request.category_id)
   end
 
   def thankyou; end
 
   def new
-    @request = ::MSP::Request.new(requester: current_user, expert: @expert)
-    @categories = Category.all.map { |c| [c.name, c.id] }
+    @request = Request.new(requester: current_user&.profile, expert: @profile)
   end
 
   def edit; end
@@ -30,15 +28,15 @@ class RequestsController < ApplicationController
     @request = Request.new(
       request_params.merge(requester: current_user&.profile, status: 0)
     )
-    if !@request.save
-      render_error_messages
-      redirect_to expert_precall_index_path(@expert)
-    else
-      redirect_to request_path(@request)
-    end
+    return render_error_messages :new unless @request.save
+    redirect_to request_path(@request.id)
   end
 
   private
+
+  def set_profile
+    @profile = Profile.friendly.find(params[:expert])
+  end
 
   def request_params
     params.require(:request).permit(request_attributes)
@@ -52,14 +50,21 @@ class RequestsController < ApplicationController
       second_time third_time expert_id recording selected_date time_zone
     ]
   end
+  
+  def set_profile
+    @profile = Profile.friendly.find(params[:expert])
+    return if @profile
+    redirect_to root_path
+  end
 
   def set_request_and_expert
     @request = Request.find_by_id(params[:id])
-    @expert = @request.expert
+    @profile = @request.expert
   end
 
-  def render_error_messages
-    @expert = @request.expert
+  def render_error_messages(action)
+    @profile = @request.expert
     flash.now[:alert] = @request.errors.full_messages.join(', ')
+    render action
   end
 end

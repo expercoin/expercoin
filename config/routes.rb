@@ -21,8 +21,9 @@ Rails.application.routes.draw do
   get 'calls(/history)', to: 'calls#index'
   resources :dashboard, only: [:index]
   resources :account, only: [:index]
-  resources :profiles, only: %i[show edit update]
-  resources :requests, only: %i[create update]
+  resources :profiles, only: %i[edit show update]
+  resources :requests
+  get 'requests/:id/thankyou', to: 'requests#thankyou', as: :requests_thankyou
 
   #always last route
   resources :profiles, path: '', as: :expert, only: :show do
