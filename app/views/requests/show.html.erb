@@ -1,0 +1,125 @@
+<aside class="sidebar">
+  <%= render "shared/corporate/sidebar", active: "mentorship" %>
+</aside>
+<nav class="content-nav">
+  <%= render "shared/corporate/msp/navbar", active: "requests" %>
+</nav>
+<main class="content content-with-nav">
+  <div class="content-breadcrumb">
+    <ul class="breadcrumb">
+      <li>
+        <%= link_to corporate_mentorship_requests_path do %>
+          <i class="fa fa-angle-left" aria-hidden="true"></i> Go Back
+        <% end %>
+      </li>
+    </ul>
+  </div>
+  <header class="content-container content-with-aside">
+    <div class="mentor-header mentor-header-sm content-main">
+      <div class="mentor-image">
+        <%= render "shared/profile_photo_medium", locals: { profile: @expert.expert, linkedin: true, p_width: 108 } %>    
+      </div>
+      <div class="mentor-info">
+        <h1><%= @expert&.first_name + ' ' + @expert&.last_name %></h1>
+        <p><%= @expert.expert.title %></p>
+        <div class="location">
+          <% unless @expert.expert.display_location_with_abbreviation.empty?  %>
+            <i class="fa fa-map-marker"></i>
+            <%= @expert.expert.display_location_with_abbreviation %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="mentor-pricing-and-rating content-aside">   
+      <p class="pricing"><span class="currency">$</span>2.50<span class="per">/min</span></h2>
+      <p class="rating">
+        <%= display_stars MentorRating.new(@expert).average_rating, 'Rating' %>
+      </p>   
+    </div>  
+  </header>
+  <section class="content-container content-with-aside">
+    <div class="panel content-main">
+        <div class="request-description">
+          <h2 class="title"><%= @request.title %></h2>
+          <span class="strong category">Category: <%= @category.try(:name) %></span>
+          <p><%= @request.message %></p>
+          <ul class="tags">
+            <% @request.tags.each do |tag| %>
+              <li><%= tag %></li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="request-status">
+          <span class="strong">Status</span>
+          <span class="strong"><%= @request.status %></span>
+          <span><%= @request.updated_at.strftime("on %b %d,%Y at %I:%M %p %Z") %></span>
+        </div>
+        <div class="request-price-information">
+          <table>
+            <tr>
+              <td>Total Paid (60 min, 00 sec)</td>
+              <td class="strong">$180.00</td>
+            </tr>
+            <tr>
+              <td>Advanced Payement (30 min)</td>
+              <td class="strong">$90.00</td>
+            </tr>
+            <tr>
+              <td>Balance Paid (30 min)</td>
+              <td class="strong">$90.00</td>
+            </tr>
+          </table>
+        </div>
+        <div class="mentor-reviews request-info-reviews">
+          <h2 class="title">Your Review</h2>
+          <% if @request.review.nil? %>
+            <%= form_for MSP::Review.new, url: corporate_mentorship_request_reviews_path(@request.id) do |f| %>
+              <div class="form-group">
+                <%= f.label :rate %>
+                <ul class="rating-stars">
+                  <li><input type="radio" id="star_1" name="msp_review[rate]" value="1" /><label for="star_1" class="star-label"><i class="fa fa-star-o"></i></label></li>
+                  <li><input type="radio" id="star_2" name="msp_review[rate]" value="2" /><label for="star_2" class="star-label"><i class="fa fa-star-o"></i></label></li>
+                  <li><input type="radio" id="star_3" name="msp_review[rate]" value="3" /><label for="star_3" class="star-label"><i class="fa fa-star-o"></i></label></li>
+                  <li><input type="radio" id="star_4" name="msp_review[rate]" value="4" /><label for="star_4" class="star-label"><i class="fa fa-star-o"></i></label></li>
+                  <li><input type="radio" id="star_5" name="msp_review[rate]" value="5" /><label for="star_5" class="star-label"><i class="fa fa-star-o"></i></label></li>
+                </ul>
+              </div>
+              <div class="form-group">
+                <%= f.label :message %>
+                <%= f.text_area :message, class: 'form-control', rows: '4' %>
+              </div>
+              <%= link_to "Save", '#', { class: 'btn btn-primary', data: { toggle: "modal", target: "#review-confirm-modal" } } %>
+          <% end %>
+        <% else %>
+          <div class="review">
+            <div class="review-avatar">
+              <%= render "shared/msp/profile_photo", locals: {profile: @request.review.user.student, p_width: 92, linkedin: true} %>
+            </div>
+            <div class="review-body">
+              <h4><a><%= @request.review.user.full_name %></a></h4>
+              <p class="quote">"<%= @request.review.message %>"</p>
+            </div>
+            <div class="review-rating">
+              <ul class="rating-data">
+                <li>
+                  <%= display_stars @request.review.rate %>
+                  (<%= @request.review.rate %>)
+                </li>
+                <li>Posted <span class="strong"><%= @request.review.created_at.strftime("%b %d, %Y")  %></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="content-aside">
+      <div class='panel'>
+        <div class='panel-body'>
+          <%= render 'shared/msp/aside_buttons' %>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<%= render 'review_confirm_modal' %>
