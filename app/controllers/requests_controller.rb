@@ -6,7 +6,7 @@ class RequestsController < ApplicationController
   before_action :set_request_and_expert, only: %i[show edit update]
 
   def index
-    @requests = current_user.profile.created_requests.page(params[:page]).per(8)
+    @requests = current_user.profile.created_requests.page(params[:page]).per(1)
   end
 
   def show

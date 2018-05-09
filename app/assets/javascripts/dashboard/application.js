@@ -9,3 +9,7 @@
 //= require request_form
 //= require bootstrap-datepicker
 //= require bootstrap-timepicker
+
+document.addEventListener("turbolinks:load", function() {
+  $('.selectpicker').select2();
+});
