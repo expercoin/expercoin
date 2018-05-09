@@ -1,8 +1,5 @@
-<aside class="sidebar">
-  <%= render "shared/corporate/sidebar", active: "mentorship" %>
-</aside>
 <nav class="content-nav">
-  <%= render "shared/corporate/msp/navbar", active: "mentors" %>
+  <%= render "shared/subnavbar", active: "requests" %>
 </nav>
 <% if @request.errors.any? %>
   <div id="error_explanation">
@@ -20,7 +17,7 @@
   <div class="content-breadcrumb">
     <ul class="breadcrumb">
       <li>
-        <%= link_to corporate_mentorship_requests_path do %>
+        <%= link_to categories_path do %>
           <i class="fa fa-angle-left" aria-hidden="true"></i> Go Back
         <% end %>
       </li>
@@ -32,12 +29,12 @@
        <%= render 'shared/profile_photo',  photo: @profile.photo&.url %>
       </div>
       <div class="mentor-info">
-        <h1><%= @expert&.first_name + ' ' + @expert&.last_name %></h1>
-        <p><%= @expert.expert.title %></p>
+        <h1><%= @profile&.first_name + ' ' + @profile&.last_name %></h1>
+        <p><%= @profile.title %></p>
         <div class="location">
-          <% unless @expert.expert.display_location_with_abbreviation.empty? %>
+          <% unless decorate(@profile).display_location_with_abbreviation.empty? %>
             <i class="fa fa-map-marker"></i>
-            <%= @expert.expert.display_location_with_abbreviation %>
+            <%= decorate(@profile).display_location_with_abbreviation %>
           <% end %>
         </div>
       </div>
@@ -45,14 +42,14 @@
     <div class="mentor-pricing-and-rating content-aside">   
       <p class="pricing"><span class="currency">$</span>2.50<span class="per">/min</span></h2>
       <p class="rating">
-        <%= display_stars(MentorRating.new(@expert).average_rating, 'Rating') %>
+        <%= display_stars(3.7, 'Rating') %>
       </p>   
     </div>  
   </header>
   <div class='content-container content-with-aside'>
     <div class="content-main">
       <div class='request-form'>
-        <%= form_for @request, url: corporate_mentorship_request_path(@request.id), remote: true do |f| %>
+        <%= form_for @request, url: request_path(@request.id), remote: true do |f| %>
           <section class='panel form-section'>
             <div class='section-title'>
               <h2>Summary</h2>
@@ -157,19 +154,7 @@
               <div data-block="length-form" class="section-row">
                 <div class='form-group'>
                   <%= f.label :requested_length, 'Aproximate Session Length' %>
-                  <%= f.select :requested_length, options_for_select(MSP::Request.requested_lengths.keys.map {|k| ["#{k}", k]} ), {}, { class: 'form-control' } %>
-                </div>
-              </div>
-              <div class='section-body-row section-body-title m-t-1'>
-                <h3>Credit Card</h3>
-                <a href='#' data-block="credit-toggle">Change</a>
-              </div>
-              <div data-block="credit-info">
-                <div class='section-body-row m-b-1'>
-                  Visa: **********1903
-                </div>
-                <div class='section-body-row'>
-                  <small class='text-center'>The conference line number will be provided once the call is confirmed. The call is changed per minute even if you exceed the request length of time.</small>
+                  <%= f.select :requested_length, options_for_select(Request.requested_lengths.keys.map {|k| ["#{k}", k]} ), {}, { class: 'form-control' } %>
                 </div>
               </div>
             </div>
@@ -204,7 +189,7 @@
       </div>
     </div>
     <div class="content-aside">
-      <%= render 'shared/msp/how_it_works' %>
+      <%= render 'shared/how_it_works' %>
     </div>
   </div>
 </main>
