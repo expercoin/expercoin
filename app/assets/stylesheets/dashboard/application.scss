@@ -1,14 +1,30 @@
 // Fonts
 @import 'font-proxima-nova';
 @import 'font-circular';
+@import 'font-awesome';
 
 // Libraries
 @import 'bootstrap-variables';
 @import 'bootstrap';
 
 // Styles
-@import 'layout';
-@import 'navbar';
+@import '../layout';
+@import '../navbar';
+@import 'dashboard_layout';
+@import 'cards';
+@import 'typography';
+@import 'navs';
+@import 'lists';
+@import 'buttons';
+/*@import 'typography';
+@import 'navs';
+@import 'panels';
+@import 'lists';
+@import 'forms';
+@import 'icons';
+@import 'buttons';*/
+
+
 
 @import 'datepicker';
 @import 'timepicker';

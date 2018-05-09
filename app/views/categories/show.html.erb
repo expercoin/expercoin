@@ -2,21 +2,22 @@
   <%#= render "shared/corporate/sidebar", active: "mentorship" %>
 </aside>
 <nav class="content-nav">
-  <%#= render "shared/corporate/msp/navbar", active: "mentors" %>
+  <%= render "shared/subnavbar", active: "mentors" %>
 </nav>
 <main class="content content-with-nav">
   <section class="mentors-hero">
     <div class="content-container mentors-hero-content">
-      <h2><%= @category.description %></h2>
+      <!-- <h2><%= @category.description %></h2> -->
+      <h2>Welcome! Technology is changing rapidly. Take control of your career. Here you will find courses that will help you stay competitive and ahead of the curve.</h2>
       <div class="mentor-hero-search">
-        <form>
+<!--         <form>
           <label>What you want help with?</label>
           <div class="search-input-group">
             <input type="text" placeholder="Find mentors for" class="form-control" id="mentor_search" />
             <a class="search-clear">Clear</a>
           </div>
         </form>
-        <a class="search-box-close"></a>
+        <a class="search-box-close"></a> -->
       </div>
     </div>
   </section>
@@ -59,8 +60,8 @@
                   </div>
                   <div class="footer-block mentor-actions">
                     <%= link_to "Schedule Session", '#', class: 'btn btn-footer' %>
-                    <a class="btn btn-footer-icon btn-message" href="#" data-toggle="modal" data-target="#message-mentor-modal-<%= profile.id %>"></a>
-                    <a class="btn btn-footer-icon btn-add"></a>
+                    <!-- <a class="btn btn-footer-icon btn-message" href="#" data-toggle="modal" data-target="#message-mentor-modal-<%= profile.id %>"></a>
+                    <a class="btn btn-footer-icon btn-add"></a> -->
                   </div>
                 </div>
 

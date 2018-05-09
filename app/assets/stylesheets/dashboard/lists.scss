@@ -1,0 +1,19 @@
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  list-style-type: none;
+  margin: 0 -2px;
+  padding: 0;
+
+  li {
+    padding: 2px 8px;
+    margin: 2px 2px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    background: #e8e7e4;
+    border-radius: 2px;
+    line-height: 1.5;
+  }
+}
