@@ -7,7 +7,7 @@
 <main class="content content-with-nav">
   <section class="mentors-hero">
     <div class="content-container mentors-hero-content">
-      <h2>Welcome! Technology is changing rapidly. Take control of your career. Here you will find courses that will help you stay competitive and ahead of the curve.</h2>
+      <h2><%= @category.description %></h2>
       <div class="mentor-hero-search">
         <form>
           <label>What you want help with?</label>
@@ -27,7 +27,7 @@
       </div>
       <div class="mentors-with-filters">
         <div class="mentors mentors-panoramic">
-          <% @users.each do |user| %>
+          <% @profiles.each do |profile| %>
             <div class="mentor-container">
               <div class="mentor-card mentor-card-panoramic">
                 <%# <% if expert.country_from?("US") %>
@@ -37,9 +37,9 @@
                   <%#= render "shared/profile_square_photo", locals: {profile: expert, linkedin: true} %>
                 </div>
                 <div class="card-body">
-                  <h4><%= link_to decorate(user).full_name, '#' %></h4>
+                  <h4><%= link_to decorate(profile).full_name, '#' %></h4>
                   <div class="mentor-title">
-                    <%= user.title %>
+                    <%= profile.title %>
                   </div>
                   <div class="mentor-bio">
                     <%#= sanitize expert.description&.html_safe %>
@@ -60,13 +60,13 @@
                   <div class="footer-block mentor-price-and-reviews">
                     <span class="mentor-price"><strong>$1.35</strong>/min</span>
                     <span class="mentor-reviews">
-                      <%#= MentorRating.new(expert.user).average_rating %>
-                      <%#= display_stars(MentorRating.new(expert.user).average_rating) %>
+                      <%#= MentorRating.new(expert.profile).average_rating %>
+                      <%#= display_stars(MentorRating.new(expert.profile).average_rating) %>
                     </span>
                   </div>
                   <div class="footer-block mentor-actions">
                     <%= link_to "Schedule Session", '#', class: 'btn btn-footer' %>
-                    <a class="btn btn-footer-icon btn-message" href="#" data-toggle="modal" data-target="#message-mentor-modal-<%= user.id %>"></a>
+                    <a class="btn btn-footer-icon btn-message" href="#" data-toggle="modal" data-target="#message-mentor-modal-<%= profile.id %>"></a>
                     <a class="btn btn-footer-icon btn-add"></a>
                   </div>
                 </div>
