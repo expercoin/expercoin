@@ -1,7 +1,9 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show]
 
-  def show; end
+  def show
+    @users = User.all.map(&:profile)
+  end
   def index; end
 
   private
