@@ -1,0 +1,140 @@
+// Forms form mentorshi
+.request-form {
+
+  .sub-label {
+    color: #aaa;
+    font-size: 10px;
+    font-weight: normal;
+  }
+
+  .form-section {
+    padding: 1.75rem;
+  }
+
+  input[type=text].form-control {
+    height: 38px;
+  }
+
+  .section-title {
+    display: flex;
+    color: #00b0eb;
+    font-weight: 800;
+    margin-bottom: 16px;
+  }
+
+  .section-subtitle {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .section-body {
+  }
+
+  .section-body-row {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding: 0 0 0 32px;
+  }
+
+  .section-row {
+    padding: 0 0 0 32px;
+    margin: 8px 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .summary-icon {
+    position: absolute;
+    font-size: 24px;
+    left: 0;
+  }
+
+  .select2-choices {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .select2-choice {
+    border: 1px solid #ccc;
+    background: #f6f6f4;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .circle {
+    margin-right: 8px;
+  }
+
+  .number {
+    text-align: center;
+  }
+
+  label {
+    font-weight: bold;
+  }
+}
+
+// Pickers in forms
+
+.datetime-picker-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .picker {
+  }
+
+  .date {
+    width: 60%;
+    position: relative;
+
+    .form-control {
+      padding-right: 30px;
+    }
+
+    .icon-calendar-color {
+      content: '';
+      background: image-url('msp/icons/calendar-color.png') center center no-repeat scroll;
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      right: 8px;
+      top: 8px;
+      cursor: pointer;
+    }
+  }
+
+  .date-picker-input {
+    width: 100%;
+  }
+
+  .time {
+    width: 30%;
+  }
+
+  .pick-time {
+    width: 100%;
+  }
+}
+
+.filter-checkbox {
+  position: relative;
+  padding-left: 18px; 
+  margin-bottom: 2px;
+
+  input {
+    position: absolute;
+    left: 0;
+    top: 5px;
+  }
+
+  label {
+    font-size: 14px;
+    margin: 0;
+  }
+}
