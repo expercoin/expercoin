@@ -13,7 +13,7 @@ namespace :users do
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,
         email: Faker::Internet.email,
-        password: Faker::Internet.password,
+        password: '123456'
       )
       user.confirm
       user.profile.update(
@@ -22,7 +22,8 @@ namespace :users do
         about: Faker::Lorem.paragraph,
         address: Faker::Address.street_address,
         state: Faker::Address.state,
-        country: 'United States'
+        country: 'United States',
+        remote_photo_url: 'http://i.pravatar.cc/300'
 
       )
       categories_ids = []

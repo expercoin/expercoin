@@ -2,21 +2,22 @@
   <%#= render "shared/corporate/sidebar", active: "mentorship" %>
 </aside>
 <nav class="content-nav">
-  <%#= render "shared/corporate/msp/navbar", active: "mentors" %>
+  <%= render "shared/subnavbar", active: "mentors" %>
 </nav>
 <main class="content content-with-nav">
   <section class="mentors-hero">
     <div class="content-container mentors-hero-content">
-      <h2><%= @category.description %></h2>
+      <!-- <h2><%= @category.description %></h2> -->
+      <h2>Welcome! Technology is changing rapidly. Take control of your career. Here you will find courses that will help you stay competitive and ahead of the curve.</h2>
       <div class="mentor-hero-search">
-        <form>
+<!--         <form>
           <label>What you want help with?</label>
           <div class="search-input-group">
             <input type="text" placeholder="Find mentors for" class="form-control" id="mentor_search" />
             <a class="search-clear">Clear</a>
           </div>
         </form>
-        <a class="search-box-close"></a>
+        <a class="search-box-close"></a> -->
       </div>
     </div>
   </section>
@@ -34,7 +35,7 @@
                 <%#   <%= image_tag "usa_flag.png", class: "card-flag" %>
                 <%# <% end %>
                 <div class="card-hero">
-                  <%# <%= render "shared/profile_square_photo", locals: {profile: profile, linkedin: false} %>
+                  <%= render "shared/profile_photo", photo: profile.photo_url %>
                 </div>
                 <div class="card-body">
                   <h4><%= link_to decorate(profile).full_name, profile_path(profile) %></h4>
@@ -59,8 +60,8 @@
                   </div>
                   <div class="footer-block mentor-actions">
                     <%= link_to "Schedule Session", '#', class: 'btn btn-footer' %>
-                    <a class="btn btn-footer-icon btn-message" href="#" data-toggle="modal" data-target="#message-mentor-modal-<%= profile.id %>"></a>
-                    <a class="btn btn-footer-icon btn-add"></a>
+                    <!-- <a class="btn btn-footer-icon btn-message" href="#" data-toggle="modal" data-target="#message-mentor-modal-<%= profile.id %>"></a>
+                    <a class="btn btn-footer-icon btn-add"></a> -->
                   </div>
                 </div>
 
@@ -80,6 +81,6 @@
       </div>
     </div>
   </section>
-  <%#= will_paginate @profiles %>
+  <%= paginate @profiles %>
 </main>
 

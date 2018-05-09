@@ -1,0 +1,31 @@
+// Form icons
+$icons: 'calendar', 'phone', 'clock', 'dollar', 'live', 'sound', 'screens', 'dots', 'mute';
+
+@each $icon in $icons {
+  .msp-icon-#{$icon} {
+    background: image-url('msp/icons/#{$icon}.png') center center / contain no-repeat scroll;
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+  }
+}
+
+.msp-icon-sound {
+  width: 20px;
+  height: 19px;
+}
+
+.msp-icon-mute {
+  width: 20px;
+  height: 19px;
+}
+
+.msp-icon-dots {
+  width: 21px;
+  height: 5px;
+}
+
+.msp-icon-screens {
+  width: 26px;
+  height: 16px;
+}
