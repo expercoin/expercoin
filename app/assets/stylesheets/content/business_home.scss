@@ -8,6 +8,10 @@
   min-height: 600px;
   padding: 60px 0 160px;
 
+  @media screen and (max-width: 768px) {
+    padding: 60px 0 360px;
+  }
+
   h1 {
     font-size: 42px;
     font-weight: 600;
@@ -69,5 +73,63 @@
 
   h3 {
     color: rgba(#fff, 0.8);
+  }
+}
+
+// Block Links
+//---------------------------------------------
+
+.business-home-blocks {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.block-link {
+  display: block;
+  padding: 2rem;
+  height: 100%;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 600;
+
+  &:hover {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+
+  p {
+    font-size: .9375rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: rgb(59, 60, 61);
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 0.25rem;
+  }
+
+  &.block-individual {
+    background: #00a664;
+
+    &:hover {
+      background: darken(#00a664, 5%);
+    }
+  }
+
+  &.block-employer {
+    background: #1b8e7a;
+
+    &:hover {
+      background: darken(#1b8e7a, 5%);
+    }
+  }
+
+  &.block-expert {
+    background: #45b9dc;
+
+    &:hover {
+      background: darken(#45b9dc, 5%);
+    }
   }
 }

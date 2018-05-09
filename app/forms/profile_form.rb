@@ -12,5 +12,6 @@ class ProfileForm < FormObject
     attribute :country, String
     attribute :state, String
     attribute :city, String
+    attribute :zip_code, Integer
     attribute :category_ids, Array
 end
