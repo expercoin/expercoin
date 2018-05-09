@@ -1,6 +1,13 @@
 namespace :users do
   desc "TODO"
   task create_test_users: :environment do
+    User.create!(
+      email: 'johnsnow@got.com',
+      password: '123456',
+      first_name: 'John',
+      last_name: 'Snow'
+    ).confirm
+
     30.times do
       user = User.create!(
         first_name: Faker::Name.first_name,

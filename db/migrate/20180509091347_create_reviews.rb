@@ -6,6 +6,7 @@ class CreateReviews < ActiveRecord::Migration[5.2]
       t.integer :rate
       t.integer :profile_id
       t.integer :author_id
+      t.integer :request_id
 
       t.timestamps
     end
