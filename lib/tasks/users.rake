@@ -23,7 +23,7 @@ namespace :users do
         address: Faker::Address.street_address,
         state: Faker::Address.state,
         country: 'United States',
-        remote_photo_url: Faker::Avatar.image
+        remote_photo_url: 'http://i.pravatar.cc/300'
 
       )
       categories_ids = []
