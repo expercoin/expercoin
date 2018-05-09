@@ -1,6 +1,7 @@
 .content {
   background-color: #f7f9f6;
   flex: 1;
+  padding-bottom: 40px;
 
   &.content-with-nav {
     padding-top: 76px;
@@ -40,7 +41,7 @@
 
 .content-container{
   position: relative;
-  max-width: 1000px;
+  max-width: 980px;
   padding-left: 16px;
   padding-right: 16px;
   margin: 0 auto;
