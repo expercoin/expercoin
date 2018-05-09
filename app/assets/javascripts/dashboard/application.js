@@ -5,3 +5,4 @@
 //= require popper
 //= require bootstrap
 //= require select2
+//= require categories_dropdown

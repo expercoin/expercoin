@@ -5,6 +5,7 @@
 //= require popper
 //= require bootstrap
 //= require select2
+//= require categories_dropdown
 
 document.addEventListener("turbolinks:load", function() {
   $('.selectpicker').select2();
