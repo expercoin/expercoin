@@ -37,7 +37,7 @@
                   <%#= render "shared/profile_square_photo", locals: {profile: expert, linkedin: true} %>
                 </div>
                 <div class="card-body">
-                  <h4><%= link_to decorate(profile).full_name, '#' %></h4>
+                  <h4><%= link_to decorate(profile).full_name, profile_path(profile) %></h4>
                   <div class="mentor-title">
                     <%= profile.title %>
                   </div>
