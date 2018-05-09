@@ -58,8 +58,8 @@ ActiveRecord::Schema.define(version: 2018_05_09_091347) do
   create_table "categories_profiles", id: false, force: :cascade do |t|
     t.integer "category_id", null: false
     t.integer "profile_id", null: false
-    t.index ["category_id", "profile_id"], name: "index_categories_profiles_on_category_id_and_profile_id", unique: true
-    t.index ["profile_id", "category_id"], name: "index_categories_profiles_on_profile_id_and_category_id", unique: true
+    t.index ["category_id", "profile_id"], name: "index_categories_profiles_on_category_id_and_profile_id"
+    t.index ["profile_id", "category_id"], name: "index_categories_profiles_on_profile_id_and_category_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
