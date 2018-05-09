@@ -14,7 +14,7 @@
   <header class="content-container content-with-aside">
     <div class="mentor-header mentor-header-sm content-main">
       <div class="mentor-image">
-       <%= 'profile_photo' %>
+       <%= render 'shared/profile_photo' %>
       </div>
       <div class="mentor-info">
         <h1>Schedule session with <%= @profile&.first_name %></h1>
@@ -90,7 +90,7 @@
               <h2>Suggest Time</h2>
             </div>
             <div class='section-subtitle'>
-              Suggested 3 times to Sarah to schedule the call. Sarah can accept a time or suggest outer times.
+              Suggested 3 times to <%= @profile.first_name %> to schedule the call. <%= @profile.first_name %> can accept a time or suggest outer times.
             </div>
             <div class='form-group'>
               <%= f.label :time_zone, 'Your Timezone' %>

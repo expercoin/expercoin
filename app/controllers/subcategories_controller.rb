@@ -2,7 +2,9 @@ class SubcategoriesController < ApplicationController
   before_action :set_category
   before_action :set_subcategory, only: [:show]
 
-  def show; end
+  def show
+    @profiles = @subcategory.profiles.except(current_user&.profile)
+  end
 
   private
 
@@ -11,6 +13,6 @@ class SubcategoriesController < ApplicationController
   end
 
   def set_subcategory
-    @subcategory = Category.children.friendly.find(params[:subcategory_id])
+    @subcategory = @category.categories.children.friendly.find(params[:subcategory_id])
   end
 end

@@ -12,4 +12,12 @@ class Category < ApplicationRecord
 
   extend FriendlyId
   friendly_id :name, use: :slugged
+
+  def subcategories
+    Category.where(parent_id: self.id)
+  end  
+
+  def children_profiles
+    Profile.distinct.includes(:categories).where(categories: { id: categories.ids })
+  end
 end

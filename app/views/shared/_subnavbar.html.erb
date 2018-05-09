@@ -1,0 +1,19 @@
+<div class="content-nav-container">
+  <ul class="content-nav-list">
+    <li>
+      <%= link_to 'Find Mentors', '', class: "#{'active' if active == 'mentors'}"  %>
+    </li>
+    <li>
+      <%= link_to 'My Mentors', '', class: "#{'active' if active == 'my mentors'}"  %>
+    </li>
+    <li>
+      <%= link_to 'My Requests', '', class: "#{'active' if active == 'requests'}"  %>
+    </li>
+    <li><a>Payment</a></li>
+  </ul>  
+  <div class='nav-button-container centered'>
+    <%= link_to '#', { class: 'btn btn-primary btn-block btn-upc btn-live centered', data: { toggle: 'modal', target: '#live-mentoring-modal' } } do %>
+    <span class="msp-icon-live"></span> Live Mentoring
+    <% end %>
+  </div>
+</div>

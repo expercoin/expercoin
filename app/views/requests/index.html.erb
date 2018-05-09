@@ -1,0 +1,66 @@
+<aside class="sidebar">
+  <%= render "shared/corporate/sidebar", active: "mentorship" %>
+</aside>
+<nav class="content-nav">
+  <%= render "shared/corporate/msp/navbar", active: "requests" %>
+</nav>
+<main class="content content-with-nav">
+  <div class="content-container-wide m-t-3">
+    <div class="content-main">
+      <header class="panel requests-info-container">
+        <div class="col-md-4 requests-info-item">
+          <span class="number"><%= @requests.count %></span> Requests Made
+        </div>
+        <div class="col-md-4 requests-info-item">
+          <span class="number">15</span> Mentoring Sessions
+        </div>
+        <div class="col-md-4 requests-info-item">
+          <span class="number">43</span> Usage in Minutes
+        </div>
+      </header>
+
+      <div class="panel requests-history-container">
+        <div class="col-md-8 requests-history-item">
+          <span class="requests-history-label">Request History</span>
+        </div>
+        <div class="col-md-4 requests-history-item">
+          <i class="fa fa-search"></i> <input type="text" class="requests-history-search" placeholder="Search Requests">
+        </div>
+      </div>
+
+      <div class="panel requests-list-container" data-ordered-by="none" data-order-direction="none">
+        <header class="requests-list-header">
+          <div class="col-md-6 sortable-item" data-sort-type="title">
+            Request
+          </div>
+          <div class="col-md-3 sortable-item" data-sort-type="date">
+            Session Date
+          </div>
+          <div class="col-md-3 sortable-item" data-sort-type="status">
+            Status
+          </div>
+        </header>
+        <div class="row-items-container">
+          <% @requests.each do |request| %>
+            <div class="requests-list-row" id="<%= request.id %>">
+              <div class="col-md-6 requests-list-item">
+                <%= request.title %>
+              </div>
+              <div class="col-md-3 requests-list-item" data-date-created="<%= request.created_at.strftime('%B %d, %Y %H:%M:%S') %>">
+                <%= request.created_at.strftime('%b %d, %Y at %l:%M %P') %>
+              </div>
+              <div class="col-md-3 requests-list-item flex-space-between">
+                <span class="request-text-<%= request.status.downcase %>"><%= request.status %></span>
+                <%= link_to "Details", corporate_mentorship_request_path(request.id), class: "btn-table" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        
+
+      </div>
+    </div>
+    <%= paginate @requests %>
+  </div>
+</main>
+
