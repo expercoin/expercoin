@@ -1,8 +1,5 @@
-<aside class="sidebar">
-  <%= render "shared/corporate/sidebar", active: "mentorship" %>
-</aside>
 <nav class="content-nav">
-  <%= render "shared/corporate/msp/navbar", active: "requests" %>
+  <%= render "shared/subnavbar", active: "requests" %>
 </nav>
 <main class="content content-with-nav">
   <div class="content-container-wide m-t-3">
@@ -51,7 +48,7 @@
               </div>
               <div class="col-md-3 requests-list-item flex-space-between">
                 <span class="request-text-<%= request.status.downcase %>"><%= request.status %></span>
-                <%= link_to "Details", corporate_mentorship_request_path(request.id), class: "btn-table" %>
+                <%= link_to "Details", request_path(request.id), class: "btn-table" %>
               </div>
             </div>
           <% end %>
