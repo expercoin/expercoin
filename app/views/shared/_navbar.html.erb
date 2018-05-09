@@ -16,7 +16,7 @@
           <div class="inner-menu">
             <div class="categories-menu menu-block">  
               <% Category.main.each do |category| %>
-                <a class="dropdown-item category-item" href="#" data-id="<%= category.id %>"><%= category.name %></a>
+                <a class="dropdown-item category-item" href="<%= category_path(category) %>" data-id="<%= category.id %>"><%= category.name %></a>
               <% end %>
             </div>
             <div class="subcategories-menu menu-block">
@@ -24,7 +24,7 @@
                 <div class="category-subcategories" data-id="<%= category.id %>">
                   <div class="category-name"><%= category.name %></div>
                   <% category.subcategories.each do |subcategory| %>
-                    <a class="dropdown-item subcategory-item" href="#"><%= subcategory.name %></a>
+                    <a class="dropdown-item subcategory-item" href="<%= category_subcategory_path(category, subcategory)%>"><%= subcategory.name %></a>
                   <% end %>
                 </div>    
               <% end %>

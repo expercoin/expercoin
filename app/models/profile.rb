@@ -16,6 +16,10 @@ class Profile < ApplicationRecord
 
   store :location, accessors: %i[address country state city zip_code], coder: JSON
 
+  def commission_fee
+    7
+  end
+  
   private
 
   def slug_candidates
