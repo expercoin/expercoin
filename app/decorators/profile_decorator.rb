@@ -8,6 +8,6 @@ class ProfileDecorator < BaseDecorator
   end
 
   def display_location_with_abbreviation
-    "US | Boston, BS"
+    "#{country} | #{state}"
   end
 end
