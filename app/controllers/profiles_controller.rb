@@ -3,14 +3,19 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!, except: [:show]
   before_action :set_profile
-  layout 'profile'
+  layout 'profile', except: [:show]
 
   def edit
     @profile_form = ProfileForm.new(@profile, photo_url: @profile.photo_url)
     @categories = Category.children
+    @help_people_find_you_tab = request.url.match('help-people-find-you')
+    @tab = 'basic_info'
+    @tab = 'help-people-find-you' if @help_people_find_you_tab
   end
 
-  def show; end
+  def show; 
+    render action: 'show', layout: 'dashboard'
+  end
 
   def update
     @profile_form = ProfileForm.new(profile_params)
