@@ -3,6 +3,7 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!, except: [:show]
   before_action :set_profile
+  layout 'profile'
 
   def edit
     @profile_form = ProfileForm.new(@profile, photo_url: @profile.photo_url)

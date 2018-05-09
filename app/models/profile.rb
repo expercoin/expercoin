@@ -10,7 +10,7 @@ class Profile < ApplicationRecord
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
-  store :location, accessors: %i[address country state city], coder: JSON
+  store :location, accessors: %i[address country state city zip_code], coder: JSON
 
   private
 
