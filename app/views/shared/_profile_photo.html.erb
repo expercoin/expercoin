@@ -1,0 +1,6 @@
+<% if @profile.photo&.url %>
+  <%= image_tag @profile.photo&.url, class: "img-circle" %>
+<% else %>
+  <%= image_tag 'empty_user.png', class: "img-circle" %>
+<% end %>
+

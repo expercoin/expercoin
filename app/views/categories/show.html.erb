@@ -42,26 +42,19 @@
                     <%= profile.title %>
                   </div>
                   <div class="mentor-bio">
-                    <%#= sanitize expert.description&.html_safe %>
-                  </div>
-                  <div class="mentor-tags">
-                    <%# <% expert.expertise_number(5).each do |expertise| %>
-                    <%#   <%= expertise %>
-                    <%# <% end %>
+                    <%= profile.about %>
                   </div>
                   <div class="mentor-location">
-                    <%# <% unless expert.display_location_with_abbreviation.empty? %>
-                    <%#   <i class="fa fa-map-marker"></i>
-                    <%#   <%= expert.display_location_with_abbreviation %>
-                    <%# <% end %>
+                    <i class="fa fa-map-marker"></i>
+                    <%= decorate(profile).display_location_with_abbreviation %>
                   </div>
                 </div>
                 <div class="card-footer">
                   <div class="footer-block mentor-price-and-reviews">
-                    <span class="mentor-price"><strong>$1.35</strong>/min</span>
+                    <span class="mentor-price"><strong>EXC <%= profile.rate %></strong>/min</span>
                     <span class="mentor-reviews">
                       <%#= MentorRating.new(expert.profile).average_rating %>
-                      <%#= display_stars(MentorRating.new(expert.profile).average_rating) %>
+                      <%= display_stars(3.75) %>
                     </span>
                   </div>
                   <div class="footer-block mentor-actions">
@@ -78,16 +71,10 @@
         </div>
         <div class="mentors-filters">
           <div class="filter-group">
-            <h5>By Industry</h5>
-            <%# Branch.from_industry.each do |industry| %>
-              <div class="filter-checkbox">
-                <input type="checkbox" value="industry" id="<%#= industry.id %>" />
-                <label for="<%#= industry.id %>"><%#= industry.name %></label>
-              </div>
-            <%# end %>
-          </div>
-          <div class="filter-group">
-            <h5>By Category</h5>
+            <h5>Categories</h5>
+            <% @subcategories.each do |subcategory| %>
+              <%= link_to subcategory.name, category_subcategory_path(@category, subcategory) %>
+            <% end %>
           </div>
         </div>
       </div>
