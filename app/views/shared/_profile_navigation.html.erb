@@ -1,24 +1,12 @@
 <div class="full-height">
   <div class="list-group side-nav-1">
-    <a class="<%= ('active' if locals[:link] == 'basic_info') %> list-group-item" href="<%=  %>">
+    <a class="<%= ('active' if locals[:link] == 'basic_info') %> list-group-item" href="<%= edit_profile_path(@profile) %>">
       <span>
         <div class="basic-info-grey"></div>
       </span>
       Basic Info
     </a>
-    <a class="<%= ('active' if locals[:link] == 'description') %> list-group-item" href="<%=  %>">
-      <span>
-        <div class="description-grey"></div>
-      </span>
-      Service Offerings
-    </a>
-    <a class="<%= ('active' if locals[:link] == 'credentials') %> list-group-item" href="<%=  %>">
-      <span>
-        <div class="credentials-grey"></div>
-      </span>
-      Credentials
-    </a>
-    <a class="<%= ('active' if locals[:link] == 'categories') %> list-group-item double-line-item" href="<%=  %>">
+    <a class="<%= ('active' if locals[:link] == 'help-people-find-you') %> list-group-item double-line-item" href="<%= edit_profile_path(@profile, 'help-people-find-you') %>">
       <span>
         <div class="help-grey"></div>
       </span>
