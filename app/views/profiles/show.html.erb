@@ -1,1 +1,98 @@
-<h1><%= decorate(@profile).full_name %></h1>
+<aside class="sidebar">
+  <%# <%= render "shared/corporate/sidebar", active: "mentorship" %>
+</aside>
+<nav class="content-nav">
+  <%# <%= render "shared/corporate/msp/navbar", active: "mentors" %>
+</nav>
+<main class="content content-with-nav">
+  <div class="content-breadcrumb">
+    <ul class="breadcrumb">
+      <li>
+        <%= link_to "javascript:history.back()" do %>
+          <i class="fa fa-angle-left" aria-hidden="true"></i> Go Back
+        <% end %>
+      </li>
+    </ul>
+  </div>
+  <header class="content-container content-with-aside">
+    <div class="mentor-header content-main">
+      <div class="mentor-image">
+        <%# <%= render "shared/profile_photo_medium", locals: { profile: @user.expert, linkedin: true } %>
+      </div>
+      <div class="mentor-info">
+        <h1><%= decorate(@profile).full_name %></h1>
+        <p><%= @profile.title %></p>
+        <div class="location">
+          <i class="fa fa-map-marker"></i>
+          <%= decorate(@profile).display_location_with_abbreviation %>
+        </div>
+      </div>
+    </div>
+    <div class="mentor-pricings content-aside">
+      <h2><span class="currency">EXC </span><%= @profile.rate %><span class="per">/min</span></h2>
+      <%= link_to "Schedule Session", new_request_path(expert: @profile) , class: 'btn btn-primary btn-block btn-upc' %>
+    </div>
+  </header>
+  <section class="content-container content-with-aside">
+    <div class="content-main">
+      <div class="panel panel-tabbable">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#overview" role="tab">Overview</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#reviews" role="tab">Reviews</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane" id="overview" role="tabpanel">
+            <%= @profile.about %>
+          </div>
+          <div class="tab-pane active" id="reviews" role="tabpanel">
+            <div class="mentor-reviews">
+              <% @profile.reviews.each do |review| %>
+                <div class="review">
+                  <div class="review-avatar">
+                    <%= render "shared/profile_photo", photo: review.author.photo_url %>
+                  </div>
+                  <div class="review-body">
+                    <h4><a><%= decorate(review.author).full_name %></a></h4>
+                    <p class="quote">"<%= review.message %>"</p>
+                    <div class="review-tags">
+                      <p class="tags-label">Expertise & Skill</p>
+                    </div>
+                  </div>
+                  <div class="review-rating">
+                    <ul class="rating-data">
+                      <li>
+                        <%= display_stars review.rate %>
+                        (<%= review.rate %>)
+                      </li>
+                      <li>Posted <span class="strong"><%= review.created_at.strftime("%b %d, %Y")  %></span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              <%end%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-aside">
+      <div class="panel">
+        <div class="panel-stats">
+          <ul class="stats">
+            <li><span class="value"><%#= @user.msp_call_requests.count %></span><span class="legend">Calls</span></li>
+            <li><span class="value"><%= @profile.reviews.count %></span><span class="legend">Reviews</span></li>
+            <li><span class="value">40 Min</span><span class="legend">Avg. Call</span></li>
+          </ul>
+        </div>
+        <div class="panel-body mentor-panel-bio">
+          <h5 class="strong">What can you ask?</h5>
+          <%#= @profile.help_with %>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
