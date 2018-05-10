@@ -17,7 +17,7 @@
        <%= render 'shared/profile_photo',  photo: @profile.photo&.url  %>
       </div>
       <div class="mentor-info">
-        <h1><%= @profile&.first_name + ' ' + @profile.last_name %></h1>
+        <h1><%= decorate(@profile).full_name %></h1>
         <p><%= @profile.title %></p>
         <div class="location">
           <% unless decorate(@profile).display_location_with_abbreviation.empty? %>
@@ -28,9 +28,9 @@
       </div>
     </div>
     <div class="mentor-pricing-and-rating content-aside">   
-      <p class="pricing"><span class="currency">$</span>2.50<span class="per">/min</span></h2>
+      <p class="pricing"><span class="currency">EXC </span><%= @profile.rate %><span class="per">/min</span></h2>
       <p class="rating">
-        <%= display_stars 3.7, 'Rating' %>
+        <%= display_stars ProfileRating.new(@profile).average_rating, 'Rating' %>
       </p>   
     </div>  
   </header>
@@ -44,7 +44,7 @@
         <div class="request-status">
           <span class="strong">Status</span>
           <span class="strong"><%= @request.status %></span>
-          <span><%= @request.updated_at.strftime("on %b %d,%Y at %I:%M %p %Z") %></span>
+          <span><%= decorate(@request).session_date %></span>
         </div>
         <div class="request-price-information">
           <table>
