@@ -23,6 +23,7 @@ class RequestsController < ApplicationController
   def update
     return render :edit unless @request.update(request_params)
     @request.update_status
+    MSP::Email::Request.new(@request).email_to_expert
     render :thankyou
   end
 

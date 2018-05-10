@@ -18,7 +18,7 @@
       <div class="modal-body">
         <div class="col-xs-12">
           <% if @request.updated_by != current_user %>
-            <%= form_for(@request, url: request_path(@request.id)) do |f| %>
+            <%= form_for(@request, url: call_path(@request.id)) do |f| %>
               <div class="row applicant-info">
                 <div class="form-group">
                   <label>
@@ -39,7 +39,7 @@
             </span>
           <% end %>
           <div class="col-xs-12">
-            <%= form_for(@request, url: request_path(@request.id)) do |f| %>
+            <%= form_for(@request, url: call_path(@request.id)) do |f| %>
               <div class="row applicant-info">
                 <div class="form-group">
                   <label>
