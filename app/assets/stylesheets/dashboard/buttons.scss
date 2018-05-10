@@ -21,6 +21,7 @@
     background-color: #dddcd7;
     left: 12px;
     top: 5px;
+    color: #dddcd7;
   } 
 
   &.btn-schedule {
@@ -112,4 +113,20 @@
     padding: 6px 32px;
     font-weight: 600;
   }  
+}
+
+.btn-table {
+  border: 2px solid #06b86f;
+  border-radius: 16px;
+  padding: 2px 16px;
+  display: inline-block;
+  color: #555;
+  line-height: 1.1;
+  text-align: center;
+
+  &:hover,
+  &:focus {
+    color: #fff;
+    background-color: #06b86f;
+  }
 }
