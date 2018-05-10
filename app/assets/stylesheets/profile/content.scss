@@ -1,0 +1,51 @@
+.profile-title-section {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+
+  .profile-name {
+    font-size: 1.5rem;
+  }
+}
+
+
+// Profile Sidebar
+//---------------------------------------------
+
+.profile-sidebar {
+  height: 100%;
+
+  .list-group {
+    border-radius: 0;
+    height: 100%;
+    background-color: #f0efed;
+    border-left: 1px solid rgba(0,0,0,.1);
+    border-right: 1px solid rgba(0,0,0,.1);
+
+    .list-group-item {
+      display: flex;
+      align-items: center;
+      background: none;
+      border: 0;
+      border-bottom: 1px solid rgba(0,0,0,.1);
+      border-radius: 0;
+      padding: 1.25rem 1.5rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #666;
+      min-height: 82px;
+
+      &:hover {
+        background-color: darken(#f0efed,5%);
+      }
+
+      &.active {
+        background-color: #00abda;
+        color: white;
+
+        &:hover {
+          background-color: darken(#00abda, 3%);
+        }
+      }
+    }
+  }
+}
