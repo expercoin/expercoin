@@ -157,8 +157,24 @@
   }   
 }
 
+.field_with_errors {
+  .form-control {
+    border-color: #dc3545;
+  }
+}    
 
-/*.selectpicker-control {
-  width: 100%!important;
-  padding: 10px 8px!important;
-}*/
+#error_explanation {
+  margin-top: 76px;
+  z-index: 2;
+  color: #dc3545;
+  padding: 16px 24px;
+  background-color: lighten(#dc3545, 40%);
+
+  h2 {
+    font-size: 18px;
+  }
+
+  ul {
+    margin-bottom: 0;
+  }
+}
