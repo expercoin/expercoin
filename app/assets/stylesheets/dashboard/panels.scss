@@ -19,6 +19,10 @@
 
   .panel-body {
     padding: 16px 16px;
+
+    &.panel-body-paddingless {
+      padding: 0;
+    }
   }        
 }
 
@@ -101,4 +105,20 @@
       }
     }
   }
+}
+
+.hiw-accordian {
+  .card {
+    border-radius: 0;
+
+    .card-header {
+      padding: 4px 16px;
+      border-radius: 0!important;
+      background-color: #fff;
+    }
+
+    .card-body {
+      font-size: 14px;
+    }
+  } 
 }

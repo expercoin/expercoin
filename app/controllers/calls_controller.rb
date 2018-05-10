@@ -13,9 +13,10 @@ class CallsController < ApplicationController
   end
 
   def update
-    return render :edit unless @request.update(request_params)
+    return render :show unless @request.update(request_params)
     @request.update_status
-    redirect_to :index
+    MSP::Email::Request.new(@request).email_to_requester
+    redirect_to '/calls'
   end
 
   private
