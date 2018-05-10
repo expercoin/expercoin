@@ -10,4 +10,9 @@ class ProfileDecorator < BaseDecorator
   def display_location_with_abbreviation
     "#{country} | #{state}"
   end
+
+  def exc_price
+    return '' unless rate.present?
+    "<strong>EXC #{rate}</strong>/min"
+  end
 end
