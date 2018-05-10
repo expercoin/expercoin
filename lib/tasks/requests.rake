@@ -11,6 +11,7 @@ namespace :requests do
         second_date = Faker::Time.forward(25, :day)
         third_date = Faker::Time.forward(28, :evening)
         Request.create!(
+          status: 0,
           requester: requester_profile,
           expert: profile,
           updated_by: requester_profile,

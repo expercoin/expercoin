@@ -39,7 +39,7 @@
       </div>
     </div>
     <div class="mentor-pricing-and-rating content-aside">   
-      <p class="pricing"><span class="currency">$</span>2.50<span class="per">/min</span></h2>
+      <p class="pricing"><span class="currency">EXC </span><%= @profile.rate %><span class="per">/min</span></h2>
       <p class="rating">
         <%= display_stars(3.75, 'Rating') %>
       </p>   
@@ -74,7 +74,7 @@
 
             <div class='form-group'>
               <%= f.label :requested_length, 'Aproximate Session Length' %>
-              <%= f.select :requested_length, options_for_select(Request.requested_lengths.keys.map {|k| ["#{k}", k]} ), {}, { class: 'select-picker select-picker-with-padding full-width' } %>
+              <%= f.select :requested_length, options_for_select(Request.requested_lengths.keys.map {|k| ["#{k}", k]} ), {}, { class: 'selectpicker selectpicker-control' } %>
             </div>
 
             <div class='form-group'>
@@ -84,7 +84,7 @@
             <% end %>
               <div class='row'>
                 <div class='col-md-3 col-md-offset-0'>
-                  <%= f.select :country_number, phone_codes_as_options, {}, { class: 'select-picker select-picker-with-padding full-width'} %>
+                  <%= f.select :country_number, phone_codes_as_options, {}, { class: 'selectpicker selectpicker-control'} %>
                 </div>
                 <div class='col-md-9'>
                   <%= f.text_field :cell_number, { class: 'form-control', placeholder: '6177485833' } %>
@@ -105,9 +105,9 @@
             </div>
             <div class='form-group'>
               <%= f.label :time_zone, 'Your Timezone' %>
-              <%= time_zone_select_dst("request", "time_zone", nil, {default: "Eastern Time (US & Canada)"}, { class: 'select-picker select-picker-with-padding full-width'}) %>
+              <%= time_zone_select_dst("request", "time_zone", nil, {default: "Eastern Time (US & Canada)"}, { class: 'selectpicker selectpicker-control'}) %>
             </div>
-            <h4>Suggest 3 times</h4>
+            <h5>Suggest 3 times</h5>
             <div class='form-group datetime-picker-container'>
               <div class='picker date'>
                 <%= f.text_field :first_date, class: 'date-picker-input form-control', placeholder: 'Option 1' %>
