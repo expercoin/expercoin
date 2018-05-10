@@ -1,12 +1,8 @@
-$(function(){
-  requestFormInitialize();
-});
+// $(function(){
+//   requestFormInitialize();
+// });
 
 $(document).on("turbolinks:load",function(){
-  requestFormInitialize();
-});
-
-$(document).on("page:load",function(){
   requestFormInitialize();
 });
 
