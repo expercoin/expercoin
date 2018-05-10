@@ -44,7 +44,7 @@
                 <%= request.title %>
               </div>
               <div class="col-md-3 requests-list-item" data-date-created="<%= request.created_at.strftime('%B %d, %Y %H:%M:%S') %>">
-                <%= request.created_at.strftime('%b %d, %Y at %l:%M %P') %>
+                <%= decorate(request).session_date %>
               </div>
               <div class="col-md-3 requests-list-item flex-space-between">
                 <span class="request-text-<%= request.status.downcase %>"><%= request.status %></span>

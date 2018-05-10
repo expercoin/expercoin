@@ -1,12 +1,8 @@
-$(function(){
-  requestFormInitialize();
-});
+// $(function(){
+//   requestFormInitialize();
+// });
 
 $(document).on("turbolinks:load",function(){
-  requestFormInitialize();
-});
-
-$(document).on("page:load",function(){
   requestFormInitialize();
 });
 
@@ -33,6 +29,16 @@ function requestFormInitialize() {
     belongs = $(this).data()['block'].split('-')[0];
     $('[data-block*="' + belongs +'-info"]').toggle();
     $('[data-block*="' + belongs +'-form"]').toggle();
+    // Calculating cost
+    // --------------------------------------------
+    var length = $('#request_requested_length').val();
+    length = /\d+/g.exec(length);
+    var price = $('[data-request="price"]').html();
+    price = /\d+/g.exec(price);
+    var cost = price * length;
+    $('[data-request="length"]').html(length);
+    $('[data-request="cost"]').html('EXC ' + cost);
+    // --------------------------------------------
     $(this).html() === "Change" ? $(this).html('Cancel') : $(this).html('Change');
   });
 

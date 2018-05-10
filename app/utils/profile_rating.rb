@@ -3,11 +3,11 @@ class ProfileRating
     @profile = profile
   end
 
-  # def student_rating(student)
-  #   reviews = MSP::Review.where(user: student, expert: @mentor)
-  #   return nil if reviews.count.zero?
-  #   calculate_rate reviews
-  # end
+  def student_rating(student)
+    reviews = Review.where(author: student, profile: @profile)
+    return nil if reviews.count.zero?
+    calculate_rate reviews
+  end
 
   def average_rating
     reviews = @profile.reviews
