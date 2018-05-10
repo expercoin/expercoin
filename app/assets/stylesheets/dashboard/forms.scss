@@ -23,7 +23,7 @@
   }
 
   .section-subtitle {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 16px;
   }
 
@@ -138,3 +138,27 @@
     margin: 0;
   }
 }
+
+.select2-container {
+  width: 100%!important;
+
+  .select2-selection--single {
+    height: 38px!important;
+    border: 1px solid #ced4da!important;
+
+    .select2-selection__rendered {
+      padding-top: 4px;
+      padding-bottom: 4px;
+    }
+
+    .select2-selection__arrow {
+      height: 38px;
+    }
+  }   
+}
+
+
+/*.selectpicker-control {
+  width: 100%!important;
+  padding: 10px 8px!important;
+}*/
