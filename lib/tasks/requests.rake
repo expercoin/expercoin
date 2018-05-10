@@ -16,7 +16,7 @@ namespace :requests do
           expert: profile,
           updated_by: requester_profile,
           message: Faker::OnePiece.quote,
-          title: Faker::MostInterestingManInTheWorld.quote,
+          title: Faker::Movie.quote,
           cell_number: Faker::PhoneNumber.cell_phone,
           first_date: first_date.to_date,
           first_time: first_date.to_time,
