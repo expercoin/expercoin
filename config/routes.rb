@@ -23,8 +23,12 @@ Rails.application.routes.draw do
 
   resources :dashboard, only: [:index]
   resources :account, only: [:index]
-  resources :profiles, only: %i[show update]
-  get 'profiles/:id/edit(/:tab)', to: 'profiles#edit', as: :edit_profile
+  resources :profiles, only: %i[show]
+  resources :settings, only: [:index, :create]
+  namespace :settings do
+    resources :about, only: [:index, :create]
+    resources :categories, only: [:index, :create]
+  end
 
   resources :requests
   get 'requests/:id/thankyou', to: 'requests#thankyou', as: :requests_thankyou

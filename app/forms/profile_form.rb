@@ -3,6 +3,7 @@ class ProfileForm < FormObject
     attribute :last_name, String
     attribute :name, String
     attribute :title, String
+    attribute :professional_role, String
     attribute :years_of_experience, Integer
     attribute :photo, 'PhotoUploader'
     attribute :photo_url, String
@@ -15,4 +16,9 @@ class ProfileForm < FormObject
     attribute :zip_code, Integer
     attribute :about, String
     attribute :category_ids, Array
+
+    def update_categories(profile)
+      categories = Category.where(id: category_ids)
+      profile.categories = categories
+    end
 end

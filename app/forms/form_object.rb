@@ -7,6 +7,7 @@ class FormObject
 
   def initialize(*attrs)
     attrs.each do |attr|
+      next unless attr
       next self.attributes = attr.attributes if attr.is_a?(ActiveRecord::Base)
       self.attributes = attr
     end
