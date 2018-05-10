@@ -1,0 +1,41 @@
+<div class="mentor-card mentor-card-landscape">
+  <div class="card-hero">
+    <%= render "shared/profile_photo", photo: mentor.photo_url %>
+    <div class='hero-price'>
+      <strong>EXC <%= mentor.rate %></strong>/min
+    </div>
+    <div class="hero-rating">
+      <%= rating = ProfileRating.new(mentor).average_rating %>
+      <%= display_stars(rating) %>
+    </div>
+  </div>
+  <div class="card-body">
+    <h4><%= link_to decorate(mentor).full_name, profile_path(mentor) %></h4>
+    <div class="mentor-title">
+      <%= mentor.title %>
+    </div>
+    <div class="mentor-location">
+      <i class="fa fa-map-marker"></i>
+      <%= decorate(mentor).display_location_with_abbreviation %>
+    </div>
+    <ul class="mentor-stats">
+      <li>
+        4 You Rated
+        <%#= display_stars(MentorRating.new(expert.user).student_rating(current_user), 'You Rated') %>
+      </li>
+      <li>Sessions <span class="strong"><%= mentor.requests.count %></span></li>
+      <li>Last Session <span class="strong">Jan 2, 2018</span></li>
+    </ul>
+    <a class="mentor-bio-collapse-link" data-toggle="collapse" data-target='#<%= "collapse_#{ mentor.id }" %>' aria-expanded="false" aria-controls='<%= "collapse_#{ mentor.id }" %>"'>
+      View More
+    </a>
+    <div class="mentor-bio-collapse collapse" id='<%= "collapse_#{ mentor.id }" %>'>
+      <%= mentor.about %>
+    </div>
+  </div>
+  <div class="card-controls">
+    <%= link_to 'Schedule a Session', new_request_path(expert:mentor.slug), class: 'btn btn-block btn-with-icon btn-schedule' %>
+    <a class="btn btn-block btn-with-icon btn-message" href="#" data-toggle="modal" data-target="#message-mentor-modal-<%= mentor.id %>">Send Message</a>
+  </div>
+</div>
+  <%#= render 'shared/corporate/msp/message_mentor_modal', expert: expert %>

@@ -24,9 +24,8 @@ class Profile < ApplicationRecord
 
   def slug_candidates
     [
-      :first_name,
       %i[first_name last_name],
-      %i[first_name last_name id],
+      %i[id first_name last_name],
     ]
   end
 end
