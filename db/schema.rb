@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_09_091347) do
+ActiveRecord::Schema.define(version: 2018_05_10_121856) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -72,6 +72,18 @@ ActiveRecord::Schema.define(version: 2018_05_09_091347) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "mail_records", force: :cascade do |t|
+    t.integer "recipient_id"
+    t.integer "sender_id"
+    t.boolean "sent"
+    t.text "body"
+    t.text "meta"
+    t.string "subject"
+    t.string "mail_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "profiles", force: :cascade do |t|

@@ -51,6 +51,10 @@
   margin: 0 auto;
 }
 
+.user-requests {
+  padding-top: 40px;
+}
+
 .mentors-hero {
   height: 400px;
   padding: 40px 0;
@@ -532,7 +536,6 @@
     padding: 0.25rem 1.125rem;
     display: inline;
     height: 1.75rem;
-    color: #888888;
 
     &:hover {
       color: #fff;
