@@ -12,7 +12,6 @@
     </ul>
   </div>
 <% end %>
-
 <main class="content content-with-nav">
   <div class="content-breadcrumb">
     <ul class="breadcrumb">
@@ -40,7 +39,7 @@
       </div>
     </div>
     <div class="mentor-pricing-and-rating content-aside">   
-      <p class="pricing"><span class="currency">$</span>2.50<span class="per">/min</span></h2>
+      <p class="pricing"><span class="currency">EXC </span><%= @profile.rate %><span class="per">/min</span></h2>
       <p class="rating">
         <%= display_stars(3.7, 'Rating') %>
       </p>   
@@ -52,12 +51,12 @@
         <%= form_for @request, url: request_path(@request.id), remote: true do |f| %>
           <section class='panel form-section'>
             <div class='section-title'>
-              <h2>Summary</h2>
+              <h4>Summary</h4>
             </div>
             <div class='section-body'>
               <div class='section-body-row section-body-title'>
                 <span class='msp-icon-phone summary-icon'></span>
-                <h3>Reason for Call</h3>
+                <h5>Reason for Call</h5>
                 <a href='#' data-block="message-toggle">Change</a>
               </div>
               <div data-block="message-info" class='section-body-row'>
@@ -77,7 +76,7 @@
             <div class='section-body'>
               <div class='section-body-row section-body-title'>
                 <span class='msp-icon-clock summary-icon'></span>
-                <h3>Suggested Times</h3>
+                <h5>Suggested Times</h5>
                 <a href="#" data-block="time-toggle">Change</a>
               </div>
               <div data-block="time-info">
@@ -129,12 +128,11 @@
               </div>
             </div>
           </section>
-
           <section class='panel form-section'>
             <div class='section-body'>
               <div class='section-body-row section-body-title'>
                 <span class='msp-icon-dollar summary-icon'></span>
-                <h3>Estimated Payment</h3>
+                <h5>Estimated Payment</h5>
                 <a href='#' data-block="length-toggle">Change</a>
               </div>
               <div data-block="length-info">
@@ -184,7 +182,7 @@
             </div>
             
           </section>
-          <%= f.submit 'Submit Request', class: 'btn btn-primary form-control', data: { toggle: 'modal', target: '#request-sent-modal'} %>
+          <%= f.submit 'Submit Request', class: 'btn btn-success btn-block', data: { toggle: 'modal', target: '#request-sent-modal'} %>
         <% end %>
       </div>
     </div>
