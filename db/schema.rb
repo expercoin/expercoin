@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 2018_05_09_091347) do
     t.string "title"
     t.integer "expercoin_rate"
     t.integer "rate"
+    t.string "professional_role"
     t.integer "years_of_experience"
     t.string "photo"
     t.string "slug"
