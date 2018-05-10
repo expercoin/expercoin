@@ -80,9 +80,9 @@
       <div class="panel">
         <div class="panel-stats">
           <ul class="stats">
-            <li><span class="value"><%#= @user.msp_call_requests.count %></span><span class="legend">Calls</span></li>
+            <li><span class="value"><%= @profile.requests.count %></span><span class="legend">Calls</span></li>
             <li><span class="value"><%= @profile.reviews.count %></span><span class="legend">Reviews</span></li>
-            <li><span class="value">40 Min</span><span class="legend">Avg. Call</span></li>
+            <li><span class="value"><%= CallLength.new(@profile.requests).average_length %> Min</span><span class="legend">Avg. Call</span></li>
           </ul>
         </div>
         <div class="panel-body mentor-panel-bio">
