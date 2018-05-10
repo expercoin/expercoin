@@ -1,18 +1,18 @@
 <div class="profile-sidebar">
   <div class="list-group side-nav-1">
-    <a class="<%= ('active' if locals[:link] == 'basic_info') %> list-group-item" href="<%= edit_profile_path(@profile) %>">
+    <a class="<%= ('active' if locals[:active] == 'basic_info') %> list-group-item" href="<%= settings_path %>">
       <span>
         <div class="basic-info-grey"></div>
       </span>
       Basic Info
     </a>
-    <a class="<%= ('active' if locals[:link] == 'about') %> list-group-item" href="<%= edit_profile_path(@profile, 'about') %>">
+    <a class="<%= ('active' if locals[:active] == 'about') %> list-group-item" href="<%= settings_about_index_path %>">
       <span>
         <div class="basic-info-grey"></div>
       </span>
       About
     </a>
-    <a class="<%= ('active' if locals[:link] == 'help-people-find-you') %> list-group-item double-line-item" href="<%= edit_profile_path(@profile, 'help-people-find-you') %>">
+    <a class="<%= ('active' if locals[:active] == 'find') %> list-group-item double-line-item" href="<%= settings_categories_path %>">
       <span>
         <div class="help-grey"></div>
       </span>
