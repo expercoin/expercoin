@@ -6,6 +6,12 @@
       </span>
       Basic Info
     </a>
+    <a class="<%= ('active' if locals[:link] == 'about') %> list-group-item" href="<%= edit_profile_path(@profile, 'about') %>">
+      <span>
+        <div class="basic-info-grey"></div>
+      </span>
+      About
+    </a>
     <a class="<%= ('active' if locals[:link] == 'help-people-find-you') %> list-group-item double-line-item" href="<%= edit_profile_path(@profile, 'help-people-find-you') %>">
       <span>
         <div class="help-grey"></div>
