@@ -8,7 +8,7 @@ namespace :reviews do
         author: request.requester,
         request: request,
         rate: Faker::Number.between(1, 5),
-        message: Faker::Lorem.sentence(3)
+        message: Faker::MostInterestingManInTheWorld.quote
       )
     end
   end
