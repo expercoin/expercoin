@@ -9,7 +9,9 @@ class ProfilesController < ApplicationController
     @profile_form = ProfileForm.new(@profile, photo_url: @profile.photo_url)
     @categories = Category.children
     @help_people_find_you_tab = request.url.match('help-people-find-you')
+    @about = request.url.match('about')
     @tab = 'basic_info'
+    @tab = 'about' if @about
     @tab = 'help-people-find-you' if @help_people_find_you_tab
   end
 
