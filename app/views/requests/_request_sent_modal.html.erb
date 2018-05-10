@@ -2,12 +2,12 @@
   <div class="modal-dialog vertical-align-center" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Request Sent</h4>
+        <h5 class="modal-title">Request Sent</h5>
       </div>
       <div class="modal-body text-center">
         <p class="main-paragraph">Your Request Has Been Sent to <%= decorate(@request.expert).full_name %></p>
         <p>Once your pending request is confirmed - you will receive a calendar invite with all the details (time, number, etc) via email.</p>
-        <%= link_to 'View Request', request_path(@request), class: "btn btn-primary request-btn" %>
+        <%= link_to 'View Request', request_path(@request), class: "btn btn-primary request-btn btn-md btn-md-lgr" %>
       </div>
     </div>
   </div>
