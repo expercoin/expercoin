@@ -13,5 +13,6 @@ class ProfileForm < FormObject
     attribute :state, String
     attribute :city, String
     attribute :zip_code, Integer
+    attribute :about, String
     attribute :category_ids, Array
 end

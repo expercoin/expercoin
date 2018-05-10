@@ -28,7 +28,7 @@
        <%= render 'shared/profile_photo',  photo: @profile.photo&.url %>
       </div>
       <div class="mentor-info">
-        <h1><%= @profile&.first_name + ' ' + @profile&.last_name %></h1>
+        <h1><%= decorate(@profile).full_name %></h1>
         <p><%= @profile.title %></p>
         <div class="location">
           <% unless decorate(@profile).display_location_with_abbreviation.empty? %>
@@ -141,15 +141,15 @@
               <div data-block="length-info">
                 <div class='section-body-row'>
                   <span>Rate per minute</span>
-                  <span>$1.67</span>
+                  <span data-request="price"><%= "EXC #{@profile.rate}" %></span>
                 </div>
                 <div class='section-body-row'>
                   <span>Requested call length</span>
-                  <span><%= @request.requested_length %></span>
+                  <span data-request="length"><%= @request.requested_length %></span>
                 </div>
                 <div class='section-body-row'>
                   <span>Estimated cost</span>
-                  <span>$25.05</span>
+                  <span data-request="cost"><%= "EXC #{RequestCalculator.new(@request).calculate_cost(@profile.rate)}" %></span>
                 </div>
               </div>
               <div data-block="length-form" class="section-row">

@@ -1,10 +1,14 @@
-<% if  @history %>
-  History
-<% else %>
-  Active
-<% end %>
 <nav class="content-nav">
-  <%= render "shared/subnavbar", active: "requests" %>
+  <div class="content-nav-container">
+    <ul class="content-nav-list">
+      <li>
+        <%= link_to 'Active Calls', '/calls', class: "#{'active' if !@history}"  %>
+      </li>
+      <li>
+        <%= link_to 'History', '/calls/history', class: "#{'active' if @history}"  %>
+      </li>
+    </ul>  
+  </div>
 </nav>
 <main class="content content-with-nav">
   <div class="content-container-wide m-t-3">

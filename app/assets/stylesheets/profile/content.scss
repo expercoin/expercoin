@@ -7,6 +7,17 @@
   }
 }
 
+.profile-form-container {
+  min-height: calc(100% - 5.4rem);
+
+  form {
+    flex-grow: 1;
+
+    &>.row {
+      flex: 1;
+    }
+  }
+}
 
 // Profile Sidebar
 //---------------------------------------------
