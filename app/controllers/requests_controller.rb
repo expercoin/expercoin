@@ -22,6 +22,7 @@ class RequestsController < ApplicationController
 
   def update
     return render :edit unless @request.update(request_params)
+    @request.update_status
     render :thankyou
   end
 
@@ -34,10 +35,6 @@ class RequestsController < ApplicationController
   end
 
   private
-
-  def set_profile
-    @profile = Profile.friendly.find(params[:expert])
-  end
 
   def request_params
     params.require(:request).permit(request_attributes)
