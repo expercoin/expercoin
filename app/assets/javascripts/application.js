@@ -10,6 +10,7 @@
 //= require bootstrap-datepicker
 //= require bootstrap-timepicker
 //= require commission_fee
+//= require star_ratings
 
 document.addEventListener("turbolinks:load", function() {
   $('.selectpicker').select2();
