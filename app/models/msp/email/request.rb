@@ -19,7 +19,7 @@ module MSP
         if @request.accepted?
           email_to_expert_new_status
         elsif @request.pending?
-          email_to_expert_new_new_times
+          email_to_expert_new_times
         end
       end
 
@@ -52,7 +52,7 @@ module MSP
         create_email_record(@request.requester.id, subject, body)
       end
 
-      def email_to_expert_new_new_times
+      def email_to_expert_new_times
         subject, body = email_template_for_expert
         MSP::NotifyMailer.notify_expert_new_times(
           expert_email,
