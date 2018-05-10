@@ -1,7 +1,11 @@
 namespace :categories do
   desc "TODO"
   task create_blockchain: :environment do
-    blockchain = Category.create!(name: 'Blockchain', description: '')
+    blockchain = Category.create!(
+      name: 'Blockchain',
+      description: '',
+      remote_banner_url: 'https://experfy.s3.amazonaws.com/uploads/course/banner/149/a0c5a3ad7c.jpg'
+    )
     sub_categories = [
       'Alt-coins',
       'Bitcoin Protocol',
@@ -25,7 +29,11 @@ namespace :categories do
     ]
 
     sub_categories.each do |category|
-      Category.create!(name: category, description: '', parent_id: blockchain.id)
+      Category.create!(
+        name: category,
+        description: '',
+        parent_id: blockchain.id
+      )
     end
   end
 
