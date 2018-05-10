@@ -8,6 +8,7 @@ class CreateProfiles < ActiveRecord::Migration[5.2]
       t.string :title
       t.integer :expercoin_rate
       t.integer :rate
+      t.string :professional_role
       t.integer :years_of_experience
       t.string :photo
       t.string :slug

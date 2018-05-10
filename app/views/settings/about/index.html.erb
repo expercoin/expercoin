@@ -1,0 +1,61 @@
+<div class="profile-title-section">
+  <div class="container">
+    <h2 class="profile-name">
+      <%= decorate(@profile).full_name %>
+        <span>
+          Profile
+        </span>
+    </h2>
+  </div>
+</div>
+<div class="container profile-form-container d-flex">
+  <%= form_with model: @profile_form, url: profile_path(@profile), class: 'd-flex', method: :patch do |f| %>
+    <div class="row">
+      <div class="col-sm-3">
+        <%= render 'shared/profile_navigation', locals: {active: 'about'} %>
+      </div>
+      <div class="col-sm-9">
+        <h4 class="card-form-title mt-3">
+          About
+        </h4>
+        <div class="card card-form">
+          <div class="card-body">
+            <div class="form-group">
+              <label>
+                About You and Your Service Offerings (Please note this is your marketing pitch)
+              </label>
+              <%= f.text_area :about, class: 'form-control', rows: 8 %>
+            </div>
+            <div class="form-group">
+              <label>
+                For On-demand Learning and Mentorship, what kind of help you can provide.
+              </label>
+              <p><small class="text-muted">Be descriptive in short sentence. For example: Learn MEthods, Rapid Prototyping of Web Apps or Help you with your Python coding</small></p>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">1</span>
+                </div>
+                <input type="text" class="form-control">
+              </div>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">2</span>
+                </div>
+                <input type="text" class="form-control">
+              </div>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">3</span>
+                </div>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end mb-5">
+          <%= f.submit "Save", :class => "btn btn-primary btn-wide" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

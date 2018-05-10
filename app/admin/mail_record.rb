@@ -1,5 +1,3 @@
-ActiveAdmin.register MailRecord do
-
-  
-  end
+ActiveAdmin.register MailRecord do  
+end
   
