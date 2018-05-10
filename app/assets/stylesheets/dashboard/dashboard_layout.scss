@@ -19,6 +19,10 @@
     background: #fff;
     display: flex;
   }
+
+  &.content-with-errors {
+    padding-top: 0!important;
+  }
 }
 
 .content-breadcrumb {

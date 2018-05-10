@@ -12,7 +12,7 @@
     </ul>
   </div>
 <% end %>
-<main class="content content-with-nav">
+<main class="content content-with-nav <%= @request.errors.any? ? 'content-with-errors' : '' %>">
   <div class="content-breadcrumb">
     <ul class="breadcrumb">
       <li>
