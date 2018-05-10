@@ -1,9 +1,15 @@
 .card-form {
   margin-bottom: 1.5rem;
   background-color: #f8f9f6;
+
+  label {
+    font-weight: 600;
+    font-size: .875rem;
+  }
 }
 
 .card-form-title {
   font-weight: 600;
   font-size: 1.25rem;
+  margin-bottom: .75rem;
 }
