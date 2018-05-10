@@ -12,7 +12,6 @@
     </ul>
   </div>
 <% end %>
-
 <main class="content content-with-nav">
   <div class="content-breadcrumb">
     <ul class="breadcrumb">
@@ -29,7 +28,7 @@
        <%= render 'shared/profile_photo',  photo: @profile.photo&.url %>
       </div>
       <div class="mentor-info">
-        <h1><%= @profile&.first_name + ' ' + @profile&.last_name %></h1>
+        <h1><%= decorate(@profile).full_name %></h1>
         <p><%= @profile.title %></p>
         <div class="location">
           <% unless decorate(@profile).display_location_with_abbreviation.empty? %>
@@ -40,9 +39,9 @@
       </div>
     </div>
     <div class="mentor-pricing-and-rating content-aside">   
-      <p class="pricing"><span class="currency">$</span>2.50<span class="per">/min</span></h2>
+      <p class="pricing"><span class="currency">EXC </span><%= @profile.rate %><span class="per">/min</span></h2>
       <p class="rating">
-        <%= display_stars(3.7, 'Rating') %>
+        <%= display_stars(ProfileRating.new(@profile).average_rating, 'Rating') %>
       </p>   
     </div>  
   </header>
@@ -52,12 +51,12 @@
         <%= form_for @request, url: request_path(@request.id), remote: true do |f| %>
           <section class='panel form-section'>
             <div class='section-title'>
-              <h2>Summary</h2>
+              <h4>Summary</h4>
             </div>
             <div class='section-body'>
               <div class='section-body-row section-body-title'>
                 <span class='msp-icon-phone summary-icon'></span>
-                <h3>Reason for Call</h3>
+                <h5>Reason for Call</h5>
                 <a href='#' data-block="message-toggle">Change</a>
               </div>
               <div data-block="message-info" class='section-body-row'>
@@ -77,7 +76,7 @@
             <div class='section-body'>
               <div class='section-body-row section-body-title'>
                 <span class='msp-icon-clock summary-icon'></span>
-                <h3>Suggested Times</h3>
+                <h5>Suggested Times</h5>
                 <a href="#" data-block="time-toggle">Change</a>
               </div>
               <div data-block="time-info">
@@ -98,6 +97,7 @@
                 <div class='form-group datetime-picker-container'>
                   <div class='picker date'>
                     <%= f.text_field :first_date, class: 'date-picker-input form-control', placeholder: 'Option 1' %>
+                    <span class='date-picker-input icon-calendar-color'></span>
                   </div>
                   <span class='at-divider'>at</span>
                   <div class='picker time'>
@@ -107,6 +107,7 @@
                 <div class='form-group datetime-picker-container'>
                   <div class='picker date'>
                     <%= f.text_field :second_date,  class: 'date-picker-input form-control', placeholder: 'Option 2' %>
+                    <span class='date-picker-input icon-calendar-color'></span>
                   </div>
                   <span class='at-divider'>at</span>
                   <div class='picker time'>
@@ -116,6 +117,7 @@
                 <div class='form-group datetime-picker-container'>
                   <div class='picker date'>
                     <%= f.text_field :third_date, class: 'date-picker-input form-control', placeholder: 'Option 3' %>
+                    <span class='date-picker-input icon-calendar-color'></span>
                   </div>
                   <span class='at-divider'>at</span>
                   <div class='picker time'>
@@ -124,37 +126,36 @@
                 </div>
                 <div class='form-group'>
                   <%= f.label :time_zone, 'Your Timezone' %>
-                  <%= time_zone_select_dst("msp_request", "time_zone", nil, {default: "Eastern Time (US & Canada)"}, { class: 'form-control'}) %>
+                  <%= time_zone_select_dst("msp_request", "time_zone", nil, {default: "Eastern Time (US & Canada)"}, { class: 'selectpicker selectpicker-control' }) %>
                 </div>
               </div>
             </div>
           </section>
-
           <section class='panel form-section'>
             <div class='section-body'>
               <div class='section-body-row section-body-title'>
                 <span class='msp-icon-dollar summary-icon'></span>
-                <h3>Estimated Payment</h3>
+                <h5>Estimated Payment</h5>
                 <a href='#' data-block="length-toggle">Change</a>
               </div>
               <div data-block="length-info">
                 <div class='section-body-row'>
                   <span>Rate per minute</span>
-                  <span>$1.67</span>
+                  <span data-request="price"><%= "EXC #{@profile.rate}" %></span>
                 </div>
                 <div class='section-body-row'>
                   <span>Requested call length</span>
-                  <span><%= @request.requested_length %></span>
+                  <span data-request="length"><%= @request.requested_length %></span>
                 </div>
                 <div class='section-body-row'>
                   <span>Estimated cost</span>
-                  <span>$25.05</span>
+                  <span data-request="cost"><%= "EXC #{RequestCalculator.new(@request).calculate_cost(@profile.rate)}" %></span>
                 </div>
               </div>
               <div data-block="length-form" class="section-row">
                 <div class='form-group'>
                   <%= f.label :requested_length, 'Aproximate Session Length' %>
-                  <%= f.select :requested_length, options_for_select(Request.requested_lengths.keys.map {|k| ["#{k}", k]} ), {}, { class: 'form-control' } %>
+                  <%= f.select :requested_length, options_for_select(Request.requested_lengths.keys.map {|k| ["#{k}", k]} ), {}, { class: 'selectpicker selectpicker-control' } %>
                 </div>
               </div>
             </div>
@@ -184,7 +185,7 @@
             </div>
             
           </section>
-          <%= f.submit 'Submit Request', class: 'btn btn-primary form-control', data: { toggle: 'modal', target: '#request-sent-modal'} %>
+          <%= f.submit 'Submit Request', class: 'btn btn-success btn-block', data: { toggle: 'modal', target: '#request-sent-modal'} %>
         <% end %>
       </div>
     </div>

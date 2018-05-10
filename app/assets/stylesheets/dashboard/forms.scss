@@ -23,7 +23,7 @@
   }
 
   .section-subtitle {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 16px;
   }
 
@@ -136,5 +136,45 @@
   label {
     font-size: 14px;
     margin: 0;
+  }
+}
+
+.select2-container {
+  width: 100%!important;
+
+  .select2-selection--single {
+    height: 38px!important;
+    border: 1px solid #ced4da!important;
+
+    .select2-selection__rendered {
+      padding-top: 4px;
+      padding-bottom: 4px;
+    }
+
+    .select2-selection__arrow {
+      height: 38px;
+    }
+  }   
+}
+
+.field_with_errors {
+  .form-control {
+    border-color: #dc3545;
+  }
+}    
+
+#error_explanation {
+  margin-top: 76px;
+  z-index: 2;
+  color: #dc3545;
+  padding: 16px 24px;
+  background-color: lighten(#dc3545, 40%);
+
+  h2 {
+    font-size: 18px;
+  }
+
+  ul {
+    margin-bottom: 0;
   }
 }

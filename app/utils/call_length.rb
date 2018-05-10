@@ -7,6 +7,10 @@ class CallLength
     (total_length / total_calls.to_f).round(1)
   end
 
+  def total_price
+    
+  end
+
   private
 
   def total_length

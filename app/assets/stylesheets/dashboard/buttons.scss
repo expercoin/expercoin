@@ -106,3 +106,10 @@
 .btn-upc {
   text-transform: uppercase;
 }
+
+.btn-md {
+  &.btn-md-lgr {
+    padding: 6px 32px;
+    font-weight: 600;
+  }  
+}

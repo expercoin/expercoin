@@ -4,9 +4,9 @@
   <label>Categories</label>
   <%= f.collection_select :category_ids, @categories, :id, :name, {}, { multiple:"multiple", class: 'selectpicker', 'data-live-search':"true" } %>
 </div> -->
-    <div class="white-line">
+    <div class="profile-title-section">
       <div class="container">
-        <h2 class="pull-left">
+        <h2 class="profile-name">
           <%= @profile_form.first_name + " " + @profile_form.last_name + ":" %>
             <span>
               Profile
@@ -24,7 +24,7 @@
                 <%= render 'shared/profile_navigation', locals: {link: @tab} %>
               </div>
               <div class="col-sm-9">
-                <h4 class="card-form-title">
+                <h4 class="card-form-title mt-3">
                   Basic Information
                 </h4>
                 <div class="card card-form">
@@ -168,10 +168,7 @@
                   </div>
                 </div>
                 <div class="center">
-                  <a class="btn btn-flat-grey btn-md" href="" target="_blank">
-                    Preview
-                  </a>
-                  <%= f.submit "Save", :class => "btn btn-flat-blue btn-md ga-track-event", 'data-loading-text' => "Saving ...", 'data-gae-category' => "Expert", 'data-gae-action' => "Update Basic Info" %>
+                  <%= f.submit "Save", class: "btn btn-flat-blue btn-md" %>
                 </div>
               </div>
             </div>
@@ -186,7 +183,7 @@
                 <%= render 'shared/profile_navigation', locals: {link: @tab} %>
               </div>
               <div class="col-sm-9">
-                <h4 class="card-form-title">
+                <h4 class="card-form-title mt-3">
                   Help People Find You
                 </h4>
                 <div class="card card-form">
