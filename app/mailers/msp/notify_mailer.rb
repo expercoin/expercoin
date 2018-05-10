@@ -1,7 +1,7 @@
 module MSP
   # Notify mailer for MSP
   class NotifyMailer < ActionMailer::Base
-    default from: 'no-reply@experfy.com'
+    default from: 'support@expercoin.com'
 
     def notify_expert_new_status(email, subject, body)
       @body = body

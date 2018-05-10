@@ -4,7 +4,7 @@
     <%#   <%= image_tag "usa_flag.png", class: "card-flag" %>
     <%# <% end %>
     <div class="card-hero">
-      <%= render "shared/profile_photo", photo: profile.photo_url %>
+      <%= render "shared/profile_photo", photo: profile.try(:photo).thumb.url %>
     </div>
     <div class="card-body">
       <h4><%= link_to decorate(profile).full_name, profile_path(profile) %></h4>
@@ -21,7 +21,7 @@
     </div>
     <div class="card-footer">
       <div class="footer-block mentor-price-and-reviews">
-        <span class="mentor-price"><strong>EXC <%= profile.rate %></strong>/min</span>
+        <span class="mentor-price"><%= decorate(profile).exc_price.html_safe %></span>
         <span class="mentor-reviews">
           <%= rating = ProfileRating.new(profile).average_rating %>
           <%= display_stars(rating) %>

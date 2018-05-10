@@ -23,6 +23,8 @@ namespace :users do
         address: Faker::Address.street_address,
         state: Faker::Address.state,
         country: 'United States',
+        city: Faker::Address.city,
+        zip_code: Faker::Address.zip_code,
         remote_photo_url: 'http://i.pravatar.cc/300'
 
       )
