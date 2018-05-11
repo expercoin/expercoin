@@ -23,14 +23,17 @@ class SettingsController < ApplicationController
       :title,
       :years_of_experience,
       :photo,
-      :rate,
       :expercoin_rate,
       :address,
       :country,
       :state,
       :city,
       :zip_code
-    )
+    ).merge(rate: safe_rate)
+  end
+
+  def safe_rate
+    ::PercentageCalculate.new(@profile.commission_fee, params[:profile_form][:expercoin_rate]).decrease
   end
 
   def set_profile
