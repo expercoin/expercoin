@@ -38,7 +38,7 @@ module MSP
         token.to_jwt
       end
 
-      def create_room(room_name)
+      def create_room
         begin
           group_room = client.video.rooms.create(
             # unique_name: 'DailyStandup',
