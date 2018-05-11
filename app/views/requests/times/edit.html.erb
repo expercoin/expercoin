@@ -46,7 +46,6 @@
                   <%= select_tag "request[selected_date]", options_from_collection_for_select(@request.sugested_times, "formated_datetime", "timezone_datetime"), {class: "selectpicker selectpicker-control"} %>
                 </div>
                 <div class="submit-application">
-                  <%= f.hidden_field :status, value: 'accepted' %>
                   <button type='submit' class="btn btn-success btn-md btn-md-lgr" data-loading-text="Procesing...">
                     Accept
                   </button>

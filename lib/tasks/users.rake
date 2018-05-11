@@ -32,7 +32,8 @@ namespace :users do
         city: Faker::Address.city,
         zip_code: Faker::Address.zip_code,
         remote_photo_url: photo,
-        specialization: specialization
+        specialization: specialization,
+        eth_addresses: ["0x#{Faker::Bitcoin.address}", "0x#{Faker::Bitcoin.address}", "0x#{Faker::Bitcoin.address}"]
 
       )
       categories_ids = []

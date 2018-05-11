@@ -24,8 +24,10 @@ class CallsController < ApplicationController
   private
 
   def request_params
-    params.require(:request).permit(request_attributes)
-          .merge(updated_by: current_user.profile)
+    params.require(:request).permit(request_attributes).merge(
+      updated_by: current_user.profile,
+      status: "#{params[:request][:selected_date] ? 'accepted' : 'pending'}"
+    )
   end
 
   def request_attributes
@@ -33,7 +35,6 @@ class CallsController < ApplicationController
       title message category_id tag_list requested_length cell_number
       country_number first_date second_date third_date first_time
       second_time third_time expert_id recording selected_date time_zone
-      status
     ]
   end
   

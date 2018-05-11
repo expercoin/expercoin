@@ -24,9 +24,11 @@ module Requests
         :second_date,
         :third_time,
         :third_date,
-        :selected_date,
-        :status
-      ).merge(updated_by: current_user.profile)
+        :selected_date
+      ).merge(
+        updated_by: current_user.profile,
+        status: "#{params[:request][:selected_date] ? 'accepted' : 'pending'}"
+      )
     end
 
     def set_request
