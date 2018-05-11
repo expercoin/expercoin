@@ -10,6 +10,9 @@
 //= require bootstrap-datepicker
 //= require bootstrap-timepicker
 //= require star_ratings
+//= require twilio
+//= require twilio_screen_share
+//= require twilio_video
 
 document.addEventListener("turbolinks:load", function() {
   $('.selectpicker').select2();

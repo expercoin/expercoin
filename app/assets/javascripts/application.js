@@ -11,6 +11,9 @@
 //= require bootstrap-timepicker
 //= require commission_fee
 //= require star_ratings
+//= require twilio
+//= require twilio_screen_share
+//= require twilio_video
 
 document.addEventListener("turbolinks:load", function() {
   $('.selectpicker').select2();

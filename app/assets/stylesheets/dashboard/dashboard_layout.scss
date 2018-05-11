@@ -60,7 +60,7 @@
 }
 
 .mentors-hero {
-  height: 400px;
+  height: 300px;
   padding: 40px 0;
   background: image_url('msp/mentor_home_hero.jpg') center center / cover no-repeat scroll;
 
@@ -70,6 +70,12 @@
     justify-content: center;
     height: 100%;
     color: #fff;
+
+    h1 {
+      font-size: 40px;
+      font-family: "Circular";
+      text-align: center;
+    }
 
     h2 {
       font-size: 24px;
