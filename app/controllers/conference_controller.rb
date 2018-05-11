@@ -22,7 +22,7 @@ class ConferenceController < ApplicationController
     @request = Request.find_by_room_sid(params[:id])
     @video.kill_room(params[:id])
     @request.update(updated_by: current_user.profile, status: 'completed', ended_at: Time.now)
-    redirect_to '/calls' if user_request_expert?
+    redirect_to calls_path if user_request_expert?
     redirect_to requests_path if user_request_requester?
   end
 
