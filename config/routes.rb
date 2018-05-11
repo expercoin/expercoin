@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get 'for-mentors', to: 'pages#mentors_home'
   get 'calls(/history)', to: 'calls#index', as: :calls
   resources :calls, only: [:show, :update]
-
+  resources :conference
   resources :dashboard, only: [:index]
   resources :account, only: [:index]
   resources :profiles, only: %i[show]
