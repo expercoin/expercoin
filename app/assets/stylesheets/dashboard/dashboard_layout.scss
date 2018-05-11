@@ -16,8 +16,7 @@
   }
 
   &.content-conference {
-    background: #fff;
-    display: flex;
+
   }
 
   &.content-with-errors {
@@ -590,6 +589,10 @@
     color: #666;
     font-size: 0.875rem;
   }
+
+  .request-time {
+    margin-bottom: 20px;
+  }
 }
 
 .request-status {
@@ -686,7 +689,8 @@
   padding: 3.875rem 1.875rem;
 
   &.session-details-container {
-    flex-basis: 800px;
+    flex-basis: 660px;
+    max-width: 660px;
   }
 
   h1 {
@@ -721,6 +725,8 @@
 
 
 .session-call-container {
+  border-left: 1px solid #e3e2df;
+  width: 320px;
 
   .session-call-controls {
     display: flex;
@@ -772,7 +778,7 @@
     text-transform: uppercase;
     text-align: center;
     color: #666;
-    margin-left: .5rem;
+    padding: 2px 5px;
 
     &:hover {
       .fa {
@@ -866,6 +872,9 @@
     .message-input {
       padding: .5rem 0 .5rem 3.125rem;
       font-weight: 600;
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
     }
   }
 }
@@ -886,4 +895,15 @@
       }
     }
   }
+}
+
+
+.session-container {
+  background-color: #fff;
+  display: flex;
+  max-width: 980px;
+  margin: 0 auto;
+  border-left: 1px solid #e3e2df;
+  border-right: 1px solid #e3e2df;
+  border-bottom: 1px solid #e3e2df;
 }
