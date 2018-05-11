@@ -2,10 +2,10 @@
   <div class="content-nav-container">
     <ul class="content-nav-list">
       <li>
-        <%= link_to 'Active Calls', '/calls', class: "#{'active' if !@history}"  %>
+        <%= link_to 'Active Calls', calls_path, class: "#{'active' if !@history}"  %>
       </li>
       <li>
-        <%= link_to 'History', '/calls/history', class: "#{'active' if @history}"  %>
+        <%= link_to 'History', calls_history_index_path, class: "#{'active' if @history}"  %>
       </li>
     </ul>  
   </div>
@@ -38,7 +38,7 @@
       </div>
     </div>
     <div class="mentor-pricing-and-rating content-aside">   
-      <p class="pricing"><span class="currency">EXC </span><%= @profile.rate %><span class="per">/min</span></h2>
+      <p class="pricing"><span class="currency">EXC </span><%= @profile.expercoin_rate %><span class="per">/min</span></h2>
       <p class="rating">
         <%= display_stars ProfileRating.new(@profile).average_rating, 'Rating' %>
       </p>   

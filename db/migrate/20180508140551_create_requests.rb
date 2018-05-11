@@ -15,7 +15,7 @@ class CreateRequests < ActiveRecord::Migration[5.2]
       t.string :third_time
       t.datetime :selected_date
       t.boolean :recording
-      t.integer :status
+      t.integer :status, default: 0
       t.string :time_zone
       t.string :room_sid
       t.datetime :started_at

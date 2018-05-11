@@ -6,7 +6,6 @@ class CallsController < ApplicationController
   def index
     ordered_requests = current_user.profile.requests.order(created_at: :desc)
     @requests = ordered_requests.page(params[:page]).per(8)
-    @history = request.url.match('history')
   end
 
   def show
@@ -18,14 +17,16 @@ class CallsController < ApplicationController
   def update
     return render :show unless @request.update(request_params)
     MSP::Email::Request.new(@request).email_to_requester
-    redirect_to '/calls'
+    redirect_to calls_path
   end
 
   private
 
   def request_params
-    params.require(:request).permit(request_attributes)
-          .merge(updated_by: current_user.profile)
+    params.require(:request).permit(request_attributes).merge(
+      updated_by: current_user.profile,
+      status: "#{params[:request][:selected_date] ? 'accepted' : 'pending'}"
+    )
   end
 
   def request_attributes
@@ -33,7 +34,6 @@ class CallsController < ApplicationController
       title message category_id tag_list requested_length cell_number
       country_number first_date second_date third_date first_time
       second_time third_time expert_id recording selected_date time_zone
-      status
     ]
   end
   
