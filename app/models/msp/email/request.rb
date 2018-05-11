@@ -57,7 +57,8 @@ module MSP
         MSP::NotifyMailer.notify_expert_new_times(
           expert_email,
           subject,
-          body
+          body,
+          @request
         ).deliver_now
         create_email_record(@request.expert.id, subject, body)
       end
