@@ -179,7 +179,7 @@ function videoTwilioInitialize(twilo=2){
   if(window.room_token){
     enterRoom(window.room_token);
     twilioActions.startCameraPreview()();
-    getUserScreen();
+    // getUserScreen();
   }
 
 

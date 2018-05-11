@@ -124,6 +124,8 @@ ActiveRecord::Schema.define(version: 2018_05_10_121856) do
     t.integer "status"
     t.string "time_zone"
     t.string "room_sid"
+    t.datetime "started_at"
+    t.datetime "ended_at"
     t.integer "requester_id"
     t.integer "expert_id"
     t.integer "updated_by_id"
