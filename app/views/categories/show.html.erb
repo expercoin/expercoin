@@ -2,20 +2,9 @@
   <%= render "shared/subnavbar", active: "mentors" %>
 </nav>
 <main class="content content-with-nav">
-  <section class="mentors-hero">
+  <section class="mentors-hero" style="background: #555 url(<%= @category.banner %>) center center/ cover no-repeat scroll;">
     <div class="content-container mentors-hero-content">
-      <!-- <h2><%= @category.description %></h2> -->
-      <h2>Welcome! Technology is changing rapidly. Take control of your career. Here you will find courses that will help you stay competitive and ahead of the curve.</h2>
-      <div class="mentor-hero-search">
-<!--         <form>
-          <label>What you want help with?</label>
-          <div class="search-input-group">
-            <input type="text" placeholder="Find mentors for" class="form-control" id="mentor_search" />
-            <a class="search-clear">Clear</a>
-          </div>
-        </form>
-        <a class="search-box-close"></a> -->
-      </div>
+      <h1><%= @category.name %></h1>
     </div>
   </section>
   <section class="mentors-filterable">
