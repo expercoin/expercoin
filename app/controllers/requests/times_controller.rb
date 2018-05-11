@@ -24,7 +24,8 @@ module Requests
         :second_date,
         :third_time,
         :third_date,
-        :selected_date
+        :selected_date,
+        :status
       ).merge(updated_by: current_user.profile)
     end
 

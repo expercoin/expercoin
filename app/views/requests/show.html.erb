@@ -100,7 +100,7 @@
     <div class="content-aside">
       <div class='panel'>
         <div class='panel-body'>
-          <% if @request.selected_date.blank? && @request.updated_by == @request.expert %>
+          <% if @request.pending? && @request.updated_by == @request.expert %>
             <%= link_to "Suggested Times by #{@request.expert.first_name}", edit_requests_time_path(@request), class: 'mb-2 btn btn-block btn-with-icon btn-schedule' %>
           <% end %>
           <%= render 'shared/msp/aside_buttons' %>
