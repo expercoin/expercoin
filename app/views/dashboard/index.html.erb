@@ -1,0 +1,21 @@
+<main class="content">
+  <header class="account-header-white">
+    <div class="content-container content-with-aside">
+      <div class="mentor-header content-main mentor-header-aligned">
+          <div class="mentor-image mentor-image-sm">
+            <%= render "shared/profile_photo", photo: current_user&.profile.try(:photo).thumb.url %>
+          </div>
+          <div class="mentor-info">
+            <h1><%= decorate(current_user&.profile).full_name %></h1>
+            <p><%= current_user&.profile.title %></p>
+          </div>
+        </div>
+        <div class="mentor-dashboard-calls content-aside">
+          <%= link_to "View Call Requests", calls_path , class: 'btn btn-success btn-block btn-upc' %>
+        </div>
+    </div>
+  </header>
+  <div class="content-container">
+
+  </div>
+</main>

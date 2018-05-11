@@ -4,7 +4,7 @@
     <%#   <%= image_tag "usa_flag.png", class: "card-flag" %>
     <%# <% end %>
     <div class="card-hero">
-      <%= render "shared/profile_photo", photo: profile.try(:photo).thumb.url %>
+      <%= render "shared/profile_photo", photo: profile.photo.thumb.url %>
     </div>
     <div class="card-body">
       <h4><%= link_to decorate(profile).full_name, profile_path(profile) %></h4>
