@@ -2,15 +2,6 @@
   <%= render "shared/subnavbar", active: "mentors" %>
 </nav>
 <main class="content content-with-nav">
-  <div class="content-breadcrumb">
-    <ul class="breadcrumb">
-      <li>
-        <%= link_to "javascript:history.back()" do %>
-          <i class="fa fa-angle-left" aria-hidden="true"></i> Go Back
-        <% end %>
-      </li>
-    </ul>
-  </div>
   <header class="content-container content-with-aside">
     <div class="mentor-header content-main">
       <div class="mentor-image">
@@ -87,7 +78,9 @@
         </div>
         <div class="panel-body mentor-panel-bio">
           <h5 class="strong">What can you ask?</h5>
-          <%#= @profile.help_with %>
+          <% @profile.specialization.each do |key, value| %>
+            <div><%= value %></div>
+          <% end %>
         </div>
       </div>
     </div>

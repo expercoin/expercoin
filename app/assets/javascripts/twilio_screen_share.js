@@ -24,7 +24,7 @@ function guessBrowser() {
   }
   return null;
 }
-window.EXTENSION_ID = 'pghnakdhcfnjndfenldecfbjblfigjmm';
+window.EXTENSION_ID = 'bdhdfggcepalbagmdnigagpipjmkmgjj';
 if(guessBrowser() === 'chrome'){
   function getUserScreen() {
     // var video = document.getElementById('screen-view');
@@ -63,7 +63,7 @@ if(guessBrowser() === 'chrome'){
     var stream;
 
     getScreen.addEventListener('click',function(event) {
-      var mediaSource = document.querySelector('[name=capture]:checked').value;
+      var mediaSource = 'screen';
       navigator.mediaDevices.getUserMedia({
         video: {
           mediaSource: mediaSource
