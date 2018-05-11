@@ -11,6 +11,7 @@ class CallsController < ApplicationController
 
   def show
     @request = current_user.profile.requests.find(params[:id])
+    @room_sid = @request.room_sid
     render :edit if not_selected_session_time
   end
 
