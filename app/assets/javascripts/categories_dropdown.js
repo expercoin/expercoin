@@ -6,9 +6,12 @@ document.addEventListener("turbolinks:load", function() {
   });
   $('.category-item').mouseleave(function() {
     var category_id = $(this).data('id');
-    if ($('.category-subcategories[data-id="' + category_id +'"]:hover').length == 0) {
-      $('.category-subcategories[data-id="' + category_id +'"]').hide();
-    }
+    console.log('hello');
+    setTimeout(function(){
+      if ($('.subcategories-menu:hover').length == 0) {
+        $('.category-subcategories[data-id="' + category_id +'"]').hide();
+      }
+    }, 100);  
   });  
   // $('.category-subcategories').mouseleave(function() {
   //   var subcategory_id = $(this).data('id');
