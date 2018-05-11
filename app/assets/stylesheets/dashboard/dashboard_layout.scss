@@ -78,7 +78,10 @@
     }
 
     h2 {
-      font-size: 24px;
+      font-size: 22px;
+      font-weight: 200;
+      font-family: "Circular";
+      text-align: center;
     }
 
     .mentor-hero-search {
@@ -313,6 +316,17 @@
     &:hover,
     &:focus {
       color: #000;
+    }
+
+    &.active {
+      color: #000;
+      font-weight: 600;
+
+      &:hover,
+      &:focus {
+        color: #000;
+        font-weight: 600;
+      }
     }
   }
 
@@ -852,6 +866,24 @@
     .message-input {
       padding: .5rem 0 .5rem 3.125rem;
       font-weight: 600;
+    }
+  }
+}
+
+
+.account-header-white {
+  background: white;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  margin-bottom: 2rem;
+
+  .mentor-header {
+    padding: 35px 0;
+  
+    .mentor-image {
+      img {
+        width: 128px;
+        height: 128px;
+      }
     }
   }
 }

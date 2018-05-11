@@ -16,6 +16,12 @@ namespace :users do
         password: '123456'
       )
       user.confirm
+      women = ['a', 'e'].include? user.first_name.last
+      photo = "https://randomuser.me/api/portraits/#{'wo' if women}men/#{rand(1..99)}.jpg"
+      specialization = {}
+      rand(5..15).times do |i|
+        specialization["item_#{i}"] = Faker::Commerce.department
+      end
       user.profile.update(
         rate: Faker::Number.between(10, 1000),
         title: Faker::Job.title,
@@ -25,7 +31,8 @@ namespace :users do
         country: 'United States',
         city: Faker::Address.city,
         zip_code: Faker::Address.zip_code,
-        remote_photo_url: 'http://i.pravatar.cc/300'
+        remote_photo_url: photo,
+        specialization: specialization
 
       )
       categories_ids = []

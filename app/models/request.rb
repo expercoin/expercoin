@@ -77,11 +77,6 @@ class Request < ApplicationRecord
     datetimes
   end
 
-  def update_status
-    return unless selected_date
-    update(status: 1)
-  end
-
   DATETIMES.each do |datetime|
     define_method "formated_#{datetime[1]}" do
       send(datetime[1]).strftime('%a %b %d, %Y')
