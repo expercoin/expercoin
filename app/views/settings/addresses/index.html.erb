@@ -1,0 +1,43 @@
+<div class="profile-title-section">
+  <div class="container">
+    <h2 class="profile-name">
+      <%= decorate(@profile).full_name %>
+        <span>
+          Profile
+        </span>
+    </h2>
+  </div>
+</div>
+<div class="container profile-form-container">
+    <div class="row">
+      <div class="col-sm-3">
+        <%= render 'shared/profile_navigation', locals: {active: 'address'} %>
+      </div>
+      <div class="col-sm-9">
+        <h4 class="card-form-title mt-3">
+          Your ETH Addresses
+        </h4>
+        <% @addresses.each do |address| %>
+          <div class="card card-form">
+            <div class="card-body">
+              <label>Address: </label> <%= address %>
+            <%= link_to 'Delete', settings_address_path(address), method: :delete %>
+            </div>
+          </div>
+        <% end %>
+        <%= form_with scope: :profile_form do |f| %>
+          <div class="card card-form">
+            <div class="card-body">
+              <div class="form-group">
+                <%= f.label :eth_address, 'New ETH Address' %>
+                <%= f.text_field :eth_address, class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-end mb-5">
+          <%= f.submit "Save", :class => "btn btn-primary btn-wide" %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+</div>

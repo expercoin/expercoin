@@ -18,7 +18,7 @@
     </div>
     <div class="mentor-pricings content-aside">
       <h2><span class="currency">EXC </span><%= @profile.rate %><span class="per">/min</span></h2>
-      <%= link_to "Schedule Session", new_request_path(expert: @profile) , class: 'btn btn-success btn-block btn-upc' %>
+      <%= link_to "Schedule Session", new_request_path(expert: @profile) , class: 'btn btn-success btn-block btn-upc' unless @profile == current_user.try(:profile) %>
     </div>
   </header>
   <section class="content-container content-with-aside">

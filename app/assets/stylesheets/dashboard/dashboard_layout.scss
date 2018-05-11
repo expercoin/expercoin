@@ -618,6 +618,18 @@
   }
 }
 
+.request-accepted-time {
+  padding: 30px 30px;
+  border-bottom: 1px solid #ddd;
+
+  .request-time {
+    color: #666;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+}
+
 .request-price-information {
   padding: 20px 10px;
   border-bottom: 1px solid #ddd;

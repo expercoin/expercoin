@@ -35,24 +35,21 @@
         <div class="request-status">
           <span class="strong">Status</span>
           <span class="strong"><%= @request.status %></span>
-          <span><%= decorate(@request).session_date %></span>
+         <!--  <span><%= decorate(@request).session_date %></span> -->
         </div>
-        <div class="request-price-information">
-          <table>
-            <tr>
-              <td>Total Paid (60 min, 00 sec)</td>
-              <td class="strong">$180.00</td>
-            </tr>
-            <tr>
-              <td>Advanced Payement (30 min)</td>
-              <td class="strong">$90.00</td>
-            </tr>
-            <tr>
-              <td>Balance Paid (30 min)</td>
-              <td class="strong">$90.00</td>
-            </tr>
-          </table>
-        </div>
+        <% if @request.accepted? %>
+          <div class="request-accepted-time">
+            <h6 class="request-time">Call session is schedulled for <%= decorate(@request).session_date %></h6>
+            <% if @room_sid %>
+              <%= link_to "Join Room", conference_path(@room_sid), class: "btn btn-success btn-md btn-md-lgr" %>
+            <% else %> 
+              <%= form_tag conference_index_path do %>
+                <%= hidden_field_tag :request_id, value: @request.id %>
+                <%= submit_tag "Request Room", class: "btn btn-success btn-md btn-md-lgr" %>
+              <% end %>
+            <% end %>
+          </div>  
+        <% end %> 
         <div class="mentor-reviews request-info-reviews">
           <h2 class="title">Your Review</h2>
           <% if @request.review.nil? %>

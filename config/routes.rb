@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   namespace :settings do
     resources :about, only: [:index, :create]
     resources :categories, only: [:index, :create]
+    resources :addresses, only: [:index, :create, :destroy]
   end
 
   resources :requests

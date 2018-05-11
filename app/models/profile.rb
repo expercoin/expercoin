@@ -7,7 +7,6 @@ class Profile < ApplicationRecord
   has_many :requests, foreign_key: :expert_id
   has_many :created_requests, class_name: 'Request', foreign_key: :requester_id
 
-
   validates_presence_of :first_name, :last_name
 
   mount_uploader :photo, PhotoUploader
@@ -17,6 +16,7 @@ class Profile < ApplicationRecord
   store :location, accessors: %i[address country state city zip_code], coder: JSON
 
   serialize :specialization, Hash
+  serialize :eth_addresses, Array
 
   def commission_fee
     7

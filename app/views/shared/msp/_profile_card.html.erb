@@ -28,7 +28,7 @@
         </span>
       </div>
       <div class="footer-block mentor-actions">
-        <%= link_to "Schedule Session", new_request_path(expert: profile.slug), class: 'btn btn-footer' %>
+        <%= link_to "Schedule Session", new_request_path(expert: profile.slug), class: 'btn btn-footer' unless profile == current_user.try(:profile) %>
         <!-- <a class="btn btn-footer-icon btn-message" href="#" data-toggle="modal" data-target="#message-mentor-modal-<%= profile.id %>"></a>
         <a class="btn btn-footer-icon btn-add"></a> -->
       </div>
