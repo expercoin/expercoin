@@ -1,3 +1,52 @@
-<%= decorate(@profile).full_name %>
-<%= link_to 'Profile', expert_path(@profile) %>
-<%= link_to 'Edit Profile', settings_path %>
+<main class="content">
+  <header class="account-header-white">
+    <div class="content-container content-with-aside">
+      <div class="mentor-header content-main">
+          <div class="mentor-image">
+            <%= render "shared/profile_photo", photo: @profile.try(:photo).thumb.url %>
+          </div>
+          <div class="mentor-info">
+            <h1><%= decorate(@profile).full_name %></h1>
+            <p><%= @profile.title %></p>
+            <div class="location">
+              <i class="fa fa-map-marker"></i>
+              <%= decorate(@profile).display_location_with_abbreviation %>
+            </div>
+          </div>
+        </div>
+        <div class="mentor-pricings content-aside">
+          <%= link_to "View Profile", expert_path(@profile) , class: 'btn btn-success btn-block btn-upc' %>
+        </div>
+    </div>
+  </header>
+  <div class="content-container">
+    <h2 class="h5 mb-3">Your Account</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="list-group list-group--links">
+            <%= link_to settings_path, class: 'list-group-item list-group-item-action d-flex justify-content-between align-items-center' do %>
+              <div class="title-pair">
+                <h5 class="title">Edit Profile</h5>
+                <p class="mb-1 small">Basic Information, Title, Hourly Rate ...</p>
+              </div>
+              <i class="fa fa-angle-right"></i>
+            <% end %>
+            <%= link_to settings_about_index_path, class: 'list-group-item list-group-item-action d-flex justify-content-between align-items-center' do %>
+                <div class="title-pair">
+                  <h5 class="title">Settings</h5>
+                  <p class="mb-1 small">About You and Your Service Offerings</p>
+                </div>
+              <i class="fa fa-angle-right"></i>
+            <% end %>
+            <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+              <div class="title-pair">
+                <h5 class="title">Support</h5>
+                <p class="mb-1 small">Donec id elit non mi porta gravida at eget metus.</p>
+              </div>
+              <i class="fa fa-angle-right"></i>
+            </a>
+          </div>
+      </div>
+    </div>
+  </div>
+</main>
