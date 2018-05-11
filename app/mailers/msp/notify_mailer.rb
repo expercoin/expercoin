@@ -13,8 +13,9 @@ module MSP
       mail(to: email, subject: subject) unless Rails.env.test?
     end
 
-    def notify_expert_new_times(email, subject, body)
+    def notify_expert_new_times(email, subject, body, request)
       @body = body
+      @requester = request.requester
       mail(to: email, subject: subject) unless Rails.env.test?
     end
 
