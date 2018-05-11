@@ -14,6 +14,7 @@ class CreateProfiles < ActiveRecord::Migration[5.2]
       t.string :slug
       t.text :location
       t.text :about
+      t.text :specialization
 
       t.timestamps
     end
