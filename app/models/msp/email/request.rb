@@ -37,7 +37,8 @@ module MSP
         MSP::NotifyMailer.notify_expert_new_status(
           expert_email,
           subject,
-          body
+          body,
+          @request
         ).deliver_now
         create_email_record(@request.expert.id, subject, body)
       end
@@ -47,7 +48,8 @@ module MSP
         MSP::NotifyMailer.notify_requester_new_status(
           requester_email,
           subject,
-          body
+          body,
+          @request
         ).deliver_now
         create_email_record(@request.requester.id, subject, body)
       end
@@ -68,7 +70,8 @@ module MSP
         MSP::NotifyMailer.notify_requester_new_times(
           requester_email,
           subject,
-          body
+          body,
+          @request
         ).deliver_now
         create_email_record(@request.requester.id, subject, body)
       end
