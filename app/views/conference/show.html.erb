@@ -1,0 +1,141 @@
+<main class="content content-conference">
+
+<div class='session-details session-details-container'>
+  <header class="text-md-center">
+    <h1 class="strong">Your Session Details</h1>
+    <p>This session is free if it ends before 5 minutes.</p>
+  </header>
+  <div class='session-details-mentor'>
+    <div class="mentor-header mentor-header-sm content-main">
+      <div class="mentor-image">
+        <%= render "shared/profile_photo", photo: @expert.photo&.url %>
+      </div>
+      <div class="mentor-info">
+        <span>Your Mentor</span>
+        <h1><%= decorate(@expert).full_name %></h1>
+        <p><%= @expert.title %></p>
+      </div>
+      <div class='session-details-mentor-price-and-rating'>
+        <div class='mentor-price'>
+          <span class="strong"> $1.35</span>/min
+        </div>
+        <div class='mentor-rating'>
+          <p class="rating">
+          <span class="text-uppercase">Rating</span>
+          <%= display_stars(ProfileRating.new(@expert).average_rating) %>
+          </p>
+        </div>
+      </div>
+    </div>
+      
+    <div class="session-details-request">
+      <h2 class="strong title"><%= @request.title %></h2>
+      <span class="category">Category: Marketing</span>
+      <p><%= @request.message %></p>
+      <ul class="tags">
+        <li>Segmentation</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class='session-call-container'>
+  <div class='session-call-controls'>
+    <div class='session-call-time'>0.02</div>
+    <div class="icon-group-controls">
+      <button id='mute-audio' class='session-call-icon'>
+        <span class='msp-icon-sound'></span>
+      </button>
+      <button id='unmute-audio' class='session-call-icon' style='display: none;'>
+        <span class='msp-icon-mute'></span>
+      </button>
+      <button class='session-call-icon'>
+        <span class='msp-icon-screens'></span>
+      </button>
+      <button class='session-call-icon' data-toggle="collapse" data-target="#other-controls" aria-expanded="false">
+        <span class='msp-icon-dots'></span>
+      </button>
+    </div>
+    <%= link_to conference_path(params[:id]), class: 'session-end-call', method: :delete do %>
+      <i class="fa fa-times" aria-hidden="true"></i>
+      End Session
+    <% end %>
+  </div>
+  <div class='collapse ' id="other-controls">
+    <div class='session-call-other-controls'>
+      <button class='session-call-icon'>
+        <span class='msp-icon-sound'></span>
+      </button> 
+      <button class='session-call-icon'>
+        <span class='msp-icon-sound'></span>
+      </button> 
+      <button class='session-call-icon'>
+        <span class='msp-icon-sound'></span>
+      </button> 
+      <button class='session-call-icon'>
+        <span class='msp-icon-sound'></span>
+      </button> 
+    </div>
+  </div>
+  <div class='session-call-video'>
+    <div class='webcam-wrapper'>
+      <div id='remote-media-div' data-token='<%= @token %>'>
+      </div>
+      <div id='local-media-ctr'>
+      </div>
+    </div>
+  </div>
+  <div class='session-call-chat'>
+    <div class="chat-message">
+      <%= image_tag "empty_user.png", width: '48', height: '48', class: 'user-photo' %>
+      <h3 class="user-name">Sarah Lucy</h3>
+      <span class="time-posted">5:02 PM</span>
+      <p class="message-content">Hi, how are you?</p>
+    </div>
+    <div class="chat-message">
+      <%= image_tag "empty_user.png", width: '48', height: '48', class: 'user-photo' %>
+      <h3 class="user-name">John Smith</h3>
+      <span class="time-posted">5:02 PM</span>
+      <p class="message-content">Hi, how are you?</p>
+    </div>
+    <div class="chat-message system-message success">
+      <p class="message-content">Sarah Resumed the session</p>
+    </div>
+  </div>
+  <div class="session-chat-input">
+    <span class="fa fa-comment-o" aria-hidden="true"></span>
+    <input type="text" class="form-control message-input" placeholder='Message <%= @expert.first_name %>'>
+  </div>
+</div>
+
+
+<div class="hidden">
+  <h4><%= conference_path(params[:id]) %></h4>
+  <div class='twilio-error'>
+    <h3 style='color:red;'><h3>
+  </div>
+
+  <button id='full-screen-disable-remote' style='display: none;'>Full Screen Disable</button>
+  <button id='full-screen-remote'>Full Screen</button>
+  <button id="get-screen">Get the screen</button>
+  <button id='share-screen'>share screen</button>
+  <button id='stop-share-screen' style='display: none;'>stop share screen</button>
+  <button id='stop-camera-preview'>Stop Camera Preview</button>
+  <button id='start-camera-preview' style='display: none;'>Start Camera Preview</button>
+  <!-- <button id='mute&#45;audio'>Mute Audio</button> -->
+  <!-- <button id='unmute&#45;audio' style='display: none;'>Unmute Audio</button> -->
+  <button id='mute-video'>Mute Video</button>
+  <button id='unmute-video' style='display: none;'>Unmute Video</button>
+  <button id='enter-room'>Enter Room</button>
+  <button id='leave-room'>Leave Room</button>
+  <div>
+    <%= link_to 'Conference', conference_index_path %>
+  </div>
+  <%= form_tag conference_path(params[:id]), method: "delete" do %>
+    <%= submit_tag "End Room" %>
+  <% end %>
+  <video autoplay id="screen-view" width="50%"></video>
+  
+
+</div>
+</main>
