@@ -35,6 +35,7 @@ class ConferenceController < ApplicationController
       current_user.email, params[:id]
     )
     @footer = true
+    @expert_side = true if user_request_expert? 
   end
 
   private

@@ -1,0 +1,19 @@
+<div class='session-details-mentor'>
+  <div class="mentor-header mentor-header-sm content-main">
+    <div class="mentor-image">
+      <%= render "shared/profile_photo", photo: profile.photo&.url %>
+    </div>
+    <div class="mentor-info">
+      <span>Your Client</span>
+      <h1><%= decorate(profile).full_name %></h1>
+      <p><%= profile.title %></p>
+    </div>
+    <div class='session-details-mentor-price-and-rating'>
+    </div>
+  </div>
+  <div class="session-details-request">
+    <h4 class="strong title"><%= @request.title %></h4>
+    <span class="category">Category: Marketing</span>
+    <p><%= @request.message %></p>
+  </div>
+</div>
