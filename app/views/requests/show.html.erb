@@ -2,15 +2,6 @@
   <%= render "shared/subnavbar", active: "requests" %>
 </nav>
 <main class="content content-with-nav">
-  <div class="content-breadcrumb">
-    <ul class="breadcrumb">
-      <li>
-        <%= link_to categories_path do %>
-          <i class="fa fa-angle-left" aria-hidden="true"></i> Go Back
-        <% end %>
-      </li>
-    </ul>
-  </div>
   <header class="content-container content-with-aside">
     <div class="mentor-header mentor-header-sm content-main">
       <div class="mentor-image">
@@ -109,6 +100,9 @@
     <div class="content-aside">
       <div class='panel'>
         <div class='panel-body'>
+          <% if @request.selected_date.blank? && @request.updated_by == @request.expert %>
+            <%= link_to "Suggested Times by #{@request.expert.first_name}", edit_requests_time_path(@request), class: 'mb-2 btn btn-block btn-with-icon btn-schedule' %>
+          <% end %>
           <%= render 'shared/msp/aside_buttons' %>
         </div>
       </div>
