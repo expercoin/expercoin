@@ -6,7 +6,6 @@ class CallsController < ApplicationController
   def index
     ordered_requests = current_user.profile.requests.order(created_at: :desc)
     @requests = ordered_requests.page(params[:page]).per(8)
-    @history = request.url.match('history')
   end
 
   def show
@@ -18,7 +17,7 @@ class CallsController < ApplicationController
   def update
     return render :show unless @request.update(request_params)
     MSP::Email::Request.new(@request).email_to_requester
-    redirect_to '/calls'
+    redirect_to calls_path
   end
 
   private

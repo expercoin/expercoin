@@ -18,8 +18,10 @@ Rails.application.routes.draw do
   end
 
   get 'for-mentors', to: 'pages#mentors_home'
-  get 'calls(/history)', to: 'calls#index', as: :calls
-  resources :calls, only: [:show, :update]
+  namespace :calls do
+    resources :history, only: [:index]
+  end
+  resources :calls, only: [:index, :show, :update]
   resources :conference, only: [:show, :create, :destroy]
   resources :dashboard, only: [:index]
   resources :account, only: [:index]
@@ -31,10 +33,11 @@ Rails.application.routes.draw do
     resources :addresses, only: [:index, :create, :destroy]
   end
 
-  resources :requests
   namespace :requests do
     resources :times, only: [:edit, :update]
   end
+  resources :requests
+
   get 'requests/:id/thankyou', to: 'requests#thankyou', as: :requests_thankyou
   resources :reviews
   resources :my_mentors, path: 'my-mentors', only: [:index]
