@@ -16,6 +16,7 @@ class ProfileForm < FormObject
     attribute :zip_code, Integer
     attribute :about, String
     attribute :category_ids, Array
+    attribute :specialization, Hash
 
     def update_categories(profile)
       categories = Category.where(id: category_ids)

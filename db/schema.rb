@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 2018_05_10_121856) do
     t.string "slug"
     t.text "location"
     t.text "about"
+    t.text "specialization"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"

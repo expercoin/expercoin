@@ -9,7 +9,7 @@
   </div>
 </div>
 <div class="container profile-form-container d-flex">
-  <%= form_with model: @profile_form, url: profile_path(@profile), class: 'd-flex', method: :patch do |f| %>
+  <%= form_with model: @profile_form, url: settings_about_index_path, class: 'd-flex' do |f| %>
     <div class="row">
       <div class="col-sm-3">
         <%= render 'shared/profile_navigation', locals: {active: 'about'} %>
@@ -26,30 +26,23 @@
               </label>
               <%= f.text_area :about, class: 'form-control', rows: 8 %>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="profile-specialization">
               <label>
                 For On-demand Learning and Mentorship, what kind of help you can provide.
               </label>
               <p><small class="text-muted">Be descriptive in short sentence. For example: Learn MEthods, Rapid Prototyping of Web Apps or Help you with your Python coding</small></p>
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">1</span>
-                </div>
-                <input type="text" class="form-control">
-              </div>
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">2</span>
-                </div>
-                <input type="text" class="form-control">
-              </div>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">3</span>
-                </div>
-                <input type="text" class="form-control">
-              </div>
+              <%= f.fields_for :specialization do |ff| %>
+                <% 1.upto(@profile_form.specialization.length) do |i| %>
+                  <div class="input-group mb-2" data-name="specialization-item">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon<%= i %>"><%= i %></span>
+                    </div>
+                    <%= ff.text_field "item_#{i}", class: 'form-control', value: "#{@profile.specialization["item_#{i}"]}" %>
+                  </div>
+                <% end %>
+              <% end %>
             </div>
+              <button type="button" id="add-specialization-item" class="btn btn-green btn-md" data-target="#profile-specialization"><i class="fa fa-plus-circle" aria-hidden="true"></i> ADD</button>
           </div>
         </div>
         <div class="d-flex justify-content-end mb-5">
