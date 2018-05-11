@@ -3,7 +3,7 @@
     <div class="content-container content-with-aside">
       <div class="mentor-header content-main">
           <div class="mentor-image">
-            <%= render "shared/profile_photo", photo: @profile.try(:photo).thumb.url %>
+            <%= render "shared/profile_photo", photo: @profile.photo.thumb.url %>
           </div>
           <div class="mentor-info">
             <h1><%= decorate(@profile).full_name %></h1>

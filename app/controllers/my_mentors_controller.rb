@@ -8,7 +8,7 @@ class MyMentorsController < ApplicationController
   private
 
   def set_my_mentors
-    requests = Request.where(requester: current_user)
+    requests = Request.where(requester: current_user).order(created_at: :desc)
     @mentors = requests.map(&:expert).uniq
   end
 end
