@@ -898,17 +898,44 @@
   margin-bottom: 2rem;
 
   .mentor-header {
-    padding: 35px 0;
+    display: flex;
+    justify-content: center;
+    padding: 30px 0;
   
     .mentor-image {
       img {
         width: 128px;
         height: 128px;
       }
+
+      &.mentor-image-sm {
+        img {
+          width: 82px;
+          height: 82px;
+        }
+      }
+    }
+
+    &.mentor-header-aligned {
+      padding: 24px 0;
+
+      .mentor-info {
+        display: flex;
+        align-items: center;
+        padding: 0;
+
+        h1 {
+          font-size: 24px;
+        }
+      }
     }
   }
 }
 
+.mentor-dashboard-calls {
+  display: flex;
+  align-items: center;
+}
 
 .session-container {
   background-color: #fff;
