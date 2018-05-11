@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   namespace :settings do
     resources :about, only: [:index, :create]
     resources :categories, only: [:index, :create]
+    resources :addresses, only: [:index, :create, :destroy]
   end
 
   namespace :requests do
@@ -43,7 +44,7 @@ Rails.application.routes.draw do
   resources :callbacks, only: :create
 
   #always last route
-  # resources :profiles, path: '', as: :expert, only: :show do
-  #   resources :precall, only: :index
-  # end
+  resources :profiles, path: '', as: :expert, only: :show do
+    resources :precall, only: :index
+  end
 end

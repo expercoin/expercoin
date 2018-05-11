@@ -38,7 +38,7 @@
       </div>
     </div>
     <div class="mentor-pricing-and-rating content-aside">   
-      <p class="pricing"><span class="currency">EXC </span><%= @profile.rate %><span class="per">/min</span></h2>
+      <p class="pricing"><span class="currency">EXC </span><%= @profile.expercoin_rate %><span class="per">/min</span></h2>
       <p class="rating">
         <%= display_stars ProfileRating.new(@profile).average_rating, 'Rating' %>
       </p>   
