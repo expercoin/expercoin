@@ -1,0 +1,39 @@
+<nav class="content-nav">
+  <%= render "shared/subnavbar", active: "mentors" %>
+</nav>
+<main class="content content-with-nav">
+  <section class="mentors-hero" style="background: #555 url(<%= @category.banner %>) center center/ cover no-repeat scroll;">
+    <div class="content-container mentors-hero-content">
+      <h1><%= @category.name %></h1>
+      <h2><%= @subcategory.name %></h2>
+    </div>
+  </section>
+  <section class="mentors-filterable">
+    <div class="content-container">
+      <div class="content-title">
+        <h3>Top Expercoin Mentors for <%= @subcategory.name %></h3>
+      </div>
+      <div class="mentors-with-filters">
+        <div class="mentors mentors-panoramic">
+          <% @profiles.each do |profile| %>
+            <%= render 'shared/msp/profile_card', profile: profile %>
+          <% end %>
+        </div>
+        <div class="mentors-filters">
+          <div class="filter-group">
+            <h5>Categories</h5>
+            <% @subcategories.each do |subcategory| %>
+              <% if subcategory.id == @subcategory.id %>
+                <a class="active"><%= subcategory.name %></a>
+              <% else %>
+                <%= link_to subcategory.name, category_subcategory_path(@category, subcategory) %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <%= paginate @profiles %>
+    </div>
+  </section>
+</main>
+
