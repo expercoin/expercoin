@@ -31,6 +31,9 @@ Rails.application.routes.draw do
   end
 
   resources :requests
+  namespace :requests do
+    resources :times, only: [:edit, :update]
+  end
   get 'requests/:id/thankyou', to: 'requests#thankyou', as: :requests_thankyou
   resources :reviews
   resources :my_mentors, path: 'my-mentors', only: [:index]
