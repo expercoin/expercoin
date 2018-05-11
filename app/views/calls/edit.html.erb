@@ -1,5 +1,14 @@
 <nav class="content-nav">
-  <%= render "shared/subnavbar", active: "requests" %>
+  <div class="content-nav-container">
+    <ul class="content-nav-list">
+      <li>
+        <%= link_to 'Active Calls', '/calls', class: "#{'active' if !@history}"  %>
+      </li>
+      <li>
+        <%= link_to 'History', '/calls/history', class: "#{'active' if @history}"  %>
+      </li>
+    </ul>  
+  </div>
 </nav>
 <% if @request.errors.any? %>
   <div id="error_explanation">
@@ -15,15 +24,15 @@
   <header class="content-container content-container-narrow">
     <div class="mentor-header mentor-header-sm content-main">
       <div class="mentor-image">
-       <%= render 'shared/profile_photo',  photo: @expert.try(:photo).thumb.url  %>
+        <%= render 'shared/profile_photo',  photo: @request.requester.photo.thumb.url  %>
       </div>
       <div class="mentor-info">
-        <h1>Schedule session with <%= @expert&.first_name %></h1>
-        <p><%= @expert.title %></p>
+        <h1>Schedule session with <%= @request.requester&.first_name %></h1>
+        <p><%= @request.requester.title %></p>
         <div class="location">
-          <% unless decorate(@expert).display_location_with_abbreviation.empty? %>
+          <% unless decorate(@request.requester).display_location_with_abbreviation.empty? %>
             <i class="fa fa-map-marker"></i>
-            <%= decorate(@expert).display_location_with_abbreviation %>
+            <%= decorate(@request.requester).display_location_with_abbreviation %>
           <% end %>
         </div>
       </div>
@@ -35,29 +44,27 @@
         <section class='panel form-section'>
           <%= @request.title %> 
         </section>
-        <% if @request.updated_by != current_user.profile %>
-          <section class='panel form-section'>
-            <%= form_for(@request, url: requests_time_path(@request)) do |f| %>
-              <div class="applicant-info">
-                <div class="form-group">
-                  <label>
-                    Sugested Times
-                  </label>
-                  <%= select_tag "request[selected_date]", options_from_collection_for_select(@request.sugested_times, "formated_datetime", "timezone_datetime"), {class: "selectpicker selectpicker-control"} %>
-                </div>
-                <div class="submit-application">
-                  <%= f.hidden_field :status, value: 'accepted' %>
-                  <button type='submit' class="btn btn-success btn-md btn-md-lgr" data-loading-text="Procesing...">
-                    Accept
-                  </button>
-                </div>
+        <section class='panel form-section'>
+          <%= form_for(@request, url: call_path(@request.id)) do |f| %>
+            <div class="applicant-info">
+              <div class="form-group">
+                <label>
+                  Sugested Times
+                </label>
+                <%= select_tag "request[selected_date]", options_from_collection_for_select(@request.sugested_times, "formated_datetime", "timezone_datetime"), {class: "selectpicker selectpicker-control"} %>
               </div>
-            <% end %>
+              <div class="submit-application">
+                <%= f.hidden_field :status, value: 'accepted' %>
+                <button type='submit' class="btn btn-success btn-md btn-md-lgr" data-loading-text="Procesing...">
+                  Accept Request
+                </button>
+              </div>
+            </div>
           <% end %>
           <div class="form-divider">
             OR
           </div>
-          <%= form_for(@request, url: requests_time_path(@request)) do |f| %>
+          <%= form_for(@request, url: call_path(@request.id)) do |f| %>
             <div class="form-group">
               <label>
                 Your Timezone

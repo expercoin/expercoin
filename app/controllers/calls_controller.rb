@@ -10,11 +10,11 @@ class CallsController < ApplicationController
 
   def show
     @request = current_user.profile.requests.find(params[:id])
+    render :edit if not_selected_session_time
   end
 
   def update
     return render :show unless @request.update(request_params)
-    @request.update_status
     MSP::Email::Request.new(@request).email_to_requester
     redirect_to '/calls'
   end
@@ -31,13 +31,17 @@ class CallsController < ApplicationController
       title message category_id tag_list requested_length cell_number
       country_number first_date second_date third_date first_time
       second_time third_time expert_id recording selected_date time_zone
+      status
     ]
   end
   
 
   def set_request_and_expert
     @request = current_user.profile.requests.find_by_id(params[:id])
-    @profile = @request.expert
+    @profile = @request.requester
   end
 
+  def not_selected_session_time
+    @request.pending? && @request.updated_by == @request.requester
+  end
 end
