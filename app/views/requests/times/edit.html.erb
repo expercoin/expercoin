@@ -1,0 +1,111 @@
+<nav class="content-nav">
+  <%= render "shared/subnavbar", active: "requests" %>
+</nav>
+<% if @request.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@request.errors.count, "error") %> prohibited this request from being saved:</h2>
+    <ul>
+      <% @request.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<main class="content content-with-nav <%= @request.errors.any? ? 'content-with-errors' : '' %>">
+  <header class="content-container content-container-narrow">
+    <div class="mentor-header mentor-header-sm content-main">
+      <div class="mentor-image">
+       <%= render 'shared/profile_photo',  photo: @expert.try(:photo).thumb.url  %>
+      </div>
+      <div class="mentor-info">
+        <h1>Schedule session with <%= @expert&.first_name %></h1>
+        <p><%= @expert.title %></p>
+        <div class="location">
+          <% unless decorate(@expert).display_location_with_abbreviation.empty? %>
+            <i class="fa fa-map-marker"></i>
+            <%= decorate(@expert).display_location_with_abbreviation %>
+          <% end %>
+        </div>
+      </div>
+    </div>  
+  </header>
+  <div class="content-container content-container-narrow">
+    <div class="content-main">
+      <div class='request-form'>
+        <section class='panel form-section'>
+          <%= @request.title %> 
+        </section>
+        <% if @request.updated_by != current_user.profile %>
+          <section class='panel form-section'>
+            <%= form_for(@request, url: requests_time_path(@request)) do |f| %>
+              <div class="applicant-info">
+                <div class="form-group">
+                  <label>
+                    Sugested Times
+                  </label>
+                  <%= select_tag "request[selected_date]", options_from_collection_for_select(@request.sugested_times, "formated_datetime", "timezone_datetime"), {class: "selectpicker selectpicker-control"} %>
+                </div>
+                <div class="submit-application">
+                  <button type='submit' class="btn btn-success btn-md btn-md-lgr" data-loading-text="Procesing...">
+                    Accept
+                  </button>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+          <div class="form-divider">
+            OR
+          </div>
+          <%= form_for(@request, url: requests_time_path(@request)) do |f| %>
+            <div class="form-group">
+              <label>
+                Your Timezone
+              </label>
+              <%= time_zone_select_dst("request", "time_zone", nil, {default: @request.time_zone || "Eastern Time (US & Canada)"}, { class: 'selectpicker selectpicker-control'}) %>
+            </div>
+            <div class="form-group">
+              <label>
+                Suggest 3 times
+              </label>
+              <div class='form-group datetime-picker-container'>
+                <div class='picker date'>
+                  <%= f.text_field :first_date, class: 'date-picker-input form-control', placeholder: 'Option 1', value: @request.formated_first_date %>
+                  <span class='date-picker-input icon-calendar-color'></span>
+                </div>
+                <span class='at-divider'>at</span>
+                <div class='picker time'>
+                  <%= f.text_field :first_time, class: 'pick-time form-control' %>
+                </div>
+              </div>
+              <div class='form-group datetime-picker-container'>
+                <div class='picker date'>
+                  <%= f.text_field :second_date, class: 'date-picker-input form-control', placeholder: 'Option 2', value: @request.formated_second_date %>
+                  <span class='date-picker-input icon-calendar-color'></span>
+                </div>
+                <span class='at-divider'>at</span>
+                <div class='picker time'>
+                  <%= f.text_field :second_time, class: 'pick-time form-control' %>
+                </div>
+              </div>
+              <div class='form-group datetime-picker-container'>
+                <div class='picker date'>
+                  <%= f.text_field :third_date, class: 'date-picker-input form-control', placeholder: 'Option 1', value: @request.formated_third_date %>
+                  <span class='date-picker-input icon-calendar-color'></span>
+                </div>
+                <span class='at-divider'>at</span>
+                <div class='picker time'>
+                  <%= f.text_field :third_time, class: 'pick-time form-control' %>
+                </div>
+              </div>
+              <div class="submit-application">
+                <button class="btn btn-success btn-md btn-md-lgr"  data-loading-text="Procesing..." >
+                  Suggest Other Times
+                </button>
+              </div>
+            </div>
+          <% end %>
+        </section>  
+      </div>
+    </div>
+  </div>    
+</main>
