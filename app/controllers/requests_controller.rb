@@ -11,6 +11,7 @@ class RequestsController < ApplicationController
   end
 
   def show
+    @room_sid = @request.room_sid
   end
 
   def thankyou; end
@@ -23,7 +24,7 @@ class RequestsController < ApplicationController
 
   def update
     return render :edit unless @request.update(request_params)
-    @request.update_status
+    @request.update(status: 1)
     MSP::Email::Request.new(@request).email_to_expert
     render :thankyou
   end

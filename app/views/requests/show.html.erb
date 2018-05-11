@@ -44,7 +44,7 @@
               <%= link_to "Join Room", conference_path(@room_sid), class: "btn btn-success btn-md btn-md-lgr" %>
             <% else %> 
               <%= form_tag conference_index_path do %>
-                <%= hidden_field_tag :request_id, value: @request.id %>
+                <%= hidden_field_tag :request_id, @request.id %>
                 <%= submit_tag "Request Room", class: "btn btn-success btn-md btn-md-lgr" %>
               <% end %>
             <% end %>

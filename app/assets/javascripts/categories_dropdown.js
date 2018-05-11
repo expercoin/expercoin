@@ -6,7 +6,6 @@ document.addEventListener("turbolinks:load", function() {
   });
   $('.category-item').mouseleave(function() {
     var category_id = $(this).data('id');
-    console.log('hello');
     setTimeout(function(){
       if ($('.subcategories-menu:hover').length == 0) {
         $('.category-subcategories[data-id="' + category_id +'"]').hide();
