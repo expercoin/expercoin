@@ -855,3 +855,21 @@
     }
   }
 }
+
+
+.account-header-white {
+  background: white;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  margin-bottom: 2rem;
+
+  .mentor-header {
+    padding: 35px 0;
+  
+    .mentor-image {
+      img {
+        width: 128px;
+        height: 128px;
+      }
+    }
+  }
+}
