@@ -15,8 +15,8 @@ function requestFormInitialize() {
 
   $('.date-picker-input').datepicker(pickerOptsGeneral).on('changeDate', function(event) {
     if ( $(this).not('input') ) {
-      var date = new Date(event.timeStamp).toDateString();
-      $(this).parent().find('input').val(date);
+      var selected_date = new Date(event.date);
+      $(this).parent().find('input').val(selected_date.toDateString());
     }
   });
 
