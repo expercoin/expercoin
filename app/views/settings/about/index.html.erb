@@ -35,7 +35,7 @@
                 <% 1.upto(@profile_form.specialization.length) do |i| %>
                   <div class="input-group mb-2" data-name="specialization-item">
                     <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon<%= i %>"><%= i %></span>
+                      <span class="input-group-text"><%= i %></span>
                     </div>
                     <%= ff.text_field "item_#{i}", class: 'form-control', value: "#{@profile.specialization["item_#{i}"]}" %>
                   </div>
