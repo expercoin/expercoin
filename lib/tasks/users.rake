@@ -22,8 +22,10 @@ namespace :users do
       rand(5..15).times do |i|
         specialization["item_#{i}"] = Faker::Commerce.department
       end
+      rate = Faker::Number.between(5, 200)
       user.profile.update(
-        rate: Faker::Number.between(10, 1000),
+        rate: rate,
+        expercoin_rate: rate * 1.07,
         title: Faker::Job.title,
         about: Faker::Lorem.paragraph(2, true, 10),
         address: Faker::Address.street_address,
@@ -32,8 +34,7 @@ namespace :users do
         city: Faker::Address.city,
         zip_code: Faker::Address.zip_code,
         remote_photo_url: photo,
-        specialization: specialization,
-        eth_addresses: ["0x#{Faker::Bitcoin.address}", "0x#{Faker::Bitcoin.address}", "0x#{Faker::Bitcoin.address}"]
+        specialization: specialization
 
       )
       categories_ids = []

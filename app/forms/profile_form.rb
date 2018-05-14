@@ -17,23 +17,9 @@ class ProfileForm < FormObject
     attribute :about, String
     attribute :category_ids, Array
     attribute :specialization, Hash
-    attribute :eth_address, String
 
     def update_categories(profile)
       categories = Category.where(id: category_ids)
       profile.categories = categories
-    end
-
-    def create_eth_address(profile)
-      return unless valid_eth_address
-      profile.eth_addresses << eth_address if eth_address
-      profile.save
-    end
-
-    private
-
-    def valid_eth_address
-      return false unless eth_address.match(/^0x\w{16,}$/)
-      true
     end
 end
