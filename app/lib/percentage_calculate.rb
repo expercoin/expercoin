@@ -5,20 +5,16 @@ class PercentageCalculate
   end
 
   def decrease
-    @amount - (@amount * percentage_divided)
+    @amount - (@amount * @percentage / 100.0)
   end
 
   def increase
-    1 / reverse_percentage_divided *  @amount;
+    (100.0 / reverse_percentage *  @amount).round(2);
   end
 
   private
 
-  def reverse_percentage_divided
-    (100.0 - @percentage) / 100.0
-  end
-
-  def percentage_divided
-    @percentage / 100.0
+  def reverse_percentage
+    100.0 - @percentage
   end
 end

@@ -29,10 +29,10 @@ class SettingsController < ApplicationController
       :state,
       :city,
       :zip_code
-    ).merge(rate: safe_rate)
+    ).merge(rate: ensure_rate)
   end
 
-  def safe_rate
+  def ensure_rate
     ::PercentageCalculate.new(@profile.commission_fee, params[:profile_form][:expercoin_rate]).decrease
   end
 

@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(version: 2018_05_10_121856) do
     t.string "third_time"
     t.datetime "selected_date"
     t.boolean "recording"
-    t.integer "status"
+    t.integer "status", default: 0
     t.string "time_zone"
     t.string "room_sid"
     t.datetime "started_at"
