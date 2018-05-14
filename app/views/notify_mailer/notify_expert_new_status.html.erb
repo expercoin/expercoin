@@ -82,6 +82,9 @@
           <p>
           <%= @requester.first_name + ' ' + @requester.last_name %> has <%= @request.status %> your call request.
           </p>
+          <p>
+            <%= @request).selected_date.strftime('%b %d, %Y at %l:%M %P') %>, <%= @request.time_zone %>
+          </p>  
         </td>
       </tr>
       <tr>
