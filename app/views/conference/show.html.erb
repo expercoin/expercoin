@@ -4,10 +4,10 @@
       <header class="text-md-center">
         <h1 class="strong">Your Session Details</h1>
       </header>
-      <% if defined? @expert_side %>
-        <%= render 'shared/call_client', profile: @request.requester  %>
+      <% if @expert_side %>
+        <%= render 'shared/call_expert', profile: @request.requester %>
       <% else %>
-        <%= render 'shared/call_expert', profile: @expert %>
+        <%= render 'shared/call_client', profile: @expert  %>
       <% end %>
     </div>
     <div class='session-call-container'>
