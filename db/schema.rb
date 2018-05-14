@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_10_121856) do
+ActiveRecord::Schema.define(version: 2018_05_14_090932) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -62,6 +62,14 @@ ActiveRecord::Schema.define(version: 2018_05_10_121856) do
     t.index ["profile_id", "category_id"], name: "index_categories_profiles_on_profile_id_and_category_id", unique: true
   end
 
+  create_table "eth_addresses", force: :cascade do |t|
+    t.text "public_key"
+    t.integer "wallet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["wallet_id"], name: "index_eth_addresses_on_wallet_id"
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -101,7 +109,6 @@ ActiveRecord::Schema.define(version: 2018_05_10_121856) do
     t.text "location"
     t.text "about"
     t.text "specialization"
-    t.text "eth_addresses"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
@@ -122,7 +129,7 @@ ActiveRecord::Schema.define(version: 2018_05_10_121856) do
     t.string "third_time"
     t.datetime "selected_date"
     t.boolean "recording"
-    t.integer "status"
+    t.integer "status", default: 0
     t.string "time_zone"
     t.string "room_sid"
     t.datetime "started_at"
@@ -164,6 +171,14 @@ ActiveRecord::Schema.define(version: 2018_05_10_121856) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "wallets", force: :cascade do |t|
+    t.integer "profile_id"
+    t.integer "balance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_wallets_on_profile_id"
   end
 
 end
