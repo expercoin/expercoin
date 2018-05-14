@@ -17,20 +17,20 @@
         <h4 class="card-form-title mt-3">
           Your ETH Addresses
         </h4>
-        <% @addresses.each do |address| %>
+        <% @wallet.eth_addresses.each do |address| %>
           <div class="card card-form">
             <div class="card-body">
-              <label>Address: </label> <%= address %>
-            <%= link_to 'Delete', settings_address_path(address), method: :delete %>
+              <label>Public Key: </label> <%= address.public_key %>
+            <%= link_to 'Delete', settings_wallet_path(address), method: :delete %>
             </div>
           </div>
         <% end %>
-        <%= form_with scope: :profile_form do |f| %>
+        <%= form_with scope: :eth_address do |f| %>
           <div class="card card-form">
             <div class="card-body">
               <div class="form-group">
-                <%= f.label :eth_address, 'New ETH Address' %>
-                <%= f.text_field :eth_address, class: 'form-control' %>
+                <%= f.label :public_key, 'New ETH Address' %>
+                <%= f.text_field :public_key, class: 'form-control' %>
               </div>
             </div>
           </div>
