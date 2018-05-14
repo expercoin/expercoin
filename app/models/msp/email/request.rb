@@ -54,9 +54,9 @@ module MSP
         create_email_record(@request.requester.id, subject, body)
       end
 
-      def email_to_expert_request_times
+      def email_to_expert_new_request
         subject, body = email_template_for_expert
-        NotifyMailer.notify_expert_request_times(
+        NotifyMailer.notify_expert_new_request(
           expert_email,
           subject,
           body,
