@@ -100,8 +100,6 @@ ActiveRecord::Schema.define(version: 2018_05_10_121856) do
     t.string "slug"
     t.text "location"
     t.text "about"
-    t.text "specialization"
-    t.text "eth_addresses"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
@@ -122,11 +120,9 @@ ActiveRecord::Schema.define(version: 2018_05_10_121856) do
     t.string "third_time"
     t.datetime "selected_date"
     t.boolean "recording"
-    t.integer "status", default: 0
+    t.integer "status"
     t.string "time_zone"
     t.string "room_sid"
-    t.datetime "started_at"
-    t.datetime "ended_at"
     t.integer "requester_id"
     t.integer "expert_id"
     t.integer "updated_by_id"
