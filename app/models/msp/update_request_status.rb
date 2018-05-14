@@ -7,6 +7,7 @@ module MSP
     def perform
       pending_status
       accepted_status
+      inprogress_status
       completed_status
     end
 
@@ -29,6 +30,15 @@ module MSP
 
     def valid_for_accepted_status?
       @request.selected_date && @request.pending?
+    end
+
+    def inprogress_status
+      return unless valid_for_inprogress_status?
+      @request.update(status: 'inprogress')
+    end
+
+    def valid_for_inprogress_status?
+      @request.started_at && !@request.ended_at && @request.accepted?
     end
 
     def completed_status

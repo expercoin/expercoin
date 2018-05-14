@@ -11,11 +11,9 @@ class ConferenceController < ApplicationController
   def create
     @request = Request.find_by_id(params[:request_id])
     return if request_not_valid?
-    sid = @video.create_room
-    if sid
-      @request.update(room_sid: sid, started_at: Time.now)
-      redirect_to conference_path(sid)
-    end
+    create_room
+    MSP::UpdateRequestStatus.new(@request).perform
+    redirect_to conference_path(@request.room_sid) if @request.inprogress?
   end
 
   def destroy
@@ -41,6 +39,17 @@ class ConferenceController < ApplicationController
 
   private
   
+  def create_room
+    return unless valid_request_for_room_creation?
+    sid = @video.create_room
+    return unless sid
+    @request.update(room_sid: sid, started_at: Time.now)
+  end
+
+  def valid_request_for_room_creation?
+    @request.accepted?
+  end
+
   def update_ended_at_if_not_completed
     return if @request.completed?
     @request.update(ended_at: Time.now, updated_by: current_user.profile)
