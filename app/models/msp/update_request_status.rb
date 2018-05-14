@@ -47,7 +47,7 @@ module MSP
     end
 
     def valid_for_completed_status?
-      @request.ended_at && @request.accepted?
+      @request.ended_at && @request.inprogress?
     end
   end
 end
