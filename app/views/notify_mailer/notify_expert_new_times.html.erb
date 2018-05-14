@@ -61,7 +61,7 @@
     </style>
   </head>
   <body>
-    <table class="table-container" align="center" style="width: 100%; max-width: 600px">
+    <table class="table-container" align="center" style="width: 100%; max-width: 600px; padding: 20px 0 40px;">
       <tr>
         <td align="center">
           <table>
@@ -82,6 +82,11 @@
           <p>
           <%= @requester.first_name + ' ' + @requester.last_name %> has suggested different call times.
           </p>
+          <ul>
+            <li><%= @request.first_date.strftime('%A, %b %d %Y') %> at <%= @request.first_time %>, <%= @request.time_zone %></li>
+            <li><%= @request.second_date.strftime('%A, %b %d %Y') %> at <%= @request.second_time %>, <%= @request.time_zone %></li>
+            <li><%= @request.third_date.strftime('%A, %b %d %Y') %> at <%= @request.third_time %>, <%= @request.time_zone %></li>
+          </ul>
         </td>
       </tr>
       <tr>

@@ -24,6 +24,7 @@ class NotifyMailer < ActionMailer::Base
 
   def notify_expert_new_times(email, subject, body, request)
     @body = body
+    @request = request
     @requester = request.requester
     mail(to: email, subject: subject) unless Rails.env.test?
   end
