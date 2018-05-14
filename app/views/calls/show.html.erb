@@ -58,17 +58,7 @@
         </div>
       </div>
       <div class="panel">
-        <div class="request-description">
-          <h6 class="request-time">Call session is schedulled for <%= decorate(@request).session_date %></h6>
-          <% if @room_sid %>
-            <%= link_to "Join Room", conference_path(@room_sid), class: "btn btn-success btn-md btn-md-lgr" %>
-          <% else %> 
-            <%= form_tag conference_index_path do %>
-              <%= hidden_field_tag :request_id,  @request.id %>
-              <%= submit_tag "Request Room", class: "btn btn-success btn-md btn-md-lgr" %>
-            <% end %>
-          <% end %> 
-        </div>
+        <%= render 'shared/msp/join_request_room'%>
       </div>
     </div>
     <div class="content-aside">
