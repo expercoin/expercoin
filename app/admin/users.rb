@@ -24,6 +24,15 @@ ActiveAdmin.register User do
     actions
   end
 
+  show do
+    attributes_table do
+      row :email
+      row :current_sign_in_ip
+      row :last_sign_in_ip
+      row :confirmed_at
+    end
+  end
+
 
   form do |f|
     f.inputs do
