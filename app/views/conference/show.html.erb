@@ -12,7 +12,7 @@
     </div>
     <div class='session-call-container'>
       <div class='session-call-controls'>
-        <div class='session-call-time' data-time-start='<%= @request.started_at.to_i %>'>0.00</div>
+        <div class='session-call-time' data-time-start='<%= @request.started_at %>'><span data-timer='minutes'>0</span>:<span data-timer='seconds'>00</span></div>
         <div class="icon-group-controls">
           <button id='mute-audio' class='session-call-icon'>
             <span class='msp-icon-sound'></span>

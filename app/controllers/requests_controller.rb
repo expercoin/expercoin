@@ -3,7 +3,7 @@ class RequestsController < ApplicationController
   layout 'dashboard'
   before_action :authenticate_user!
   before_action :set_profile, only: %i[new]
-  before_action :set_request_and_expert, only: %i[show edit update]
+  before_action :set_request_and_expert, only: %i[show update]
 
   def index
     ordered_requests = current_user.profile.created_requests.order(created_at: :desc)
@@ -20,7 +20,10 @@ class RequestsController < ApplicationController
     @request = Request.new(requester: current_user&.profile, expert: @profile)
   end
 
-  def edit; end
+  def edit
+    @request = current_user.profile.created_requests.draft.find(params[:id])
+    @profile = @request.expert
+  end
 
   def update
     return render :edit unless @request.update(request_params)

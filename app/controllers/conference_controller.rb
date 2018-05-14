@@ -5,33 +5,28 @@ class ConferenceController < ApplicationController
 
   layout 'dashboard'
 
-  # def index
-  # end
-
   def create
     @request = Request.find_by_id(params[:request_id])
-    return if request_not_valid?
-    sid = @video.create_room
-    if sid
-      @request.update(room_sid: sid, started_at: Time.now)
-      redirect_to conference_path(sid)
-    end
+    redirect_to conference_path(@request.room_sid) and return if request_not_valid?
+    create_room
+    status_update
+    redirect_to conference_path(@request.room_sid) if @request.inprogress?
   end
 
   def destroy
     @request = Request.find_by_room_sid(params[:id])
-    @video.kill_room(params[:id])
+    return if user_not_valid?
+    kill_room
     update_ended_at_if_not_completed
-    MSP::UpdateRequestStatus.new(@request).perform
-    redirect_to calls_path if user_request_expert?
-    redirect_to requests_path if user_request_requester?
+    status_update
+    redirect_based_on_user
   end
 
   def show
     @request = Request.find_by_room_sid(params[:id])
     @request ||= Request.find_by_id(params[:request_id])
     @expert = @request.expert
-    return if user_not_valid?
+    raise ActionController::RoutingError.new('Not Found') if user_not_valid? || room_closed?
     @token = @video.access_token(
       current_user.email, params[:id]
     )
@@ -40,7 +35,35 @@ class ConferenceController < ApplicationController
   end
 
   private
+
+  def room_closed?
+    @video.room_closed?(@request.room_sid)
+  end
+
+  def kill_room
+    @video.kill_room(params[:id])
+  end
   
+  def status_update
+    MSP::UpdateRequestStatus.new(@request).perform
+  end
+
+  def redirect_based_on_user
+    redirect_to call_path(@request) if user_request_expert?
+    redirect_to request_path(@request) if user_request_requester?
+  end
+
+  def create_room
+    return unless valid_request_for_room_creation?
+    sid = @video.create_room
+    return unless sid
+    @request.update(room_sid: sid, started_at: Time.now)
+  end
+
+  def valid_request_for_room_creation?
+    @request.accepted?
+  end
+
   def update_ended_at_if_not_completed
     return if @request.completed?
     @request.update(ended_at: Time.now, updated_by: current_user.profile)

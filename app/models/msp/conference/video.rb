@@ -51,13 +51,22 @@ module MSP
           false
         end
       end
-        
-      def kill_room(room_sid)
-        begin
-          client.video.rooms(room_sid).update(status: 'completed')
+      
+      def find_room(room_sid)
+        client.video.rooms(room_sid).fetch
         rescue StandardError
-          'room does not exist'
-        end
+      end
+
+      def room_closed?(room_sid)
+        room = find_room(room_sid)
+        return unless room
+        room.status == 'completed'
+      end
+
+      def kill_room(room_sid)
+        client.video.rooms(room_sid).update(status: 'completed')
+      rescue StandardError
+        'room does not exist'
       end
     end
   end
