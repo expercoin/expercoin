@@ -4,15 +4,15 @@
       <header class="text-md-center">
         <h1 class="strong">Your Session Details</h1>
       </header>
-      <% if defined? @expert_side %>
-        <%= render 'shared/call_client', profile: @request.requester  %>
+      <% if @expert_side %>
+        <%= render 'shared/call_expert', profile: @request.requester %>
       <% else %>
-        <%= render 'shared/call_expert', profile: @expert %>
+        <%= render 'shared/call_client', profile: @expert  %>
       <% end %>
     </div>
     <div class='session-call-container'>
       <div class='session-call-controls'>
-        <div class='session-call-time'>0.02</div>
+        <div class='session-call-time' data-time-start='<%= @request.started_at.to_i %>'>0.00</div>
         <div class="icon-group-controls">
           <button id='mute-audio' class='session-call-icon'>
             <span class='msp-icon-sound'></span>

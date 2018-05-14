@@ -11,8 +11,12 @@ class ProfileDecorator < BaseDecorator
     "#{country} | #{state}"
   end
 
+  def last_session
+    requests.completed&.last&.created_at&.strftime('%b, %-d %Y')
+  end
+
   def exc_price
     return '' unless rate.present?
-    "<strong>EXC #{rate}</strong>/min"
+    "<strong>EXC #{expercoin_rate}</strong>/min"
   end
 end

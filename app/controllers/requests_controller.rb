@@ -24,9 +24,9 @@ class RequestsController < ApplicationController
 
   def update
     return render :edit unless @request.update(request_params)
-    @request.update(status: 1)
+    MSP::UpdateRequestStatus.new(@request).perform
     MSP::Email::Request.new(@request).email_to_expert
-    render :thankyou
+    redirect_to requests_path
   end
 
   def create

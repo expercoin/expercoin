@@ -21,7 +21,8 @@ class ConferenceController < ApplicationController
   def destroy
     @request = Request.find_by_room_sid(params[:id])
     @video.kill_room(params[:id])
-    @request.update(updated_by: current_user.profile, status: 'completed', ended_at: Time.now)
+    update_ended_at_if_not_completed
+    MSP::UpdateRequestStatus.new(@request).perform
     redirect_to calls_path if user_request_expert?
     redirect_to requests_path if user_request_requester?
   end
@@ -40,6 +41,11 @@ class ConferenceController < ApplicationController
 
   private
   
+  def update_ended_at_if_not_completed
+    return if @request.completed?
+    @request.update(ended_at: Time.now, updated_by: current_user.profile)
+  end
+
   def user_request_expert?
     @request.expert == current_user.profile
   end
