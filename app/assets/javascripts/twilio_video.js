@@ -135,10 +135,10 @@ function videoTwilioInitialize(twilo=2){
 
       room.on('participantDisconnected', function(participant) {
         detachTracks(participant.tracks);
-        console.log('Participant disconnected: ' + participant.identity);
       });
 
       room.on('disconnected', function(room) {
+        $('[data-twillio-session="end"]')[0].click();
         detachTracks(room.localParticipant.tracks);
       });
       $('#enter-room').hide();
@@ -178,7 +178,7 @@ function videoTwilioInitialize(twilo=2){
   
   if(window.room_token){
     enterRoom(window.room_token);
-    twilioActions.startCameraPreview()();
+    // twilioActions.startCameraPreview()();
     // getUserScreen();
   }
 
