@@ -19,11 +19,11 @@ namespace :requests do
           title: Faker::Movie.quote,
           cell_number: Faker::PhoneNumber.cell_phone,
           first_date: first_date.to_date,
-          first_time: first_date.to_time,
+          first_time: first_date.to_time.strftime('%I:%M %p'),
           second_date: second_date.to_date,
-          second_time: second_date.to_time,
+          second_time: second_date.to_time.strftime('%I:%M %p'),
           third_date: third_date.to_date,
-          third_time: third_date.to_time,
+          third_time: third_date.to_time.strftime('%I:%M %p'),
           requested_length: ['15min', '30min', '45min'].sample,
           time_zone: "Eastern Time (US & Canada)"
         )
