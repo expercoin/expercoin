@@ -1,0 +1,11 @@
+<header class="panel requests-info-container">
+<div class="col-md-4 requests-info-item">
+  <span class="number"><%= requests.total_count %></span> Requests Made
+</div>
+<div class="col-md-4 requests-info-item">
+  <span class="number"><%= requests.completed.total_count %></span> Mentoring Sessions
+</div>
+<div class="col-md-4 requests-info-item">
+  <span class="number"><%= CallLength.new(requests.completed).total_length %></span> Usage in Minutes
+</div>
+</header>

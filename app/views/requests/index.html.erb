@@ -4,18 +4,7 @@
 <main class="content content-with-nav">
   <div class="content-container">
     <div class="content-main user-requests">
-      <header class="panel requests-info-container">
-        <div class="col-md-4 requests-info-item">
-          <span class="number"><%= @requests.total_count %></span> Requests Made
-        </div>
-        <div class="col-md-4 requests-info-item">
-          <span class="number"><%= @requests.completed.total_count %></span> Mentoring Sessions
-        </div>
-        <div class="col-md-4 requests-info-item">
-          <span class="number"><%= CallLength.new(@requests.completed).total_length %></span> Usage in Minutes
-        </div>
-      </header>
-
+      <%= render 'shared/requests_header', requests: @requests %>
       <div class="panel requests-history-container">
         <div class="col-md-8 requests-history-item">
           <span class="requests-history-label">Request History</span>
