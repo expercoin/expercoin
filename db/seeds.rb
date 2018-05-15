@@ -10,6 +10,8 @@ AdminUser.create!(email: 'admin@example.com', password: 'password', password_con
 Rake::Task['categories:create_blockchain'].invoke
 Rake::Task['users:create_test_users'].invoke if Rails.env.development?
 Rake::Task['requests:create_test_requests'].invoke if Rails.env.development?
+Rake::Task['requests:update_requests_to_accepted'].invoke if Rails.env.development?
+Rake::Task['requests:update_requests_to_completed'].invoke if Rails.env.development?
 Rake::Task['reviews:create_test_reviews'].invoke if Rails.env.development?
 Rake::Task['wallets:create_test_wallets'].invoke if Rails.env.development?
 
