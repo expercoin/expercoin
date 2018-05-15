@@ -95,9 +95,12 @@
               <div class="col-sm-4">
                 <div class="input-group">
                   <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">EXC</span>
+                    <span class="input-group-text" id="basic-addon1">EXPR</span>
                   </div>
                   <%= f.text_field :expercoin_rate,'data-rate': 'expercoin', 'data-fee': @profile.commission_fee, :class => "form-control" %>
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"> / min</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -108,9 +111,12 @@
                 <div class="col-sm-4">
                   <div class="input-group">
                     <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1">EXC</span>
+                      <span class="input-group-text" id="basic-addon1">EXPR</span>
                     </div>
                     <%= f.text_field :rate, class: "form-control", 'data-rate': 'hourly', 'data-fee': @profile.commission_fee %>
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"> / min</span>
+                    </div>
                   </div>
                 </div>
                 <div class="col-sm-3">

@@ -37,7 +37,7 @@ function requestFormInitialize() {
     price = /\d+/g.exec(price);
     var cost = price * length;
     $('[data-request="length"]').html(length);
-    $('[data-request="cost"]').html('EXC ' + cost);
+    $('[data-request="cost"]').html('EXPR ' + cost);
     // --------------------------------------------
     $(this).html() === "Change" ? $(this).html('Cancel') : $(this).html('Change');
   });
