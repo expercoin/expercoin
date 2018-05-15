@@ -42,9 +42,4 @@ Rails.application.routes.draw do
   resources :reviews
   resources :my_mentors, path: 'my-mentors', only: [:index]
   resources :callbacks, only: :create
-
-  #always last route
-  resources :profiles, path: '', as: :expert, only: :show do
-    resources :precall, only: :index
-  end
 end
