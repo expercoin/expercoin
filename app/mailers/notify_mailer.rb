@@ -1,5 +1,6 @@
 class NotifyMailer < ActionMailer::Base
   default from: 'support@expercoin.com'
+  helper :decorator
 
   def notify_expert_new_status(email, subject, body, request)
     @body = body
