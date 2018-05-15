@@ -27,7 +27,7 @@
             <span class='msp-icon-dots'></span>
           </button>
         </div>
-        <%= link_to conference_path(params[:id]), class: 'session-end-call', method: :delete do %>
+        <%= link_to conference_path(params[:id]), class: 'session-end-call','data-twillio-session': 'end', method: :delete do %>
           <i class="fa fa-times" aria-hidden="true"></i>
           End Session
         <% end %>

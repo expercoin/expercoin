@@ -51,6 +51,21 @@
         font-weight: bold;
         text-decoration: none;
       }
+
+      .divider {
+        width: 100%;
+        height: 1px;
+        background: #eee;
+        margin: 16px 0;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      .strong {
+        font-weight: 700;
+      }
     </style>
   </head>
   <body>
@@ -73,9 +88,47 @@
       <tr>
         <td>
           <p>
-          <%= @expert.first_name + ' ' + @expert.last_name %> has <%= @request.status %> your call request.
+          <%= @requester.first_name + ' ' + @requester.last_name %> has requested a call.
           </p>
         </td>
+      </tr>
+      <tr>
+        <td><div class='divider' style=" width: 100%; height: 1px; background: #eee; margin: 16px 0; "></div></td>
+      </tr>
+      <tr>
+        <td>
+          <h4 class="strong">Request Information</h4>    
+          <p>
+          <%= @request.title %>
+          </p>
+          <p>
+          <%= @request.message %>
+          </p>
+          <p>Suggested times:</p>
+          <ul>
+            <li><%= @request.first_date.strftime('%A, %b %d %Y') %> at <%= @request.first_time %>, <%= @request.time_zone %></li>
+            <li><%= @request.second_date.strftime('%A, %b %d %Y') %> at <%= @request.second_time %>, <%= @request.time_zone %></li>
+            <li><%= @request.third_date.strftime('%A, %b %d %Y') %> at <%= @request.third_time %>, <%= @request.time_zone %></li>
+          </ul>
+          <p>
+            Requested Call Length: <%= @request.requested_length %>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><div class='divider' style=" width: 100%; height: 1px; background: #eee; margin: 16px 0; "></div></td>
+      </tr>
+      <tr>
+        <td>Expercoin Inc</td>
+      </tr>
+      <tr>
+        <td>Two Artillery Court, 2nd Floor</td>
+      </tr>
+      <tr>
+        <td>161 Shedden Road, PO Box 799</td>
+      </tr>
+      <tr>
+        <td>Grand Cayman, KY1-1103, Cayman Islands</td>
       </tr>
     </table>
   </body>

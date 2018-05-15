@@ -51,10 +51,17 @@
         font-weight: bold;
         text-decoration: none;
       }
+
+      .divider {
+        width: 100%;
+        height: 1px;
+        background: #eee;
+        margin: 16px 0;
+      }
     </style>
   </head>
   <body>
-    <table class="table-container" align="center" style="width: 100%; max-width: 600px">
+    <table class="table-container" align="center" style="width: 100%; max-width: 600px; padding: 20px 0 40px;">
       <tr>
         <td align="center">
           <table>
@@ -73,9 +80,29 @@
       <tr>
         <td>
           <p>
-          <%= @expert.first_name + ' ' + @expert.last_name %> has suggested different call times.
+          <%= @requester.first_name + ' ' + @requester.last_name %> has suggested different call times.
           </p>
+          <ul>
+            <li><%= @request.first_date.strftime('%A, %b %d %Y') %> at <%= @request.first_time %>, <%= @request.time_zone %></li>
+            <li><%= @request.second_date.strftime('%A, %b %d %Y') %> at <%= @request.second_time %>, <%= @request.time_zone %></li>
+            <li><%= @request.third_date.strftime('%A, %b %d %Y') %> at <%= @request.third_time %>, <%= @request.time_zone %></li>
+          </ul>
         </td>
+      </tr>
+      <tr>
+        <td><div class='divider' style=" width: 100%; height: 1px; background: #eee; margin: 16px 0; "></div></td>
+      </tr>
+      <tr>
+        <td>Expercoin Inc</td>
+      </tr>
+      <tr>
+        <td>Two Artillery Court, 2nd Floor</td>
+      </tr>
+      <tr>
+        <td>161 Shedden Road, PO Box 799</td>
+      </tr>
+      <tr>
+        <td>Grand Cayman, KY1-1103, Cayman Islands</td>
       </tr>
     </table>
   </body>

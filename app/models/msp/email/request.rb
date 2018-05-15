@@ -34,7 +34,7 @@ module MSP
 
       def email_to_expert_new_status
         subject, body = email_template_for_expert
-        MSP::NotifyMailer.notify_expert_new_status(
+        NotifyMailer.notify_expert_new_status(
           expert_email,
           subject,
           body,
@@ -45,7 +45,7 @@ module MSP
 
       def email_to_requester_new_status
         subject, body = email_template_for_requester
-        MSP::NotifyMailer.notify_requester_new_status(
+        NotifyMailer.notify_requester_new_status(
           requester_email,
           subject,
           body,
@@ -54,9 +54,20 @@ module MSP
         create_email_record(@request.requester.id, subject, body)
       end
 
+      def email_to_expert_new_request
+        subject, body = email_template_for_expert
+        NotifyMailer.notify_expert_new_request(
+          expert_email,
+          subject,
+          body,
+          @request
+        ).deliver_now
+        create_email_record(@request.expert.id, subject, body)
+      end
+
       def email_to_expert_new_times
         subject, body = email_template_for_expert
-        MSP::NotifyMailer.notify_expert_new_times(
+        NotifyMailer.notify_expert_new_times(
           expert_email,
           subject,
           body,
@@ -67,7 +78,7 @@ module MSP
 
       def email_to_requester_new_times
         subject, body = email_template_for_requester
-        MSP::NotifyMailer.notify_requester_new_times(
+        NotifyMailer.notify_requester_new_times(
           requester_email,
           subject,
           body,

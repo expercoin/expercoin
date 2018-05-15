@@ -15,6 +15,10 @@
   h1 {
     font-size: 42px;
     font-weight: 600;
+
+    &.h1-sm {
+      font-size: 36px;
+    }
   }
 
   p {
