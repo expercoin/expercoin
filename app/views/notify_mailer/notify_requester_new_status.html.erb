@@ -80,7 +80,7 @@
       <tr>
         <td>
           <p>
-          <%= @expert.first_name + ' ' + @expert.last_name %> has <%= @request.status %> your call request.
+          <%= decorate(@expert).full_name  %> has <%= @request.status %> your call request.
           </p>
           <p>
             <%= decorate(@request).session_date %>

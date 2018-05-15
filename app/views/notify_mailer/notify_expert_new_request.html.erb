@@ -88,7 +88,7 @@
       <tr>
         <td>
           <p>
-          <%= @requester.first_name + ' ' + @requester.last_name %> has requested a call.
+          <%= decorate(@requester).full_name %> has requested a call.
           </p>
         </td>
       </tr>
