@@ -6,8 +6,11 @@ class RequestsController < ApplicationController
   before_action :set_request_and_expert, only: %i[show update]
 
   def index
-    ordered_requests = current_user.profile.created_requests.order(created_at: :desc)
-    @requests = ordered_requests.page(params[:page]).per(8)
+    requests = SearchRequestsService.new(
+      current_user.profile.created_requests,
+      params[:search]
+    ).perform
+    @requests = requests.page(params[:page]).per(8)
   end
 
   def show
@@ -41,6 +44,19 @@ class RequestsController < ApplicationController
   end
 
   private
+
+  def searched
+    return if params[:search].blank?
+    return current_user.profile.created_requests.pg_search(params[:search]) if Rails.env.production?
+    current_user.profile.created_requests.where(
+      "title LIKE ? OR message LIKE ?",
+      "%#{params[:filter]}%", "%#{params[:filter]}%"
+      ).order(created_at: :desc)
+  end
+
+  def ordered
+    current_user.profile.created_requests.order(created_at: :desc)
+  end
 
   def request_params
     params.require(:request).permit(request_attributes)

@@ -4,8 +4,11 @@ class CallsController < ApplicationController
   layout 'dashboard'
 
   def index
-    ordered_requests = current_user.profile.requests.order(created_at: :desc)
-    @requests = ordered_requests.page(params[:page]).per(8)
+    requests = SearchRequestsService.new(
+      current_user.profile.requests,
+      params[:search]
+    ).perform      
+    @requests = requests.page(params[:page]).per(8)
   end
 
   def show
