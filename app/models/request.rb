@@ -69,7 +69,7 @@ class Request < ApplicationRecord
     DATETIMES.each do |datetime|
       dt = "#{send(datetime[1])} #{send(datetime[0])}".to_datetime
       os = OpenStruct.new(
-        timezone_datetime: dt.in_time_zone(time_zone),
+        timezone_datetime: dt.in_time_zone(time_zone).strftime('%a, %b %d, %Y at %I:%M %p'),
         formated_datetime: dt
       )
       datetimes << os
