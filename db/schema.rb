@@ -12,16 +12,13 @@
 
 ActiveRecord::Schema.define(version: 2018_05_14_090932) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
     t.string "resource_type"
-    t.bigint "resource_id"
+    t.integer "resource_id"
     t.string "author_type"
-    t.bigint "author_id"
+    t.integer "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
@@ -59,15 +56,15 @@ ActiveRecord::Schema.define(version: 2018_05_14_090932) do
   end
 
   create_table "categories_profiles", id: false, force: :cascade do |t|
-    t.bigint "category_id", null: false
-    t.bigint "profile_id", null: false
+    t.integer "category_id", null: false
+    t.integer "profile_id", null: false
     t.index ["category_id", "profile_id"], name: "index_categories_profiles_on_category_id_and_profile_id", unique: true
     t.index ["profile_id", "category_id"], name: "index_categories_profiles_on_profile_id_and_category_id", unique: true
   end
 
   create_table "eth_addresses", force: :cascade do |t|
     t.text "public_key"
-    t.bigint "wallet_id"
+    t.integer "wallet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["wallet_id"], name: "index_eth_addresses_on_wallet_id"
@@ -98,7 +95,7 @@ ActiveRecord::Schema.define(version: 2018_05_14_090932) do
   end
 
   create_table "profiles", force: :cascade do |t|
-    t.bigint "user_id"
+    t.integer "user_id"
     t.string "first_name"
     t.string "last_name"
     t.string "name"
@@ -112,6 +109,7 @@ ActiveRecord::Schema.define(version: 2018_05_14_090932) do
     t.text "location"
     t.text "about"
     t.text "specialization"
+    t.text "eth_addresses"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
@@ -177,13 +175,11 @@ ActiveRecord::Schema.define(version: 2018_05_14_090932) do
   end
 
   create_table "wallets", force: :cascade do |t|
-    t.bigint "profile_id"
+    t.integer "profile_id"
     t.integer "balance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["profile_id"], name: "index_wallets_on_profile_id"
   end
 
-  add_foreign_key "eth_addresses", "wallets"
-  add_foreign_key "wallets", "profiles"
 end

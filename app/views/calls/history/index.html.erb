@@ -14,15 +14,7 @@
   <div class="content-container user-requests">
     <div class="content-main">
       <%= render 'shared/requests_header', requests: @requests %>
-      <div class="panel requests-history-container">
-        <div class="col-md-8 requests-history-item">
-          <span class="requests-history-label">Request History</span>
-        </div>
-        <div class="col-md-4 requests-history-item">
-          <i class="fa fa-search"></i> <input type="text" class="requests-history-search" placeholder="Search Requests">
-        </div>
-      </div>
-
+      <%= render 'shared/search_requests', url: calls_history_index_path %>
       <div class="panel requests-list-container" data-ordered-by="none" data-order-direction="none">
         <header class="requests-list-header">
           <div class="col-md-6 sortable-item" data-sort-type="title">
