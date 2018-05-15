@@ -1,14 +1,11 @@
 module MSP
   module Email
-    def create_email_record(id, subject, body)
+    def create_email_record(id, subject, meta)
       MailRecord.create(
         recipient_id: id,
         sent: true,
         subject: subject,
-        body: body,
-        meta: { 
-          body: body
-        },
+        meta: meta,
         mail_type: 'MSP'
       )
     end
