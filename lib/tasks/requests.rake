@@ -24,7 +24,7 @@ namespace :requests do
           second_time: second_date.to_time.strftime('%I:%M %p'),
           third_date: third_date.to_date,
           third_time: third_date.to_time.strftime('%I:%M %p'),
-          requested_length: ['15min', '30min', '45min'].sample
+          requested_length: ['15min', '30min', '45min'].sample,
           time_zone: "Eastern Time (US & Canada)"
         )
       end
