@@ -27,6 +27,8 @@ gem "mini_magick"
 gem 'kaminari'
 gem 'twilio-ruby', '~> 5.6.1'
 gem 'aws-ses', require: 'aws/ses'
+gem 'pg_search'
+
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 

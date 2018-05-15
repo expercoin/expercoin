@@ -1,5 +1,8 @@
 class Request < ApplicationRecord
 
+  include PgSearch
+  pg_search_scope :search, against: [:title, :message], using: { tsearch: {prefix: true} }
+
   TIMEZONES = ActiveSupport::TimeZone::MAPPING.keys
   DATETIMES = [
     %I[first_time first_date],

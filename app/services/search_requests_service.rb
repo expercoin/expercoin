@@ -18,7 +18,7 @@ class SearchRequestsService < BaseService
 
   def filter
     return unless valid?
-    @requests = @requests.pg_search(@search) if Rails.env.production?
+    @requests = @requests.search(@search) if Rails.env.production?
     @requests = sql_lite_search if Rails.env.development?
   end
 
