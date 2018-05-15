@@ -84,6 +84,6 @@ class Request < ApplicationRecord
   end
 
   def reset
-    update(status: 2, started_at:nil, ended_at: nil, selected_date: nil, room_sid: nil, updated_by: requester)
+    update(status: 2, started_at:nil, ended_at: nil, room_sid: nil, updated_by: expert)
   end
 end

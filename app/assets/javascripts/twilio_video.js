@@ -1,8 +1,4 @@
-$(function(){
-  videoTwilioInitialize();
-});
-
-$(document).on("page:load",function(){
+$(document).on("turbolinks:load",function(){
   videoTwilioInitialize();
 });
 
@@ -185,6 +181,7 @@ function videoTwilioInitialize(twilo=2){
 
 
   if(window.room_token){
+    $('[data-twillio-session="end"]').on('click', twilioActions.leaveRoom());
     $('#mute-audio').on('click', twilioActions.muteAudio());
     $('#unmute-audio').on('click', twilioActions.unmuteAudio());
     $('#mute-video').on('click', twilioActions.muteVideo());
