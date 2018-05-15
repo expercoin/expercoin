@@ -30,5 +30,36 @@ namespace :requests do
       end
     end
   end
+  desc "Update some requests to accepted"
+  task update_requests_to_accepted: :environment do
+    35.times do
+      request = Request.pending.sample
+      next unless request
+      sugested_times = request.sugested_times.map(&:formated_datetime)
+      request.update(
+        status: 'accepted',
+        selected_date: sugested_times.sample,
+        updated_by: request.expert
+      )
+    end
+  end
+  desc "Update some requests to completed"
+  task update_requests_to_completed: :environment do
+    20.times do
+      request = Request.accepted.sample
+      next unless request
+      start_time = request.selected_date
+      min_length = request.requested_length.to_i - 10
+      max_length = request.requested_length.to_i + 10
+      end_time = request.selected_date + rand(min_length..max_length).minutes
+      request.update(
+        status: :completed,
+        started_at: start_time,
+        ended_at: end_time,
+        updated_by: request.expert
+      )
+      request.save
+    end
+  end
 
 end

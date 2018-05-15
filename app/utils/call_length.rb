@@ -4,16 +4,21 @@ class CallLength
   end
 
   def average_length
-    (total_length / total_calls.to_f).round(1)
+    (total_requested_length / total_calls.to_f).round(1)
   end
 
-  def total_price
-    
+  def total_price; end
+
+  def total_length
+    mapped_length = @calls.map do |call|
+      call.session_length || (call.ended_at - call.started_at) / 60
+    end
+    mapped_length.sum
   end
 
   private
 
-  def total_length
+  def total_requested_length
     mapped_length = @calls.map { |call| call.requested_length.to_i }
     mapped_length.sum
   end
