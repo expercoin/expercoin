@@ -2,6 +2,7 @@ document.addEventListener("turbolinks:load", function() {
   $('.category-item').mouseenter(function() {
     var category_id = $(this).data('id');
     var subcategory_menu = $('.category-subcategories[data-id="' + category_id +'"]');
+    $('.category-subcategories').hide();
     subcategory_menu.show();
   });
   $('.category-item').mouseleave(function() {
