@@ -10,7 +10,7 @@ namespace :requests do
         first_date = Faker::Time.forward(23, :morning)
         second_date = Faker::Time.forward(25, :day)
         third_date = Faker::Time.forward(28, :evening)
-        Request.create!(
+        request = Request.create!(
           status: 'pending',
           requester: requester_profile,
           expert: profile,
@@ -27,6 +27,7 @@ namespace :requests do
           requested_length: ['15min', '30min', '45min'].sample,
           time_zone: "Eastern Time (US & Canada)"
         )
+        puts "Request created, Requester: #{request.requester.id} Expert: #{request.expert.id} Message: #{request.message}"
       end
     end
   end
@@ -41,6 +42,7 @@ namespace :requests do
         selected_date: sugested_times.sample,
         updated_by: request.expert
       )
+      puts "Request with id #{request.id} updated to status accepted"
     end
   end
   desc "Update some requests to completed"
@@ -59,6 +61,7 @@ namespace :requests do
         updated_by: request.expert
       )
       request.save
+      puts "Request with id #{request.id} updated to status completed"
     end
   end
 

@@ -21,14 +21,17 @@ namespace :users do
     )
 
     30.times do
+      first_name = Faker::Name.first_name
+      last_name = Faker::Name.last_name
+      email = "#{first_name}-#{last_name}@expercoin.com"
       user = User.create!(
-        first_name: Faker::Name.first_name,
-        last_name: Faker::Name.last_name,
-        email: Faker::Internet.email,
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
         password: '123456'
       )
       user.confirm
-      women = ['a', 'e'].include? user.first_name.last
+      women = ['a', 'e'].include? first_name.last
       photo = "https://randomuser.me/api/portraits/#{'wo' if women}men/#{rand(1..99)}.jpg"
       specialization = {}
       rand(5..15).times do |i|

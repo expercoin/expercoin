@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   resources :conference, only: [:show, :create, :destroy]
   resources :dashboard, only: [:index]
   resources :account, only: [:index]
-  resources :profiles, only: %i[show]
+  resources :profiles, only: %i[show index]
   resources :settings, only: [:index, :create]
   namespace :settings do
     resources :about, only: [:index, :create]

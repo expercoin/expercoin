@@ -1,7 +1,7 @@
 <div class="content-nav-container">
   <ul class="content-nav-list">
     <li>
-      <%= link_to 'Find Mentors', category_path('blockchain'), class: "#{'active' if active == 'mentors'}"  %>
+      <%= link_to 'Find Mentors', profiles_path, class: "#{'active' if active == 'mentors'}"  %>
     </li>
     <li>
       <%= link_to 'My Mentors', my_mentors_path, class: "#{'active' if active == 'my mentors'}"  %>
@@ -10,7 +10,7 @@
       <%= link_to 'My Requests', requests_path, class: "#{'active' if active == 'requests'}"  %>
     </li>
     <li><a>Payment</a></li>
-  </ul>  
+  </ul>
   <div class='nav-button-container centered'>
     <%= link_to '#', { class: 'btn btn-success btn-upc btn-live centered', data: { toggle: 'modal', target: '#live-mentoring-modal' } } do %>
     <span class="msp-icon-live"></span> Live Mentoring

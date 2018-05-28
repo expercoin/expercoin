@@ -10,18 +10,18 @@
   <div class="container business-home-blocks">
     <div class="row no-gutters">
       <div class="col-md-6">
-          <a class="block-link block-individual">
-            <p>I'm looking for help</p>
-            Find an Expert
-            <i class="fa fa-angle-right"></i>
-          </a>
+        <%= link_to profiles_path, class: "block-link block-individual" do %>
+          <p>I'm looking for help</p>
+          Find an Expert
+          <i class="fa fa-angle-right"></i>
+        <% end %>
       </div>
       <div class="col-md-6">
-          <%= link_to for_mentors_path, class: "block-link block-expert" do %>
-            <p>I'm an expert </p>
-            Share your Expertise
-            <i class="fa fa-angle-right"></i>
-          <%end%>
+        <%= link_to for_mentors_path, class: "block-link block-expert" do %>
+          <p>I'm an expert </p>
+          Share your Expertise
+          <i class="fa fa-angle-right"></i>
+        <%end%>
       </div>
     </div> 
   </div>

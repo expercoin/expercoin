@@ -1,0 +1,29 @@
+<nav class="content-nav">
+  <%= render "shared/subnavbar", active: "mentors" %>
+</nav>
+<main class="content content-with-nav">
+  <section class="mentors-filterable">
+    <div class="content-container">
+      <div class="content-title">
+        <h3>Top Expercoin Mentors</h3>
+      </div>
+      <div class="mentors-with-filters">
+        <div class="mentors mentors-panoramic">
+          <% @profiles.each do |profile| %>
+            <%= render 'shared/msp/profile_card', profile: profile %>
+          <% end %>
+        </div>
+        <div class="mentors-filters">
+          <div class="filter-group">
+            <h5>Categories</h5>
+            <% @categories.each do |category| %>
+              <%= link_to category.name, category_path(category) %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <%= paginate @profiles %>
+    </div>
+  </section>
+</main>
+
