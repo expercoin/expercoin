@@ -5,7 +5,7 @@ namespace :requests do
     profiles.each do |requester_profile|
       rand_num = rand(1..20)
       rand_num.times do
-        profile = Profile.find_by(id: rand(1..30))
+        profile = Profile.all.sample
         next if requester_profile == profile
         first_date = Faker::Time.forward(23, :morning)
         second_date = Faker::Time.forward(25, :day)
@@ -33,9 +33,8 @@ namespace :requests do
   end
   desc "Update some requests to accepted"
   task update_requests_to_accepted: :environment do
-    35.times do
-      request = Request.pending.sample
-      next unless request
+    requests = Request.pending.sample(35)
+    requests.each do |request|
       sugested_times = request.sugested_times.map(&:formated_datetime)
       request.update(
         status: 'accepted',
@@ -47,9 +46,8 @@ namespace :requests do
   end
   desc "Update some requests to completed"
   task update_requests_to_completed: :environment do
-    20.times do
-      request = Request.accepted.sample
-      next unless request
+    requests = Request.accepted.sample(20)
+    requests.each do |request|
       start_time = request.selected_date
       min_length = request.requested_length.to_i - 10
       max_length = request.requested_length.to_i + 10
@@ -60,7 +58,6 @@ namespace :requests do
         ended_at: end_time,
         updated_by: request.expert
       )
-      request.save
       puts "Request with id #{request.id} updated to status completed"
     end
   end

@@ -4,9 +4,9 @@ module Calls
 
     def index
       requests = SearchRequestsService.new(
-        current_user.profile.requests,
+        current_user.profile.requests.completed,
         params[:search]
-      ).perform      
+      ).perform
       @requests = requests.page(params[:page]).per(8)
     end
   end

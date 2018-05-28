@@ -7,7 +7,7 @@ class CallsController < ApplicationController
     requests = SearchRequestsService.new(
       current_user.profile.requests,
       params[:search]
-    ).perform      
+    ).perform
     @requests = requests.page(params[:page]).per(8)
   end
 
@@ -39,7 +39,6 @@ class CallsController < ApplicationController
       second_time third_time expert_id recording selected_date time_zone
     ]
   end
-  
 
   def set_request_and_expert
     @request = current_user.profile.requests.find_by_id(params[:id])

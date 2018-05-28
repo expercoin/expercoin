@@ -13,15 +13,6 @@
   </div>
 <% end %>
 <main class="content content-with-nav <%= @request.errors.any? ? 'content-with-errors' : '' %>">
-  <div class="content-breadcrumb">
-    <ul class="breadcrumb">
-      <li>
-        <%= link_to profile_path(@profile) do %>
-          <i class="fa fa-angle-left" aria-hidden="true"></i> Go Back
-        <% end %>
-      </li>
-    </ul>
-  </div>
   <header class="content-container content-with-aside">
     <div class="mentor-header mentor-header-sm content-main">
       <div class="mentor-image">
