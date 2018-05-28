@@ -20,7 +20,7 @@ namespace :users do
       specialization: { 'item_1': 'Death', 'item_2': 'Dragons', 'item_3': 'Ice' }
     )
 
-    30.times do
+    12.times do
       first_name = Faker::Name.first_name
       last_name = Faker::Name.last_name
       email = "#{first_name}-#{last_name}@expercoin.com"

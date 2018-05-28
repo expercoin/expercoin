@@ -22,7 +22,7 @@
       <li>
         <%= display_stars(ProfileRating.new(mentor).student_rating(current_user), 'You Rated') %>
       </li>
-      <li>Sessions <span class="strong"><%= mentor.requests.count %></span></li>
+      <li>Sessions <span class="strong"><%= mentor.requests.completed.count %></span></li>
       <li>Last Session <span class="strong"><%= decorate(mentor).last_session %></span></li>
     </ul>
     <a class="mentor-bio-collapse-link" data-toggle="collapse" data-target='#<%= "collapse_#{ mentor.id }" %>' aria-expanded="false" aria-controls='<%= "collapse_#{ mentor.id }" %>"'>

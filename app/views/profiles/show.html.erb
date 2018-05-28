@@ -48,6 +48,7 @@
                     <p class="quote">"<%= review.message %>"</p>
                     <div class="review-tags">
                       <p class="tags-label">Expertise & Skill</p>
+                      <%= display_categories(review.author) %>
                     </div>
                   </div>
                   <div class="review-rating">
@@ -71,7 +72,7 @@
       <div class="panel">
         <div class="panel-stats">
           <ul class="stats">
-            <li><span class="value"><%= @profile.requests.count %></span><span class="legend">Calls</span></li>
+            <li><span class="value"><%= @profile.requests.completed.count %></span><span class="legend">Calls</span></li>
             <li><span class="value"><%= @profile.reviews.count %></span><span class="legend">Reviews</span></li>
             <li><span class="value"><%= CallLength.new(@profile.requests).average_length %> Min</span><span class="legend">Avg. Call</span></li>
           </ul>

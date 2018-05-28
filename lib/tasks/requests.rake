@@ -3,7 +3,7 @@ namespace :requests do
   task create_test_requests: :environment do
     profiles = Profile.all
     profiles.each do |requester_profile|
-      rand_num = rand(1..20)
+      rand_num = rand(5..30)
       rand_num.times do
         profile = Profile.all.sample
         next if requester_profile == profile
@@ -33,7 +33,7 @@ namespace :requests do
   end
   desc "Update some requests to accepted"
   task update_requests_to_accepted: :environment do
-    requests = Request.pending.sample(35)
+    requests = Request.pending.sample(80)
     requests.each do |request|
       sugested_times = request.sugested_times.map(&:formated_datetime)
       request.update(
@@ -46,7 +46,7 @@ namespace :requests do
   end
   desc "Update some requests to completed"
   task update_requests_to_completed: :environment do
-    requests = Request.accepted.sample(20)
+    requests = Request.accepted.sample(60)
     requests.each do |request|
       start_time = request.selected_date
       min_length = request.requested_length.to_i - 10

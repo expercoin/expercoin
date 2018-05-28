@@ -12,5 +12,9 @@ module RatingHelper
     end.join
     "#{text} #{stars}".html_safe
   end
+
+  def display_categories(profile)
+    profile.categories.map(&:name).first(5).join(', ')
+  end
 end
 
