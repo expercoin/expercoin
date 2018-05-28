@@ -42,7 +42,8 @@ function setMinutes(minutes){
 }
 function setSeconds(seconds){
   if (!document.querySelector('[data-timer="seconds"]')) return;
-  document.querySelector('[data-timer="seconds"]').innerHTML = seconds;
+  var secondsFormat = addZeroToSingleDigit(seconds);
+  document.querySelector('[data-timer="seconds"]').innerHTML = secondsFormat;
 }
 function getTimeDifferenceInSeconds(startTime){
   var currentTime = new Date();
@@ -68,4 +69,7 @@ function getMinutes(difference, days, hours){
 function getSeconds(difference){
   var remainingSeconds = difference % 60;
   return parseInt(remainingSeconds);
+}
+function addZeroToSingleDigit(number) {
+  return ('0' + number).slice(-2);
 }
