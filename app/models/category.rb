@@ -3,7 +3,7 @@ class Category < ApplicationRecord
   has_many :categories, foreign_key: :parent_id
   has_and_belongs_to_many :profiles
 
-  validates :name, uniqueness: true
+  # validates :name, uniqueness: true
 
   scope :main, -> { where(parent_id: nil ) }
   scope :children, -> { where.not(parent_id: nil ) }
@@ -11,7 +11,14 @@ class Category < ApplicationRecord
   mount_uploader :banner, BannerUploader
 
   extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :slug_candidates, use: :slugged
+
+  def slug_candidates
+    [
+      :name,
+      [:name, :parent_id]
+    ]
+  end
 
   def subcategories
     Category.where(parent_id: self.id)

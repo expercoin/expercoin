@@ -39,7 +39,7 @@ namespace :users do
         rate: rate,
         expercoin_rate: rate * 1.07,
         title: Faker::Job.title,
-        about: Faker::Lorem.paragraph(2, true, 10),
+        about: Faker::Lorem.paragraph(2, true, 50),
         address: Faker::Address.street_address,
         state: Faker::Address.state,
         country: 'United States',
@@ -49,11 +49,9 @@ namespace :users do
         specialization: specialization
 
       )
-      categories_ids = []
-      10.times { categories_ids << rand(2..15) }
-      categories_ids.uniq!
-      categories = Category.where(id: categories_ids)
+      categories = Category.where.not(parent: nil).sample(rand(2..15))
       user.profile.categories << categories
+      puts "User #{user.profile.first_name} #{user.profile.last_name} created"
     end
   end
 
