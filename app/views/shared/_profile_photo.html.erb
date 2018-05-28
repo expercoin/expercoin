@@ -1,6 +1,5 @@
-<% photo_path = photo.gsub('/app/assets/images/', '') %>
-<% if FileTest.exist?("#{Rails.root}/app/assets/images/#{photo_path}") %>
-  <%= image_tag photo_path, class: "img-circle" %>
+<% if valid_url(photo) %>
+  <%= image_tag photo, class: "img-circle" %>
 <% else %>
   <%= image_tag 'empty_user.png', class: "img-circle" %>
 <% end %>
