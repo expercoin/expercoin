@@ -101,7 +101,7 @@
       <tr>
         <td>
           <h1>Hi <%= decorate(@message).receiver_name %>,</h1>
-          <p>You have a new direct message from <%= decorate(@message.sender.profile).full_name %></p>
+          <p><%= decorate(@message.sender.profile).full_name %> has answered on your message: <strong><%= link_to @parent.title, inbox_url(@parent), style: 'color: #37a1d9; text-decoration: none;' %></strong></p>
         </td>
       </tr>
       <tr>

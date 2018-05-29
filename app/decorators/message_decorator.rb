@@ -15,4 +15,12 @@ class MessageDecorator < BaseDecorator
   def format_date
     created_at.strftime('%b %d, %Y at %l:%M %P')
   end
+
+  def sender_photo_thumb
+    sender.profile.photo.thumb.url
+  end
+
+  def receiver_name
+    receiver.profile.first_name
+  end
 end
