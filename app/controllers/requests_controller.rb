@@ -6,7 +6,7 @@ class RequestsController < ApplicationController
   before_action :set_request_and_expert, only: %i[show update]
 
   def index
-    requests = SearchRequestsService.new(
+    requests = SearchService.new(
       current_user.profile.created_requests,
       params[:search]
     ).perform

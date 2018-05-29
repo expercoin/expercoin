@@ -7,9 +7,21 @@ class InboxController < ApplicationController
   end
    
   def index
-    @unread_messages = current_user.messages.unread.page(params[:page]).per(8)
+    messages = SearchService.new(
+      current_user.messages.unread,
+      params[:search]
+    ).perform
+    @unread_messages = messages.unread.page(params[:page]).per(8)
   end
 
+  def all
+    messages = SearchService.new(
+      current_user.messages,
+      params[:search]
+    ).perform
+    @all_messages = messages.page(params[:page]).per(8)
+  end
+   
   private
 
   def ensure_scope

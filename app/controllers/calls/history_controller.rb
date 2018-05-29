@@ -3,7 +3,7 @@ module Calls
     layout 'dashboard'
 
     def index
-      requests = SearchRequestsService.new(
+      requests = SearchService.new(
         current_user.profile.requests.completed,
         params[:search]
       ).perform
