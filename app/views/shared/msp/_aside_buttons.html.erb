@@ -1,4 +1,4 @@
 <div class="card-controls">
   <%= link_to 'Schedule a Session', new_request_path(expert: @profile), class: 'btn btn-block btn-with-icon btn-schedule' unless @profile == current_user.try(:profile) %>
-  <a class="btn btn-block btn-with-icon btn-message">Send Message</a>
+  <a class="btn btn-block btn-with-icon btn-message" href="#" data-toggle="modal" data-target="#message-mentor-modal-<%= profile&.id %>">Send Message</a>
 </div>

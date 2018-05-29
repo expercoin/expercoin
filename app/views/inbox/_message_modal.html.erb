@@ -1,0 +1,32 @@
+<div class="modal fade mentorship-modal" tabindex="-1" role="dialog" data-modal-message='close' id="message-mentor-modal-<%= profile.id %>">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title centered">
+          Message <%= decorate(profile).full_name %>
+        </h4>
+      </div>
+      <div class="modal-body">
+        <div class='request-form'>
+          <%= form_with model: Message.new, url: messages_path do |f| %>
+              <%= f.hidden_field :receiver_id, value: profile.user.id %>
+              <div class='form-group'>
+                <%= f.label :subject, 'Message Subject' %>
+                <%= f.text_field :title, { 'data-input': 'title', class: 'form-control', placeholder: 'What is the subject of your message'} %>
+              </div>
+
+              <div class='form-group'>
+                <%= f.label :message do %>
+                  Message Details
+                <% end %>
+                </label>  
+                <%= f.text_area :body, { 'data-input': 'body', class: 'form-control', rows: 5 }%>
+              </div>
+            <%= f.submit 'Send Message', class: 'btn btn-primary form-control' %>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

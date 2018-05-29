@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   namespace :requests do
     resources :times, only: [:edit, :update]
   end
+  resources :messages, only: :create
   resources :requests
   resources :inbox, only: [:index, :show] do
     collection do
