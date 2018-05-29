@@ -112,8 +112,8 @@
 
           <table>
             <tr>
-              <td> <%= image_tag @message.sender.profile.photo.thumb.url, class: 'rounded-0 img-height-thumb' %>  </td>
-              <td valign="top" class="px-2">
+              <td> <%= image_tag @message.sender.profile.photo.thumb.url, class: 'rounded-0 img-height-thumb', style: 'border-radius: 50%; height: 100px;' %>  </td>
+              <td valign="top" class="px-2" style="padding-left: 20px; padding-right: 20px;">
                 <h3><%= @message.title %></h3>
                 <p><%= @message.body %></p>
                 <%= link_to 'Reply', inbox_url(@message) %>
