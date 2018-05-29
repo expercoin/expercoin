@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     resources :times, only: [:edit, :update]
   end
   resources :requests
+  resources :inbox, only: [:index, :show]
 
   get 'requests/:id/thankyou', to: 'requests#thankyou', as: :requests_thankyou
   resources :reviews

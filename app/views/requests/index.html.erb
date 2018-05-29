@@ -5,7 +5,7 @@
   <div class="content-container">
     <div class="content-main user-requests">
       <%= render 'shared/requests_header', requests: @requests %>
-      <%= render 'shared/search_requests', url: requests_path %>
+      <%= render 'shared/search', url: requests_path, title: 'Request History' %>
 
       <div class="panel requests-list-container" data-ordered-by="none" data-order-direction="none">
         <header class="requests-list-header">

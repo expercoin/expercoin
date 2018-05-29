@@ -2,10 +2,10 @@
   <div class="content-nav-container">
     <ul class="content-nav-list">
       <li>
-        <%= link_to 'Active Calls', calls_path, class: "active"  %>
+        <%= link_to 'Unread', inbox_index_path, class: "active"  %>
       </li>
       <li>
-        <%= link_to 'History',calls_history_index_path %>
+        <%= link_to 'All',calls_history_index_path %>
       </li>
     </ul>  
   </div>
@@ -13,13 +13,12 @@
 <main class="content content-with-nav">
   <div class="content-container user-requests">
     <div class="content-main">
-      <%= render 'shared/requests_header', requests: @requests %>
       <%= render 'shared/search', url: calls_path, title: 'Request History' %>
 
       <div class="panel requests-list-container" data-ordered-by="none" data-order-direction="none">
         <header class="requests-list-header">
           <div class="col-md-6 sortable-item" data-sort-type="title">
-            Request
+            Sender
           </div>
           <div class="col-md-3 sortable-item" data-sort-type="date">
             Session Date
@@ -29,17 +28,17 @@
           </div>
         </header>
         <div class="row-items-container">
-          <% @requests.each do |request| %>
-            <div class="requests-list-row" id="<%= request.id %>">
+          <% @unread_messages.each do |message| %>
+            <div class="requests-list-row" id="<%= message.id %>">
               <div class="col-md-6 requests-list-item">
-                <%= decorate(request.requester).full_name %>
+                <%= decorate(message.sender.profile).full_name %>
               </div>
-              <div class="col-md-3 requests-list-item" data-date-created="<%= request.created_at.strftime('%B %d, %Y %H:%M:%S') %>">
-                <%= request.created_at.strftime('%b %d, %Y at %l:%M %P') %>
+              <div class="col-md-3 requests-list-item">
+                <%= decorate(message).format_date %>
               </div>
               <div class="col-md-3 requests-list-item flex-space-between">
-                <span class="request-text-<%= request.status.downcase %>"><%= request.status %></span>
-                <%= link_to "Details", call_path(request.id), class: "btn-table" %>
+                <span ><%= decorate(message).status %></span>
+                <%= link_to "Details", inbox_path(message.id), class: "btn-table" %>
               </div>
             </div>
           <% end %>
@@ -48,7 +47,7 @@
 
       </div>
     </div>
-    <%= paginate @requests %>
+    <%= paginate @unread_messages %>
   </div>
 </main>
 

@@ -1,11 +1,11 @@
 <div class="panel requests-history-container">
   <div class="col-md-8 requests-history-item">
-    <span class="requests-history-label">Request History</span>
+    <span class="requests-history-label"><%= title %></span>
   </div>
   <div class="col-md-4 requests-history-item">
     <%= form_tag(url, method: :get, enforce_utf8: false) do %>
       <i class="fa fa-search"></i>
-      <%= text_field_tag :search, params[:search], class: "requests-history-search", placeholder: "Search Requests" %>
+      <%= text_field_tag :search, params[:search], class: "requests-history-search", placeholder: "Search" %>
     <% end %>
   </div>
 </div>

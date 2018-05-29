@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_one :profile
+  has_many :messages, foreign_key: :receiver_id
 
   attr_accessor :first_name, :last_name
 
