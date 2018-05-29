@@ -11,4 +11,6 @@ if Rails.env.development?
   Rake::Task['requests:update_requests_to_completed'].invoke
   Rake::Task['reviews:create_test_reviews'].invoke
   Rake::Task['wallets:create_test_wallets'].invoke
+  Rake::Task['messages:create_test_messages'].invoke
+  Rake::Task['messages:create_test_parent_messages'].invoke
 end
