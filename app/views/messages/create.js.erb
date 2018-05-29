@@ -1,0 +1,10 @@
+<% if @message&.id %>
+  $('[data-modal-message="close"]').modal('toggle');
+  $('[data-input="title"]').val('');
+  $('[data-input="body"]').val('');
+    $('[data-input="title"]').removeClass('is-invalid');
+  $('[data-input="body"]').removeClass('is-invalid');
+<% else %>
+  $('[data-input="title"]').addClass('is-invalid');
+  $('[data-input="body"]').addClass('is-invalid');
+<% end %>

@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    Message.create(messages_params)
+    @message = Message.create(messages_params)
   end
 
   private
