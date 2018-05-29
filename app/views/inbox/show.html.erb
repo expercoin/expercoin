@@ -1,0 +1,54 @@
+<nav class="content-nav">
+  <div class="content-nav-container">
+    <ul class="content-nav-list">
+      <li>
+        <%= link_to 'Unread', inbox_index_path %>
+      </li>
+      <li>
+        <%= link_to 'All', all_inbox_index_path %>
+      </li>
+    </ul>  
+  </div>
+</nav>
+<main class="content content-with-nav">
+  <header class="content-container content-with-aside">
+    <div class="mentor-header mentor-header-sm content-main">
+      <div class="mentor-image">
+       <%= render 'shared/profile_photo', photo: @profile.photo.thumb.url  %>
+      </div>
+      <div class="mentor-info">
+        <h1><%= decorate(@profile).full_name %></h1>
+        <p><%= @profile.title %></p>
+        <div class="location">
+          <% unless decorate(@profile).display_location_with_abbreviation.empty? %>
+            <i class="fa fa-map-marker"></i>
+            <%= decorate(@profile).display_location_with_abbreviation %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="mentor-pricing-and-rating content-aside">   
+      <p class="pricing"><span class="currency">EXPR </span><%= @profile.expercoin_rate %><span class="per">/min</span></h2>
+      <p class="rating">
+        <%= display_stars ProfileRating.new(@profile).average_rating, 'Rating' %>
+      </p>   
+    </div>  
+  </header>
+  <section class="content-container content-with-aside">
+    <div class="content-main">
+      <div class="panel">
+        <div class="request-description">
+          <h2 class="title"><%= @message.title %></h2>
+          <p><%= @message.body %></p>
+        </div>
+      </div>
+    </div>
+    <div class="content-aside">
+      <div class='panel'>
+        <div class='panel-body'>
+          <%= render 'shared/msp/aside_buttons' %>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
