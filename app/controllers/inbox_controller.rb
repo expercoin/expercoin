@@ -1,9 +1,10 @@
 class InboxController < ApplicationController
   layout 'dashboard'
   before_action :authenticate_user!
-  before_action :ensure_scope, only: :show
+  
   def show
-    @all_messages = current_user.messages
+    @message = current_user.messages.find(params[:id])
+    @profile = @message.sender.profile
   end
    
   def index
@@ -20,11 +21,5 @@ class InboxController < ApplicationController
       params[:search]
     ).perform
     @all_messages = messages.page(params[:page]).per(8)
-  end
-   
-  private
-
-  def ensure_scope
-
   end
 end

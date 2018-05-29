@@ -5,4 +5,7 @@ class Message < ApplicationRecord
   belongs_to :parent, class_name: 'Message', optional: true
 
   scope :unread,-> { where(unread: true) }
+
+  include PgSearch
+  pg_search_scope :search, against: [:title, :body], using: { tsearch: {prefix: true} }
 end
