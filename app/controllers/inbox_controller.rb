@@ -4,6 +4,7 @@ class InboxController < ApplicationController
   
   def show
     @message = current_user.messages.find(params[:id])
+    @message.update(unread: false)
     @profile = @message.sender.profile
   end
    
