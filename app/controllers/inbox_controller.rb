@@ -1,7 +1,7 @@
 class InboxController < ApplicationController
   layout 'dashboard'
   before_action :authenticate_user!
-  
+
   def show
     @message = current_user.messages.find(params[:id])
     @message.update(unread: false)

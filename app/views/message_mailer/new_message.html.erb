@@ -109,17 +109,29 @@
       </tr>
       <tr>
         <td>
-
           <table>
             <tr>
-              <td valign="top"> <%= image_tag decorate(@message).sender_photo_thumb, class: 'rounded-0 img-height-thumb', style: 'border-radius: 50%; height: 100px;' %>  </td>
-              <td valign="top" class="px-2" style="padding-left: 20px; padding-right: 20px;">
+              <td width="120" style="padding: 16px;">
+                <%= image_tag decorate(@message).sender_photo_thumb, class: 'rounded-0 img-height-thumb', style: 'border-radius: 50%; height: 100px;' %> 
+              </td>
+              <td>
+                <h4 style="margin: 0;"> <%= decorate(@message.sender.profile).full_name %> </h4>
+                <div> <%= @message.sender.profile.title %> </div>
+                <div> <%= decorate(@message.sender.profile).display_location_with_abbreviation %> </div>
+                <div>
+                  <%= decorate(@message).format_date  %>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" valign="top" style="padding: 16px; border-top: 1px solid #37a1d9;">
                 <h3 style="margin-top: 0;"><%= @message.title %></h3>
                 <p><%= @message.body %></p>
                 <%= link_to 'Reply', inbox_url(@message), style: 'color: #37a1d9; text-decoration: none;' %>
               </td>
             </tr>
           </table>
+          
         </td>
       </tr>
       <tr>
