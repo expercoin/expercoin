@@ -88,10 +88,11 @@
           <% if @request.pending? && @request.updated_by == @request.expert %>
             <%= link_to "Suggested Times by #{@request.expert.first_name}", edit_requests_time_path(@request), class: 'mb-2 btn btn-block btn-with-icon btn-schedule' %>
           <% end %>
-          <%= render 'shared/msp/aside_buttons' %>
+          <%= render 'shared/msp/aside_buttons' , profile: @profile %>
         </div>
       </div>
     </div>
   </section>
 </main>
 <%= render 'review_confirm_modal' %>
+<%= render 'inbox/message_modal', profile: @profile %>
