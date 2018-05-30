@@ -1,0 +1,141 @@
+<nav class="content-nav">
+  <%= render "shared/subnavbar", active: "requests" %>
+</nav>
+<main class="content content-with-nav">
+  <div class="content-breadcrumb">
+    <ul class="breadcrumb">
+      <li>
+        <%= link_to categories_path do %>
+          <i class="fa fa-angle-left" aria-hidden="true"></i> Go Back
+        <% end %>
+      </li>
+    </ul>
+  </div>
+  <header class="content-container content-with-aside">
+    <div class="mentor-header mentor-header-sm content-main">
+      <div class="mentor-image">
+       <%= 'profile_photo' %>
+      </div>
+      <div class="mentor-info">
+        <h1>Schedule session with <%= @profile&.first_name %></h1>
+        <p><%= @profile.title %></p>
+        <div class="location">
+          <% unless decorate(@profile).display_location_with_abbreviation.empty? %>
+            <i class="fa fa-map-marker"></i>
+            <%= decorate(@profile).display_location_with_abbreviation %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="mentor-pricing-and-rating content-aside">   
+      <p class="pricing"><span class="currency">$</span>2.50<span class="per">/min</span></h2>
+      <p class="rating">
+        <%= display_stars(3.75, 'Rating') %>
+      </p>   
+    </div>  
+  </header>
+
+  <div class="content-container content-with-aside">
+    <div class="content-main">
+      <div class='request-form'>
+        <%= form_for @request, url: requests_path do |f| %>
+         <%= f.hidden_field :expert_id, value: @profile.id %>
+          <section class='panel form-section'>
+            <div class='section-title'>
+              <div class='circle centered'>
+                <span class='number'>1</span>
+              </div>
+              <h2>Request Information</h2>
+            </div>
+            <div class='form-group'>
+              <%= f.label :title, 'What do you need help with?' %>
+              <%= f.text_field :title, { class: 'form-control', placeholder: 'Title of your request'} %>
+            </div>
+
+            <div class='form-group'>
+              <%= f.label :message do %>
+                Request Details
+                <span class='sub-label'><span id="character-count">150</span> characters left</span>
+              <% end %>
+              </label>  
+              <%= f.text_area :message, { class: 'form-control', rows: 5, maxlength: 150, id: 'message-details' }%>
+            </div>
+
+            <div class='form-group'>
+              <%= f.label :requested_length, 'Aproximate Session Length' %>
+              <%= f.select :requested_length, options_for_select(Request.requested_lengths.keys.map {|k| ["#{k}", k]} ), {}, { class: 'select-picker select-picker-with-padding full-width' } %>
+            </div>
+
+            <div class='form-group'>
+              <%= f.label :cell_number do %>
+                Your Cell Number
+              <span class='sub-label'>Your phone number will be never shared and only used to send your notifications</span>
+            <% end %>
+              <div class='row'>
+                <div class='col-md-3 col-md-offset-0'>
+                  <%= f.select :country_number, phone_codes_as_options, {}, { class: 'select-picker select-picker-with-padding full-width'} %>
+                </div>
+                <div class='col-md-9'>
+                  <%= f.text_field :cell_number, { class: 'form-control', placeholder: '6177485833' } %>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class='panel form-section'>
+            <div class='section-title'>
+              <div class='circle centered'>
+                <span class='number'>2</span>
+              </div>
+              <h2>Suggest Time</h2>
+            </div>
+            <div class='section-subtitle'>
+              Suggested 3 times to Sarah to schedule the call. Sarah can accept a time or suggest outer times.
+            </div>
+            <div class='form-group'>
+              <%= f.label :time_zone, 'Your Timezone' %>
+              <%= time_zone_select_dst("msp_request", "time_zone", nil, {default: "Eastern Time (US & Canada)"}, { class: 'select-picker select-picker-with-padding full-width'}) %>
+            </div>
+            <h4>Suggest 3 times</h4>
+            <div class='form-group datetime-picker-container'>
+              <div class='picker date'>
+                <%= f.text_field :first_date, class: 'date-picker-input form-control', placeholder: 'Option 1' %>
+                <span class='date-picker-input icon-calendar-color'></span>
+              </div>
+              <span class='at-divider'>at</span>
+              <div class='picker time'>
+                <%= f.text_field :first_time, class: 'pick-time form-control' %>
+              </div>
+            </div>
+            <div class='form-group datetime-picker-container'>
+              <div class='picker date'>
+                <%= f.text_field :second_date,  class: 'date-picker-input form-control', placeholder: 'Option 2' %>
+                <span class='date-picker-input icon-calendar-color'></span>
+              </div>
+              <span class='at-divider'>at</span>
+              <div class='picker time'>
+                <%= f.text_field :second_time, class: 'pick-time form-control' %>
+              </div>
+            </div>
+            <div class='form-group datetime-picker-container'>
+              <div class='picker date'>
+                <%= f.text_field :third_date,  class: 'date-picker-input form-control', placeholder: 'Option 3' %>
+                <span class='date-picker-input icon-calendar-color'></span>
+              </div>
+              <span class='at-divider'>at</span>
+              <div class='picker time'>
+                <%= f.text_field :third_time, class: 'pick-time form-control' %>
+              </div>
+            </div>
+          </section>
+
+          <%= f.submit 'Continue', class: 'btn btn-primary form-control' %>
+        <% end %>
+
+      </div>
+    </div>
+    <div class="content-aside">
+      <%= render 'shared/how_it_works' %>
+    </div>   
+  </div>    
+</main>
