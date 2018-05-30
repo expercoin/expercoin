@@ -87,6 +87,9 @@
             <li><%= @request.second_date.strftime('%A, %b %d %Y') %> at <%= @request.second_time %>, <%= @request.time_zone %></li>
             <li><%= @request.third_date.strftime('%A, %b %d %Y') %> at <%= @request.third_time %>, <%= @request.time_zone %></li>
           </ul>
+          <p>
+            <%= link_to call_url(@request), call_url(@request), target: :blank %>
+          </p>
         </td>
       </tr>
       <tr>

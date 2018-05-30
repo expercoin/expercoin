@@ -113,6 +113,9 @@
           <p>
             Requested Call Length: <%= @request.requested_length %>
           </p>
+          <p>
+            <%= link_to call_url(@request), call_url(@request), target: :blank %>
+          </p>
         </td>
       </tr>
       <tr>
