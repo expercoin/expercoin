@@ -1,0 +1,60 @@
+<div class="modal fade mentorship-modal" tabindex="-1" role="dialog" id="live-mentoring-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header flex-space-between text-white bg-dark">
+        <button class="btn btn-default" data-dismiss="modal" aria-label="Close">Cancel</button>
+        <h4 class="modal-title centered">
+          <span class="msp-icon-live mr-1"></span> Live Mentoring
+        </h4>
+        <button class="btn btn-success">Continue</button>
+      </div>
+      <div class="modal-body">
+        <div class='content-main'>
+          <div class='request-form'>
+            <%= form_for :request, url: '' do |f| %>
+              <section class='panel form-section'>
+                <div class='section-title'>
+                  <h4>Get Next Available Mentor</h4>
+                </div>
+                <div class='form-group'>
+                  <%= f.label :title, 'What do you need help with?' %>
+                  <%= f.text_field :title, { class: 'form-control', placeholder: 'Title of your request'} %>
+                </div>
+
+                <div class='form-group'>
+                  <%= f.label :message do %>
+                    Request Details
+                    <span class='sub-label'>35 characters minimum. More details, the better.</span>
+                  <% end %>
+                  </label>  
+                  <%= f.text_area :message, { class: 'form-control', rows: 5 }%>
+                </div>
+
+                <div class='form-group'>
+                  <%= f.label :category_id, 'Pick Expertise/Skill Area' %>
+                  <%# <%= f.text_field :category_id, { class: 'select-picker-tags select-picker-with-padding full-width', data: { existing_tags: all_tags } } %>
+                  <input type="text" class="form-control">
+                </div>
+
+                <div class='form-group'>
+                  <%= f.label 'tags', 'Add Tags' %>
+                  <%# <%= f.text_field :tag_list, {class: 'select-picker-tags select-picker-with-padding full-width', data: { existing_tags: all_tags}, value: '' } %>
+                  <input type="text" class="form-control">
+                </div>
+
+                <div class='form-group'>
+                  <%= f.label :requested_length, 'Aproximate Session Length' %>
+                  <%= f.select :requested_length, options_for_select(['15min', '30min', '45min']), {}, { class: 'selectpicker selectpicker-with-padding full-width' } %>
+                </div>
+
+              </section>
+
+              <%= f.submit 'Get Live Mentoring', class: 'btn btn-success btn-block' %>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
