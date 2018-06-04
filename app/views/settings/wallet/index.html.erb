@@ -21,11 +21,11 @@
           <div class="card card-form">
             <div class="card-body">
               <label>Public Key: </label> <%= address.public_key %>
-            <%= link_to 'Delete', settings_wallet_path(address), method: :delete %>
+            <%= link_to 'Delete', settings_wallet_path(address,  format: :js), method: :delete, remote: true %>
             </div>
           </div>
         <% end %>
-        <%= form_with scope: :eth_address do |f| %>
+        <%= form_with url: settings_wallet_index_path, scope: :eth_address do |f| %>
           <div class="card card-form">
             <div class="card-body">
               <div class="form-group">
@@ -41,3 +41,4 @@
       </div>
     </div>
 </div>
+<%= render 'shared/notice_box', message: 'Successfully Saved!' %>

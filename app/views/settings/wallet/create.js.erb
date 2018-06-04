@@ -1,3 +1,4 @@
+$('.page-content').html("<%= escape_javascript(render(file: 'settings/wallet/index')) %>");
   $('[data-notice="success"]').addClass('show');
   setTimeout(function(){
     $('[data-notice="success"]').removeClass('show');

@@ -11,13 +11,12 @@ module Settings
 
     def create
       @wallet.eth_addresses.create(eth_address_params)
-      redirect_to action: :index
     end
 
     def destroy
       eth_address = @wallet.eth_addresses.find(params[:id])
       eth_address.destroy
-      redirect_to action: :index
+      set_wallet
     end
 
     private
