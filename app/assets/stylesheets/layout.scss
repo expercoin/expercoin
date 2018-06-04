@@ -60,6 +60,8 @@ body {
 [data-notice="success"] {
   position: fixed;
   top: 52px;
+  left: 0;
+  right: 0;
   width: 100%;
   z-index: 100;
   display: none;

@@ -10,7 +10,6 @@ class SettingsController < ApplicationController
   def create
     @profile_form = ProfileForm.new(profile_params)
     @profile_form.update(@profile)
-    redirect_to action: :index
   end
 
   private

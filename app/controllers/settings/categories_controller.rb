@@ -14,7 +14,6 @@ module Settings
     def create
       @profile_form = ProfileForm.new(profile_params)
       @profile_form.update_categories(@profile)
-      redirect_to action: :index
     end
 
     private
