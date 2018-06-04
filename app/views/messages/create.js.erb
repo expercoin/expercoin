@@ -4,6 +4,10 @@
   $('[data-input="body"]').val('');
     $('[data-input="title"]').removeClass('is-invalid');
   $('[data-input="body"]').removeClass('is-invalid');
+  $('[data-notice="success"]').addClass('show');
+  setTimeout(function(){
+    $('[data-notice="success"]').removeClass('show');
+  }, 2000);
 <% else %>
   $('[data-input="title"]').addClass('is-invalid');
   $('[data-input="body"]').addClass('is-invalid');
