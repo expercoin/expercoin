@@ -10,7 +10,7 @@ module Settings
     def index; end
 
     def create
-      @wallet.eth_addresses.create(eth_address_params)
+      @address = @wallet.eth_addresses.create(eth_address_params)
     end
 
     def destroy

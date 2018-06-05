@@ -17,11 +17,11 @@
         <h4 class="card-form-title mt-3">
           Your ETH Addresses
         </h4>
-        <% @wallet.eth_addresses.each do |address| %>
+        <% @wallet.eth_addresses.safe.each do |address| %>
           <div class="card card-form">
             <div class="card-body">
               <label>Public Key: </label> <%= address.public_key %>
-            <%= link_to 'Delete', settings_wallet_path(address,  format: :js), method: :delete, remote: true %>
+              <%= link_to 'Delete', settings_wallet_path(address,  format: :js), method: :delete, remote: true %>
             </div>
           </div>
         <% end %>
@@ -41,4 +41,5 @@
       </div>
     </div>
 </div>
-<%= render 'shared/notice_box', message: 'Successfully Saved!' %>
+<%= render 'shared/notice_box', message: 'Successfully Saved!', type: 'success' %>
+<%= render 'shared/notice_box', message: 'Eth Address Incorrect Format!', type: 'error' %>
