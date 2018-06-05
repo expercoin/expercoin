@@ -1,0 +1,62 @@
+<%= render partial: 'shared/payment_navbar' %>
+<main class="content content-with-nav">
+  <section class="content-container mt-5">
+    <div class="content-main">
+      <div class="panel">
+        <div class="request-description">
+          <h2 class="title">Payment Details</h2>
+        </div>
+        <div class="list-group">
+          <div class="list-group-item d-flex align-items-center">
+            <div class="d-flex w-25 justify-content-between">
+              <h5 class="mb-1">Token: </h5>
+            </div>
+            <span><%= @payment.token %></span>
+          </div>
+          <div class="list-group-item d-flex align-items-center">
+            <div class="d-flex w-25 justify-content-between">
+              <h5 class="mb-1">Sender: </h5>
+            </div>
+            <span><%= decorate(@payment.sender).full_name %></span>
+          </div>
+          <div class="list-group-item d-flex align-items-center">
+            <div class="d-flex w-25 justify-content-between">
+              <h5 class="mb-1">Receiver: </h5>
+            </div>
+            <span><%= decorate(@payment.receiver).full_name %></span>
+          </div>
+          <div class="list-group-item d-flex align-items-center">
+            <div class="d-flex w-25 justify-content-between">
+              <h5 class="mb-1">Amount:</h5>
+            </div>
+            <span><%= "EXPR #{@payment.amount}" %></span>
+          </div>
+          <div class="list-group-item d-flex align-items-center">
+            <div class="d-flex w-25 justify-content-between">
+              <h5 class="mb-1">Cost/Fee:</h5>
+            </div>
+            <span><%= "EXPR #{@payment.cost}" %></span>
+          </div>
+          <div class="list-group-item d-flex align-items-center">
+            <div class="d-flex w-25 justify-content-between">
+              <h5 class="mb-1">From</h5>
+            </div>
+            <span><%= @payment.from_eth %></span>
+          </div>
+          <div class="list-group-item d-flex align-items-center">
+            <div class="d-flex w-25 justify-content-between">
+              <h5 class="mb-1">To</h5>
+            </div>
+            <span><%= @payment.to_eth %></span>
+          </div>
+          <div class="list-group-item d-flex align-items-center">
+            <div class="d-flex w-25 justify-content-between">
+              <h5 class="mb-1">Date:</h5>
+            </div>
+            <span><%= @payment.created_at %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

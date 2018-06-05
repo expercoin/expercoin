@@ -4,6 +4,7 @@ class PaymentsController < ApplicationController
 
   def show
     @payment = Transaction.find(params[:id])
+    @profile = current_user.profile
   end
 
   def index
