@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_29_075740) do
+ActiveRecord::Schema.define(version: 2018_06_05_090136) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -159,6 +159,19 @@ ActiveRecord::Schema.define(version: 2018_05_29_075740) do
     t.integer "profile_id"
     t.integer "author_id"
     t.integer "request_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "receiver_id"
+    t.text "token"
+    t.integer "status", default: 0
+    t.text "from_eth"
+    t.text "to_eth"
+    t.integer "amount"
+    t.float "cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

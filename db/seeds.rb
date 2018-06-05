@@ -13,4 +13,5 @@ if Rails.env.development?
   Rake::Task['wallets:create_test_wallets'].invoke
   Rake::Task['messages:create_test_messages'].invoke
   Rake::Task['messages:create_test_parent_messages'].invoke
+  Rake::Task['payments:create_test_payments'].invoke
 end
