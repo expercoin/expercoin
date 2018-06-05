@@ -9,4 +9,8 @@ class PaymentsController < ApplicationController
   def index
     @payments = Transaction.where(sender: current_user.profile)
   end
+
+  def received
+    @payments = Transaction.where(receiver: current_user.profile)
+  end
 end

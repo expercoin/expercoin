@@ -47,6 +47,8 @@ Rails.application.routes.draw do
   get 'requests/:id/thankyou', to: 'requests#thankyou', as: :requests_thankyou
   resources :reviews
   resources :my_mentors, path: 'my-mentors', only: [:index]
-  resources :payments, only: [:index, :show]
+  resources :payments, only: [:index, :show] do
+    get 'received', on: :collection
+  end
   resources :callbacks, only: :create
 end

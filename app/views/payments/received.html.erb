@@ -2,10 +2,10 @@
   <div class="content-nav-container">
     <ul class="content-nav-list">
       <li>
-        <%= link_to 'Send', '#', class: "active"  %>
+        <%= link_to 'Send', payments_path %>
       </li>
       <li>
-        <%= link_to 'Received', received_payments_path %>
+        <%= link_to 'Received', '#', class: 'active' %>
       </li>
     </ul>  
   </div>
@@ -18,7 +18,7 @@
       <div class="panel requests-list-container" data-ordered-by="none" data-order-direction="none">
         <header class="requests-list-header">
           <div class="col-md-3 sortable-item" data-sort-type="date">
-            Receiver
+            Sender
           </div>
           <div class="col-md-3 sortable-item" data-sort-type="date">
             Amount (EXPR)
@@ -34,7 +34,7 @@
           <% @payments.each do |payment| %>
             <div class="requests-list-row" id="<%= payment.id %>">
               <div class="col-md-3 requests-list-item">
-<%= link_to decorate(payment.receiver).full_name, profile_path(payment.receiver) %>
+<%= link_to decorate(payment.receiver).full_name, profile_path(payment.sender) %>
               </div>
               <div class="col-md-3 requests-list-item">
                 <%= payment.amount %>
