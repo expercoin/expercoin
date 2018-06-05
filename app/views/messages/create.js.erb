@@ -1,5 +1,5 @@
 <% if @message&.id %>
-  $('[data-modal-message="close"]').modal('toggle');
+  $('[data-modal-message="close"]').modal('hide');
   $('[data-input="title"]').val('');
   $('[data-input="body"]').val('');
     $('[data-input="title"]').removeClass('is-invalid');

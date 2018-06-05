@@ -20,4 +20,5 @@
 
 document.addEventListener("turbolinks:load", function() {
   $('.selectpicker').select2();
+  $('.selectpicker-time').select2();
 });
