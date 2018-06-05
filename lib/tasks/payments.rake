@@ -15,8 +15,8 @@ namespace :payments do
         receiver: expert,
         token: "0x#{Faker::Bitcoin.testnet_address}",
         status: 'success',
-        from_eth: requester.wallet.eth_addresses.sample,
-        to_eth: expert.wallet.eth_addresses.sample,
+        from_eth: requester.wallet.eth_addresses.sample.public_key,
+        to_eth: expert.wallet.eth_addresses.sample.public_key,
         amount: amount,
         cost: cost
       )

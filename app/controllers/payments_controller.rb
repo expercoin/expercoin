@@ -2,6 +2,11 @@ class PaymentsController < ApplicationController
   layout 'dashboard'
   before_action :authenticate_user!
 
-  def index; end
+  def show
+    @payment = Transaction.find(params[:id])
+  end
 
+  def index
+    @payments = Transaction.where(sender: current_user.profile)
+  end
 end
