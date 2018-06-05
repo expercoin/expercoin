@@ -146,7 +146,7 @@
               <div data-block="length-form" class="section-row">
                 <div class='form-group'>
                   <%= f.label :requested_length, 'Aproximate Session Length' %>
-                  <%= f.select :requested_length, options_for_select(Request.requested_lengths.keys.map {|k| ["#{k}", k]} ), {}, { class: 'selectpicker selectpicker-control' } %>
+                  <%= f.select :requested_length, options_for_select(Request.requested_lengths.keys.map {|k| ["#{k}", k]} ), {}, { class: 'selectpicker-time selectpicker-control' } %>
                 </div>
               </div>
             </div>
