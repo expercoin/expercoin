@@ -12,11 +12,5 @@ document.addEventListener("turbolinks:load", function() {
         $('.category-subcategories[data-id="' + category_id +'"]').hide();
       }
     }, 100);  
-  });  
-  // $('.category-subcategories').mouseleave(function() {
-  //   var subcategory_id = $(this).data('id');
-  //   if ($('.category-item[data-id="' + subcategory_id +'"]:hover').length == 0) { 
-  //     $(this).hide();
-  //   }  
-  // });  
+  });
 });
