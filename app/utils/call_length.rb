@@ -5,6 +5,8 @@ class CallLength
 
   def average_length
     (total_requested_length / total_calls.to_f).round(1).to_i
+  rescue StandardError
+    0
   end
 
   def total_price; end
