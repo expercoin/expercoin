@@ -4,15 +4,20 @@ class SettingsController < ApplicationController
   layout 'profile'
 
   def index
-    @profile_form = ProfileForm.new(@profile, @profile.location, photo_url: @profile.try(:photo).thumb.url)
+    set_profile_form
   end
 
   def create
-    @profile_form = ProfileForm.new(profile_params)
-    @profile_form.update(@profile)
+    profile_form = ProfileForm.new(profile_params)
+    profile_form.update(@profile)
+    set_profile_form
   end
 
   private
+  
+  def set_profile_form
+    @profile_form = ProfileForm.new(@profile, @profile.location, photo_url: @profile.try(:photo).thumb.url)
+  end
 
   def profile_params
     params.require(:profile_form).permit(

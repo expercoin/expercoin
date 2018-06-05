@@ -1,7 +1,11 @@
 document.addEventListener("turbolinks:load", function() {
-    if ($('#add-specialization-item').length > 0) {
-      $('#add-specialization-item').on('click', addSpecializationItemField);
-    }
+  if ($('#add-specialization-item').length > 0) {
+    $('#add-specialization-item').on('click', addSpecializationItemField);
+  }
+
+  $('body').on('change','#profile_form_photo', function() {
+    $('[name="commit"]').click();
+  });
 });
 
 
