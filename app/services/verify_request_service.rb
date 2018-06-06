@@ -1,7 +1,7 @@
 class VerifyRequestService < BaseService
   def initalize(params)
     @params = params
-    # @transaction = FindTransaction.new(eth_address.public_key)
+    # @transaction = Eth::FindTransaction.new(eth_address.public_key)
   end
 
   def verified?
@@ -15,13 +15,12 @@ class VerifyRequestService < BaseService
     request.verified!
   end
 
-
   private
 
   # def create_transaction
-  #   TransactionService.new(transaction).create
+  #   transaction_params = Eth::ParseTransaction.new(@transaction).perform
+  #   Transaction.create!(transaction_params)
   # end
-
 
   def eth_address
     @params[:eth_address]
