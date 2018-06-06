@@ -8,20 +8,22 @@ module Eth
     end
 
     def perform
-      return false unless results.present?
-      results.map{ |t| t if t['from'] == @tx_hash }.compact.last
+      return false unless result.present?
+      result
     end
 
     private
 
-    def results
-      JSON.parse(open(url_string).read)['result']
-    rescue StandardError
-      []
+    def result
+      ipc
     end
 
-    def url_string
-      "http://api.etherscan.io/api?module=account&action=txlist&address=#{EXPERCOIN_ETH}&sort=asc&apikey=#{API_KEY}"
+    def ipc
+      Ethereum::IpcClient.new("/home/sedad/Desktop/ethereum/ACPrivateChain/geth.ipc", false)
+                         .yield_self { |it| it.eth_get_transaction_by_hash(@tx_hash) }
+                         .yield_self { |it| it['result'] }
+    rescue StandardError
+      {}
     end
   end
 end

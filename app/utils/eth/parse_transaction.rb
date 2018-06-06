@@ -1,6 +1,6 @@
 class ParseTransaction
   def initialize(transaction)
-    @transaction = transaction['body']
+    @transaction = transaction
     @params = {}
   end
 
@@ -11,7 +11,19 @@ class ParseTransaction
 
   private
 
+  def from
+    @transaction['from']
+  end
+
+  def to
+    @transaction['to']
+  end
+
   def tx_hash
-    @transaction['tx_hash']
+    @transaction['hash']
+  end
+
+  def block_number
+    @transaction['blockNumber']
   end
 end
