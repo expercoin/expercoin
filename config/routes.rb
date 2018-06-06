@@ -37,7 +37,9 @@ Rails.application.routes.draw do
     resources :times, only: [:edit, :update]
   end
   resources :messages, only: :create
-  resources :requests
+  resources :requests do
+    resources :verify, only: [:index, :create]
+  end
   resources :inbox, only: [:index, :show] do
     collection do
       get 'all'
