@@ -7,7 +7,16 @@
       <div class="content-title">
         <h3>Verify Call Session</h3>
       </div>
-      <div class="request-parties">
+      <div class="request-transfer">
+        <div class="request-party requester">
+          0x55437f0109C2F4ECB1E7F54099271aAf913963B0
+        </div>
+        <div class="request-direction"></div>
+        <div class="request-party requested">
+          0x55437f0109C2F4ECB1E7F54099271aAf913963B0
+        </div>
+      </div>
+      <!-- <div class="request-parties">
         <div class="row">
           <div class="col-xs-12 col-md-6">
             <div class="request-card requester">
@@ -32,20 +41,20 @@
             </div>
           </div>
         </div>
-      </div> 
-      <div class="request-verification">
-        <h4>Verification ID</h4>
-          <%= form_with scope: :verify do |f| %>
-          <div class="row">
-            <div class="col-xs-12 col-md-6">
+      </div> --> 
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="request-verification">
+            <h4>Verification ID</h4>
+            <%= form_with scope: :verify do |f| %>
               <div class="form-group">
                 <%= f.text_field :tx_hash, class: 'form-control' %>
               </div>
               <%= f.submit 'Verify', class: 'btn btn-success btn-md btn-md-lgr' %>
-            </div>  
+            <% end %>
           </div>
-        <% end %>
-      </div> 
+        </div>   
+      </div>    
     </div>
   </section>
 </main>
