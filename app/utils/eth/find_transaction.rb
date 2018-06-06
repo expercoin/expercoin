@@ -3,13 +3,13 @@ module Eth
     API_KEY = 'PH26WWT52U6F4M9EQ1CUU6KCHF85AHCU8A'
     EXPERCOIN_ETH = '0xbfdbbA3223F3ec256eddE4916BdF343725481CFA'
 
-    def initialize(eth_address)
-      @eth_address = eth_address
+    def initialize(tx_hash)
+      @tx_hash = tx_hash
     end
 
     def perform
       return false unless results.present?
-      results.map{ |t| t if t['from'] == @eth_address }.compact.last
+      results.map{ |t| t if t['from'] == @tx_hash }.compact.last
     end
 
     private
