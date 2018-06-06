@@ -9,6 +9,12 @@ module Settings
 
     def index; end
 
+    def update
+      @address = @wallet.eth_addresses.find(params[:id])
+      @wallet.eth_addresses.where(default: true).update(default: false)
+      @address.update(default: true)
+    end
+
     def create
       @address = @wallet.eth_addresses.create(eth_address_params)
     end

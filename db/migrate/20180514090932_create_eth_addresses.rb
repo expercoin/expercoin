@@ -3,6 +3,7 @@ class CreateEthAddresses < ActiveRecord::Migration[5.2]
     create_table :eth_addresses do |t|
       t.text :public_key
       t.belongs_to :wallet, foreign_key: true
+      t.boolean :default, default: false
 
       t.timestamps
     end

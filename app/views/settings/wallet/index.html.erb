@@ -21,7 +21,8 @@
           <div class="card card-form">
             <div class="card-body">
               <label>Public Key: </label> <%= address.public_key %>
-              <%= link_to 'Delete', settings_wallet_path(address,  format: :js), method: :delete, remote: true %>
+              <%= link_to 'Set as Default', settings_wallet_path(address,  format: :js), method: :patch, remote: true unless address.default? %>
+              <%= link_to 'Delete', settings_wallet_path(address,  format: :js), class: 'text-danger', method: :delete, remote: true %>
             </div>
           </div>
         <% end %>
