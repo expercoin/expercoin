@@ -165,14 +165,16 @@ ActiveRecord::Schema.define(version: 2018_06_05_090136) do
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.integer "sender_id"
-    t.integer "eth_address_id"
     t.datetime "date"
     t.decimal "eth_amount"
-    t.integer "usd_amount"
-    t.integer "rate"
     t.decimal "tx_cost"
+    t.integer "rate"
+    t.integer "sender_id"
     t.integer "status", default: 0
+    t.integer "usd_amount"
+    t.text "from_eth"
+    t.text "block_number"
+    t.text "to_eth"
     t.text "tx_hash"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

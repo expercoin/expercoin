@@ -1,5 +1,5 @@
 class VerifyRequestService < BaseService
-  def initalize(params)
+  def initialize(params)
     @params = params
     @transaction = Eth::FindTransaction.new(tx_hash).perform
   end
@@ -11,6 +11,7 @@ class VerifyRequestService < BaseService
   def perform
     return unless @transaction.present?
     transaction_params = Eth::ParseTransaction.new(@transaction).perform
+    transaction_params['sender'] = sender
     Transaction.create!(transaction_params)
     request.verified!
   end

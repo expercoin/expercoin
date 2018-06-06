@@ -9,10 +9,9 @@ module Requests
     end
 
     def create
-      # @verify_request_service = VerifyRequestService.new(verify_params)
-      # @verify_request_service.perform
-      # return flash[:danger] = 'Validation failed' if @verify_request_service.request_verified?
-      @request.verified! if verify_params[:tx_hash].match(/0x\w{30}/)
+      @verify_request_service = VerifyRequestService.new(verify_params)
+      @verify_request_service.perform
+      redirect_to request_path(@request) if @verify_request_service.request_verified?
     end
 
     private

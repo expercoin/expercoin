@@ -17,7 +17,7 @@ class Request < ApplicationRecord
   has_one :review
 
   enum requested_length: %w[15min 30min 45min]
-  enum status: %I[draft pending accepted inprogress verified completed rejected upcoming expired closed]
+  enum status: %I[draft pending accepted inprogress completed rejected upcoming expired closed verified]
 
   validates(
     :title,

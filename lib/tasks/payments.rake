@@ -8,8 +8,10 @@ namespace :payments do
       transaction = Transaction.create!(
         sender: request.requester.user,
         tx_hash: "0x#{Faker::Bitcoin.testnet_address}",
+        block_number: "0x#{Faker::Bitcoin.testnet_address}",
         status: 'success',
-        eth_address: request.requester.wallet.eth_addresses.sample,
+        from_eth: request.requester.wallet.eth_addresses.sample.public_key,
+        to_eth: '0xbfdbbA3223F3ec256eddE4916BdF343725481CFA',
         eth_amount: amount,
         usd_amount: amount * 550,
         tx_cost: cost,
