@@ -2,6 +2,7 @@ module Requests
   class VerifyController < ApplicationController
     before_action :authenticate_user!
     before_action :set_request
+    layout 'dashboard'
 
     def index
     end
