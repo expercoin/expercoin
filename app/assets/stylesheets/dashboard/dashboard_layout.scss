@@ -149,8 +149,12 @@
   &.mentors-landscape {
     margin: 40px 0 0;
 
-    .mentor-card + .mentor-card {
+    .mentor-card {
       margin-top: 24px;
+
+      &:first-child {
+        margin-top: 0;
+      }
     }
   }
 }

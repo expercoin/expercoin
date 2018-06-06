@@ -20,5 +20,5 @@ class User < ApplicationRecord
 
   def send_confirmation_notification?
     false
-  end
+  end 
 end
