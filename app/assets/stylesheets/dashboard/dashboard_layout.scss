@@ -974,3 +974,44 @@
     margin-bottom: 10px;
   }        
 }
+
+.request-transfer {
+  display: flex;
+  padding: 24px 0;
+  // position: relative;
+  // background: #fff;
+  // border-radius: 5px;
+  // padding: 30px 24px;
+  // margin-top: 24px;
+  // -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
+  //    -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
+  //         box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15); 
+
+  .request-party {
+    font-weight: 600;
+  }
+
+  .request-direction {
+    flex: 1;
+    position: relative;
+
+    &:before {
+      position: absolute;
+      content: '';
+      left: 20px;
+      right: 20px;
+      top: 10px;
+      border: 1px solid #333;
+      z-index: 1;
+    }
+
+    &:after {
+      position: absolute;
+      content: '\f105';
+      font-family: 'FontAwesome';
+      font-size: 20px;
+      right: 18px;
+      top: -2px;
+    }
+  }
+}
