@@ -38,7 +38,9 @@ Rails.application.routes.draw do
   end
   resources :messages, only: :create
   resources :requests do
-    resources :verify, only: [:index, :create]
+    scope module: 'requests' do
+      resources :verify, only: [:index, :create]
+    end
   end
   resources :inbox, only: [:index, :show] do
     collection do
