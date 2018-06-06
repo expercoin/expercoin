@@ -30,13 +30,15 @@
               </div>
               <div class="col-md-3 requests-list-item flex-space-between">
                 <span class="request-text-<%= request.status.downcase %>"><%= request.status %></span>
-                <%= link_to "Details", request_path(request.id), class: "btn-table" %>
+                <% if request.accepted? %>
+                  <%= link_to "Verify", request_verify_index_path(request.id), class: "btn-table" %>
+                <% else %>
+                  <%= link_to "Details", request_path(request.id), class: "btn-table" %>
+                <% end %>
               </div>
             </div>
           <% end %>
         </div>
-        
-
       </div>
     </div>
     <%= paginate @requests %>

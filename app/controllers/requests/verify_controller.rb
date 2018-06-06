@@ -3,6 +3,7 @@ module Requests
     before_action :authenticate_user!
     before_action :set_request
     before_action :set_address
+    layout 'dashboard'
 
     def index
     end
