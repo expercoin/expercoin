@@ -9,6 +9,7 @@ namespace :wallets do
         wallet.eth_addresses.create(
           public_key: "0x#{Faker::Bitcoin.address}"
         )
+        wallet.eth_addresses.sample.update(default: true)
       end
     end
   end
