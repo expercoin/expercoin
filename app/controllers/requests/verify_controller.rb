@@ -8,7 +8,10 @@ module Requests
     def index
     end
 
-    def create; end
+    def create
+      @verify_service = VerifyRequestService.new(verify_params)
+      @verify_service.verify
+    end
 
     private
 
@@ -19,6 +22,15 @@ module Requests
     def set_address
       wallet = @request.requester.wallet
       @address = wallet.eth_addresses.find_by(default: true) || wallet.eth_addresses.last
+    end
+
+    def verify_params
+      params.require(:verify).permit(
+        :eth_address_id
+      ).merge(
+        sender: current_user,
+        request: @request
+      )
     end
   end
 end
