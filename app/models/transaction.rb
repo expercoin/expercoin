@@ -1,5 +1,5 @@
 class Transaction < ApplicationRecord
-  belongs_to :sender, class_name: 'Profile'
-  belongs_to :receiver, class_name: 'Profile'
+  belongs_to :sender, class_name: 'User'
+  belongs_to :eth_address
   enum status: %i[pending success failed]
 end

@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2018_06_05_090136) do
   create_table "eth_addresses", force: :cascade do |t|
     t.text "public_key"
     t.integer "wallet_id"
+    t.boolean "default", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["wallet_id"], name: "index_eth_addresses_on_wallet_id"
@@ -165,13 +166,14 @@ ActiveRecord::Schema.define(version: 2018_06_05_090136) do
 
   create_table "transactions", force: :cascade do |t|
     t.integer "sender_id"
-    t.integer "receiver_id"
-    t.text "token"
+    t.integer "eth_address_id"
+    t.datetime "date"
+    t.decimal "eth_amount"
+    t.integer "usd_amount"
+    t.integer "rate"
+    t.decimal "tx_cost"
     t.integer "status", default: 0
-    t.text "from_eth"
-    t.text "to_eth"
-    t.integer "amount"
-    t.float "cost"
+    t.text "tx_hash"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_one :profile
   has_many :messages, foreign_key: :receiver_id
+  has_many :transactions, foreign_key: :sender_id
 
   attr_accessor :first_name, :last_name
 
