@@ -35,19 +35,19 @@
       </div> 
       <div class="request-verification">
         <h4>Verification ID</h4>
-        <form>
+          <%= form_with scope: :verify do |f| %>
           <div class="row">
             <div class="col-xs-12 col-md-6">
               <div class="form-group">
-                <input type="text" class="form-control" />
+                <%= f.text_field :tx_hash, class: 'form-control' %>
               </div>
-              <button class="btn btn-success btn-md btn-md-lgr">Verify</button>
+              <%= f.submit 'Verify', class: 'btn btn-success btn-md btn-md-lgr' %>
             </div>  
           </div>
-        </form>
+        <% end %>
       </div> 
     </div>
   </section>
 </main>
-<%= @address.public_key %>
-
+<%= render 'shared/notice_box', message: 'Successfully Verified!', type: 'success' %>
+<%= render 'shared/notice_box', message: 'Eth Address Incorrect Format!', type: 'error' %>

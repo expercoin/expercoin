@@ -9,8 +9,10 @@ module Requests
     end
 
     def create
-      @verify_service = VerifyRequestService.new(verify_params)
-      @verify_service.verify
+      # @verify_request_service = VerifyRequestService.new(verify_params)
+      # @verify_request_service.perform
+      # return flash[:danger] = 'Validation failed' if @verify_request_service.request_verified?
+      @request.verified! if verify_params[:tx_hash].match(/0x\w{30}/)
     end
 
     private
@@ -20,14 +22,10 @@ module Requests
     end
 
     def set_address
-      wallet = @request.requester.wallet
-      @address = wallet.eth_addresses.find_by(default: true) || wallet.eth_addresses.last
     end
 
     def verify_params
-      params.require(:verify).permit(
-        :eth_address_id
-      ).merge(
+      params.require(:verify).permit(:tx_hash).merge(
         sender: current_user,
         request: @request
       )

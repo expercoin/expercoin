@@ -1,5 +1,5 @@
 $('.page-content').html("<%= escape_javascript(render(file: 'requests/verify/index')) %>");
-<% if @verify_service.verified? %>
+<% if @request.verified? %>
   $('[data-notice="success"]').addClass('show');
   setTimeout(function(){
     $('[data-notice="success"]').removeClass('show');
