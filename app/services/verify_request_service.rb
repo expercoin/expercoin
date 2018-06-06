@@ -1,29 +1,24 @@
 class VerifyRequestService < BaseService
   def initalize(params)
     @params = params
-    # @transaction = Eth::FindTransaction.new(eth_address.public_key)
+    @transaction = Eth::FindTransaction.new(tx_hash)
   end
 
-  def verified?
+  def request_verified?
     request.verified?
   end
 
-
-  def verify
-    # return unless @transaction.present?
-    # create_transaction
+  def perform
+    return unless @transaction.present?
+    transaction_params = Eth::ParseTransaction.new(@transaction).perform
+    Transaction.create!(transaction_params)
     request.verified!
   end
 
   private
 
-  # def create_transaction
-  #   transaction_params = Eth::ParseTransaction.new(@transaction).perform
-  #   Transaction.create!(transaction_params)
-  # end
-
-  def eth_address
-    @params[:eth_address]
+  def tx_hash
+    @params[:tx_hash]
   end
 
   def sender
