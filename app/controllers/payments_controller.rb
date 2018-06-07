@@ -3,15 +3,11 @@ class PaymentsController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @payment = Transaction.find(params[:id])
+    @transaction = Transaction.find(params[:id])
     @profile = current_user.profile
   end
 
   def index
-    @payments = Transaction.where(sender: current_user.profile)
-  end
-
-  def received
-    @payments = Transaction.where(receiver: current_user.profile)
+    @transactions = Transaction.where(sender: current_user.profile)
   end
 end

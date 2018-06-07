@@ -43,6 +43,7 @@ class VerifyRequestService < BaseService
     params = Eth::ParseTransaction.new(@transaction).perform
     params['sender'] = sender
     params['parent'] = parent
+    params['request'] = request
     params
   end
 end
