@@ -10,7 +10,8 @@ class CreateTransactions < ActiveRecord::Migration[5.2]
       t.text :from_eth
       t.text :block_number
       t.text :to_eth
-      t.text :tx_hash, unique: true
+      t.text :tx_hash
+      t.index :tx_hash, unique: true
 
       t.timestamps
     end

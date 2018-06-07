@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2018_06_05_090136) do
   create_table "eth_addresses", force: :cascade do |t|
     t.text "public_key"
     t.integer "wallet_id"
+    t.boolean "default", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["wallet_id"], name: "index_eth_addresses_on_wallet_id"
@@ -120,7 +121,6 @@ ActiveRecord::Schema.define(version: 2018_06_05_090136) do
     t.text "location"
     t.text "about"
     t.text "specialization"
-    t.text "eth_addresses"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
@@ -177,6 +177,7 @@ ActiveRecord::Schema.define(version: 2018_06_05_090136) do
     t.text "tx_hash"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["tx_hash"], name: "index_transactions_on_tx_hash", unique: true
   end
 
   create_table "users", force: :cascade do |t|
