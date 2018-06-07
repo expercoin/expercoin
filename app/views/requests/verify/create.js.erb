@@ -1,12 +1,6 @@
 $('.main-wrapper').html("<%= escape_javascript(render(file: 'requests/verify/index')) %>");
 <% if @request.verified? %>
   $('[data-notice="success"]').addClass('show');
-  setTimeout(function(){
-    $('[data-notice="success"]').removeClass('show');
-  }, 2000);
 <% else %>
   $('[data-notice="error"]').addClass('show');
-  setTimeout(function(){
-    $('[data-notice="error"]').removeClass('show');
-  }, 2000);
 <% end %>

@@ -1,12 +1,6 @@
 $('.page-content').html("<%= escape_javascript(render(file: 'settings/wallet/index')) %>");
 <% if @address&.id %>
   $('[data-notice="success"]').addClass('show');
-  setTimeout(function(){
-    $('[data-notice="success"]').removeClass('show');
-  }, 2000);
 <% else %>
   $('[data-notice="error"]').addClass('show');
-  setTimeout(function(){
-    $('[data-notice="error"]').removeClass('show');
-  }, 2000);
 <% end %>

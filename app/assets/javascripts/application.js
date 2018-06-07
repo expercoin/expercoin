@@ -16,7 +16,7 @@
 //= require twilio_video
 //= require edit_profile
 //= require timer
-
+//= require listeners
 
 document.addEventListener("turbolinks:load", function() {
   $('.selectpicker').select2();

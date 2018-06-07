@@ -14,6 +14,7 @@
 //= require twilio_screen_share
 //= require twilio_video
 //= require timer
+//= require listeners
 
 document.addEventListener("turbolinks:load", function() {
   $('.selectpicker').select2();
