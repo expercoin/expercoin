@@ -2,7 +2,36 @@
   <%= render "shared/subnavbar", active: "requests" %>
 </nav>
 <main class="content content-with-nav">
-  <section class="mentors-filterable">
+  <section class="verify-transaction">
+    <div class="content-container content-container-narrow">
+      <div class="content-title">
+        <h3>Verify Call Session</h3>
+      </div>
+      <div class="request-transaction">
+        <div class="transaction-info">
+          <p>You requested length of <%= @request.requested_length %>, where expert rate is <%= "EXPR #{ @request.expert.expercoin_rate }" %></p>
+          <p>Please send amount of <%= "EXPR #{decorate(@request).amount}" %> to the following ETH address:</p>
+          <p class="eth-address">
+            0x55437f0109C2F4ECB1E7F54099271aAf913963B0
+          </p>
+        </div>
+        <div class="transaction-verification">
+          <h4>Verification ID</h4>
+          <%= form_with scope: :verify do |f| %>
+            <div class="form-group">
+              <%= f.text_field :tx_hash, class: 'form-control' %>
+            </div>
+            <%= f.submit 'Verify', class: 'btn btn-success btn-md btn-md-lgr' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- <section class="mentors-filterable">
     <div class="content-container">
       <div class="content-title">
         <h3>Verify Call Session</h3>
@@ -18,32 +47,6 @@
           0x55437f0109C2F4ECB1E7F54099271aAf913963B0
         </div>
       </div>
-      <!-- <div class="request-parties">
-        <div class="row">
-          <div class="col-xs-12 col-md-6">
-            <div class="request-card requester">
-              <div class="card-hero">
-                <%= render "shared/profile_photo", photo: current_user&.profile.try(:photo).thumb.url %>
-              </div>
-              <div class="card-body">
-                <h4>John Snow</h4>
-                <a href="#">http://localhost:3000/requests/348/verify</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-12 col-md-6">
-            <div class="request-card requested">
-              <div class="card-hero">
-                <%= render "shared/profile_photo", photo: current_user&.profile.try(:photo).thumb.url %>
-              </div>
-              <div class="card-body">
-                <h4>John Snow</h4>
-                <a href="#">http://localhost:3000/requests/348/verify</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> --> 
       <div class="row justify-content-center">
         <div class="col-md-6">
           <div class="request-verification">
@@ -58,6 +61,6 @@
         </div>   
       </div>    
     </div>
-  </section>
+  </section> -->
 </main>
 <%= render 'shared/notice_box', message: 'Eth Address Incorrect Format!', type: 'error' %>

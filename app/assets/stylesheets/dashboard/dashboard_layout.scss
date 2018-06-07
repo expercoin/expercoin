@@ -1015,3 +1015,45 @@
     }
   }
 }
+
+
+.verify-transaction {
+  padding: 40px 0 100px;
+  background-color: #f7f9f6;
+}
+
+.request-transaction {
+  position: relative;
+  background: #fff;
+  border-radius: 5px;
+  margin-top: 32px;
+  -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
+     -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
+          box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
+
+  .transaction-info {
+    border-bottom: 1px solid #ddd;
+    padding: 30px 24px;
+
+    p {
+      margin-bottom: 8px;
+      text-align: center;
+
+      &.eth-address {
+        font-weight: 600;
+        margin: 24px 0 12px;
+      }
+    }
+  }
+
+  .transaction-verification {
+    padding: 30px 24px;
+
+    h4 {
+      color: #666;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    } 
+  }        
+}
