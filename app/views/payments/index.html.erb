@@ -1,14 +1,5 @@
 <nav class="content-nav">
-  <div class="content-nav-container">
-    <ul class="content-nav-list">
-      <li>
-        <%= link_to 'Send', '#', class: "active"  %>
-      </li>
-      <li>
-        <%= link_to 'Received', received_payments_path %>
-      </li>
-    </ul>  
-  </div>
+  <%= render "shared/subnavbar", active: "payments" %>
 </nav>
 <main class="content content-with-nav">
   <div class="content-container user-requests">
@@ -24,7 +15,7 @@
             Amount (EXPR)
           </div>
           <div class="col-md-6 sortable-item" data-sort-type="date">
-            Transaction Hash
+            Request
           </div>
           <div class="col-md-2" data-sort-type="status">
           </div>
@@ -39,7 +30,7 @@
                 <%= transaction.eth_amount %>
               </div>
               <div class="col-md-6 requests-list-item">
-                <%= transaction.tx_hash %>
+                <%= link_to transaction.request.title, request_path(transaction.request) %>
               </div>
               <div class="col-md-2 requests-list-item flex-space-between">
                 <%= link_to "Details", payment_path(transaction), class: "btn-table" %>
@@ -49,7 +40,6 @@
         </div>
       </div>
     </div>
-    <%#= paginate @unread_messages %>
   </div>
 </main>
 

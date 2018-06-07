@@ -1,60 +1,72 @@
-<%= render partial: 'shared/payment_navbar' %>
+<nav class="content-nav">
+  <%= render "shared/subnavbar", active: "payments" %>
+</nav>
 <main class="content content-with-nav">
   <section class="content-container mt-5">
     <div class="content-main">
-      <div class="panel">
-        <div class="request-description">
-          <h2 class="title">Payment Details</h2>
+      <div class="panel requests-history-container">
+        <div class="col-md-12 requests-history-item">
+          <span class="requests-history-label">Transaction Details</span>
         </div>
-        <div class="list-group">
-          <div class="list-group-item d-flex align-items-center">
-            <div class="d-flex w-25 justify-content-between">
-              <h5 class="mb-1">Token: </h5>
+      </div>
+      <div class="panel requests-list-container" data-ordered-by="none" data-order-direction="none">
+        <div class="row-items-container">
+            <div class="requests-list-row">
+              <div class="col-md-3 requests-list-item">
+                <h6 class="strong">Date: </h6>
+              </div>
+              <div class="col-md-9 requests-list-item">
+                <%= @transaction.created_at.to_date %>
+              </div>
             </div>
-            <span><%= @payment.token %></span>
-          </div>
-          <div class="list-group-item d-flex align-items-center">
-            <div class="d-flex w-25 justify-content-between">
-              <h5 class="mb-1">Sender: </h5>
+            <div class="requests-list-row">
+              <div class="col-md-3 requests-list-item">
+                <h6 class="strong">Amount: </h6>
+              </div>
+              <div class="col-md-9 requests-list-item">
+                <%= "EXPR #{ @transaction.eth_amount }" %>
+              </div>
             </div>
-            <span><%= decorate(@payment.sender).full_name %></span>
-          </div>
-          <div class="list-group-item d-flex align-items-center">
-            <div class="d-flex w-25 justify-content-between">
-              <h5 class="mb-1">Receiver: </h5>
+            <div class="requests-list-row">
+              <div class="col-md-3 requests-list-item">
+                <h6 class="strong">Transaction Hash: </h6>
+              </div>
+              <div class="col-md-9 requests-list-item">
+                <%= @transaction.tx_hash %>
+              </div>
             </div>
-            <span><%= decorate(@payment.receiver).full_name %></span>
-          </div>
-          <div class="list-group-item d-flex align-items-center">
-            <div class="d-flex w-25 justify-content-between">
-              <h5 class="mb-1">Amount:</h5>
+            <div class="requests-list-row">
+              <div class="col-md-3 requests-list-item">
+                <h6 class="strong">Sender: </h6>
+              </div>
+              <div class="col-md-9 requests-list-item">
+                <%= decorate( @transaction.sender.profile ).full_name %>
+              </div>
             </div>
-            <span><%= "EXPR #{@payment.amount}" %></span>
-          </div>
-          <div class="list-group-item d-flex align-items-center">
-            <div class="d-flex w-25 justify-content-between">
-              <h5 class="mb-1">Cost/Fee:</h5>
+            <div class="requests-list-row">
+              <div class="col-md-3 requests-list-item">
+                <h6 class="strong">From: </h6>
+              </div>
+              <div class="col-md-9 requests-list-item">
+                <%= @transaction.from_eth %>
+              </div>
             </div>
-            <span><%= "EXPR #{@payment.cost}" %></span>
-          </div>
-          <div class="list-group-item d-flex align-items-center">
-            <div class="d-flex w-25 justify-content-between">
-              <h5 class="mb-1">From</h5>
+            <div class="requests-list-row">
+              <div class="col-md-3 requests-list-item">
+                <h6 class="strong">To: </h6>
+              </div>
+              <div class="col-md-9 requests-list-item">
+                <%= @transaction.to_eth %>
+              </div>
             </div>
-            <span><%= @payment.from_eth %></span>
-          </div>
-          <div class="list-group-item d-flex align-items-center">
-            <div class="d-flex w-25 justify-content-between">
-              <h5 class="mb-1">To</h5>
+            <div class="requests-list-row">
+              <div class="col-md-3 requests-list-item">
+                <h6 class="strong">Block Number: </h6>
+              </div>
+              <div class="col-md-9 requests-list-item">
+                <%= @transaction.block_number %>
+              </div>
             </div>
-            <span><%= @payment.to_eth %></span>
-          </div>
-          <div class="list-group-item d-flex align-items-center">
-            <div class="d-flex w-25 justify-content-between">
-              <h5 class="mb-1">Date:</h5>
-            </div>
-            <span><%= @payment.created_at %></span>
-          </div>
         </div>
       </div>
     </div>
