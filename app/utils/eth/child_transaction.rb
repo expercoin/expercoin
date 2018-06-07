@@ -2,7 +2,7 @@
 
 module Eth
   class ChildTransaction
-    EXPR_ETH_ADDRESS = '0x.....'
+    # EXPR_ETH_ADDRESS = '0x.....'
     EXPR_FEE = 0.07
 
     def initialize(parent)
@@ -25,13 +25,13 @@ module Eth
         request: request,
         status: 'pending',
         from_eth: @parent.to_eth,
+        parent: @parent,
         sender: @parent.sender
       }
     end
 
     def expercoin_tx_params
       tx_params.merge(
-        to_eth: EXPR_ETH_ADDRESS,
         eth_amount: expercoin_amount
       )
     end
