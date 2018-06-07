@@ -6,6 +6,7 @@ module Requests
     layout 'dashboard'
 
     def index
+      @addresses = current_user.profile.wallet.eth_addresses
     end
 
     def create

@@ -6,6 +6,8 @@
     <div class="content-container">
       <div class="content-title">
         <h3>Verify Call Session</h3>
+        <p>You requested length of <%= @request.requested_length %>, where expert rate is <%= "EXPR #{ @request.expert.expercoin_rate }" %></p>
+        <p>Please send amount of <%= "EXPR #{decorate(@request).amount}" %> to the following ETH address</p>
       </div>
       <div class="request-transfer">
         <div class="request-party requester">
@@ -58,5 +60,4 @@
     </div>
   </section>
 </main>
-<%= render 'shared/notice_box', message: 'Successfully Verified!', type: 'success' %>
 <%= render 'shared/notice_box', message: 'Eth Address Incorrect Format!', type: 'error' %>
