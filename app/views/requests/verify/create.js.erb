@@ -1,4 +1,4 @@
-$('.page-content').html("<%= escape_javascript(render(file: 'requests/verify/index')) %>");
+$('.main-wrapper').html("<%= escape_javascript(render(file: 'requests/verify/index')) %>");
 <% if @request.verified? %>
   $('[data-notice="success"]').addClass('show');
   setTimeout(function(){
