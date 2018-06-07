@@ -4,9 +4,11 @@ class CreateTransactions < ActiveRecord::Migration[5.2]
       t.datetime :date
       t.decimal :eth_amount
       t.integer :sender_id, foreign_key: true
+      t.integer :receiver_id, foreign_key: true
       t.integer :parent_id, foreign_key: true
       t.integer :request_id, foreign_key: true
       t.integer :usd_amount
+      t.integer :status, default: 0
       t.text :from_eth
       t.text :block_number
       t.text :to_eth

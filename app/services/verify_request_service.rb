@@ -43,6 +43,7 @@ class VerifyRequestService < BaseService
     transaction_validator = TransactionValidator.new(new_transaction)
     return false unless transaction_validator.valid?
     new_transaction.save
+    Eth::ChildTransaction.new(new_transaction).create_transactions
   end
 
   def transaction_params

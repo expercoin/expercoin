@@ -168,9 +168,11 @@ ActiveRecord::Schema.define(version: 2018_06_05_090136) do
     t.datetime "date"
     t.decimal "eth_amount"
     t.integer "sender_id"
+    t.integer "receiver_id"
     t.integer "parent_id"
     t.integer "request_id"
     t.integer "usd_amount"
+    t.integer "status", default: 0
     t.text "from_eth"
     t.text "block_number"
     t.text "to_eth"
