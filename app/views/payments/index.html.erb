@@ -1,14 +1,5 @@
 <nav class="content-nav">
-  <div class="content-nav-container">
-    <ul class="content-nav-list">
-      <li>
-        <%= link_to 'Send', '#', class: "active"  %>
-      </li>
-      <li>
-        <%= link_to 'Received', received_payments_path %>
-      </li>
-    </ul>  
-  </div>
+  <%= render "shared/subnavbar", active: "payments" %>
 </nav>
 <main class="content content-with-nav">
   <div class="content-container user-requests">
@@ -17,41 +8,38 @@
 
       <div class="panel requests-list-container" data-ordered-by="none" data-order-direction="none">
         <header class="requests-list-header">
-          <div class="col-md-3 sortable-item" data-sort-type="date">
-            Receiver
+          <div class="col-md-2 sortable-item" data-sort-type="date">
+            Date
           </div>
-          <div class="col-md-3 sortable-item" data-sort-type="date">
+          <div class="col-md-2 sortable-item" data-sort-type="date">
             Amount (EXPR)
           </div>
-          <div class="col-md-3 sortable-item" data-sort-type="date">
-            Cost (EXPR)
+          <div class="col-md-6 sortable-item" data-sort-type="date">
+            Request
           </div>
-          <div class="col-md-3 sortable-item" data-sort-type="status">
-            Status
+          <div class="col-md-2" data-sort-type="status">
           </div>
         </header>
         <div class="row-items-container">
-          <% @payments.each do |payment| %>
-            <div class="requests-list-row" id="<%= payment.id %>">
-              <div class="col-md-3 requests-list-item">
-<%= link_to decorate(payment.receiver).full_name, profile_path(payment.receiver) %>
+          <% @transactions.each do |transaction| %>
+            <div class="requests-list-row" id="<%= transaction.id %>">
+              <div class="col-md-2 requests-list-item">
+                <%= transaction.created_at.to_date %>
               </div>
-              <div class="col-md-3 requests-list-item">
-                <%= payment.amount %>
+              <div class="col-md-2 requests-list-item">
+                <%= transaction.eth_amount %>
               </div>
-              <div class="col-md-3 requests-list-item">
-                <%= payment.cost %>
+              <div class="col-md-6 requests-list-item">
+                <%= link_to transaction.request.title, request_path(transaction.request) %>
               </div>
-              <div class="col-md-3 requests-list-item flex-space-between">
-                <span ><%= payment.status %></span>
-                <%= link_to "Details", payment_path(payment), class: "btn-table" %>
+              <div class="col-md-2 requests-list-item flex-space-between">
+                <%= link_to "Details", payment_path(transaction), class: "btn-table" %>
               </div>
             </div>
           <% end %>
         </div>
       </div>
     </div>
-    <%#= paginate @unread_messages %>
   </div>
 </main>
 

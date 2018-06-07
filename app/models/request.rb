@@ -13,8 +13,9 @@ class Request < ApplicationRecord
   belongs_to :requester, class_name: 'Profile', foreign_key: 'requester_id'
   belongs_to :expert, class_name: 'Profile', foreign_key: 'expert_id'
   belongs_to :updated_by, class_name: 'Profile', foreign_key: 'updated_by_id'
- 
+
   has_one :review
+  has_one :eth_transaction, class_name: 'Transaction'
 
   enum requested_length: %w[15min 30min 45min]
   enum status: %I[draft pending accepted inprogress completed rejected upcoming expired closed verified]

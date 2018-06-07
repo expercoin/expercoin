@@ -1,12 +1,12 @@
-<% if @request.inprogress? || @request.accepted? %>
+<% if @request.inprogress? || @request.verified? %>
   <div class="request-accepted-time">
     <h6 class="request-time">Call session is schedulled for <%= decorate(@request).session_date %></h6>
     <% if @request.inprogress? %>
-      <%= link_to "Join Room", conference_path(@request.room_sid), class: "btn btn-success btn-md btn-md-lgr" %>
-    <% elsif @request.accepted? %> 
+      <%= link_to "Join Call", conference_path(@request.room_sid), class: "btn btn-success btn-md btn-md-lgr" %>
+    <% elsif @request.verified? %> 
       <%= form_tag conference_index_path do %>
         <%= hidden_field_tag :request_id, @request.id %>
-        <%= submit_tag "Request Room", class: "btn btn-success btn-md btn-md-lgr" %>
+        <%= submit_tag "Request Call", class: "btn btn-success btn-md btn-md-lgr" %>
       <% end %>
     <% end %>
   </div>  

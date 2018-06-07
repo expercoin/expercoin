@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Eth
   class ParseTransaction
     def initialize(transaction)
@@ -6,11 +8,9 @@ module Eth
     end
 
     def perform
-      @params['tx_hash'] = tx_hash
-      @params['from_eth'] = from_eth
-      @params['to_eth'] = to_eth
-      @params['block_number'] = block_number
-      @params['eth_amount'] = eth_amount
+      attributes_list.each do |attribute|
+        @params[attribute] = send(attribute)
+      end
       @params
     end
 
@@ -18,7 +18,7 @@ module Eth
 
     def value
       Ethereum::Formatter.new
-                        .yield_self { |it| it.output_to_int(@transaction['value']) }
+                         .yield_self { |it| it.output_to_int(@transaction['value']) }
     end
 
     def from_eth
@@ -41,12 +41,8 @@ module Eth
       value / "1#{'0' * 18}".to_f.round(5)
     end
 
-    def rate
-      # to be implemented
-    end
-
-    def usd_amount
-      # to be implemented
+    def attributes_list
+      %w[tx_hash from_eth to_eth block_number eth_amount]
     end
   end
 end
