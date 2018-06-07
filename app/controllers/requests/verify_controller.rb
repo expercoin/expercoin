@@ -3,6 +3,7 @@ module Requests
     before_action :authenticate_user!
     before_action :set_request
     before_action :set_address
+    before_action :raise_error_if_request_not_accepted
     layout 'dashboard'
 
     def index
@@ -13,9 +14,14 @@ module Requests
       @verify_request_service = VerifyRequestService.new(verify_params)
       @verify_request_service.perform
       redirect_to request_path(@request) if @verify_request_service.request_verified?
+      @error_message = @verify_request_service.error_message
     end
 
     private
+
+    def raise_error_if_request_not_accepted
+      raise ActionController::RoutingError.new('Not Found') unless @request.accepted?
+    end
 
     def set_request
       @request = Request.find(params[:request_id])

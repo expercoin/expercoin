@@ -16,6 +16,10 @@ class VerifyRequestService < BaseService
     MSP::UpdateRequestStatus.new(request).perform
   end
 
+  def error_message
+    Eth::ErrorMessage.new(@transaction).perform
+  end
+
   private
 
   def tx_hash

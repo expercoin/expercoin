@@ -9,7 +9,9 @@
   <body>
     <div class="page">
       <%= render 'shared/navbar' %>
+      <div class='main-wrapper'>
       <%= yield %>
+      </div>
     </div>  
 
     <% unless current_user  %>
