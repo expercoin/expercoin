@@ -40,13 +40,5 @@ module Eth
     def eth_amount
       value / "1#{'0' * 18}".to_f.round(5)
     end
-
-    def rate
-      # to be implemented
-    end
-
-    def usd_amount
-      # to be implemented
-    end
   end
 end

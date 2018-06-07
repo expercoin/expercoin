@@ -167,10 +167,8 @@ ActiveRecord::Schema.define(version: 2018_06_05_090136) do
   create_table "transactions", force: :cascade do |t|
     t.datetime "date"
     t.decimal "eth_amount"
-    t.decimal "tx_cost"
-    t.integer "rate"
     t.integer "sender_id"
-    t.integer "status", default: 0
+    t.integer "parent_id"
     t.integer "usd_amount"
     t.text "from_eth"
     t.text "block_number"
