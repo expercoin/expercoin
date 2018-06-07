@@ -40,8 +40,9 @@ class VerifyRequestService < BaseService
 
   def create_transaction
     new_transaction = Transaction.new(transaction_params)
-    return false unless new_transaction.save
-    new_transaction
+    transaction_validator = TransactionValidator.new(new_transaction)
+    return false unless transaction_validator.valid?
+    new_transaction.save
   end
 
   def transaction_params
