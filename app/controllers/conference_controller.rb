@@ -7,7 +7,8 @@ class ConferenceController < ApplicationController
 
   def create
     @request = Request.find_by_id(params[:request_id])
-    redirect_to conference_path(@request.room_sid) and return if request_not_valid?
+    return if user_not_valid?
+    redirect_to conference_path(@request.room_sid) and return if room_exists?
     create_room
     status_update
     redirect_to conference_path(@request.room_sid) if @request.inprogress?
@@ -61,7 +62,7 @@ class ConferenceController < ApplicationController
   end
 
   def valid_request_for_room_creation?
-    @request.accepted?
+    @request.verified?
   end
 
   def update_ended_at_if_not_completed
@@ -77,8 +78,8 @@ class ConferenceController < ApplicationController
     @request.requester == current_user.profile
   end
 
-  def request_not_valid?
-    !@request.accepted?
+  def room_exists?
+    @request.room_sid
   end
 
   def user_not_valid?
