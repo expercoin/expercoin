@@ -1,5 +1,2 @@
   $('.page-content').html("<%= escape_javascript(render(file: 'settings/index')) %>");
   $('[data-notice="success"]').addClass('show');
-  setTimeout(function(){
-    $('[data-notice="success"]').removeClass('show');
-  }, 2000);

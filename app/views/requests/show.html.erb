@@ -98,3 +98,6 @@
 </main>
 <%= render 'review_confirm_modal' %>
 <%= render 'inbox/message_modal', profile: @profile %>
+<% if @request.verified? %>
+<%= render 'shared/notice_box', message: "Verification Done", type: 'success', name: 'show' %>
+<% end %>
