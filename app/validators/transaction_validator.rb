@@ -1,7 +1,7 @@
 class TransactionValidator < BaseValidator
   validate :required_amount
   validates_presence_of :block_number
-  # validates :tx_hash, unique: true
+  validates :tx_hash, unique: true
 
   def initialize(transaction)
     @transaction = transaction
