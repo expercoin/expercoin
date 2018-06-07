@@ -9,7 +9,7 @@ namespace :payments do
       transaction = Transaction.create!(
         sender: request.requester.user,
         request: request,
-        tx_hash: "0x#{Faker::Bitcoin.testnet_address}",
+        tx_hash: "0x#{Faker::Crypto.sha256}",
         block_number: "0x#{Faker::Number.hexadecimal(3)}",
         from_eth: request.requester.wallet.eth_addresses.sample.public_key,
         to_eth: '0xbfdbbA3223F3ec256eddE4916BdF343725481CFA',
