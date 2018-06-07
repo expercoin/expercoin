@@ -4,6 +4,8 @@ class RequestsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_profile, only: %i[new]
   before_action :set_request_and_expert, only: %i[show update]
+  before_action :redirect_to_verify
+
 
   def index
     requests = SearchService.new(
@@ -43,6 +45,10 @@ class RequestsController < ApplicationController
   end
 
   private
+
+  def redirect_to_verify
+    redirect_to request_verify_index_path(@request) if @request&.accepted?
+  end
 
   def searched
     return if params[:search].blank?
