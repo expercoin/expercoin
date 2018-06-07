@@ -7,6 +7,7 @@ module MSP
     def perform
       pending_status
       accepted_status
+      verified_status
       inprogress_status
       completed_status
     end
@@ -16,7 +17,6 @@ module MSP
     def pending_status
       return unless valid_for_pending_status?
       @request.update(status: 'pending')
-
     end
 
     def valid_for_pending_status?
@@ -32,13 +32,22 @@ module MSP
       @request.selected_date && @request.pending?
     end
 
+    def verified_status
+      return unless valid_for_verified_status?
+      @request.update(status: 'verified')
+    end
+
+    def valid_for_verified_status?
+      @request.eth_transaction && @request.accepted?
+    end
+
     def inprogress_status
       return unless valid_for_inprogress_status?
       @request.update(status: 'inprogress')
     end
 
     def valid_for_inprogress_status?
-      @request.started_at && !@request.ended_at && @request.accepted?
+      @request.started_at && !@request.ended_at && @request.verified?
     end
 
     def completed_status

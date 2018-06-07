@@ -12,7 +12,8 @@ class VerifyRequestService < BaseService
 
   def perform
     return unless @transaction.present?
-    request.verified! if create_transaction
+    create_transaction
+    MSP::UpdateRequestStatus.new(request).perform
   end
 
   private
