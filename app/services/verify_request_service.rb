@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class VerifyRequestService < BaseService
   def initialize(params)
     @params = params
@@ -10,10 +12,7 @@ class VerifyRequestService < BaseService
 
   def perform
     return unless @transaction.present?
-    transaction_params = Eth::ParseTransaction.new(@transaction).perform
-    transaction_params['sender'] = sender
-    Transaction.create!(transaction_params)
-    request.verified!
+    request.verified! if create_transaction
   end
 
   private
@@ -28,5 +27,22 @@ class VerifyRequestService < BaseService
 
   def request
     @params[:request]
+  end
+
+  def parent
+    @params[:parent]
+  end
+
+  def create_transaction
+    new_transaction = Transaction.new(transaction_params)
+    return false unless new_transaction.save
+    new_transaction
+  end
+
+  def transaction_params
+    params = Eth::ParseTransaction.new(@transaction).perform
+    params['sender'] = sender
+    params['parent'] = parent
+    params
   end
 end
