@@ -12,7 +12,7 @@
           <p>You requested length of <%= @request.requested_length %>, where expert rate is <%= "EXPR #{ @request.expert.expercoin_rate }" %></p>
           <p>Please send amount of <%= "EXPR #{decorate(@request).amount}" %> to the following ETH address:</p>
           <p class="eth-address">
-            0x55437f0109C2F4ECB1E7F54099271aAf913963B0
+          <%= ENV['ETH_ADDRESS'] %>
           </p>
         </div>
         <div class="transaction-verification">
