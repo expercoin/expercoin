@@ -16,7 +16,7 @@ function commissionFeeInitialize() {
     var expercoin_amount = parseFloat($(this).val());
     var amount = expercoin_amount - (expercoin_amount * commissionFee);
     if(isNaN(amount)) return;
-    $('[data-rate="hourly"]').val(amount.toFixed(2));
+    $('[data-rate="hourly"]').val(amount);
   });
 
   $('body').on('keyup','[data-rate="hourly"]', function(){
@@ -24,6 +24,6 @@ function commissionFeeInitialize() {
     var my_hourly_amount = parseFloat($(this).val());
     var amount = 1 / reverseCommissionFee *  my_hourly_amount;
     if(isNaN(amount)) return;
-    $('[data-rate="expercoin"]').val(amount.toFixed(2));
+    $('[data-rate="expercoin"]').val(amount);
   });
 }
