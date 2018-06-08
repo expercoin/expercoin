@@ -11,10 +11,10 @@
           <div class="col-md-2 sortable-item" data-sort-type="date">
             Date
           </div>
-          <div class="col-md-2 sortable-item" data-sort-type="date">
+          <div class="col-md-3 sortable-item" data-sort-type="date">
             Amount (EXPR)
           </div>
-          <div class="col-md-6 sortable-item" data-sort-type="date">
+          <div class="col-md-5 sortable-item" data-sort-type="date">
             Request
           </div>
           <div class="col-md-2" data-sort-type="status">
@@ -30,9 +30,9 @@
                 <%= transaction.eth_amount %>
               </div>
               <div class="col-md-6 requests-list-item">
-                <%= link_to transaction.request.title, request_path(transaction.request) %>
+                <%= link_to transaction.request.title, request_path(transaction.request) %>  
               </div>
-              <div class="col-md-2 requests-list-item flex-space-between">
+              <div class="col-md-2 requests-list-item flex-align-right">
                 <%= link_to "Details", payment_path(transaction), class: "btn-table" %>
               </div>
             </div>

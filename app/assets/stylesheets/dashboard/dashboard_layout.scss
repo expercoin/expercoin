@@ -1,3 +1,10 @@
+.main-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1
+}
+
 .content {
   background-color: #f7f9f6;
   flex: 1;
@@ -421,6 +428,11 @@
   align-items: center;
 }
 
+.flex-align-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .requests-info-container {
   display: flex;
 
@@ -541,6 +553,7 @@
   }
 
   .requests-list-item {
+
   }
 
   .btn-table {
