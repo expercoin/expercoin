@@ -2,7 +2,6 @@
 
 module Eth
   class ChildTransaction
-    EXPR_ETH_ADDRESS = '0xbfdbbA3223F3ec256eddE4916BdF343725481CFA'
     EXPR_FEE = 0.07
 
     def initialize(parent)
@@ -11,7 +10,8 @@ module Eth
 
     def create_transactions
       Transaction.create(expercoin_tx_params)
-      Transaction.create(expert_tx_params) end
+      Transaction.create(expert_tx_params)
+    end
 
     private
 
