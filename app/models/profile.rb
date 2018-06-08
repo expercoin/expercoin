@@ -21,7 +21,7 @@ class Profile < ApplicationRecord
   def commission_fee
     7
   end
-  
+
   private
 
   def slug_candidates

@@ -6,7 +6,8 @@ namespace :users do
       password: '123456',
       first_name: 'Jon',
       last_name: 'Snow'
-    ).confirm
+    )
+    user.confirm
     Profile.first.update(
       rate: 15,
       expercoin_rate: 15 * 1.07,
@@ -18,6 +19,46 @@ namespace :users do
       remote_photo_url: 'https://ksassets.timeincuk.net/wp/uploads/sites/55/2016/06/250116GOTJonSnow_SYK_250116-1-920x610.jpg',
       years_of_experience: 5,
       specialization: { 'item_1': 'Death', 'item_2': 'Dragons', 'item_3': 'Ice' }
+    )
+
+    user = User.create!(
+      email: 'sedad@miavision.net',
+      password: '123456',
+      first_name: 'Sedad',
+      last_name: 'Kosovac'
+    )
+    user.confirm
+    user.profile.update(
+      rate: 15,
+      expercoin_rate: 15 * 1.07,
+      title: 'Blockchain developer',
+      about: "Sedad is currently aiding in developing out Expercoin's Republics ecosystem. He works with Ethereum Solidity, Kubernetes and Docker to build out Blockchain systems that will be used by Expercoin's enterprise clients. As part of his role, he has gained expertise in the following technologies and concepts: public and private blockchains; IaaS, PaaS, and SaaS offerings; containerization; container orchestration using Kubernetes; and decentralized design.",
+      address: 'Doboj-istok',
+      country: 'Bosnia and Herzegovina',
+      state: 'Tuzla',
+      remote_photo_url: 'https://www.expercoin.com/uploads/profile/photo/15/sedad.jpeg',
+      years_of_experience: 5,
+      specialization: { 'item_1': 'Rails', 'item_2': 'Ember', 'item_3': 'Solidity' }
+    )
+
+    user = User.create!(
+      email: 'almin@miavision.net',
+      password: '123456',
+      first_name: 'Almin',
+      last_name: 'Karic'
+    )
+    user.confirm
+    user.profile.update(
+      rate: 15,
+      expercoin_rate: 15 * 1.07,
+      title: 'Blockchain developer',
+      about: " Almin writes smart contracts using Solidity programming language for Expercoin Republic's DApps. Furthermore, he has implemented IPFS in Expercoin ecosystem for decentralized storage.  He works with a range of technologies that intersect with blockchain and decentralization.  He has also written smart contracts using Solidity.  On the front-end he works with  Ember.js and JQuery.  ",
+      address: 'Zivinice',
+      country: 'Bosnia and Herzegovina',
+      state: 'Tuzla',
+      remote_photo_url: 'https://www.expercoin.com//uploads/profile/photo/17/Almin.jpeg',
+      years_of_experience: 5,
+      specialization: { 'item_1': 'Rails', 'item_2': 'Ember', 'item_3': 'Solidity' }
     )
 
     12.times do

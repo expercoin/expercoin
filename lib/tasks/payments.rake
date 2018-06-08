@@ -1,9 +1,9 @@
 namespace :payments do
   desc 'Create test payments'
   task create_test_payments: :environment do
-    requests = Request.completed
+    requests = Request.verified
     requests.each do |request|
-      length = request.ended_at - request.started_at
+      length = request.requested_length.to_i
       rate = request.expert.expercoin_rate
       amount = rate * length
       transaction = Transaction.create!(

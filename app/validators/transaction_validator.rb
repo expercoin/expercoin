@@ -3,11 +3,14 @@ class TransactionValidator < BaseValidator
   validates_presence_of :block_number
   validates :tx_hash, unique: true
 
+  attr_reader :transaction
+
   def initialize(transaction)
     @transaction = transaction
   end
 
   private
+
 
   def request
     @transaction.request

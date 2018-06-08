@@ -44,9 +44,20 @@ namespace :requests do
       puts "Request with id #{request.id} updated to status accepted"
     end
   end
+  desc "Update some requests to verified"
+  task update_requests_to_accepted: :environment do
+    requests = Request.accepted.sample(60)
+    requests.each do |request|
+      request.update(
+        status: 'verified',
+        updated_by: request.requester
+      )
+      puts "Request with id #{request.id} updated to status verified"
+    end
+  end
   desc "Update some requests to completed"
   task update_requests_to_completed: :environment do
-    requests = Request.accepted.sample(60)
+    requests = Request.verified.sample(30)
     requests.each do |request|
       start_time = request.selected_date
       min_length = request.requested_length.to_i - 10
