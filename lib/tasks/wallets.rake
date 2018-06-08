@@ -7,7 +7,7 @@ namespace :wallets do
       wallet = profile.create_wallet
       rand(1..10).times do
         wallet.eth_addresses.create(
-          public_key: "0x#{Faker::Bitcoin.address}"
+          public_key: "0x#{Faker::Crypto.sha1}"
         )
         wallet.eth_addresses.sample.update(default: true)
       end
