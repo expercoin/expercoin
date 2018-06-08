@@ -2,7 +2,7 @@
 
 module Eth
   class ChildTransaction
-    # EXPR_ETH_ADDRESS = '0x.....'
+    EXPR_ETH_ADDRESS = '0xbfdbbA3223F3ec256eddE4916BdF343725481CFA'
     EXPR_FEE = 0.07
 
     def initialize(parent)
@@ -11,8 +11,7 @@ module Eth
 
     def create_transactions
       Transaction.create(expercoin_tx_params)
-      Transaction.create(expert_tx_params)
-    end
+      Transaction.create(expert_tx_params) end
 
     private
 
@@ -32,14 +31,15 @@ module Eth
 
     def expercoin_tx_params
       tx_params.merge(
-        eth_amount: expercoin_amount
+        eth_amount: expercoin_amount,
+        status: 'completed'
       )
     end
 
     def expert_tx_params
       tx_params.merge(
         receiver: request.expert.user,
-        to_eth: default_expert_eth_address,
+        to_eth: default_expert_eth_address.public_key,
         eth_amount: expert_amount
       )
     end
