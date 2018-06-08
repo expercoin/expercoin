@@ -1,11 +1,11 @@
 module Eth
   class CreateTransaction
-    ACCOUNT_ADDRESS = '0x55437f0109C2F4ECB1E7F54099271aAf913963B0'
+    ACCOUNT_ADDRESS = ENV['ETH_ADDRESS']
 
     def initialize(amount, address)
       @amount = amount
       @address = address
-      @client = Ethereum::IpcClient.new("/home/sedad/Desktop/ethereum/ACPrivateChain/geth.ipc", false)
+      @client = Ethereum::IpcClient.new(ENV['ETH_NODE_IPC_PATH'], false)
     end
 
     def perform
@@ -17,8 +17,10 @@ module Eth
     private
 
     def send_transaction
-      @client.eth_send_transaction(params).yield_self { |it| it['result'] }
+      @client.eth_send_transaction(params)
+             .yield_self { |it| it['result'] }
     rescue StandardError
+      nil
     end
 
     def params
@@ -30,7 +32,7 @@ module Eth
     end
 
     def wei_amount_in_hex
-      '0x' + sprintf("%02x", wei_amount)
+      '0x' + format('%02x', wei_amount)
     end
 
     def wei_amount
