@@ -20,6 +20,7 @@ class ConferenceController < ApplicationController
     kill_room
     update_ended_at_if_not_completed
     status_update
+    release_funds
     redirect_based_on_user
   end
 
@@ -88,6 +89,11 @@ class ConferenceController < ApplicationController
 
   def video
     @video = ::MSP::Conference::Video.new
+  end
+
+  def release_funds
+    transaction = Transaction.find_by(receiver: @request.expert.user, request: @request)
+    ReleaseFundsJob.perform_later(transaction)
   end
 
 end 
