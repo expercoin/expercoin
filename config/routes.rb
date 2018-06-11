@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     resources :history, only: [:index]
   end
   resources :calls, only: [:index, :show, :update]
-  resources :conference, only: [:show, :create, :destroy]
+  resources :conference, only: [:show, :create, :update, :destroy]
   resources :dashboard, only: [:index]
   resources :account, only: [:index]
   resources :profiles, only: %i[show index]
