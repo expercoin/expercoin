@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_05_090136) do
+ActiveRecord::Schema.define(version: 2018_06_11_093152) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -112,8 +112,8 @@ ActiveRecord::Schema.define(version: 2018_06_05_090136) do
     t.string "last_name"
     t.string "name"
     t.string "title"
-    t.integer "expercoin_rate"
-    t.integer "rate"
+    t.string "expercoin_rate"
+    t.string "rate"
     t.string "professional_role"
     t.integer "years_of_experience"
     t.string "photo"
@@ -151,6 +151,8 @@ ActiveRecord::Schema.define(version: 2018_06_05_090136) do
     t.integer "updated_by_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "caller"
+    t.boolean "invitee"
   end
 
   create_table "reviews", force: :cascade do |t|
