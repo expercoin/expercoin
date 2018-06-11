@@ -38,10 +38,10 @@ namespace :users do
       rand(5..15).times do |i|
         specialization["item_#{i}"] = Faker::Commerce.department
       end
-      rate = rand
+      rate = rand(1..10) / 650.0
       user.profile.update(
-        rate: Eth::ValueFormatter.new(rate).to_hex,
-        expercoin_rate: Eth::ValueFormatter.new(rate * 1.07).to_hex,
+        rate: Eth::ValueFormatter.new(rate * 0.93).to_hex,
+        expercoin_rate: Eth::ValueFormatter.new(rate).to_hex,
         title: Faker::Job.title,
         about: Faker::Lorem.paragraph(2, true, 50),
         address: Faker::Address.street_address,
