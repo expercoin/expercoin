@@ -168,7 +168,7 @@ ActiveRecord::Schema.define(version: 2018_06_11_093152) do
 
   create_table "transactions", force: :cascade do |t|
     t.datetime "date"
-    t.decimal "eth_amount"
+    t.string "eth_amount"
     t.integer "sender_id"
     t.integer "receiver_id"
     t.integer "parent_id"
