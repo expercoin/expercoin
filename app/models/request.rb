@@ -87,7 +87,11 @@ class Request < ApplicationRecord
     end
   end
 
+  def members_present?
+    invitee && caller
+  end
+
   def reset
-    update(status: 'verified', started_at: nil, ended_at: nil, room_sid: nil, updated_by: expert)
+    update(status: 'verified', started_at: nil, ended_at: nil, room_sid: nil, updated_by: expert, caller: false, invitee: false)
   end
 end

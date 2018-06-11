@@ -10,6 +10,7 @@ class ConferenceController < ApplicationController
     return if user_not_valid?
     redirect_to conference_path(@request.room_sid) and return if room_exists?
     create_room
+    update_members
     status_update
     redirect_to conference_path(@request.room_sid) if @request.inprogress?
   end
@@ -33,10 +34,26 @@ class ConferenceController < ApplicationController
       current_user.email, params[:id]
     )
     @footer = true
-    @expert_side = true if user_request_expert? 
+    @expert_side = true if user_request_expert?
+    update_members
+    update_started_at
   end
 
   private
+
+  def update_members
+    @request.update(invitee: true) if user_request_expert?
+    @request.update(caller: true) if user_request_requester?
+  end
+
+  def update_started_at
+    return unless update_started_at?
+    @request.update(started_at: Time.now)
+  end
+
+  def update_started_at?
+    @request.members_present? && @request.started_at.blank?
+  end
 
   def room_closed?
     @video.room_closed?(@request.room_sid)
@@ -59,7 +76,7 @@ class ConferenceController < ApplicationController
     return unless valid_request_for_room_creation?
     sid = @video.create_room
     return unless sid
-    @request.update(room_sid: sid, started_at: Time.now)
+    @request.update(room_sid: sid)
   end
 
   def valid_request_for_room_creation?

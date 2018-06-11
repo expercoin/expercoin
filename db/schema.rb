@@ -112,8 +112,8 @@ ActiveRecord::Schema.define(version: 2018_06_11_093152) do
     t.string "last_name"
     t.string "name"
     t.string "title"
-    t.string "expercoin_rate"
-    t.string "rate"
+    t.integer "expercoin_rate"
+    t.integer "rate"
     t.string "professional_role"
     t.integer "years_of_experience"
     t.string "photo"
@@ -151,8 +151,8 @@ ActiveRecord::Schema.define(version: 2018_06_11_093152) do
     t.integer "updated_by_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "caller"
-    t.boolean "invitee"
+    t.boolean "caller", default: false
+    t.boolean "invitee", default: false
   end
 
   create_table "reviews", force: :cascade do |t|
