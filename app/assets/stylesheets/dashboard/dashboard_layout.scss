@@ -928,14 +928,14 @@
 
       &.mentor-image-sm {
         img {
-          width: 82px;
-          height: 82px;
+          width: 72px;
+          height: 72px;
         }
       }
     }
 
     &.mentor-header-aligned {
-      padding: 24px 0;
+      padding: 16px 0;
 
       .mentor-info {
         display: flex;
@@ -944,7 +944,13 @@
         padding: 0;
 
         h1 {
-          font-size: 24px;
+          font-size: 20px;
+          margin-bottom: 4px;
+        }
+
+        p {
+          font-size: 16px;
+          margin-bottom: 0;
         }
       }
     }
@@ -954,6 +960,48 @@
 .mentor-dashboard-calls {
   display: flex;
   align-items: center;
+}
+
+.mentor-dashboards {
+  // padding: 24px 0;
+  display: flex;
+
+  .mantor-dashboards-nav {
+    list-style-type: none;
+    display: flex;
+    padding-left: 0;
+    margin-bottom: 0;
+
+    li {
+      display: flex;
+      align-items: center;
+      border-left: 1px solid #e3e2df;
+
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 10px 16px;
+        color: #777;
+        font-size: 18px;
+        font-weight: 600;
+        min-width: 150px;
+        height: 100%;
+        width: 100%;
+
+        &:hover,
+        &:focus {
+          text-decoration: none;
+          background-color: #fdfdfd;
+        }
+      }
+
+      &:last-child {
+        border-right: 1px solid #e3e2df;
+      }
+    }
+  }
 }
 
 .session-container {
