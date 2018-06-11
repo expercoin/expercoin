@@ -112,8 +112,8 @@ ActiveRecord::Schema.define(version: 2018_06_11_093152) do
     t.string "last_name"
     t.string "name"
     t.string "title"
-    t.string "expercoin_rate"
-    t.string "rate"
+    t.integer "expercoin_rate"
+    t.integer "rate"
     t.string "professional_role"
     t.integer "years_of_experience"
     t.string "photo"
@@ -167,21 +167,17 @@ ActiveRecord::Schema.define(version: 2018_06_11_093152) do
   end
 
   create_table "transactions", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "eth_address_id"
     t.datetime "date"
     t.decimal "eth_amount"
-    t.integer "sender_id"
-    t.integer "receiver_id"
-    t.integer "parent_id"
-    t.integer "request_id"
     t.integer "usd_amount"
+    t.integer "rate"
+    t.decimal "tx_cost"
     t.integer "status", default: 0
-    t.text "from_eth"
-    t.text "block_number"
-    t.text "to_eth"
     t.text "tx_hash"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["tx_hash"], name: "index_transactions_on_tx_hash", unique: true
   end
 
   create_table "users", force: :cascade do |t|
