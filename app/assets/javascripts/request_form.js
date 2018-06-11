@@ -1,6 +1,7 @@
 // $(function(){
 //   requestFormInitialize();
 // });
+//= require request_cost_calculator
 
 $(document).on("turbolinks:load",function(){
   requestFormInitialize();
@@ -72,4 +73,18 @@ function requestFormInitialize() {
       });
     }
   });
+
+  // EXPR and USD sublabels in requests/new
+  if ($("[data-request-sublabel]").length > 0) {
+    var exprLabel = $("[data-request-sublabel='expr-value']");
+    var usdLabel = $("[data-request-sublabel='usd-value']");
+    var usdEthRate = $("[data-request='usd_eth_rate']").val();
+
+    exprLabel.html("EXPR: " + RequestCostCalculactor(1));
+    usdLabel.html("USD: " + RequestCostCalculactor(usdEthRate).toFixed(2));
+    $("#request_requested_length").on("change", function() {
+      exprLabel.html("EXPR: " + RequestCostCalculactor(1));
+      usdLabel.html("USD: " + RequestCostCalculactor(usdEthRate).toFixed(2));
+    });
+  }
 }

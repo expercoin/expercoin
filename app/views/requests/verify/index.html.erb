@@ -14,6 +14,7 @@
           <p class="eth-address">
           <%= ENV['ETH_ADDRESS'] %>
           </p>
+          <p>Price in USD: <%= decorate(@request).usd_amount %></p>
         </div>
         <div class="transaction-verification">
           <h4>Transaction ID</h4>
