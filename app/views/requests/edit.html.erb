@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="mentor-pricing-and-rating content-aside">   
-      <p class="pricing"><span class="currency">EXPR </span><%= @profile.expercoin_rate %><span class="per">/min</span></h2>
+      <p class="pricing"><span class="currency">EXPR </span><%= decorate(@profile).display_rate %><span class="per">/min</span></h2>
       <p class="rating">
         <%= display_stars ProfileRating.new(@profile).average_rating, 'Rating' %>
       </p>   
@@ -132,7 +132,7 @@
               <div data-block="length-info">
                 <div class='section-body-row'>
                   <span>Rate per minute</span>
-                  <span data-request="price"><%= "EXPR #{@profile.expercoin_rate}" %></span>
+                  <span data-request="price"><%= "EXPR #{decorate(@profile).display_rate}" %></span>
                 </div>
                 <div class='section-body-row'>
                   <span>Requested call length</span>
@@ -140,7 +140,8 @@
                 </div>
                 <div class='section-body-row'>
                   <span>Estimated cost</span>
-                  <span data-request="cost"><%= "EXPR #{RequestCalculator.new(@request).calculate_cost(@profile.expercoin_rate)}" %></span>
+                  <% rate = decorate(@profile).display_rate %>
+                  <span data-request="cost"><%= "EXPR #{RequestCalculator.new(@request).calculate_cost(rate)}" %></span>
                 </div>
               </div>
               <div data-block="length-form" class="section-row">
