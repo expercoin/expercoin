@@ -8,7 +8,7 @@ module Eth
     end
 
     def from_hex
-      @eth_formatter.from_wei(@value.to_s.hex)
+      @eth_formatter.from_wei(@value.to_s.hex).to_f
     end
 
     def to_hex

@@ -21,7 +21,7 @@
     </div>
     <div class="card-footer">
       <div class="footer-block mentor-price-and-reviews">
-        <span class="mentor-price"><%= decorate(profile).exc_price.html_safe %></span>
+        <span class="mentor-price"><strong>EXPR <%= decorate(profile).display_rate %></strong></span>
         <span class="mentor-reviews">
           <%= rating = ProfileRating.new(profile).average_rating %>
           <%= display_stars(rating) %>
