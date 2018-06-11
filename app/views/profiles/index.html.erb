@@ -1,7 +1,7 @@
 <nav class="content-nav">
-  <%= render "shared/subnavbar", active: "mentors" %>
+  <%= render "shared/subnavbar", active: "mentors" if current_user %>
 </nav>
-<main class="content content-with-nav">
+<main class="content <%= 'content-with-nav' if current_user %>">
   <section class="mentors-filterable">
     <div class="content-container">
       <div class="content-title">
