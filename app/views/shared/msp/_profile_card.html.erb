@@ -21,8 +21,7 @@
     </div>
     <div class="card-footer">
       <div class="footer-block mentor-price">
-<!--         EXPR <%= decorate(profile).display_rate %> -->
-        ETH <%= 0.000000065.to_f %>
+        EXPR <%= decorate(profile).display_rate %>
       </div>
       <div class="footer-block mentor-reviews">
         <%= rating = ProfileRating.new(profile).average_rating %>

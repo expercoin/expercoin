@@ -21,6 +21,6 @@ class ProfileDecorator < BaseDecorator
   end
 
   def display_rate
-    Eth::ValueFormatter.new(expercoin_rate).from_hex.round(7)
+    Eth::ValueFormatter.new(expercoin_rate).from_hex.to_f
   end
 end
