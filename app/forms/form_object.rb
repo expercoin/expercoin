@@ -14,6 +14,7 @@ class FormObject
   end
 
   def update(object)
+    return unless valid?
     object.update(attributes.compact)
   end
 end

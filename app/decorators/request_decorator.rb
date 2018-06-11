@@ -7,6 +7,11 @@ class RequestDecorator < BaseDecorator
   end
 
   def amount
-    expert.expercoin_rate * requested_length.to_i
+    rate = Eth::ValueFormatter.new(expert.expercoin_rate).from_hex
+    (rate * requested_length.to_i).round(7)
+  end
+
+  def usd_amount
+    ( Eth::UsdConverter.new(amount).usd_value ).round(2)
   end
 end

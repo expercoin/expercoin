@@ -47,7 +47,7 @@ module MSP
     end
 
     def valid_for_inprogress_status?
-      @request.started_at && !@request.ended_at && @request.verified?
+      (@request.caller || @request.invitee) && !@request.ended_at && @request.verified?
     end
 
     def completed_status

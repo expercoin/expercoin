@@ -19,4 +19,8 @@ class ProfileDecorator < BaseDecorator
     return '' unless rate.present?
     "<strong>EXPR #{expercoin_rate}</strong>/min"
   end
+
+  def display_rate
+    Eth::ValueFormatter.new(expercoin_rate).from_hex.round(7)
+  end
 end

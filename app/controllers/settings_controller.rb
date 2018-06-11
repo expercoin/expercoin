@@ -14,7 +14,7 @@ class SettingsController < ApplicationController
   end
 
   private
-  
+
   def set_profile_form
     @profile_form = ProfileForm.new(@profile, @profile.location, photo_url: @profile.try(:photo).thumb.url)
   end
@@ -32,12 +32,9 @@ class SettingsController < ApplicationController
       :country,
       :state,
       :city,
-      :zip_code
-    ).merge(rate: ensure_rate)
-  end
-
-  def ensure_rate
-    ::PercentageCalculate.new(@profile.commission_fee, params[:profile_form][:expercoin_rate]).decrease
+      :zip_code,
+      :rate
+    )
   end
 
   def set_profile
