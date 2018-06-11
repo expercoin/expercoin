@@ -12,6 +12,9 @@
     </div>
     <div class='session-call-container'>
       <div class='session-call-controls'>
+        <%= form_with url: conference_path(@request.room_sid), method: :put, id: 'session-time-form' do |f| %>
+          <%= f.submit 'Submit', class: 'hidden' %>
+        <% end %>
         <div class='session-call-time' data-time-start='<%= @request.started_at %>'><span data-timer='minutes'>0</span>:<span data-timer='seconds'>00</span></div>
         <div class="icon-group-controls">
           <button id='mute-audio' class='session-call-icon'>

@@ -39,6 +39,10 @@ class ConferenceController < ApplicationController
     update_started_at
   end
 
+  def update
+    @request = Request.find_by_room_sid(params[:id])
+  end
+
   private
 
   def update_members

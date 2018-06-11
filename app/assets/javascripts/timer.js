@@ -1,4 +1,4 @@
-$(document).on("turbolinks:load",function(){
+$(document).on('turbolinks:load',function(){
   timerInitialize();
 });
 
@@ -48,7 +48,7 @@ function setSeconds(seconds){
 function getTimeDifferenceInSeconds(startTime){
   var currentTime = new Date();
   var timeDiff = currentTime.getTime() - startTime.getTime();
-  diff = timeDiff / 1000;
+  var diff = timeDiff / 1000;
   if(Math.sign(diff) == -1){
     diff = 0;
   }
