@@ -16,11 +16,6 @@ module Eth
 
     private
 
-    def value
-      Ethereum::Formatter.new
-                         .yield_self { |it| it.output_to_int(@transaction['value']) }
-    end
-
     def from_eth
       @transaction['from']
     end
@@ -38,7 +33,7 @@ module Eth
     end
 
     def eth_amount
-      value / "1#{'0' * 18}".to_f.round(5)
+      @transaction['value']
     end
 
     def attributes_list
