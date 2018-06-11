@@ -20,12 +20,13 @@
       </div>
     </div>
     <div class="card-footer">
-      <div class="footer-block mentor-price-and-reviews">
-        <span class="mentor-price"><strong>EXPR <%= decorate(profile).display_rate %></strong></span>
-        <span class="mentor-reviews">
-          <%= rating = ProfileRating.new(profile).average_rating %>
-          <%= display_stars(rating) %>
-        </span>
+      <div class="footer-block mentor-price">
+<!--         EXPR <%= decorate(profile).display_rate %> -->
+        ETH <%= 0.000000065.to_f %>
+      </div>
+      <div class="footer-block mentor-reviews">
+        <%= rating = ProfileRating.new(profile).average_rating %>
+        <%= display_stars(rating) %>
       </div>
       <div class="footer-block mentor-actions">
         <%= link_to "Schedule Session", new_request_path(expert: profile.slug), class: 'btn btn-footer' unless profile == current_user.try(:profile) %>

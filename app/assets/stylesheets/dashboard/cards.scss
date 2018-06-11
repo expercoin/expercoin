@@ -79,21 +79,37 @@
         background-repeat: repeat-x;
       }
 
-      .mentor-price-and-reviews {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 5px 10px;
+      .mentor-price {
+        padding: 8px 10px;
+        font-size: 14px;
+        font-weight: 600;
+      }
 
-        .mentor-reviews {
-          font-size: 14px;
+      .mentor-reviews {
+        padding: 8px 10px;
+        font-size: 14px;
 
-          i {
-            font-size: 10px;
-            color: #ff4d4d;
-          }
+        i {
+          font-size: 10px;
+          color: #ff4d4d;
         }
       }
+
+      // .mentor-price-and-reviews {
+      //   display: flex;
+      //   justify-content: space-between;
+      //   align-items: center;
+      //   padding: 5px 10px;
+
+      //   .mentor-reviews {
+      //     font-size: 14px;
+
+      //     i {
+      //       font-size: 10px;
+      //       color: #ff4d4d;
+      //     }
+      //   }
+      // }
 
       .mentor-actions {
         display: flex;

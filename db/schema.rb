@@ -151,8 +151,8 @@ ActiveRecord::Schema.define(version: 2018_06_11_093152) do
     t.integer "updated_by_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "caller", default: false
-    t.boolean "invitee", default: false
+    t.boolean "caller"
+    t.boolean "invitee"
   end
 
   create_table "reviews", force: :cascade do |t|
