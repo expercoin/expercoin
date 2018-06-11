@@ -20,7 +20,7 @@
             </li>  
             <li>
               <%= link_to inbox_index_path do %>
-                Inbox <span class="unread-messages has-unread-messages">(5)</span>
+                Inbox <span class="unread-messages <%= 'has-unread-messages' if decorate(@profile).unread_messages? %>">(<%= decorate(@profile).unread_messages %>)</span>
               <% end %>  
             </li>       
           </ul>       
@@ -34,9 +34,9 @@
           <div class="panel-header"><h4>Requests</h4></div>
           <div class="panel-body">
             <ul class="list-requests">
-              <li>Pending <span>12</span></li>
-              <li>Accepted <span>5</span></li>
-              <li>Verified <span>2</span></li>
+              <li>Pending <span><%= decorate(@profile).pending_requests_count %></span></li>
+              <li>Accepted <span><%= decorate(@profile).accepted_requests_count %></span></li>
+              <li>Verified <span><%= decorate(@profile).verified_requests_count %></span></li>
             </ul>
           </div>
         </div>
@@ -46,9 +46,9 @@
           <div class="panel-header"><h4>Calls</h4></div>
           <div class="panel-body">
             <ul class="list-requests">
-              <li>Pending <span>12</span></li>
-              <li>Accepted <span>5</span></li>
-              <li>Verified <span>2</span></li>
+              <li>Pending <span><%= decorate(@profile).pending_calls_count %></span></li>
+              <li>Accepted <span><%= decorate(@profile).accepted_calls_count %></span></li>
+              <li>Verified <span><%= decorate(@profile).verified_calls_count %></span></li>
             </ul>
           </div>
         </div>        
