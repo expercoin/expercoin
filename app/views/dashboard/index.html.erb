@@ -10,8 +10,18 @@
             <p><%= current_user&.profile.title %></p>
           </div>
         </div>
-        <div class="mentor-dashboard-calls content-aside">
-            <%= link_to "View Call Requests", calls_path , class: 'btn btn-success btn-block btn-upc' %>
+        <div class="mentor-dashboards">
+          <ul class="mantor-dashboards-nav">
+            <li>
+              <%= link_to "My Requests", requests_path , class: '' %>
+            </li>
+            <li>
+              <%= link_to "My Calls", calls_path , class: '' %>
+            </li>  
+            <li>
+              <%= link_to "Inbox", inbox_index_path , class: '' %>
+            </li>       
+          </ul>       
         </div>
     </div>
   </header>
