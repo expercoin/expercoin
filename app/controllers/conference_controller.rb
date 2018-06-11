@@ -114,7 +114,6 @@ class ConferenceController < ApplicationController
 
   def release_funds
     transaction = Transaction.find_by(receiver: @request.expert.user, request: @request)
-    ReleaseFundsJob.perform_later(transaction) if @request.completed?
+    ReleaseFundsJob.perform_now(transaction) if @request.completed?
   end
-
 end 
