@@ -126,7 +126,7 @@ function videoTwilioInitialize(twilo=2){
     Twilio.Video.connect(token).then(function(room) {
       window.room = room;
       room.on('participantConnected', function(participant) {
-        console.log('sssss')
+        $('#session-time-form [type="submit"]').click();
         resetTracks();
       })
 
