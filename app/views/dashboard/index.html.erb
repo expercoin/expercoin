@@ -19,13 +19,40 @@
               <%= link_to "My Calls", calls_path , class: '' %>
             </li>  
             <li>
-              <%= link_to "Inbox", inbox_index_path , class: '' %>
+              <%= link_to inbox_index_path do %>
+                Inbox <span class="unread-messages has-unread-messages">(5)</span>
+              <% end %>  
             </li>       
           </ul>       
         </div>
     </div>
   </header>
   <div class="content-container">
-
+    <div class="dashboard-panels">
+      <div class="dashboard-panel-container">
+        <div class="dashboard-panel">
+          <div class="panel-header"><h4>Requests</h4></div>
+          <div class="panel-body">
+            <ul class="list-requests">
+              <li>Pending <span>12</span></li>
+              <li>Accepted <span>5</span></li>
+              <li>Verified <span>2</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="dashboard-panel-container">
+        <div class="dashboard-panel">
+          <div class="panel-header"><h4>Calls</h4></div>
+          <div class="panel-body">
+            <ul class="list-requests">
+              <li>Pending <span>12</span></li>
+              <li>Accepted <span>5</span></li>
+              <li>Verified <span>2</span></li>
+            </ul>
+          </div>
+        </div>        
+      </div>
+    </div>
   </div>
 </main>
