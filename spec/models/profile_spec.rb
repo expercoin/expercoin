@@ -4,9 +4,11 @@ require 'rails_helper'
 
 RSpec.describe Profile, type: :model do
   let(:profile) { create(:profile) }
+  let(:profile_with_photo) { create(:profile, :with_photo) }
 
   describe 'Factory' do
     it { expect(profile).to be_valid }
+    it { expect(profile_with_photo).to be_valid }
   end
 
   describe 'Validations' do

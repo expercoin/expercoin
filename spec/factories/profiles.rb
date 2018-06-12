@@ -13,8 +13,10 @@ FactoryBot.define do
     country 'United States'
     city Faker::Address.city
     zip_code Faker::Address.zip_code
-    # remote_photo_url Faker::Avatar.image
-    # specialization specialization
     user
+
+    trait :with_photo do
+      remote_photo_url Faker::Avatar.image
+    end
   end
 end
