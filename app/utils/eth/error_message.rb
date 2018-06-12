@@ -7,11 +7,17 @@ module Eth
     def perform
       message = transaction_not_found
       message ||= transaction_used
+      message ||= transaction_wrong_eth_address
       message ||= transaction_pending
       message
     end
 
     private
+
+    def transaction_wrong_eth_address
+      return if @eth_transaction['to'] == ENV['ETH_ADDRESS']
+      'Wrong ETH Address'
+    end
 
     def transaction_pending
       return if @eth_transaction['blockNumber']

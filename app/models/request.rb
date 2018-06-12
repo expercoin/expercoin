@@ -15,7 +15,7 @@ class Request < ApplicationRecord
   belongs_to :updated_by, class_name: 'Profile', foreign_key: 'updated_by_id'
 
   has_one :review
-  has_one :eth_transaction, class_name: 'Transaction'
+  has_many :eth_transactions, class_name: 'Transaction'
 
   enum requested_length: %w[15min 30min 45min]
   enum status: %I[draft pending accepted inprogress completed rejected upcoming expired closed verified verifying]
@@ -36,6 +36,10 @@ class Request < ApplicationRecord
   validate :dates_cannot_be_in_past
   validate :date_must_be_from_request_date_list, on: :update
   # validate :must_be_able_to_pay_call_on_accepts, on: :update
+
+  def eth_transaction
+    eth_transactions.find_by_parent_id(nil)
+  end
 
   def must_be_able_to_pay_call_on_accepts
     return unless status_was == 'pending'
@@ -93,6 +97,6 @@ class Request < ApplicationRecord
 
   def reset
     update(status: 'accepted', tx_hash: nil, started_at: nil, ended_at: nil, room_sid: nil, updated_by: expert, caller: false, invitee: false)
-    eth_transaction&.destroy
+    eth_transactions&.destroy_all
   end
 end

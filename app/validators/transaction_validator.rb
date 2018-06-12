@@ -1,7 +1,8 @@
 class TransactionValidator < BaseValidator
   validate :required_amount
-  validates_presence_of :block_number
+  validates_presence_of :block_number, :eth_amount
   validates :tx_hash, unique: true
+  validates :address, presence: true, inclusion: { in: [ENV['ETH_ADDRESS']] }
 
   attr_reader :transaction
 
@@ -11,6 +12,10 @@ class TransactionValidator < BaseValidator
 
   private
 
+  def address
+    @transaction.to_eth
+  end
+
   def request
     @transaction.request
   end
@@ -19,15 +24,26 @@ class TransactionValidator < BaseValidator
     @transaction.block_number
   end
 
+  def eth_amount
+    @transaction.eth_amount
+  end
+
   def tx_hash
     @transaction.tx_hash
   end
 
   def amount_to_pay
-    request.expert.expercoin_rate * request.requested_length.to_i
+    rate = Eth::ValueFormatter.new(request.expert.expercoin_rate).from_hex
+    amount = (rate * request.requested_length.to_i).to_f
+    Ethereum::Formatter.new.to_wei(amount)
+  end
+
+  def transaction_amount
+    eth_amount&.hex || 0
   end
 
   def required_amount
-    return errors.add(:eth_amount, 'Must be valid') if amount_to_pay > @transaction.eth_amount
+    return if amount_to_pay <= transaction_amount
+    errors.add(:eth_amount, 'Must be valid')
   end
 end
