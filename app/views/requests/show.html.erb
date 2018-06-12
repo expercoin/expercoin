@@ -100,4 +100,6 @@
 <%= render 'inbox/message_modal', profile: @profile %>
 <% if @request.verified? %>
 <%= render 'shared/notice_box', message: "Verification Done", type: 'success', name: 'show' %>
+<% elsif @request.verifying?%>
+<%= render 'shared/notice_box', message: "Verification In Proccess", type: 'success', name: 'show' %>
 <% end %>

@@ -23,7 +23,7 @@ class VerifyRequestService < BaseService
   end
 
   def pending
-    @transaction['hash'] && !@transaction['blockNumber']
+    @transaction&['hash'] && !@transaction&['blockNumber']
   end
 
   private

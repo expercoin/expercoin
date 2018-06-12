@@ -92,6 +92,7 @@ class Request < ApplicationRecord
   end
 
   def reset
-    update(status: 'verified', started_at: nil, ended_at: nil, room_sid: nil, updated_by: expert, caller: false, invitee: false)
+    update(status: 'accepted', tx_hash: nil, started_at: nil, ended_at: nil, room_sid: nil, updated_by: expert, caller: false, invitee: false)
+    eth_transaction&.destroy
   end
 end
