@@ -1,7 +1,12 @@
 FactoryBot.define do
   factory :category do
-    parent_id 1
-    name "MyString"
-    banner "MyText"
+    name Faker::ProgrammingLanguage.name
+    banner Faker::Lorem.paragraph
+
+    trait :with_banner do
+      remote_banner_url do
+        Faker::Company.logo
+      end
+    end
   end
 end

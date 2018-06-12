@@ -3,7 +3,7 @@ class Category < ApplicationRecord
   has_many :categories, foreign_key: :parent_id
   has_and_belongs_to_many :profiles
 
-  # validates :name, uniqueness: true
+  validates_presence_of :name
 
   scope :main, -> { where(parent_id: nil ) }
   scope :children, -> { where.not(parent_id: nil ) }
