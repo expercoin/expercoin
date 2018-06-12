@@ -15,20 +15,20 @@
         <%= render 'shared/profile_navigation', locals: {active: 'find'} %>
       </div>
       <div class="col-sm-9">
-        <h4 class="card-form-title mt-3">
-          Help People Find You
-        </h4>
-        <div class="card card-form">
-          <div class="card-body">
-            <div class="form-group">
-              <label>
-                I am interested in providing mentorship and advisory services on Expercoin's on-demand learning and mentorship platform.
-              </label>
+        <div class="profile-panel">
+          <div class="panel-header">
+            <h4>Help People Find You</h4>
+          </div>
+          <div class="panel-body">
+            <p>
+              I am interested in providing mentorship and advisory services on Expercoin's on-demand learning and mentorship platform.
+            </p>
+            <div class="form-group">  
               <label>Categories</label>
-              <%= f.collection_select :category_ids, @categories, :id, :name, {}, { multiple:"multiple", class: 'selectpicker', 'data-live-search':"true" } %>
+              <%= f.collection_select :category_ids, @categories, :id, :name, {}, { multiple:"multiple", class: 'selectpicker form-control', 'data-live-search':"true" } %>
             </div>
           </div>
-        </div>
+        </div>    
         <div class="d-flex justify-content-end mb-5">
           <%= f.submit "Save", :class => "btn btn-primary btn-wide" %>
         </div>
