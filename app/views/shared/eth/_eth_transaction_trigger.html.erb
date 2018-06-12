@@ -1,0 +1,30 @@
+<script>
+  window.done = false;
+  $(document).on("turbolinks:load",function(){
+    if($('[data-transaction-screen]').length) {
+      if (typeof web3 !== 'undefined') {
+        console.log('Web3 Detected! ' + web3.currentProvider.constructor.name)
+        window.web3 = new Web3(web3.currentProvider);
+        var toAddress = "<%= ENV['ETH_ADDRESS'] %>";
+        var ethAmount = <%= amount %>;
+        if(!window.done) {
+          window.done = true;
+          web3.eth.sendTransaction({
+            to: toAddress,
+            value: web3.toWei(ethAmount, 'ether')
+          }, function (error, result) {
+              console.log(error, result)
+            if (error) {
+              // $('#output').html("Something went wrong!");
+            } else {
+              $('[data-tx-hash="true"]').val(result);
+              // $('#output').html("Track the payment: <a href='https://etherscan.io/tx/" + result + "'>https://etherscan.io/tx/" + result + "'");
+            }
+          });
+        }
+      } else {
+        $('#output').html('Please download and install Metamask: <a href="https://metamask.io/">https://metamask.io/</a>');
+      }
+    }
+  });
+</script>
