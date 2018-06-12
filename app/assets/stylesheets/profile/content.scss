@@ -1,14 +1,31 @@
+// Profile Page
+//---------------------------------------------
+
+.profile-page {
+  .page-content {
+    background-color: #f7f9f6;
+    padding-bottom: 40px;
+  }  
+}
+
+// Profile Page Elements
+//---------------------------------------------
+
 .profile-title-section {
   padding: 1.5rem 0;
-  border-bottom: 1px solid rgba(0,0,0,.1);
+  background-color: #fff;
+  border-bottom: 1px solid #e3e2df;
 
   .profile-name {
     font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0;
   }
 }
 
 .profile-form-container {
   min-height: calc(100% - 5.4rem);
+  padding-top: 40px;
 
   form {
     flex-grow: 1;
@@ -23,40 +40,108 @@
 //---------------------------------------------
 
 .profile-sidebar {
-  height: 100%;
 
   .list-group {
     border-radius: 0;
     height: 100%;
-    background-color: #f0efed;
-    border-left: 1px solid rgba(0,0,0,.1);
-    border-right: 1px solid rgba(0,0,0,.1);
+    background-color: #fff;
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
+     -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
+          box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
 
     .list-group-item {
       display: flex;
       align-items: center;
       background: none;
       border: 0;
-      border-bottom: 1px solid rgba(0,0,0,.1);
+      border-width: 1px;
+      border-style: solid;
+      border-color: #e3e2df #e3e2df transparent #e3e2df;
       border-radius: 0;
       padding: 1.25rem 1.5rem;
       font-weight: 600;
       text-transform: uppercase;
       color: #666;
-      min-height: 82px;
+
+      &:last-child {
+        border-color: #e3e2df;
+      }
 
       &:hover {
-        background-color: darken(#f0efed,5%);
+        background-color: #e5f4f7;
+        border-color: #e3e2df;
       }
 
       &.active {
-        background-color: #00abda;
+        background-color: #009fe0;
+        border-color: #009fe0;
         color: white;
 
         &:hover {
-          background-color: darken(#00abda, 3%);
+          background-color: darken(#009fe0, 3%);
         }
       }
     }
   }
+}
+
+// Profile Panel
+//---------------------------------------------
+
+.profile-panel {
+  position: relative;
+  background: #fff;
+  margin-bottom: 24px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
+     -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
+          box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
+
+  .panel-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e3e2df;
+
+    h4 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 0;
+    }
+  }
+
+  .panel-body {
+    padding: 20px 20px 32px;
+  }
+}
+
+// Profile Image
+//---------------------------------------------
+
+.profile-image {
+  text-align: center;
+
+  img {
+    display: block;
+    margin: 20px auto;
+    border-radius: 50%;
+  }
+}
+
+// Forms
+//---------------------------------------------
+
+.form-group {
+  label {
+    font-weight: 600;
+  }
+
+  &.form-group-inline {
+    label,
+    p {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.va-flex {
+  align-items: center;
 }
