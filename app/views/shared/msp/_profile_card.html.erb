@@ -21,7 +21,7 @@
     </div>
     <div class="card-footer">
       <div class="footer-block mentor-price">
-        EXPR <%= decorate(profile).display_rate %>
+        <%= ENV['CURRENCY'] %> <%= decorate(profile).display_rate %>
       </div>
       <div class="footer-block mentor-reviews">
         <%= rating = ProfileRating.new(profile).average_rating %>

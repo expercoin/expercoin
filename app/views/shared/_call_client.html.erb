@@ -10,7 +10,7 @@
     </div>
     <div class='session-details-mentor-price-and-rating'>
       <div class='mentor-price'>
-        <span class="strong"> EXPR <%= decorate(profile).display_rate %></span>/min
+        <span class="strong"> <%= ENV['CURRENCY'] %> <%= decorate(profile).display_rate %></span>/min
       </div>
       <div class='mentor-rating'>
         <p class="rating">

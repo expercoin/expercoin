@@ -9,8 +9,8 @@
       </div>
       <div class="request-transaction">
         <div class="transaction-info">
-          <p>You requested length of <%= @request.requested_length %>, where expert rate is <%= "EXPR #{ decorate(@request.expert).display_rate }" %></p>
-          <p>Please send amount of <%= "EXPR #{decorate(@request).amount}" %> to the following ETH address:</p>
+          <p>You requested length of <%= @request.requested_length %>, where expert rate is <%= "#{ENV['CURRENCY']} #{ decorate(@request.expert).display_rate }" %></p>
+          <p>Please send amount of <%= "#{ENV['CURRENCY']} #{decorate(@request).amount}" %> to the following ETH address:</p>
           <p class="eth-address">
           <%= ENV['ETH_ADDRESS'] %>
           </p>

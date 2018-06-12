@@ -17,7 +17,7 @@ class ProfileDecorator < BaseDecorator
 
   def exc_price
     return '' unless rate.present?
-    "<strong>EXPR #{expercoin_rate}</strong>/min"
+    "<strong>#{ENV['CURRENCY']} #{expercoin_rate}</strong>/min"
   end
 
   def display_rate
