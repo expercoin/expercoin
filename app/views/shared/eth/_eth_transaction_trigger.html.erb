@@ -18,6 +18,7 @@
               // $('#output').html("Something went wrong!");
             } else {
               $('[data-tx-hash="true"]').val(result);
+              $('[data-verify-button]').click();
               // $('#output').html("Track the payment: <a href='https://etherscan.io/tx/" + result + "'>https://etherscan.io/tx/" + result + "'");
             }
           });

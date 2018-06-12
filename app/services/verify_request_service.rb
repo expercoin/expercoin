@@ -13,6 +13,7 @@ class VerifyRequestService < BaseService
 
   def perform
     return unless @transaction.present?
+    update_request_tx_hash
     create_transaction
     MSP::UpdateRequestStatus.new(request).perform
   end
@@ -21,7 +22,15 @@ class VerifyRequestService < BaseService
     Eth::ErrorMessage.new(@transaction).perform
   end
 
+  def pending
+    @transaction&['hash'] && !@transaction&['blockNumber']
+  end
+
   private
+
+  def update_request_tx_hash
+    request.update(tx_hash: @transaction['hash'])
+  end
 
   def tx_hash
     @params[:tx_hash]

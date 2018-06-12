@@ -1,5 +1,5 @@
 class TransactionValidator < BaseValidator
-  # validate :required_amount
+  validate :required_amount
   validates_presence_of :block_number
   validates :tx_hash, unique: true
 
@@ -10,7 +10,6 @@ class TransactionValidator < BaseValidator
   end
 
   private
-
 
   def request
     @transaction.request

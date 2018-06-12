@@ -23,6 +23,7 @@ class CreateRequests < ActiveRecord::Migration[5.2]
       t.integer :requester_id
       t.integer :expert_id
       t.integer :updated_by_id
+      t.string :tx_hash
       t.timestamps
     end
   end

@@ -7,6 +7,7 @@ module MSP
     def perform
       pending_status
       accepted_status
+      verifying_status
       verified_status
       inprogress_status
       completed_status
@@ -30,6 +31,15 @@ module MSP
 
     def valid_for_accepted_status?
       @request.selected_date && @request.pending?
+    end
+
+    def verifying_status
+      return unless valid_for_verifying_status?
+      @request.update(status: 'verifying')
+    end
+
+    def valid_for_verifying_status?
+      @request.tx_hash && @request.accepted? && !@request.eth_transaction
     end
 
     def verified_status

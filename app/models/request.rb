@@ -18,7 +18,7 @@ class Request < ApplicationRecord
   has_one :eth_transaction, class_name: 'Transaction'
 
   enum requested_length: %w[15min 30min 45min]
-  enum status: %I[draft pending accepted inprogress completed rejected upcoming expired closed verified]
+  enum status: %I[draft pending accepted inprogress completed rejected upcoming expired closed verified verifying]
 
   validates(
     :title,
@@ -92,6 +92,7 @@ class Request < ApplicationRecord
   end
 
   def reset
-    update(status: 'verified', started_at: nil, ended_at: nil, room_sid: nil, updated_by: expert, caller: false, invitee: false)
+    update(status: 'accepted', tx_hash: nil, started_at: nil, ended_at: nil, room_sid: nil, updated_by: expert, caller: false, invitee: false)
+    eth_transaction&.destroy
   end
 end
