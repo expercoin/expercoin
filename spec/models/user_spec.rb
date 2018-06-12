@@ -6,9 +6,7 @@ RSpec.describe User, type: :model do
   let(:user) { build(:user) }
 
   describe 'Factory' do
-    it 'has valid factory' do
-      expect(user).to be_valid
-    end
+    it { expect(user).to be_valid }
   end
 
   describe 'Validations' do
