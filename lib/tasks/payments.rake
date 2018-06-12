@@ -18,4 +18,35 @@ namespace :payments do
       puts "Payment with sender #{request.requester.first_name} #{request.requester.last_name} created"
     end
   end
+
+  desc 'Create test payments with parent'
+  task create_test_payments_with_parent: :environment do
+    transactions = Transaction.all
+    transactions.each do |parent|
+      amount = Eth::ValueFormatter.new(parent.eth_amount).from_hex
+      # to expert
+      transaction = Transaction.create(
+        parent: parent,
+        sender: parent.sender,
+        receiver: parent.request.expert.user,
+        request: parent.request,
+        eth_amount: Eth::ValueFormatter.new(amount * 0.93).to_hex,
+        from_eth: parent.to_eth,
+        to_eth: parent.request.expert.wallet.eth_addresses.sample.public_key,
+        status: 'pending'
+      )
+      puts "Payment with receiver #{transaction.receiver.profile.first_name} #{transaction.receiver.profile.last_name} created"
+
+      # to expercoin
+      transaction = Transaction.create(
+        parent: parent,
+        sender: parent.sender,
+        request: parent.request,
+        eth_amount: Eth::ValueFormatter.new(amount * 0.07).to_hex,
+        from_eth: parent.to_eth,
+        status: 'completed'
+      )
+      puts "Payment with to expercoin created"
+    end
+  end
 end
