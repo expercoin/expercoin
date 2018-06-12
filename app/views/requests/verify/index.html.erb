@@ -14,12 +14,13 @@
           <%= ENV['ETH_ADDRESS'] %>
           </p>
           <p>Price in USD: <%= decorate(@request).usd_amount %></p>
+          <div id='output' data-transaction-screen></div>
         </div>
         <div class="transaction-verification">
           <h4>Transaction ID</h4>
           <%= form_with scope: :verify do |f| %>
             <div class="form-group">
-              <%= f.text_field :tx_hash, class: 'form-control' %>
+              <%= f.text_field :tx_hash, class: 'form-control', 'data-tx-hash': true %>
             </div>
             <%= f.submit 'Verify', class: 'btn btn-success btn-md btn-md-lgr' %>
           <% end %>
@@ -29,3 +30,4 @@
   </section>
 </main>
 <%= render 'shared/notice_box', message: @error_message, type: 'error', name: '' %>
+<%= render 'shared/eth/eth_transaction_trigger', amount: decorate(@request).amount %>

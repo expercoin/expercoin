@@ -15,6 +15,8 @@
 //= require twilio_video
 //= require timer
 //= require listeners
+//= require web3
+//= require web3_setup
 
 document.addEventListener("turbolinks:load", function() {
   $('.selectpicker').select2();
