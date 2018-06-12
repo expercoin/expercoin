@@ -18,7 +18,7 @@ class Request < ApplicationRecord
   has_one :eth_transaction, class_name: 'Transaction'
 
   enum requested_length: %w[15min 30min 45min]
-  enum status: %I[draft pending accepted inprogress completed rejected upcoming expired closed verified]
+  enum status: %I[draft pending accepted inprogress completed rejected upcoming expired closed verified verifying]
 
   validates(
     :title,

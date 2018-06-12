@@ -13,7 +13,7 @@ module Requests
     def create
       @verify_request_service = VerifyRequestService.new(verify_params)
       @verify_request_service.perform
-      redirect_to request_path(@request) if @verify_request_service.request_verified?
+      redirect_to request_path(@request) if @verify_request_service.request_verified? || @verify_request_service.pending
       @error_message = @verify_request_service.error_message
     end
 
