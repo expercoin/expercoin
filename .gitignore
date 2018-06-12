@@ -38,3 +38,4 @@
 yarn-debug.log*
 .yarn-integrity
 /config/app_environment_variables.rb
+tags
