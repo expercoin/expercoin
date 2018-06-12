@@ -15,11 +15,11 @@
         <%= render 'shared/profile_navigation', locals: {active: 'basic_info'} %>
       </div>
       <div class="col-sm-9">
-        <h4 class="card-form-title mt-3">
-          Basic Information
-        </h4>
-        <div class="card card-form">
-          <div class="card-body">
+        <div class="profile-panel">
+          <div class="panel-header">
+            <h4>Basic Information</h4>
+          </div>
+          <div class="panel-body">
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label>First Name</label>
@@ -53,46 +53,26 @@
                 Profile Picture
               </label>
               <div class="image-place" id="user_photo_drop_zone">
-                <div class="file-input-wrapper">
+                <div class="profile-image">
                   <%= render 'shared/profile_photo', photo: @profile_form.photo_url %>
-                  <!-- <button class="btn&#45;file&#45;input btn"> -->
-                  <!--   <span> -->
-                  <!--     Drop file here or -->
-                  <!--   </span> -->
-                  <!--   Browse -->
-                  <!--   <span> -->
-                  <!--     to add attachments -->
-                  <!--   </span> -->
-                  <!-- </button> -->
-                  <%= f.file_field :photo %>
+                  <label class="btn btn-primary">
+                      Browse Photo<%= f.file_field :photo, style: 'display: none;' %>
+                  </label>
                 </div>
               </div>
             </div>
-            <!-- <div class="form&#45;check form&#45;group"> -->
-            <!--   <input type="checkbox" class="form&#45;check&#45;input"> -->
-            <!--   <label class="form&#45;check&#45;label"> -->
-            <!--     I am interested in providing mentorship and advisory services on Expercoin's on&#45;demand learning and mentorship platform. -->
-            <!--   </label> -->
-            <!-- </div> -->
-            <!-- <div class="form&#45;check form&#45;group"> -->
-            <!--   <input type="checkbox" class="form&#45;check&#45;input"> -->
-            <!--   <label class="form&#45;check&#45;label"> -->
-            <!--       I am interested in being recommended for the full&#45;time positions? -->
-            <!--   </label> -->
-            <!-- </div> -->
           </div>
         </div>
-        <h4 class="card-form-title">
-          <span class="rate"></span>
-          Minimum rate per minute
-        </h4>
-        <div class="card card-form">
-          <div class="card-body">
-            <div class="row form-group">
-              <div class="col-sm-3 offset-md-2">
-                  <label>Expercoin will charge X/min:</label>
+        <div class="profile-panel">
+          <div class="panel-header">
+            <h4>Minimum rate per minute</h4>
+          </div>
+          <div class="panel-body">
+            <div class="row form-group form-group-inline">
+              <div class="col-sm-4 d-flex va-flex">
+                <label>Expercoin will charge X/min:</label>
               </div>
-              <div class="col-sm-4">
+              <div class="col-sm-5">
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"><%= ENV['CURRENCY'] %></span>
@@ -103,43 +83,38 @@
                   </div>
                 </div>
               </div>
+              <div class="col-sm-3 d-flex va-flex">
+                <p>
+                  (<%= @profile.commission_fee %>% commission fee)
+                </p>
+              </div>
             </div>
-            <div class="row">
-                <div class="col-sm-3 offset-md-2">
-                    <label>Rate per minute:</label>
-                </div>
-                <div class="col-sm-4">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1"><%= ENV['CURRENCY'] %></span>
-                    </div>
-                    <%= f.text_field :rate, class: "form-control", 'data-rate': 'hourly', 'data-fee': @profile.commission_fee %>
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"> / min</span>
-                    </div>
+            <div class="row form-group form-group-inline">
+              <div class="col-sm-4 d-flex va-flex">
+                <label>Rate per minute:</label>
+              </div>
+              <div class="col-sm-5">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><%= ENV['CURRENCY'] %></span>
+                  </div>
+                  <%= f.text_field :rate, class: "form-control", 'data-rate': 'hourly', 'data-fee': @profile.commission_fee %>
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"> / min</span>
                   </div>
                 </div>
-                <div class="col-sm-3">
-                    <p>
-                        (<%= @profile.commission_fee %>% commission fee)
-                      </p>
-                </div>
               </div>
+            </div>
           </div>
         </div>
-        <h4 class="card-form-title">
-          <span class="location"></span>
-          Your Location
-        </h4>
-        <div class="card card-form">
-          <div class="card-body">
+        <div class="profile-panel">
+          <div class="panel-header">
+            <h4>Your Location</h4>
+          </div>
+          <div class="panel-body">
             <div class="form-group">
               <label>
                 Your Address
-                <!-- <i class="fa fa&#45;lock"></i> -->
-                <!-- <span class="label&#45;notice"> -->
-                <!--   Will not be displayed publicly, but is needed to process your payments. -->
-                <!-- </span> -->
               </label>
               <%= f.text_field :address, :class => "form-control" %>
             </div>
@@ -154,17 +129,17 @@
               </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-6">
-                    <%= f.label "City" %>
-                    <%= f.text_field :city, :class => "form-control" %>
-                </div>
-                <div class="form-group col-md-6">
-                    <%= f.label "Zip Code" %>
-                    <%= f.text_field :zip_code, :class => "form-control" %>
-                </div>
+              <div class="form-group col-md-6">
+                  <%= f.label "City" %>
+                  <%= f.text_field :city, :class => "form-control" %>
+              </div>
+              <div class="form-group col-md-6">
+                  <%= f.label "Zip Code" %>
+                  <%= f.text_field :zip_code, :class => "form-control" %>
+              </div>
             </div>
           </div>
-        </div>
+        </div>  
         <div class="d-flex justify-content-end mb-5">
           <%= f.submit "Save", class: "btn btn-primary btn-wide" %>
         </div>
