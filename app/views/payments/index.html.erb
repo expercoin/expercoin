@@ -27,7 +27,7 @@
                 <%= transaction.created_at.to_date %>
               </div>
               <div class="col-md-2 requests-list-item">
-                <%= transaction.eth_amount %>
+                <%= decorate(transaction).display_amount %>
               </div>
               <div class="col-md-6 requests-list-item">
                 <%= link_to transaction.request.title, request_path(transaction.request) %>  
