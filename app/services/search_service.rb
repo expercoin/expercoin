@@ -19,7 +19,7 @@ class SearchService < BaseService
   def filter
     return unless valid?
     @collection = @collection.search(@search) if Rails.env.production?
-    @collection = sql_lite_search if Rails.env.development?
+    @collection = sql_lite_search if Rails.env.development? || Rails.env.test?
   end
 
   def order

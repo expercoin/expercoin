@@ -2,6 +2,17 @@
   <%= render "shared/subnavbar", active: "mentors" %>
 </nav>
 <main class="content content-with-nav">
+  <% if flash.any? %>
+    <div id="error_explanation" class="mt-0">
+      <div class="content-container">
+          <ul>
+            <% flash.each do |key, value| %>
+              <%= content_tag :li, value, class: "flash #{key}" %>
+            <% end %>
+          </ul>
+      </div>
+    </div>
+  <% end %>
   <section class="mentors-filterable">
     <div class="content-container">
       <div class="content-title">

@@ -18,5 +18,13 @@ FactoryBot.define do
     association :requester, factory: :profile, first_name: Faker::Name.first_name
     association :expert, factory: :profile, last_name: Faker::Name.last_name
     updated_by { requester }
+
+    trait :completed do
+      status 'completed'
+    end
+
+    trait :with_selected_date do
+      selected_date first_date
+    end
   end
 end
