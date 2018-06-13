@@ -22,5 +22,9 @@ FactoryBot.define do
     trait :completed do
       status 'completed'
     end
+
+    trait :with_selected_date do
+      selected_date first_date
+    end
   end
 end
