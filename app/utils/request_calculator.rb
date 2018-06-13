@@ -4,7 +4,7 @@ class RequestCalculator
   end
 
   def calculate_cost(price)
-    length.to_i * price.to_i
+    length.to_f * price.to_f
   end
 
   private

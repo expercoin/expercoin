@@ -35,7 +35,7 @@ function requestFormInitialize() {
     var length = $('#request_requested_length').val();
     length = /\d+/g.exec(length);
     var price = $('[data-request="price"]').html();
-    price = /\d+/g.exec(price);
+    price = /\d+.*/g.exec(price);
     var cost = price * length;
     $('[data-request="length"]').html(length);
     var cryptocurrency = window._cryptocurrency;
