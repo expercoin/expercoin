@@ -17,5 +17,7 @@ class ProfilesController < ApplicationController
 
   def set_profile
     @profile = Profile.friendly.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to profiles_path, flash: { error: 'Profile Not Found' }
   end
 end
