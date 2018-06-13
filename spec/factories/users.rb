@@ -6,7 +6,8 @@ FactoryBot.define do
     password Faker::Internet.password
     first_name Faker::Name.first_name
     last_name Faker::Name.last_name
-
+    confirmed_at Time.zone.now
+    
     trait :no_email do
       email ''
     end
