@@ -21,6 +21,9 @@ RSpec.describe ProfileForm do
 
   describe '.update_categories' do
     before { profile_form.update_categories(profile) }
-    it { expect(profile.categories.count).to eq category_ids.count }
+    it 'should update categories succesfully' do
+      profile_categories_ids = profile.categories.map(&:id)
+      expect(profile_categories_ids).to eq category_ids
+    end
   end
 end
