@@ -17,9 +17,11 @@ RSpec.describe ProfileDecorator do
   end
 
   describe '.display_location_with_abbreviation' do
-    it do
-      location = "#{profile.country} | #{profile.state}"
-      expect(profile_decorator.display_location_with_abbreviation).to eq location
+    it 'shoud include country in output' do
+      expect(profile_decorator.display_location_with_abbreviation).to include(profile.country)
+    end
+    it 'should include state in output' do
+      expect(profile_decorator.display_location_with_abbreviation).to include(profile.state)
     end
   end
 
