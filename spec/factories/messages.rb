@@ -16,5 +16,13 @@ FactoryBot.define do
     trait :with_parent do
       parent { create(:message) }
     end
+
+    trait :unread do
+      unread true
+    end
+
+    trait :read do
+      unread false
+    end
   end
 end

@@ -1,0 +1,58 @@
+# frozen_string_literal: true
+
+require 'rails_helper'
+
+RSpec.describe ProfileDecorator do
+  let(:profile) { create(:profile) }
+  let(:completed_request) { create(:request, :completed, expert: profile) }
+  let(:profile_decorator) { ProfileDecorator.new(profile) }
+  let(:rate) { Eth::ValueFormatter.new(profile.expercoin_rate).from_hex }
+  let!(:message) { create(:message, :unread, receiver: profile.user) }
+
+  describe '.full_name' do
+    it 'should eq full name' do
+      full_name = "#{profile.first_name} #{profile.last_name}"
+      expect(profile_decorator.full_name).to eq full_name
+    end
+  end
+
+  describe '.display_location_with_abbreviation' do
+    it do
+      location = "#{profile.country} | #{profile.state}"
+      expect(profile_decorator.display_location_with_abbreviation).to eq location
+    end
+  end
+
+  describe '.last_session' do
+    it 'should return correct format' do
+      datetime_format = completed_request.created_at.strftime('%b, %-d %Y')
+      expect(profile_decorator.last_session).to eq datetime_format
+    end
+  end
+
+  describe '.exc_price' do
+    it 'should include rate in output' do
+      expect(profile_decorator.exc_price).to include(rate.to_s)
+    end
+  end
+
+  describe '.display_rate' do
+    it { expect(profile_decorator.display_rate).to eq rate }
+  end
+
+  describe '.unread_messages' do
+    it { expect(profile_decorator.unread_messages).to eq 1 }
+  end
+
+  describe '.unread_messages?' do
+    it { expect(profile_decorator.unread_messages?).to be true }
+  end
+
+  describe '.status_calls_count' do
+    # needs to be implemented with group examples
+  end
+
+  describe '.status_requests_count' do
+    # needs to be implemented with group examples
+  end
+end
