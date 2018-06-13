@@ -1,5 +1,7 @@
 module Eth
   class FindTransaction
+    API_KEY = 'PH26WWT52U6F4M9EQ1CUU6KCHF85AHCU8A'
+
     def initialize(tx_hash)
       @tx_hash = tx_hash
     end
@@ -12,7 +14,15 @@ module Eth
     private
 
     def result
-      ipc
+      http_client
+    end
+
+    def http_client
+      Ethereum::HttpClient.new(ENV['ETH_NODE_HTTP_PATH'])
+                          .yield_self { |it| it.eth_get_transaction_by_hash(@tx_hash) }
+                          .yield_self { |it| it['result'] }
+    rescue StandardError
+      {}
     end
 
     def ipc
