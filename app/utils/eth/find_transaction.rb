@@ -1,7 +1,5 @@
 module Eth
   class FindTransaction
-    API_KEY = 'PH26WWT52U6F4M9EQ1CUU6KCHF85AHCU8A'
-
     def initialize(tx_hash)
       @tx_hash = tx_hash
     end

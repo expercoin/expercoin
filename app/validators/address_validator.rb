@@ -1,5 +1,5 @@
 class AddressValidator < BaseValidator
-  validates :address, presence: true, inclusion: { in: [ENV['ETH_ADDRESS']] }
+  validates :address, presence: true, inclusion: { in: [ENV['ETH_ADDRESS'].downcase] }
 
   def initialize(address)
     @address = address
@@ -8,6 +8,6 @@ class AddressValidator < BaseValidator
   private
 
   def address
-    @address
+    @address.downcase
   end
 end
