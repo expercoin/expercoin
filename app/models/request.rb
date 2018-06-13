@@ -23,6 +23,7 @@ class Request < ApplicationRecord
   validates(
     :title,
     :message,
+    :requested_length,
     :first_time,
     :first_date,
     :second_time,

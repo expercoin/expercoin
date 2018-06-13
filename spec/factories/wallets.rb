@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :wallet do
-    profile nil
+    profile
   end
 end
