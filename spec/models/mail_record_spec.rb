@@ -1,5 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe MailRecord, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:mail_record) { build(:mail_record) }
+
+  describe 'Factory' do
+    it { expect(mail_record).to be_valid }
+  end
 end
