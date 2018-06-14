@@ -4,7 +4,7 @@ namespace :payments do
     requests = Request.verified
     requests.each do |request|
       length = request.requested_length.to_i
-      rate = request.expert.expercoin_rate
+      rate = request.expert.expercoin_rate.to_f
       amount = rate * length
       transaction = Transaction.create!(
         sender: request.requester.user,
@@ -23,14 +23,14 @@ namespace :payments do
   task create_test_payments_with_parent: :environment do
     transactions = Transaction.all
     transactions.each do |parent|
-      amount = Eth::ValueFormatter.new(parent.eth_amount).from_hex
+      amount = parent.eth_amount.to_f
       # to expert
       transaction = Transaction.create(
         parent: parent,
         sender: parent.sender,
         receiver: parent.request.expert.user,
         request: parent.request,
-        eth_amount: Eth::ValueFormatter.new(amount * 0.93).to_hex,
+        eth_amount: amount * 0.93,
         from_eth: parent.to_eth,
         to_eth: parent.request.expert.wallet.eth_addresses.sample.public_key,
         status: 'pending'
@@ -42,7 +42,7 @@ namespace :payments do
         parent: parent,
         sender: parent.sender,
         request: parent.request,
-        eth_amount: Eth::ValueFormatter.new(amount * 0.07).to_hex,
+        eth_amount: amount * 0.07,
         from_eth: parent.to_eth,
         status: 'completed'
       )
