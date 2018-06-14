@@ -12,6 +12,6 @@ FactoryBot.define do
       wallet = sender.profile.wallet || create(:wallet, profile: sender.profile)
       create(:eth_address, wallet: wallet).public_key
     end
-    eth_amount { Eth::ValueFormatter.new(rand).to_hex }
+    eth_amount { rand }
   end
 end
