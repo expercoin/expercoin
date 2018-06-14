@@ -15,19 +15,24 @@ class VerifyRequestService < BaseService
     update_request_tx_hash
     create_transaction
     MSP::UpdateRequestStatus.new(request).perform
+    call_verifying_job
   end
 
   def error_message
     Eth::ErrorMessage.new(@transaction).perform
   end
 
-  def pending
+  def pending?
     @transaction['hash'] && !@transaction['blockNumber'] && AddressValidator.new(@transaction['to']).valid?
   rescue StandardError
     false
   end
 
   private
+
+  def call_verifying_job
+    CheckVerifyingRequestsJob.set(wait: 2.minutes).perform_later
+  end
 
   def update_request_tx_hash
     return unless AddressValidator.new(@transaction['to']).valid?
