@@ -56,7 +56,5 @@ class ProfileForm < FormObject
   def entered_rate
     return unless rate
     return errors.add(:rate, 'Wrong number') unless rate.round(5) == calculated_rate.round(5)
-    self.rate = rate_to_hex
-    self.expercoin_rate = expercoin_rate_to_hex
   end
 end

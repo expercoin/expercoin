@@ -33,7 +33,7 @@ module Eth
     end
 
     def eth_amount
-      @transaction['value']
+      Ethereum::Formatter.new.from_wei(@transaction['value'].hex, 'ether').to_f
     end
 
     def attributes_list
