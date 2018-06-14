@@ -13,7 +13,7 @@ RSpec.describe SearchService do
   let(:search_service) { SearchService.new(collection, 'Test Request') }
 
   describe '.initialize' do
-    it { expect(search_service).to be_present }
+    it { expect { search_service }.not_to raise_error }
   end
 
   describe '.perform' do

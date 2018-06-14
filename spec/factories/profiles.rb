@@ -20,5 +20,10 @@ FactoryBot.define do
     trait :with_photo do
       remote_photo_url Faker::Avatar.image
     end
+
+    after(:create) do |profile|
+      wallet = create(:wallet, profile: profile)
+      create(:eth_address, wallet: wallet)
+    end
   end
 end

@@ -13,7 +13,7 @@ class ProfileForm < FormObject
   attribute :country, String
   attribute :state, String
   attribute :city, String
-  attribute :zip_code, Integer
+  attribute :zip_code, String
   attribute :about, String
   attribute :category_ids, Array
   attribute :specialization, Hash
