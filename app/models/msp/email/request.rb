@@ -1,15 +1,18 @@
+# frozen_string_literal: true
+
 module MSP
   module Email
-  # MSP Request Email service
+    # MSP Request Email service
     class Request
-
       include MSP::Email
-      
       EMAIL_SUBJECTS = OpenStruct.new(
         new_request: 'You Have New Call Request',
         new_status: 'Status Change On Your Call Request',
         new_times: 'New Times On Your Call Request'
       )
+
+      ROLLS = %i[expert requester].freeze
+      TYPES = %i[new_times new_status new_request].freeze
 
       def initialize(request)
         @request = request
@@ -20,91 +23,32 @@ module MSP
         email_to_requester
       end
 
-      def email_to_expert
-        return if @request.expert == @request.updated_by
-        if @request.accepted?
-          email_to_expert_new_status
-        elsif @request.pending?
-          email_to_expert_new_times
+      ROLLS.each do |role|
+        define_method "email_to_#{role}" do
+          return if @request.send(role) == @request.updated_by
+          if @request.accepted?
+            send("email_to_#{role}_new_status")
+          elsif @request.pending?
+            send("email_to_#{role}_new_times")
+          end
+        end
+
+        TYPES.each do |type|
+          define_method "email_to_#{role}_#{type}" do
+            subject = EMAIL_SUBJECTS.send(type)
+            body = ''
+            NotifyMailer.send(
+              "notify_#{role}_#{type}",
+              send("#{role}_email"),
+              subject,
+              body,
+              @request
+            ).deliver_now
+            create_email_record(@request.send(role).id, subject, meta)
+          end
         end
       end
 
-      def email_to_requester
-        return if @request.requester == @request.updated_by
-        if @request.accepted?
-          email_to_requester_new_status
-        elsif @request.pending?
-          email_to_requester_new_times
-        end
-      end
-
-      def email_to_expert_new_status
-        subject, body = [EMAIL_SUBJECTS.new_status, '']
-        NotifyMailer.notify_expert_new_status(
-          expert_email,
-          subject,
-          body,
-          @request
-        ).deliver_now
-        create_email_record(@request.expert.id, subject, meta)
-      end
-
-      def email_to_requester_new_status
-        subject, body =  [EMAIL_SUBJECTS.new_status, '']
-        NotifyMailer.notify_requester_new_status(
-          requester_email,
-          subject,
-          body,
-          @request
-        ).deliver_now
-        create_email_record(@request.requester.id, subject, meta)
-      end
-
-      def email_to_expert_new_request
-        subject, body = [EMAIL_SUBJECTS.new_request, '']
-        NotifyMailer.notify_expert_new_request(
-          expert_email,
-          subject,
-          body,
-          @request
-        ).deliver_now
-        create_email_record(@request.expert.id, subject, meta)
-      end
-
-      def email_to_expert_new_times
-        subject, body = [EMAIL_SUBJECTS.new_times, '']
-        NotifyMailer.notify_expert_new_times(
-          expert_email,
-          subject,
-          body,
-          @request
-        ).deliver_now
-        create_email_record(@request.expert.id, subject, meta)
-      end
-
-      def email_to_requester_new_times
-        subject, body = [EMAIL_SUBJECTS.new_times, '']
-        NotifyMailer.notify_requester_new_times(
-          requester_email,
-          subject,
-          body,
-          @request
-        ).deliver_now
-        create_email_record(@request.requester.id, subject, meta)
-      end
-
-      def email_template_for_expert
-        subject = ""
-        body = ""
-        [subject, body]
-      end
-
-      def email_template_for_requester
-        subject = ""
-        body = ""
-        [subject, body]
-      end
-      
       def expert_email
         @request.expert.user.email
       end
