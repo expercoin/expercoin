@@ -112,8 +112,8 @@ ActiveRecord::Schema.define(version: 2018_06_11_093152) do
     t.string "last_name"
     t.string "name"
     t.string "title"
-    t.string "expercoin_rate"
-    t.string "rate"
+    t.decimal "expercoin_rate", precision: 36, scale: 18
+    t.decimal "rate", precision: 36, scale: 18
     t.string "professional_role"
     t.integer "years_of_experience"
     t.string "photo"
@@ -169,7 +169,7 @@ ActiveRecord::Schema.define(version: 2018_06_11_093152) do
 
   create_table "transactions", force: :cascade do |t|
     t.datetime "date"
-    t.string "eth_amount"
+    t.decimal "eth_amount", precision: 36, scale: 18
     t.integer "sender_id"
     t.integer "receiver_id"
     t.integer "parent_id"
