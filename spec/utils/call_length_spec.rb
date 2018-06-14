@@ -12,7 +12,7 @@ RSpec.describe CallLength do
   let(:call_length) { CallLength.new(calls) }
 
   describe '.initialize' do
-    it { expect(call_length).to be_present }
+    it { expect { call_length }.not_to raise_error }
   end
 
   describe '.average_length' do

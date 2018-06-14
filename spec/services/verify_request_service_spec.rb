@@ -15,7 +15,7 @@ RSpec.describe VerifyRequestService do
   let(:verify_request_service) { VerifyRequestService.new(params) }
 
   describe '.initialize' do
-    it { expect(verify_request_service).to be_present }
+    it { expect { verify_request_service }.not_to raise_error }
   end
 
   describe '.request_verified?' do

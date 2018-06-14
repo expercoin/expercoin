@@ -9,7 +9,7 @@ RSpec.describe ProfileRating do
   let(:profile_rating) { ProfileRating.new(profile) }
 
   describe '.initialize' do
-    it { expect(profile_rating).to be_present }
+    it { expect { profile_rating }.not_to raise_error }
   end
 
   describe '.student_rating' do

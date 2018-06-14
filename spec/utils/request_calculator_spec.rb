@@ -8,7 +8,7 @@ RSpec.describe RequestCalculator do
   let(:request_calculator) { RequestCalculator.new(request) }
 
   describe '.initialize' do
-    it { expect(request_calculator).to be_present }
+    it { expect { request_calculator }.not_to raise_error }
   end
 
   describe '.calculate_cost' do
