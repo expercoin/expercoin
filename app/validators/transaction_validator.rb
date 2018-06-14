@@ -39,7 +39,7 @@ class TransactionValidator < BaseValidator
   end
 
   def transaction_amount
-    eth_amount&.hex || 0
+    eth_amount || 0
   end
 
   def required_amount
