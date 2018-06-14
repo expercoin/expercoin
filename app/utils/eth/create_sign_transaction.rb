@@ -1,5 +1,8 @@
 module Eth
   class CreateSignTransaction
+    require "uri"
+    require "net/http"
+
     def initialize(amount, address)
       @amount = amount
       @address = address
@@ -37,9 +40,6 @@ module Eth
     end
 
     def request
-      require "uri"
-      require "net/http"
-
       Net::HTTP.post_form(
         URI.parse(ENV['LOCAL_EXPRESS_SERVER']),
         sign_params

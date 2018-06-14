@@ -33,13 +33,11 @@ class TransactionValidator < BaseValidator
   end
 
   def amount_to_pay
-    rate = Eth::ValueFormatter.new(request.expert.expercoin_rate).from_hex
-    amount = (rate * request.requested_length.to_i).to_f
-    Ethereum::Formatter.new.to_wei(amount)
+    (request.expert.expercoin_rate * request.requested_length.to_i).to_f.round(18)
   end
 
   def transaction_amount
-    eth_amount&.hex || 0
+    eth_amount || 0
   end
 
   def required_amount
