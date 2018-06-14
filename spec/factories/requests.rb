@@ -21,6 +21,8 @@ FactoryBot.define do
 
     trait :completed do
       status 'completed'
+      started_at { "#{first_date} #{first_time}".to_datetime }
+      ended_at { "#{first_date} #{first_time}".to_datetime + requested_length.to_i.minutes }
     end
 
     trait :with_selected_date do
