@@ -33,7 +33,7 @@ module Eth
     end
 
     def eth_amount
-      @transaction['value']
+      Eth::ValueFormatter.new(@transaction['value']).from_hex
     end
 
     def attributes_list

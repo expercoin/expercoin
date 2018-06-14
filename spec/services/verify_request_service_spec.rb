@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe VerifyRequestService do
-  let(:expert) { create(:profile) }
-  let(:request) { create(:request, expert: expert, status: 'accepted') }
+  let(:expert) { create(:profile, expercoin_rate: 0.0005, rate: 0.000465) }
+  let(:request) { create(:request, expert: expert, status: 'accepted', requested_length: '30min') }
   let(:params) do
     {
       tx_hash: '0xcce351e43a4c3ed8b9e4e96652992d1a9c1f928497eb0ba470997ccc6a56f917',
@@ -35,7 +35,7 @@ RSpec.describe VerifyRequestService do
       verify_request_service.perform
       request.reload
     end
-    it 'should include request in results' do
+    it 'should have create transaction' do
       expect(request.eth_transactions).not_to be_empty
     end
   end
@@ -47,5 +47,4 @@ RSpec.describe VerifyRequestService do
   describe '.pending' do
     it { expect(verify_request_service.pending).to eq false }
   end
-
 end
