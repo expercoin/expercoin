@@ -1,39 +1,22 @@
+# frozen_string_literal: true
+
 class NotifyMailer < ActionMailer::Base
   default from: 'support@expercoin.com'
   helper :decorator
+  TYPES = [
+    OpenStruct.new(action: :notify_expert_new_status, role: :requester),
+    OpenStruct.new(action: :notify_requester_new_status, role: :expert),
+    OpenStruct.new(action: :notify_expert_new_request, role: :requester),
+    OpenStruct.new(action: :notify_expert_new_times, role: :requester),
+    OpenStruct.new(action: :notify_requester_new_times, role: :expert)
+  ].freeze
 
-  def notify_expert_new_status(email, subject, body, request)
-    @body = body
-    @request = request
-    @requester = request.requester
-    mail(to: email, subject: subject) unless Rails.env.test?
-  end
-
-  def notify_requester_new_status(email, subject, body, request)
-    @body = body
-    @request = request
-    @expert = request.expert
-    mail(to: email, subject: subject) unless Rails.env.test?
-  end
-
-  def notify_expert_new_request(email, subject, body, request)
-    @body = body
-    @request = request
-    @requester = request.requester
-    mail(to: email, subject: subject) unless Rails.env.test?
-  end
-
-  def notify_expert_new_times(email, subject, body, request)
-    @body = body
-    @request = request
-    @requester = request.requester
-    mail(to: email, subject: subject) unless Rails.env.test?
-  end
-
-  def notify_requester_new_times(email, subject, body, request)
-    @body = body
-    @request = request
-    @expert = request.expert
-    mail(to: email, subject: subject) unless Rails.env.test?
+  TYPES.each do |type|
+    define_method type.action do |email, subject, body, request|
+      @body = body
+      @request = request
+      instance_variable_set("@#{type.role}", request.send(type.role))
+      mail(to: email, subject: subject) unless Rails.env.test?
+    end
   end
 end
