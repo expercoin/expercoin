@@ -23,9 +23,7 @@ RSpec.describe VerifyRequestService do
       it { expect(verify_request_service.request_verified?).to be false }
     end
     context 'after perform' do
-      before do
-        verify_request_service.perform
-      end
+      before { verify_request_service.perform }
       it { expect(verify_request_service.request_verified?).to be true }
     end
   end
