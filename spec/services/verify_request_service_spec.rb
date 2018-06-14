@@ -43,6 +43,6 @@ RSpec.describe VerifyRequestService do
   end
 
   describe '.pending' do
-    it { expect(verify_request_service.pending).to eq false }
+    it { expect(verify_request_service.pending?).to eq false }
   end
 end
