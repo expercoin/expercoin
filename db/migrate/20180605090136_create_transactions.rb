@@ -2,7 +2,7 @@ class CreateTransactions < ActiveRecord::Migration[5.2]
   def change
     create_table :transactions do |t|
       t.datetime :date
-      t.string :eth_amount
+      t.decimal :eth_amount,  precision: 36, scale: 18
       t.integer :sender_id, foreign_key: true
       t.integer :receiver_id, foreign_key: true
       t.integer :parent_id, foreign_key: true
