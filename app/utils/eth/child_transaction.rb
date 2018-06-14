@@ -52,20 +52,12 @@ module Eth
       request.expert.wallet.eth_addresses
     end
 
-    def expercoin_amount_in_wei
-      Eth::ValueFormatter.new(@parent.eth_amount).from_hex * EXPR_FEE
-    end
-
-    def expert_amount_in_wei
-      Eth::ValueFormatter.new(@parent.eth_amount).from_hex - expercoin_amount_in_wei
-    end
-
     def expercoin_amount
-      Eth::ValueFormatter.new(expercoin_amount_in_wei).to_hex
+      (@parent.eth_amount * EXPR_FEE).round(18)
     end
 
     def expert_amount
-      Eth::ValueFormatter.new(expert_amount_in_wei).to_hex
+      (@parent.eth_amount - expercoin_amount).round(18)
     end
   end
 end

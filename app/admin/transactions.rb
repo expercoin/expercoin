@@ -11,7 +11,7 @@ ActiveAdmin.register Transaction do
     column :sender
     column :receiver
     column :eth_amount do |transaction|
-      Eth::ValueFormatter.new(transaction.eth_amount).from_hex
+      transaction.eth_amount
     end
     column :created_at
     actions
