@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe RequestDecorator do
-  let(:expert) { create(:profile, expercoin_rate: Eth::ValueFormatter.new(0.5).to_hex) }
+  let(:expert) { create(:profile, expercoin_rate: 0.5) }
   let(:request) { create(:request, expert: expert, requested_length: '30min') }
   let(:request_decorator) { RequestDecorator.new(request) }
 

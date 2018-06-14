@@ -6,7 +6,7 @@ RSpec.describe ProfileDecorator do
   let(:profile) { create(:profile) }
   let(:completed_request) { create(:request, :completed, expert: profile) }
   let(:profile_decorator) { ProfileDecorator.new(profile) }
-  let(:rate) { Eth::ValueFormatter.new(profile.expercoin_rate).from_hex }
+  let(:rate) { profile.expercoin_rate }
   let!(:message) { create(:message, :unread, receiver: profile.user) }
 
   describe '.full_name' do

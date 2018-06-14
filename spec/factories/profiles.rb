@@ -4,8 +4,8 @@ FactoryBot.define do
   factory :profile do
     first_name Faker::Name.first_name
     last_name Faker::Name.last_name
-    rate { Eth::ValueFormatter.new(rand).to_hex }
-    expercoin_rate { Eth::ValueFormatter.new(rand).to_hex }
+    rate { rand }
+    expercoin_rate { rate * 1.07 }
     title Faker::Job.title
     about Faker::Lorem.paragraph(2, true, 50)
     address Faker::Address.street_address
