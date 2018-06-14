@@ -20,6 +20,8 @@ class Request < ApplicationRecord
   enum requested_length: %w[15min 30min 45min]
   enum status: %I[draft pending accepted inprogress completed rejected upcoming expired closed verified verifying]
 
+  scope :tx_hash, -> { where.not(tx_hash: nil) }
+
   validates(
     :title,
     :message,

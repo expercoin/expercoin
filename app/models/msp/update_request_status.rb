@@ -48,7 +48,7 @@ module MSP
     end
 
     def valid_for_verified_status?
-      @request.eth_transaction && @request.accepted?
+      @request.eth_transaction && (@request.accepted? || @request.verifying?)
     end
 
     def inprogress_status
