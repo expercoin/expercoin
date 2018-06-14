@@ -1,7 +1,7 @@
 module Eth
   class CreateSignTransaction
-    require "uri"
-    require "net/http"
+    require 'uri'
+    require 'net/http'
 
     def initialize(amount, address)
       @amount = amount

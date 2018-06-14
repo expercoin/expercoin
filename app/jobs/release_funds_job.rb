@@ -3,9 +3,9 @@ class ReleaseFundsJob < ApplicationJob
 
   def perform(transaction)
     raise StandardError if transaction.tx_hash
-    Eth::CreateSignTransaction.new(transaction.eth_amount, transaction.to_eth)
-                          .perform
-                          .yield_self { |tx_hash| transaction.update(tx_hash: tx_hash) }
+    tx_hash = Eth::CreateSignTransaction.new(transaction.eth_amount, transaction.to_eth).perform
+    transaction.update(tx_hash: tx_hash)
+    UpdateExpertsTransactionsJob.set(wait: 2.minutes).perform_later
   rescue StandardError
     'Fail'
   end
