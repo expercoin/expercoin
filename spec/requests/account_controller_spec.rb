@@ -3,34 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe AccountController, type: :request do
-  describe 'GET index' do
-    context "Logged in User" do
-      it 'returns 200 OK status' do
-        user = create(:user)
-        sign_in(user)
-        get account_index_path
-        expect(response).to have_http_status(200)
-      end
+  let!(:user) { sign_in(create(:user)) }
 
-      it 'returns account path' do
-        user = create(:user)
-        sign_in(user)
-        get account_index_path
-        expect(request.path).to eq('/account')
-      end
-    end
-
-    context "Visitor" do
-      it 'returns 302 Status' do
-        get account_index_path
-        expect(response).to have_http_status(302)
-      end
-
-      it 'redirects to login page' do
-        get account_index_path
-        follow_redirect!
-        expect(request.path).to eq('/login')
-      end
-    end
+  describe '.index' do
+    before { get account_index_path }
+    it { expect(controller.authenticate_user!).to be_present }
+    it { expect(response).to have_http_status(:ok) }
   end
 end
