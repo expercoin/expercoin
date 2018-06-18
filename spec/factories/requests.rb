@@ -25,8 +25,30 @@ FactoryBot.define do
       ended_at { "#{first_date} #{first_time}".to_datetime + requested_length.to_i.minutes }
     end
 
-    trait :with_selected_date do
-      selected_date first_date
+    trait :accepted do
+      status 'accepted'
+      selected_date { first_date }
+    end
+
+    trait :verifying do
+      status 'verifying'
+      tx_hash "0x#{Faker::Crypto.sha256}"
+    end
+
+    trait :verified do
+      status 'verified'
+      eth_transactions { [create(:transaction, sender: requester.user)] }
+    end
+
+    trait :verified do
+      status 'verified'
+      eth_transactions { [create(:transaction, sender: requester.user)] }
+    end
+
+    trait :inprogress do
+      status 'inprogress'
+      invitee true
+      started_at { "#{first_date} #{first_time}".to_datetime }
     end
   end
 end
