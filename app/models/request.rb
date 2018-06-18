@@ -62,7 +62,7 @@ class Request < ApplicationRecord
       next unless dt < Time.now
       errors.add(datetime[1], "can't be in the past")
       times_cannot_be_in_past(datetime[0])
-    rescue
+    rescue StandardError
       errors.add(datetime[1], "can't be in the past")
     end
   end
@@ -71,7 +71,7 @@ class Request < ApplicationRecord
     dt = "#{Time.now.to_date} #{send(time)}".to_datetime
     return unless dt < Time.now
     errors.add(time, "can't be in the past")
-  rescue
+  rescue StandardError
     errors.add(time, "can't be in the past")
   end
 
