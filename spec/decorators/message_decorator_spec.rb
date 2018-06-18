@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe MessageDecorator do
-  let(:profile) { create(:profile, :with_photo) }
+  let(:profile) { create(:profile) }
   let(:message) { create(:message, :unread, sender: profile.user) }
   let(:message_decorator) { MessageDecorator.new(message) }
 
@@ -32,6 +32,7 @@ RSpec.describe MessageDecorator do
   end
 
   describe '.sender_photo_thumb' do
+    let(:profile) { create(:profile, :with_photo) }
     it 'shows senders photo thumb' do
       photo = profile.photo.thumb.url
       expect(message_decorator.sender_photo_thumb).to eq photo
