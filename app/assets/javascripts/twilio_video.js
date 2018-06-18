@@ -1,8 +1,8 @@
-$(document).on("turbolinks:load",function(){
+$(document).on('turbolinks:load',function(){
   videoTwilioInitialize();
 });
 
-function videoTwilioInitialize(twilo=2){
+function videoTwilioInitialize(){
   window.room_token = $('#remote-media-div').attr('data-token');
   var twilioActions = {
     stopCameraPreview: function () {
@@ -124,7 +124,7 @@ function videoTwilioInitialize(twilo=2){
   function enterRoom(token) {
     Twilio.Video.connect(token).then(function(room) {
       window.room = room;
-      room.on('participantConnected', function(participant) {
+      room.on('participantConnected', function() {
         $('#session-time-form [type="submit"]').click();
         resetTracks();
       })
@@ -159,15 +159,23 @@ function videoTwilioInitialize(twilo=2){
 
   function resetTracks(){
     $('#remote-media-div').html('');
-    window.room.participants.forEach(function(participant, index){
+    window.room.participants.forEach(function(participant){
       participant.tracks.forEach( function(track) {
         $('#remote-media-div').append(track.attach());
       });
       participant.on('trackAdded',  function(track) {
-        $('#remote-media-div').append(track.attach());
+        if(track.kind == 'video') {
+          if($('#remote-media-div video').length){
+            $('#remote-media-div video').replaceWith(track.attach());
+          } else {
+            $('#remote-media-div').append(track.attach());
+          }
+        }else{
+          $('#remote-media-div').append(track.attach());
+        }
       });
       participant.on('trackRemoved',  function(track) {
-        detachTracks([track]);
+        resetTracks();
       });
     });
   };
