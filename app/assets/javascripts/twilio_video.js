@@ -158,25 +158,11 @@ function videoTwilioInitialize(){
   }
 
   function resetTracks(){
-    $('#remote-media-div').html('');
-    window.room.participants.forEach(function(participant){
-      participant.tracks.forEach( function(track) {
-        $('#remote-media-div').append(track.attach());
-      });
-      participant.on('trackAdded',  function(track) {
-        if(track.kind == 'video') {
-          if($('#remote-media-div video').length){
-            $('#remote-media-div video').replaceWith(track.attach());
-          } else {
-            $('#remote-media-div').append(track.attach());
-          }
-        }else{
-          $('#remote-media-div').append(track.attach());
-        }
-      });
-      participant.on('trackRemoved',  function(track) {
-        resetTracks();
-      });
+    clearTracksFromPage();
+    window.room.participants.forEach(function(participant) {
+      attachParticipantTracks(participant);
+      addParticipantTrackAddedEvent(participant);
+      addParticipantTrackRemovedEvent(participant);
     });
   };
   
@@ -186,8 +172,43 @@ function videoTwilioInitialize(){
     getUserScreen();
   }
 
+  function addParticipantTrackRemovedEvent(participant) {
+    participant.on('trackRemoved', function() {
+      resetTracks();
+    });
+  }
 
+  function addParticipantTrackAddedEvent(participant) {
+    participant.on('trackAdded', function(track) {
+      if(track.kind == 'video') {
+        addOneVideoTrack(track);
+      }else{
+        appendTrack(track);
+      }
+    });
+  }
 
+  function attachParticipantTracks(participant) {
+    participant.tracks.forEach( function(track) {
+      appendTrack(track);
+    });
+  }
+
+  function clearTracksFromPage() {
+    $('#remote-media-div').html('');
+  }
+
+  function appendTrack(track) {
+    $('#remote-media-div').append(track.attach());
+  }
+  
+  function addOneVideoTrack(track) {
+    if($('#remote-media-div video').length){
+      $('#remote-media-div video').replaceWith(track.attach());
+    } else {
+      appendTrack(track);
+    }
+  }
   if(window.room_token){
     $('[data-twillio-session="end"]').on('click', twilioActions.leaveRoom());
     $('#mute-audio').on('click', twilioActions.muteAudio());
