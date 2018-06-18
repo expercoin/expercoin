@@ -152,7 +152,7 @@ ActiveRecord::Schema.define(version: 2018_06_11_093152) do
     t.string "tx_hash"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "caller", default: false
+    t.boolean "inviter", default: false
     t.boolean "invitee", default: false
   end
 

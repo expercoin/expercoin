@@ -95,11 +95,11 @@ class Request < ApplicationRecord
   end
 
   def members_present?
-    invitee && caller
+    invitee && inviter
   end
 
   def reset
-    update(status: 'accepted', tx_hash: nil, started_at: nil, ended_at: nil, room_sid: nil, updated_by: expert, caller: false, invitee: false)
+    update(status: 'accepted', tx_hash: nil, started_at: nil, ended_at: nil, room_sid: nil, updated_by: expert, inviter: false, invitee: false)
     eth_transactions&.destroy_all
   end
 end

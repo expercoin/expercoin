@@ -47,7 +47,7 @@ class ConferenceController < ApplicationController
 
   def update_members
     @request.update(invitee: true) if user_request_expert?
-    @request.update(caller: true) if user_request_requester?
+    @request.update(inviter: true) if user_request_requester?
   end
 
   def update_started_at
