@@ -8,6 +8,8 @@ module Eth
 
     def usd_value
       @eth_value * price_usd
+    rescue StandardError
+      nil
     end
 
     private
