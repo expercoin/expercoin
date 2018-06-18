@@ -61,9 +61,8 @@ function videoTwilioInitialize(twilo=2){
         window.room.localParticipant.unpublishTrack(screenLocalTrack);
         window.stream_share.getTracks().forEach(function(track) { track.stop()});
         window.stream_share = null;
-        $('#stop-share-screen').hide();
-        $('#share-screen').show();
-        // $('#screen-view').src = '';
+        $('#stop-share-screen').attr("id", 'get-screen');
+        $('.session-share-icon').removeClass('active');
       }
     },
     fullScreenRemote: function() {
@@ -176,7 +175,7 @@ function videoTwilioInitialize(twilo=2){
   if(window.room_token){
     enterRoom(window.room_token);
     // twilioActions.startCameraPreview()();
-    // getUserScreen();
+    getUserScreen();
   }
 
 
@@ -190,7 +189,7 @@ function videoTwilioInitialize(twilo=2){
     $('#full-screen-disable-remote').on('click', twilioActions.fullScreenDisableRemote());
     $('#full-screen-disable-remote').on('click', twilioActions.fullScreenDisableRemote());
     $('#full-screen-remote').on('click', twilioActions.fullScreenRemote());
-    $('#stop-share-screen').on('click', twilioActions.stopSharing());
+    $('body').on('click', '#stop-share-screen', twilioActions.stopSharing());
     $('#share-screen').on('click', twilioActions.startSharing());
     $('#enter-room').on('click', twilioActions.enterRoom());
     $('#leave-room').on('click', twilioActions.leaveRoom());
