@@ -1,10 +1,7 @@
 # frozen_string_literal: true
-Rake::Task['categories:create_blockchain'].invoke
+Rake::Task['categories:create_categories'].invoke
 if Rails.env.development? 
   AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
-  Rake::Task['categories:create_test_business'].invoke
-  Rake::Task['categories:create_test_sales'].invoke
-  Rake::Task['categories:create_test_funding'].invoke
   Rake::Task['users:create_test_users'].invoke
   Rake::Task['requests:create_test_requests'].invoke
   Rake::Task['requests:update_requests_to_accepted'].invoke

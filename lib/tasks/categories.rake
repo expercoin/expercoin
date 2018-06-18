@@ -39,6 +39,200 @@ namespace :categories do
     end
   end
 
+
+  desc "Create categories"
+  task create_categories: :environment do
+    parent = Category.create!(
+      name: 'Banking and Compliance',
+      description: '',
+    )
+    puts "Created Category #{parent.name}"
+    sub_categories = [
+      'Crypto Banking Advice',
+      'KYC and AML Regulations',
+      'Crypto Payments'
+    ]
+
+    sub_categories.each do |category|
+      Category.create!(
+        name: category,
+        description: '',
+        parent_id: parent.id
+      )
+      puts "Created Category #{category}, parent: #{parent.name}"
+    end
+
+    parent = Category.create!(
+      name: 'ICO Services',
+      description: '',
+    )
+    puts "Created Category #{parent.name}"
+    sub_categories = [
+      'ICO Roadshows',
+      'ICO Exchange Listing Strategy',
+      'ICO Advisor',
+      'ICO Social Media Strategy',
+      'ICO Legal Strategy',
+      'ICO Marketing Strategy',
+      'ICO Whitepaper',
+      'Institutional Investor Matchmaking',
+      'ICO Directory Listing',
+      'Airdrop Design',
+      'Bounty Management',
+      'Community Management'
+    ]
+
+    sub_categories.each do |category|
+      Category.create!(
+        name: category,
+        description: '',
+        parent_id: parent.id
+      )
+      puts "Created Category #{category}, parent: #{parent.name}"
+    end
+
+    parent = Category.create!(
+      name: 'Cryptoeconomics',
+      description: '',
+    )
+    puts "Created Category #{parent.name}"
+    sub_categories = [
+      'Token Economics',
+      'Utility Token Design',
+      'Security Token Design',
+      'Game Theory and Network Design'
+    ]
+
+    sub_categories.each do |category|
+      Category.create!(
+        name: category,
+        description: '',
+        parent_id: parent.id
+      )
+      puts "Created Category #{category}, parent: #{parent.name}"
+    end
+
+    parent = Category.create!(
+      name: 'Crypto Trading',
+      description: '',
+    )
+    puts "Created Category #{parent.name}"
+    sub_categories = [
+      'Crypto Exchange Trading Setup',
+      'Crypto Wallet Setup',
+      'Crypto Arbitrage Strategy',
+      'Crypto Trading Strategy',
+      'Crypto OTC Brokerage'
+    ]
+
+    sub_categories.each do |category|
+      Category.create!(
+        name: category,
+        description: '',
+        parent_id: parent.id
+      )
+      puts "Created Category #{category}, parent: #{parent.name}"
+    end
+
+    parent = Category.create!(
+      name: 'Smart Contracts',
+      description: '',
+    )
+    puts "Created Category #{parent.name}"
+    sub_categories = [
+      'Smart Contract Development',
+      'Smart Contract Audit'
+    ]
+
+    sub_categories.each do |category|
+      Category.create!(
+        name: category,
+        description: '',
+        parent_id: parent.id
+      )
+      puts "Created Category #{category}, parent: #{parent.name}"
+    end
+
+    parent = Category.create!(
+      name: 'Blockchain Consulting',
+      description: '',
+    )
+    puts "Created Category #{parent.name}"
+    sub_categories = [
+      'Hyperledger Fabric',
+      'Ethereum',
+      'Waves',
+      'VeChain',
+      'R3 Corda',
+      'Ripple',
+      'Quorum',
+      'SAP Leonardo',
+      'Azure Blockchain',
+      'Oracle Blockchain',
+      'Mastercard Blockchain',
+      'AWS Blockchain'
+    ]
+
+    sub_categories.each do |category|
+      Category.create!(
+        name: category,
+        description: '',
+        parent_id: parent.id
+      )
+      puts "Created Category #{category}, parent: #{parent.name}"
+    end
+
+    parent = Category.create!(
+      name: 'Services by Jurisdiction',
+      description: '',
+    )
+    puts "Created Category #{parent.name}"
+    sub_categories = [
+      'Belarus',
+      'British Virgin Islands',
+      'Cayman Islands',
+      'Gibraltar',
+      'Isle of Man',
+      'Maldives',
+      'Singapore',
+      'United States',
+      'United Kingdom',
+      'Japan',
+      'Panama',
+      'Puerto Rico'
+    ]
+
+    sub_categories.each do |category|
+      Category.create!(
+        name: category,
+        description: '',
+        parent_id: parent.id
+      )
+      puts "Created Category #{category}, parent: #{parent.name}"
+    end
+
+    parent = Category.create!(
+      name: 'Token Development',
+      description: '',
+    )
+    puts "Created Category #{parent.name}"
+    sub_categories = [
+      'ERC721 Token Development',
+      'ST-20 Token Development',
+      'ERC20 Token Development',
+      'ERC223 Token Development'
+    ]
+
+    sub_categories.each do |category|
+      Category.create!(
+        name: category,
+        description: '',
+        parent_id: parent.id
+      )
+      puts "Created Category #{category}, parent: #{parent.name}"
+    end
+  end
+
   desc "Create test business categories"
   task create_test_business: :environment do
     parent = Category.create!(
