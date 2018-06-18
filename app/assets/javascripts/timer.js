@@ -10,14 +10,6 @@ function timerInitialize() {
   }, 1000);
 }
 
-function utcDateTimeStart() {
-  return parseInt($('[data-time-start]').attr('data-time-start'));
-}
-
-function utcDateTimeCurrent() {
-  return new Date().getTime();
-}
-
 function  updateTimer(startTime){
   var difference = getTimeDifferenceInSeconds(startTime);
   var days = getDays(difference);
@@ -27,14 +19,6 @@ function  updateTimer(startTime){
   var minutes_with_hours = minutes + (hours * 60);
   setMinutes(minutes_with_hours);
   setSeconds(seconds);
-}
-function setDays(days){
-  if (!document.querySelector('[data-timer="days"]')) return;
-  document.querySelector('[data-timer="days"]').innerHTML = days;
-}
-function setHours(hours){
-  if (!document.querySelector('[data-timer="hours"]')) return;
-  document.querySelector('[data-timer="hours"]').innerHTML = hours;
 }
 function setMinutes(minutes){
   if (!document.querySelector('[data-timer="minutes"]')) return;

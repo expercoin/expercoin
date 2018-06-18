@@ -803,6 +803,27 @@
     }
   }
 
+  .session-share-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #aaaaaa;
+    width:  40px;
+    height: 40px;
+    margin-left: .5rem;
+    margin-right: .5rem;
+    outline: none;
+    border: 0;
+
+    &:hover {
+      background-color: #1AC16E;
+    }
+    &.active {
+      background-color: #1AC16E;
+    }
+  }
+
   .session-end-call {
     font-size: .75rem;
     text-transform: uppercase;

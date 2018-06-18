@@ -1,8 +1,8 @@
-$(document).on("turbolinks:load",function(){
+$(document).on('turbolinks:load',function(){
   videoTwilioInitialize();
 });
 
-function videoTwilioInitialize(twilo=2){
+function videoTwilioInitialize(){
   window.room_token = $('#remote-media-div').attr('data-token');
   var twilioActions = {
     stopCameraPreview: function () {
@@ -61,9 +61,8 @@ function videoTwilioInitialize(twilo=2){
         window.room.localParticipant.unpublishTrack(screenLocalTrack);
         window.stream_share.getTracks().forEach(function(track) { track.stop()});
         window.stream_share = null;
-        $('#stop-share-screen').hide();
-        $('#share-screen').show();
-        // $('#screen-view').src = '';
+        $('#stop-share-screen').attr("id", 'get-screen');
+        $('.session-share-icon').removeClass('active');
       }
     },
     fullScreenRemote: function() {
@@ -125,7 +124,7 @@ function videoTwilioInitialize(twilo=2){
   function enterRoom(token) {
     Twilio.Video.connect(token).then(function(room) {
       window.room = room;
-      room.on('participantConnected', function(participant) {
+      room.on('participantConnected', function() {
         $('#session-time-form [type="submit"]').click();
         resetTracks();
       })
@@ -159,28 +158,57 @@ function videoTwilioInitialize(twilo=2){
   }
 
   function resetTracks(){
-    $('#remote-media-div').html('');
-    window.room.participants.forEach(function(participant, index){
-      participant.tracks.forEach( function(track) {
-        $('#remote-media-div').append(track.attach());
-      });
-      participant.on('trackAdded',  function(track) {
-        $('#remote-media-div').append(track.attach());
-      });
-      participant.on('trackRemoved',  function(track) {
-        detachTracks([track]);
-      });
+    clearTracksFromPage();
+    window.room.participants.forEach(function(participant) {
+      attachParticipantTracks(participant);
+      addParticipantTrackAddedEvent(participant);
+      addParticipantTrackRemovedEvent(participant);
     });
   };
   
   if(window.room_token){
     enterRoom(window.room_token);
     // twilioActions.startCameraPreview()();
-    // getUserScreen();
+    getUserScreen();
   }
 
+  function addParticipantTrackRemovedEvent(participant) {
+    participant.on('trackRemoved', function() {
+      resetTracks();
+    });
+  }
 
+  function addParticipantTrackAddedEvent(participant) {
+    participant.on('trackAdded', function(track) {
+      if(track.kind == 'video') {
+        addOneVideoTrack(track);
+      }else{
+        appendTrack(track);
+      }
+    });
+  }
 
+  function attachParticipantTracks(participant) {
+    participant.tracks.forEach( function(track) {
+      appendTrack(track);
+    });
+  }
+
+  function clearTracksFromPage() {
+    $('#remote-media-div').html('');
+  }
+
+  function appendTrack(track) {
+    $('#remote-media-div').append(track.attach());
+  }
+  
+  function addOneVideoTrack(track) {
+    if($('#remote-media-div video').length){
+      $('#remote-media-div video').replaceWith(track.attach());
+    } else {
+      appendTrack(track);
+    }
+  }
   if(window.room_token){
     $('[data-twillio-session="end"]').on('click', twilioActions.leaveRoom());
     $('#mute-audio').on('click', twilioActions.muteAudio());
@@ -190,7 +218,7 @@ function videoTwilioInitialize(twilo=2){
     $('#full-screen-disable-remote').on('click', twilioActions.fullScreenDisableRemote());
     $('#full-screen-disable-remote').on('click', twilioActions.fullScreenDisableRemote());
     $('#full-screen-remote').on('click', twilioActions.fullScreenRemote());
-    $('#stop-share-screen').on('click', twilioActions.stopSharing());
+    $('body').on('click', '#stop-share-screen', twilioActions.stopSharing());
     $('#share-screen').on('click', twilioActions.startSharing());
     $('#enter-room').on('click', twilioActions.enterRoom());
     $('#leave-room').on('click', twilioActions.leaveRoom());
