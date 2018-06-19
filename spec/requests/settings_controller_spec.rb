@@ -4,7 +4,8 @@ require 'rails_helper'
 
 RSpec.describe SettingsController, type: :request do
   let(:profile) { create(:profile) }
-  let!(:current_user) { sign_in(profile.user) }
+  let(:user) { profile.user }
+  let!(:logged_user) { sign_in(user) }
   let(:update_params) do
     {
       first_name: 'Jon',
@@ -17,9 +18,7 @@ RSpec.describe SettingsController, type: :request do
 
   describe 'GET index' do
     before { get settings_path }
-    it 'should authenticate user' do
-      expect(controller.authenticate_user!).not_to be_nil
-    end
+    it_behaves_like 'authenticated user'
     it { expect(response).to have_http_status(:ok) }
   end
 
@@ -28,6 +27,7 @@ RSpec.describe SettingsController, type: :request do
       post settings_path, params: { profile_form: update_params }
       profile.reload
     end
+    it_behaves_like 'authenticated user'
     it { expect(all_params_updated?).to eq true }
   end
 

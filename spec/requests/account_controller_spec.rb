@@ -3,11 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe AccountController, type: :request do
-  let!(:user) { sign_in(create(:user)) }
+  let(:user) { create(:user) }
+  let!(:logged_user) { sign_in(user) }
 
   describe '.index' do
     before { get account_index_path }
-    it { expect(controller.authenticate_user!).to be_present }
+    it_behaves_like 'authenticated user'
     it { expect(response).to have_http_status(:ok) }
   end
 end

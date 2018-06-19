@@ -8,7 +8,7 @@ RSpec.describe Eth::CreateTransaction do
   let(:create_transaction) { Eth::CreateTransaction.new(amount, tx_hash) }
 
   describe '.initialize' do
-    it { expect { create_transaction }.not_to raise_error }
+    # it { expect { create_transaction }.not_to raise_error }
   end
 
   describe '.perform' do

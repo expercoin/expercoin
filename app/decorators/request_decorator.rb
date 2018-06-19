@@ -12,6 +12,6 @@ class RequestDecorator < BaseDecorator
   end
 
   def usd_amount
-    ( Eth::UsdConverter.new(amount).usd_value ).round(2)
+    Eth::UsdConverter.new(amount).usd_value.round(2)
   end
 end
