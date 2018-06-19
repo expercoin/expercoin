@@ -16,6 +16,8 @@ class CallLength
       call.session_length || (call.ended_at - call.started_at) / 60
     end
     mapped_length.sum.to_i
+  rescue StandardError
+    0
   end
 
   private
