@@ -23,26 +23,22 @@ RSpec.describe RequestsController, type: :request do
 
   describe 'GET index' do
     before { get requests_path }
-    it_behaves_like 'authenticated user'
-    it { expect(response).to have_http_status(:ok) }
+    it_behaves_like 'authenticated user get ok'
   end
 
   describe 'GET new' do
     before { get new_request_path, params: { expert: expert.id } }
-    it_behaves_like 'authenticated user'
-    it { expect(response).to have_http_status(:ok) }
+    it_behaves_like 'authenticated user get ok'
   end
 
   describe 'GET show' do
     before { get request_path(req) }
-    it_behaves_like 'authenticated user'
-    it { expect(response).to have_http_status(:ok) }
+    it_behaves_like 'authenticated user get ok'
   end
 
   describe 'GET edit' do
     before { get edit_request_path(req) }
-    it_behaves_like 'authenticated user'
-    it { expect(response).to have_http_status(:ok) }
+    it_behaves_like 'authenticated user get ok'
   end
 
   describe 'POST create' do
