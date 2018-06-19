@@ -17,7 +17,7 @@ class Request < ApplicationRecord
   has_one :review
   has_many :eth_transactions, class_name: 'Transaction'
 
-  enum requested_length: %w[15min 30min 45min]
+  enum requested_length: %w[15min 30min 45min 60min 90min 120min]
   enum status: %I[draft pending accepted inprogress completed rejected upcoming expired closed verified verifying]
 
   scope :tx_hash, -> { where.not(tx_hash: nil) }
@@ -99,7 +99,7 @@ class Request < ApplicationRecord
   end
 
   def reset
-    update(status: 'verified', tx_hash: nil, started_at: nil, ended_at: nil, room_sid: nil, updated_by: expert, inviter: false, invitee: false)
+    update(status: 'accepted', tx_hash: nil, started_at: nil, ended_at: nil, room_sid: nil, updated_by: expert, inviter: false, invitee: false)
     eth_transactions&.destroy_all
   end
 end

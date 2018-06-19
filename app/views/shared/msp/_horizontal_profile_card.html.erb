@@ -1,7 +1,7 @@
 <div class="mentor-card mentor-card-landscape">
   <div class="card-hero">
     <%= render "shared/profile_photo", photo: mentor.photo.thumb.url %>
-    <div class='hero-price'>
+    <div class='hero-price' data-container="body" data-toggle="popover" data-placement="bottom" data-content="<%= decorate(mentor).expercoin_rate %>" data-trigger="hover">
       <strong><%= decorate(mentor).display_rate %></strong>
     </div>
     <div class="hero-rating">
