@@ -8,5 +8,9 @@ FactoryBot.define do
         Faker::Company.logo
       end
     end
+
+    trait :with_parent do
+      parent { create(:category) }
+    end
   end
 end
