@@ -3,12 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe CallLength do
-  let(:calls) do
-    5.times do
-      create(:request, :completed, requested_length: '15min')
-    end
-    Request.completed
-  end
+  let(:calls) { create_list(:request, 5, :completed, requested_length: '15min') }
   let(:call_length) { CallLength.new(calls) }
 
   describe '.initialize' do
