@@ -50,5 +50,11 @@ FactoryBot.define do
       invitee true
       started_at { "#{first_date} #{first_time}".to_datetime }
     end
+
+    trait :unscheduled do
+      first_date nil
+      second_date nil
+      third_date nil
+    end
   end
 end
