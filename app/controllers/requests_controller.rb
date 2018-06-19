@@ -50,19 +50,6 @@ class RequestsController < ApplicationController
     redirect_to request_verify_index_path(@request) if @request&.accepted?
   end
 
-  def searched
-    return if params[:search].blank?
-    return current_user.profile.created_requests.pg_search(params[:search]) if Rails.env.production?
-    current_user.profile.created_requests.where(
-      "title LIKE ? OR message LIKE ?",
-      "%#{params[:filter]}%", "%#{params[:filter]}%"
-      ).order(created_at: :desc)
-  end
-
-  def ordered
-    current_user.profile.created_requests.order(created_at: :desc)
-  end
-
   def request_params
     params.require(:request).permit(request_attributes)
           .merge(updated_by: current_user.profile)

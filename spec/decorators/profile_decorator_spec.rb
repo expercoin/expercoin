@@ -3,10 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe ProfileDecorator do
-  let(:profile) { create(:profile) }
+  let(:rate) { 0.0005 }
+  let(:profile) { create(:profile, expercoin_rate: rate) }
   let(:completed_request) { create(:request, :completed, expert: profile) }
   let(:profile_decorator) { ProfileDecorator.new(profile) }
-  let(:rate) { profile.expercoin_rate }
   let!(:message) { create(:message, :unread, receiver: profile.user) }
 
   describe '.full_name' do
