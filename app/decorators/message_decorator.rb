@@ -17,7 +17,7 @@ class MessageDecorator < BaseDecorator
   end
 
   def sender_photo_thumb
-    sender.profile.photo.thumb.url
+    sender.profile.photo.thumb.url || 'empty_user.png'
   end
 
   def receiver_name
