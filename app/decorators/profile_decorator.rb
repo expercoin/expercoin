@@ -21,7 +21,7 @@ class ProfileDecorator < BaseDecorator
   end
 
   def display_rate
-    expercoin_rate.to_f
+    FloatFormater.new(expercoin_rate.to_f).with_dots
   end
 
   def unread_messages
