@@ -8,3 +8,8 @@ RSpec.shared_examples 'authenticated user' do
   it { expect(current_user.email).to eq user.email }
   it { expect(response).not_to redirect_to user_session_path }
 end
+
+RSpec.shared_examples 'authenticated user get ok' do
+  include_examples 'authenticated user'
+  it { expect(response).to have_http_status(:ok) }
+end

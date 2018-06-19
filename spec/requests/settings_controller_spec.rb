@@ -18,8 +18,7 @@ RSpec.describe SettingsController, type: :request do
 
   describe 'GET index' do
     before { get settings_path }
-    it_behaves_like 'authenticated user'
-    it { expect(response).to have_http_status(:ok) }
+    it_behaves_like 'authenticated user get ok'
   end
 
   describe 'POST create' do
@@ -28,12 +27,6 @@ RSpec.describe SettingsController, type: :request do
       profile.reload
     end
     it_behaves_like 'authenticated user'
-    it { expect(all_params_updated?).to eq true }
-  end
-
-  private
-
-  def all_params_updated?
-    profile_attributes.merge(update_params) == profile_attributes
+    it { expect(contain_all?(profile_attributes, update_params)).to eq true }
   end
 end

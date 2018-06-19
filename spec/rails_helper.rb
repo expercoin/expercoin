@@ -12,6 +12,7 @@ require 'support/factory_bot'
 require 'simplecov'
 require 'devise'
 require_relative 'support/devise_helpers'
+require 'support/helpers'
 
 SimpleCov.start
 
@@ -66,6 +67,9 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  # include helpers
+  config.include Helpers
 end
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
