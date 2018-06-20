@@ -13,6 +13,9 @@ require 'simplecov'
 require 'devise'
 require_relative 'support/devise_helpers'
 require 'support/helpers'
+require 'webmock/rspec'
+
+WebMock.disable_net_connect!(allow_localhost: true)
 
 SimpleCov.start
 
@@ -70,10 +73,10 @@ RSpec.configure do |config|
 
   # include helpers
   config.include Helpers
-end
-Shoulda::Matchers.configure do |config|
-  config.integrate do |with|
-    with.test_framework :rspec
-    with.library :rails
+  Shoulda::Matchers.configure do |config|
+    config.integrate do |with|
+      with.test_framework :rspec
+      with.library :rails
+    end
   end
 end
