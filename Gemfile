@@ -31,6 +31,7 @@ gem 'aws-ses', require: 'aws/ses'
 gem 'pg_search'
 gem 'ethereum.rb'
 gem 'eth'
+gem 'webmock'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
