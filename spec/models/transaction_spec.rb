@@ -4,6 +4,13 @@ require 'rails_helper'
 
 RSpec.describe Transaction, type: :model do
   let(:transaction) { build(:transaction) }
+  ASSOCIATIONS = [
+    { model: :sender, association: 'belong_to' },
+    { model: :receiver, association: 'belong_to' },
+    { model: :parent, association: 'belong_to' },
+    { model: :request, association: 'belong_to' }
+
+  ].freeze
 
   describe 'Factory' do
     it { expect(transaction).to be_valid }
@@ -13,10 +20,9 @@ RSpec.describe Transaction, type: :model do
   end
 
   describe 'Associations' do
-    it { expect(transaction).to belong_to(:sender) }
-    it { expect(transaction).to belong_to(:receiver) }
-    it { expect(transaction).to belong_to(:parent) }
-    it { expect(transaction).to belong_to(:request) }
+    ASSOCIATIONS.each do |obj|
+      it { expect(transaction).to send(obj[:association], obj[:model]) }
+    end
   end
 
   describe 'Enums' do
