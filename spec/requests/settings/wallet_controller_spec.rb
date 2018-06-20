@@ -23,7 +23,7 @@ RSpec.describe Settings::WalletController, type: :request do
   describe 'POST create' do
     before { post settings_wallet_index_path, params: { eth_address: attributes_for(:eth_address) }, xhr: true }
     it_behaves_like 'authenticated user'
-    it{ expect(response).to have_http_status(:ok) }
+    it { expect(response).to have_http_status(:ok) }
   end
 
   describe 'DELETE destroy' do
