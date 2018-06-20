@@ -1,21 +1,23 @@
 class SubcategoriesController < ApplicationController
-  before_action :set_category
-  before_action :set_subcategory, only: [:show]
+  before_action :set_category, :set_profiles
   layout 'dashboard'
 
   def show
-    @profiles = @subcategory.profiles.except(current_user&.profile)
-                .page(params[:page]).per(9)
-    @subcategories = @category.categories
+    @subcategories = category.categories
   end
 
   private
 
-  def set_category
-    @category = Category.main.friendly.find(params[:category_id])
+  attr_reader :category, :subcategory
+
+  def set_profiles
+    @profiles = subcategory.profiles
+                           .except(current_user.try(:profile))
+                           .page(params[:page]).per(9)
   end
 
-  def set_subcategory
-    @subcategory = @category.categories.children.friendly.find(params[:subcategory_id])
+  def set_category
+    @category = Category.main.friendly.find(params[:category_id])
+    @subcategory = category.categories.children.friendly.find(params[:subcategory_id])
   end
 end
