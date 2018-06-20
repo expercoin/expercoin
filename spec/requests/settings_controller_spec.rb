@@ -11,7 +11,8 @@ RSpec.describe SettingsController, type: :request do
       first_name: 'Jon',
       last_name: 'Snow',
       title: 'King in the North',
-      expercoin_rate: 0.0005
+      expercoin_rate: 0.0005,
+      rate: 0.000465
     }.with_indifferent_access
   end
   let(:profile_attributes) { profile.attributes.with_indifferent_access }
