@@ -1,4 +1,4 @@
-<% if @request.inprogress? || @request.verified? %>
+<% if decorate(@request).call_approved? %>
   <div class="request-accepted-time">
     <h6 class="request-time">Call session is schedulled for <%= decorate(@request).session_date %></h6>
     <% if @request.inprogress? %>
