@@ -25,6 +25,10 @@ FactoryBot.define do
       ended_at { "#{first_date} #{first_time}".to_datetime + requested_length.to_i.minutes }
     end
 
+    trait :pending do
+      status 'pending'
+    end
+
     trait :accepted do
       status 'accepted'
       selected_date { first_date }

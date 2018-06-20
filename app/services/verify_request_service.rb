@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class VerifyRequestService < BaseService
+  PARAMS_KEYS = %i[tx_hash sender request parent].freeze
+
   def initialize(params)
     @params = params
     @transaction = Eth::FindTransaction.new(tx_hash).perform
@@ -15,7 +17,7 @@ class VerifyRequestService < BaseService
     update_request_tx_hash
     create_transaction
     MSP::UpdateRequestStatus.new(request).perform
-    call_verifying_job
+    CheckVerifyingRequestsJob.set(wait: 2.minutes).perform_later
   end
 
   def error_message
@@ -30,29 +32,15 @@ class VerifyRequestService < BaseService
 
   private
 
-  def call_verifying_job
-    CheckVerifyingRequestsJob.set(wait: 2.minutes).perform_later
-  end
-
   def update_request_tx_hash
     return unless AddressValidator.new(@transaction['to']).valid?
     request.update(tx_hash: @transaction['hash'])
   end
 
-  def tx_hash
-    @params[:tx_hash]
-  end
-
-  def sender
-    @params[:sender]
-  end
-
-  def request
-    @params[:request]
-  end
-
-  def parent
-    @params[:parent]
+  PARAMS_KEYS.each do |key|
+    define_method key.to_s do
+      @params[key]
+    end
   end
 
   def create_transaction
@@ -65,10 +53,6 @@ class VerifyRequestService < BaseService
 
   def transaction_params
     params = Eth::ParseTransaction.new(@transaction).perform
-    params['sender'] = sender
-    params['parent'] = parent
-    params['request'] = request
-    params['status'] = 'completed'
-    params
+    params.merge('sender': sender, 'parent': parent, 'request': request, status: 'completed')
   end
 end
