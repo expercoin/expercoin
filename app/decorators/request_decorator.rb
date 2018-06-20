@@ -14,4 +14,21 @@ class RequestDecorator < BaseDecorator
   def usd_amount
     Eth::UsdConverter.new(amount).usd_value.round(2)
   end
+
+  def call_approved?
+    (inprogress? || verified?) && call_ready?
+  end
+
+  def call_ready?
+    selected_date_bigger_than_current_time && selected_date_not_bigger_than_two_hours
+    true
+  end
+
+  def selected_date_bigger_than_current_time
+    selected_date.in_time_zone(time_zone) >= Time.now.in_time_zone(time_zone) - 15.minutes
+  end
+
+  def selected_date_not_bigger_than_two_hours
+    selected_date.in_time_zone(time_zone) < Time.now.in_time_zone(time_zone) + 2.hours
+  end
 end
