@@ -6,7 +6,7 @@ RSpec.describe Eth::UsdConverter do
   let(:eth_value) { 0.000015 }
   let(:usd_converter) { Eth::UsdConverter.new(eth_value) }
   let(:usd_rate) do
-    req = JSON.parse(open('https://api.coinmarketcap.com/v1/ticker/ethereum/').read)
+    req = JSON.parse(URI.parse('https://api.coinmarketcap.com/v1/ticker/ethereum/').read)
     req[0]['price_usd'].to_f if req.present?
   end
 
