@@ -4,13 +4,13 @@ require 'rails_helper'
 
 RSpec.describe MSP::UpdateRequestStatus do
   STATUS_TRANSITIONS = [
-    OpenStruct.new(from: 'draft', to: 'pending'),
-    OpenStruct.new(from: 'pending', to: 'accepted'),
-    OpenStruct.new(from: 'accepted', to: 'verifying'),
-    OpenStruct.new(from: 'verifying', to: 'verified'),
-    OpenStruct.new(from: 'verified', to: 'inprogress'),
-    OpenStruct.new(from: 'inprogress', to: 'completed')
-].freeze
+    { from: 'draft', to: 'pending' },
+    { from: 'pending', to: 'accepted' },
+    { from: 'accepted', to: 'verifying' },
+    { from: 'verifying', to: 'verified' },
+    { from: 'verified', to: 'inprogress' },
+    { from: 'inprogress', to: 'completed' }
+  ].freeze
 
   let(:request) { create(:request, status: 'draft') }
 
@@ -19,10 +19,10 @@ RSpec.describe MSP::UpdateRequestStatus do
   end
 
   STATUS_TRANSITIONS.each do |obj|
-    describe "from #{obj.from} to #{obj.to}" do
-      let(:request) { create(:request, obj.to.to_sym, status: obj.from) }
+    describe "from #{obj[:from]} to #{obj[:to]}" do
+      let(:request) { create(:request, obj[:to].to_sym, status: obj[:from]) }
       before { update_request_status }
-      it { expect(request.status).to eq obj.to }
+      it { expect(request.status).to eq obj[:to] }
     end
   end
 
