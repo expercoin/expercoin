@@ -24,7 +24,7 @@ RSpec.describe SettingsController, type: :request do
 
   describe 'POST create' do
     before do
-      post settings_path, params: { profile_form: update_params }
+      post settings_path, params: { profile_form: update_params, format: :js }
       profile.reload
     end
     it_behaves_like 'authenticated user'

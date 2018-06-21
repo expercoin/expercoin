@@ -4,6 +4,11 @@ require 'rails_helper'
 
 RSpec.describe Category, type: :model do
   let(:category) { create(:category) }
+  ASSOCIATIONS = [
+    { model: :profiles, association: 'have_and_belong_to_many' },
+    { model: :categories, association: 'have_many' },
+    { model: :parent, association: 'belong_to' }
+  ].freeze
 
   describe 'Factory' do
     it { expect(category).to be_valid }
@@ -14,9 +19,9 @@ RSpec.describe Category, type: :model do
   end
 
   describe 'Associations' do
-    it { expect(category).to have_and_belong_to_many(:profiles) }
-    it { expect(category).to have_many(:categories) }
-    it { expect(category).to belong_to(:parent) }
+    ASSOCIATIONS.each do |obj|
+      it { expect(category).to send(obj[:association], obj[:model]) }
+    end
   end
 
   describe 'Columns' do
