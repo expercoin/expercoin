@@ -10,6 +10,11 @@ RSpec.describe ProfilesController, type: :request do
     it { expect(response).to have_http_status(:ok) }
   end
 
+  describe 'GET show with invalid id' do
+    before { get profile_path(123) }
+    it { expect(response).to redirect_to profiles_path }
+  end
+
   describe 'GET index' do
     before { get profiles_path }
     it { expect(response).to have_http_status(:ok) }
