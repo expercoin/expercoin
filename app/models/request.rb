@@ -57,6 +57,7 @@ class Request < ApplicationRecord
   end
 
   def dates_cannot_be_in_past
+    return unless dates_changed?
     DATETIMES.each do |datetime|
       dt = "#{send(datetime[1])} #{send(datetime[0])}".to_datetime
       next unless dt < Time.now
@@ -68,11 +69,20 @@ class Request < ApplicationRecord
   end
 
   def times_cannot_be_in_past(time)
+    return unless times_changed?
     dt = "#{Time.now.to_date} #{send(time)}".to_datetime
     return unless dt < Time.now
     errors.add(time, "can't be in the past")
   rescue StandardError
     errors.add(time, "can't be in the past")
+  end
+
+  def dates_changed?
+    first_date_changed? || second_date_changed? || third_date_changed?
+  end
+
+  def times_changed?
+    first_time_changed? || second_time_changed? || third_time_changed?
   end
 
   def sugested_times
@@ -99,7 +109,7 @@ class Request < ApplicationRecord
   end
 
   def reset
-    update(status: 'accepted', tx_hash: nil, started_at: nil, ended_at: nil, room_sid: nil, updated_by: expert, inviter: false, invitee: false)
+    update!(status: 'accepted', tx_hash: nil, started_at: nil, ended_at: nil, room_sid: nil, updated_by: expert, inviter: false, invitee: false)
     eth_transactions&.destroy_all
   end
 end

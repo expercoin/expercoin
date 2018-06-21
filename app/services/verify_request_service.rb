@@ -17,7 +17,7 @@ class VerifyRequestService < BaseService
     update_request_tx_hash
     create_transaction
     MSP::UpdateRequestStatus.new(request).perform
-    CheckVerifyingRequestsJob.set(wait: 2.minutes).perform_later
+    UpdateVerifyingRequestJob.set(wait: 2.minutes).perform_later(request)
   end
 
   def error_message
