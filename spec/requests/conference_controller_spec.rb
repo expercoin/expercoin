@@ -41,8 +41,7 @@ RSpec.describe ConferenceController, type: :request do
       create(:request, :inprogress,
              room_sid: 'RMe1491f9d09795f0ee843879b8eb92c17',
              started_at: nil,
-             inviter: true
-            )
+             inviter: true)
     end
     before { get conference_path(req.room_sid) }
     it { expect(response).to have_http_status(:ok) }

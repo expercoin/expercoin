@@ -10,20 +10,17 @@ RSpec.describe CallsController, type: :request do
 
   describe 'GET index' do
     before { get calls_path }
-    it_behaves_like 'authenticated user'
-    it { expect(response).to have_http_status(:ok) }
+    it_behaves_like 'authenticated user get ok'
   end
 
   describe 'GET show' do
     before { get call_path(request_made) }
-    it_behaves_like 'authenticated user'
-    it { expect(response).to have_http_status(:ok) }
+    it_behaves_like 'authenticated user get ok'
   end
 
   describe 'POST update' do
     before { patch call_path(id: request_made.id, request: attributes_for(:request)) }
     it_behaves_like 'authenticated user'
-    it { expect(response).to have_http_status(:redirect) }
     it { expect(response).to redirect_to calls_path }
   end
 end
