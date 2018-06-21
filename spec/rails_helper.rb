@@ -15,7 +15,7 @@ require_relative 'support/devise_helpers'
 require 'support/helpers'
 require 'webmock/rspec'
 
-WebMock.disable_net_connect!(allow_localhost: true)
+WebMock.disable_net_connect!(allow_localhost: true, disable: /localhost:3001/)
 
 SimpleCov.start
 
