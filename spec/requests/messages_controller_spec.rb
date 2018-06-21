@@ -17,6 +17,7 @@ RSpec.describe MessagesController, type: :request do
 
   describe 'POST create' do
     before { post messages_path, params: { message: message_params, format: 'js' } }
+    it_behaves_like 'authenticated user'
     it { expect(Message.count).to eq 1 }
   end
 end
