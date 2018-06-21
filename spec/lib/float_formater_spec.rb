@@ -20,7 +20,7 @@ RSpec.describe FloatFormater do
 
   VALUES.each do |obj|
     let("#{obj[:key]}_number") { obj[:val] }
-    let("#{obj[:key]}_number_instance") { FloatFormater.new(send("#{obj[:key]}_number")) }
+    let("#{obj[:key]}_number_instance") { described_class.new(send("#{obj[:key]}_number")) }
 
     describe obj[:desc] do
       it { expect(send("#{obj[:key]}_number_instance").with_dots).to eq obj[:result] }
