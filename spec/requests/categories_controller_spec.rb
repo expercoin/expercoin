@@ -5,12 +5,12 @@ require 'rails_helper'
 RSpec.describe CategoriesController, type: :request do
   let!(:category) { create(:category) }
 
-  describe '.index' do
+  describe 'GET index' do
     before { get categories_path }
     it { expect(response).to have_http_status(:ok) }
   end
 
-  describe '.show' do
+  describe 'GET show' do
     before { get category_path(category) }
     it { expect(response).to have_http_status(:ok) }
   end
