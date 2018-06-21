@@ -12,6 +12,6 @@ RSpec.describe Eth::CreateSignTransaction do
   end
 
   describe '.perform' do
-    # it { expect(create_sign_transaction.perform).to be_present }
+    it { expect(create_sign_transaction.perform).to eq tx_hash }
   end
 end
