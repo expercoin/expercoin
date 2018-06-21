@@ -9,12 +9,12 @@ RSpec.describe Eth::ValueFormatter do
   ].freeze
 
   describe '.initialize' do
-    it { expect { value_formatter }.not_to raise_error }
+    it { expect { described_class.new(0.005) }.not_to raise_error }
   end
 
   OPTIONS.each do |obj|
     describe obj[:key] do
-      it { expect(described_class.new(obj[:val]).from_hex).to eq obj[:result] }
+      it { expect(described_class.new(obj[:val]).send(obj[:key])).to eq obj[:result] }
     end
   end
 end
