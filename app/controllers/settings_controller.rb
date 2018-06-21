@@ -11,7 +11,6 @@ class SettingsController < ApplicationController
     profile_form = ProfileForm.new(profile_params)
     profile_form.update(@profile)
     set_profile_form
-    render :index
   end
 
   private

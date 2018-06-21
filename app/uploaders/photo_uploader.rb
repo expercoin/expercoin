@@ -1,4 +1,4 @@
-class PhotoUploader < CarrierWave::Uploader::Base
+class PhotoUploader < BaseUploader
   include CarrierWave::MiniMagick
 
   storage :file
@@ -23,11 +23,5 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   version :thumb do
     process resize_to_fill: [240,240]
-  end
-
-  protected
-  def secure_token
-    var = :"@#{mounted_as}_secure_token"
-    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
   end
 end
