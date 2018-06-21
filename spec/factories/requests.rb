@@ -52,7 +52,9 @@ FactoryBot.define do
     trait :inprogress do
       status 'inprogress'
       invitee true
+      room_sid 'RM1cfdb11a479b2f061fb498e416a08d8f'
       started_at { "#{first_date} #{first_time}".to_datetime }
+      ended_at nil
     end
 
     trait :unscheduled do
