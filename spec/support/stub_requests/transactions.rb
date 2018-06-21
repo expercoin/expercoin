@@ -21,7 +21,7 @@ RSpec.configure do |config|
 
     stub_request(:post, 'http://localhost:3001/transactions')
       .with(
-        body: { 'address' => '0xcce351e43a4c3ed8b9e4e96652992d1a9c1f928497eb0ba470997ccc6a56f917', 'amount' => '2500000000000000', 'api_key' => 'MjN1T5xZTKT9DP3KsBXr', 'from' => '0xcbde01a6de9e0bb6f4053df9423008b2f5b08d40', 'key' => '710f751aa5f90f63597dac37fa339985bf635fa24c657a740fed26b13ca0fb11' },
+        body: { 'address' => /0x\w{40}/, 'amount' => '2500000000000000', 'api_key' => 'MjN1T5xZTKT9DP3KsBXr', 'from' => /0x\w{40}/, 'key' => '710f751aa5f90f63597dac37fa339985bf635fa24c657a740fed26b13ca0fb11' },
         headers: {
           'Accept' => '*/*',
           'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
@@ -30,6 +30,8 @@ RSpec.configure do |config|
           'User-Agent' => 'Ruby'
         }
       )
-      .to_return(status: 200, body: { hash: '0xcce351e43a4c3ed8b9e4e96652992d1a9c1f928497eb0ba470997ccc6a56f917' }.to_json, headers: {})
+      .to_return(status: 200,
+                 body: { hash: '0xcce351e43a4c3ed8b9e4e96652992d1a9c1f928497eb0ba470997ccc6a56f917' }.to_json,
+                 headers: {})
   end
 end
