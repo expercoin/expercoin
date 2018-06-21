@@ -1,4 +1,4 @@
-class BannerUploader < CarrierWave::Uploader::Base
+class BannerUploader < BaseUploader
   include CarrierWave::MiniMagick
 
   storage :file
@@ -20,11 +20,4 @@ class BannerUploader < CarrierWave::Uploader::Base
   end
 
   process resize_to_fit: [1500, 500]
-
-  protected
-
-  def secure_token
-    var = :"@#{mounted_as}_secure_token"
-    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
-  end
 end
