@@ -19,42 +19,43 @@ FactoryBot.define do
     association :expert, factory: :profile, last_name: Faker::Name.last_name
     updated_by { requester }
 
-    trait :completed do
-      status 'completed'
-      started_at { "#{first_date} #{first_time}".to_datetime }
-      ended_at { "#{first_date} #{first_time}".to_datetime + requested_length.to_i.minutes }
-    end
 
     trait :pending do
       status 'pending'
     end
 
     trait :accepted do
+      pending
       status 'accepted'
-      selected_date { first_date }
+      selected_date { sugested_times.first.formated_datetime }
     end
 
     trait :verifying do
+      accepted
       status 'verifying'
       tx_hash "0x#{Faker::Crypto.sha256}"
     end
 
     trait :verified do
+      verifying
       status 'verified'
-      eth_transactions { [create(:transaction, sender: requester.user)] }
-    end
-
-    trait :verified do
-      status 'verified'
-      eth_transactions { [create(:transaction, sender: requester.user)] }
+      eth_transactions { [create(:transaction, sender: requester.user, tx_hash: "0x#{Faker::Crypto.sha256}")] }
     end
 
     trait :inprogress do
+      verified
       status 'inprogress'
       invitee true
       room_sid 'RM1cfdb11a479b2f061fb498e416a08d8f'
       started_at { "#{first_date} #{first_time}".to_datetime }
       ended_at nil
+    end
+
+    trait :completed do
+      inprogress
+      status 'completed'
+      started_at { "#{first_date} #{first_time}".to_datetime }
+      ended_at { "#{first_date} #{first_time}".to_datetime + requested_length.to_i.minutes }
     end
 
     trait :unscheduled do

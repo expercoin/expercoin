@@ -2,9 +2,21 @@ require 'rails_helper'
 
 RSpec.describe Request, type: :model do
   let(:request) { build(:request) }
+  let(:request_pending) { build(:request, :pending) }
+  let(:request_accepted) { build(:request, :accepted) }
+  let(:request_verifying) { build(:request, :verifying) }
+  let(:request_verified) { build(:request, :verified) }
+  let(:request_inprogress) { build(:request, :inprogress) }
+  let(:request_completed) { build(:request, :completed) }
 
   describe 'Factory' do
     it { expect(request).to be_valid }
+    it { expect(request_pending).to be_valid }
+    it { expect(request_accepted).to be_valid }
+    it { expect(request_verifying).to be_valid }
+    it { expect(request_verified).to be_valid }
+    it { expect(request_inprogress).to be_valid }
+    it { expect(request_completed).to be_valid }
   end
 
   describe 'Validations' do
