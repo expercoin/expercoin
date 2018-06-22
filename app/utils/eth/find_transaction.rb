@@ -9,18 +9,6 @@ module Eth
       result
     end
 
-    def fail?
-      http_client_tx_status['status'].hex.zero? && http_client_tx_status['blockNumber'].present?
-    rescue StandardError
-      false
-    end
-
-    def success?
-      http_client_tx_status['status'].hex == 1 && http_client_tx_status['blockNumber'].present?
-    rescue StandardError
-      false
-    end
-
     private
 
     def result
@@ -30,14 +18,6 @@ module Eth
     def http_client_tx_hash
       Ethereum::HttpClient.new(ENV['ETH_NODE_HTTP_PATH'])
                           .yield_self { |it| it.eth_get_transaction_by_hash(@tx_hash) }
-                          .yield_self { |it| it['result'] }
-    rescue StandardError
-      {}
-    end
-
-    def http_client_tx_status
-      Ethereum::HttpClient.new(ENV['ETH_NODE_HTTP_PATH'])
-                          .yield_self { |it| it.eth_get_transaction_receipt(@tx_hash) }
                           .yield_self { |it| it['result'] }
     rescue StandardError
       {}

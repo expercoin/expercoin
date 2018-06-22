@@ -38,7 +38,7 @@ class VerifyRequestService < BaseService
   end
 
   def transaction_failed?
-    Eth::FindTransaction.new(tx_hash).fail?
+    Eth::StatusTransaction.new(tx_hash).fail?
   end
 
   def update_request_tx_hash
