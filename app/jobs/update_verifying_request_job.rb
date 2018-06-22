@@ -2,6 +2,7 @@ class UpdateVerifyingRequestJob < ApplicationJob
   queue_as :default
 
   def perform(request)
+    return unless request.verifying?
     VerifyRequestService.new(params(request)).perform
   rescue StandardError
     'Fail'

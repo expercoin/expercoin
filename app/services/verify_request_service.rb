@@ -17,7 +17,7 @@ class VerifyRequestService < BaseService
     update_request_tx_hash
     create_transaction
     MSP::UpdateRequestStatus.new(request).perform
-    UpdateVerifyingRequestJob.set(wait: 2.minutes).perform_later(request)
+    verifying_request_job
   end
 
   def error_message
@@ -31,6 +31,15 @@ class VerifyRequestService < BaseService
   end
 
   private
+
+  def verifying_request_job
+    return if !request.verifying? || transaction_failed?
+    UpdateVerifyingRequestJob.set(wait: 2.minutes).perform_later(request)
+  end
+
+  def transaction_failed?
+    Eth::FindTransaction.new(tx_hash).fail?
+  end
 
   def update_request_tx_hash
     return unless AddressValidator.new(@transaction['to']).valid?
