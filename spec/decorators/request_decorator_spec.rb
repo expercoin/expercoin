@@ -45,15 +45,8 @@ RSpec.describe RequestDecorator do
     end
   end
 
-  describe '.call_ready?' do
-    let(:request) { create(:request, :verified, expert: expert, requested_length: '30min') }
-
-    context 'when true' do
-      it { expect(request_decorator.call_ready?).to eq true }
-    end
-
-    # context 'when false' do
-    #   it { expect(request_decorator.call_ready?).to false  }
-    # end
+  describe '.call_approved? when true' do
+    let(:request) { create(:request, :inprogress, expert: expert, requested_length: '30min') }
+    it { expect(request_decorator.call_approved?).to be true }
   end
 end

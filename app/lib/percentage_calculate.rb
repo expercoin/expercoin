@@ -9,7 +9,7 @@ class PercentageCalculate
   end
 
   def increase
-    (100.0 / reverse_percentage *  @amount).round(2);
+    (100.0 / reverse_percentage * @amount).to_f
   end
 
   private
