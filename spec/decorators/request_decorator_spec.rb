@@ -44,4 +44,16 @@ RSpec.describe RequestDecorator do
       expect(request_decorator.usd_amount).to eq usd_amount
     end
   end
+
+  describe '.call_ready?' do
+    let(:request) { create(:request, :verified, expert: expert, requested_length: '30min') }
+
+    context 'when true' do
+      it { expect(request_decorator.call_ready?).to eq true }
+    end
+
+    # context 'when false' do
+    #   it { expect(request_decorator.call_ready?).to false  }
+    # end
+  end
 end
