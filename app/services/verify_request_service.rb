@@ -41,6 +41,10 @@ class VerifyRequestService < BaseService
     Eth::StatusTransaction.new(tx_hash).fail?
   end
 
+  def transaction_status
+    'completed' if Eth::StatusTransaction.new(tx_hash).success?
+  end
+
   def update_request_tx_hash
     return unless AddressValidator.new(@transaction['to']).valid?
     request.update(tx_hash: @transaction['hash'])
@@ -62,6 +66,6 @@ class VerifyRequestService < BaseService
 
   def transaction_params
     params = Eth::ParseTransaction.new(@transaction).perform
-    params.merge('sender': sender, 'parent': parent, 'request': request, status: 'completed')
+    params.merge('sender': sender, 'parent': parent, 'request': request, status: transaction_status)
   end
 end

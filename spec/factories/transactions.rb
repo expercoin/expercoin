@@ -5,7 +5,7 @@ FactoryBot.define do
     tx_hash "0x#{Faker::Crypto.sha256}"
     block_number "0x#{Faker::Number.hexadecimal(3)}"
     to_eth { ENV['ETH_ADDRESS'] }
-
+    status 'completed'
     request
     sender { request.requester.user }
     from_eth do

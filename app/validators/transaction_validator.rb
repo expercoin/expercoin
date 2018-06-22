@@ -3,6 +3,7 @@ class TransactionValidator < BaseValidator
   validates_presence_of :block_number, :eth_amount
   validates :tx_hash, unique: true
   validates :address, presence: true, inclusion: { in: [ENV['ETH_ADDRESS']] }
+  validates :status, presence: true, inclusion: { in: ['completed'] }
 
   attr_reader :transaction
 
@@ -11,6 +12,10 @@ class TransactionValidator < BaseValidator
   end
 
   private
+
+  def status
+    @transaction.status
+  end
 
   def address
     @transaction.to_eth
