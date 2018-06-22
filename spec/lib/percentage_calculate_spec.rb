@@ -14,7 +14,7 @@ RSpec.describe PercentageCalculate do
   end
 
   describe '.increase' do
-    pending 'increase neeeds to be checked'
-    # it { expect(percentage_calculate.increase).to eq 0.000535 }
+    let(:percentage_calculate) { described_class.new(7, 0.000465) }
+    it { expect(percentage_calculate.increase).to eq 0.0005 }
   end
 end
