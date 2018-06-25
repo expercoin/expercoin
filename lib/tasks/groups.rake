@@ -6,7 +6,7 @@ namespace :groups do
     parent = Group.create!(
       title: 'Programming & Tech',
       subtitle: 'Get all the technical bells and whistles without paying for a programming degree',
-      remote_icon_static_url: 'https://d30y9cdsu7xlg0.cloudfront.net/png/114-200.png'
+      remote_icon_static_url: 'http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/device-laptop-icon.png'
     )
     puts "Created parent group with title #{parent.title}"
 
@@ -39,7 +39,7 @@ namespace :groups do
     parent = Group.create!(
       title: 'Business',
       subtitle: 'Your business = your passion. Outsource smaller tasks so you can focus on growth',
-      remote_icon_static_url: 'http://icons.iconarchive.com/icons/iconsmind/outline/512/Letter-Open-icon.png'
+      remote_icon_static_url: 'http://www.iconhot.com/icon/png/smashing-pumpkins/500/halloween-letter.png'
     )
     puts "Created parent group with title #{parent.title}"
 

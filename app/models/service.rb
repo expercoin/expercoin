@@ -9,4 +9,14 @@ class Service < ApplicationRecord
   mount_uploader :cover_video, VideoUploader
 
   validates_presence_of :title, :content
+
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
+  def slug_candidates
+    [
+      :title,
+      [:title, :id]
+    ]
+  end
 end
