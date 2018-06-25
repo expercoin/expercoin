@@ -7,7 +7,7 @@ ActiveAdmin.register Service do
       f.input :content, as: :quill_editor
       f.input :cover_image, as: :file
       f.input :cover_video, as: :file
-      f.input :group_id, as: :select, collection: Group.subcategories
+      f.input :group_id, as: :select, collection: Group.children
     end
     f.actions
   end
