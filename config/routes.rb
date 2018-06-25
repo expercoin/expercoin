@@ -14,8 +14,7 @@ Rails.application.routes.draw do
   root 'pages#business_home'
   resources :categories do
     get ':subcategory_id', to: 'subcategories#show', as: :subcategory
-  end
-
+  end 
   get 'for-mentors', to: 'pages#mentors_home'
   namespace :calls do
     resources :history, only: [:index]
@@ -54,4 +53,6 @@ Rails.application.routes.draw do
     get 'received', on: :collection
   end
   resources :callbacks, only: :create
+  resources :groups
+  resources :services
 end

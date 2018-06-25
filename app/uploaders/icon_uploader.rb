@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class IconUploader < BaseUploader
   include CarrierWave::MiniMagick
 
@@ -8,7 +10,7 @@ class IconUploader < BaseUploader
   end
 
   def extension_whitelist
-    %w(jpg jpeg png)
+    %w[jpg jpeg gif png]
   end
 
   def content_type_whitelist
@@ -19,5 +21,5 @@ class IconUploader < BaseUploader
     "#{secure_token}.#{file.extension}" if original_filename.present?
   end
 
-  process resize_to_fit: [96, 96]
+  process resize_to_fit: [72, 72]
 end
