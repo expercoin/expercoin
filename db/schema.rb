@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_25_090705) do
+ActiveRecord::Schema.define(version: 2018_06_25_140423) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -179,6 +179,16 @@ ActiveRecord::Schema.define(version: 2018_06_25_090705) do
     t.integer "request_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "service_providers", force: :cascade do |t|
+    t.integer "service_id"
+    t.integer "profile_id"
+    t.boolean "featured", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_service_providers_on_profile_id"
+    t.index ["service_id"], name: "index_service_providers_on_service_id"
   end
 
   create_table "services", force: :cascade do |t|

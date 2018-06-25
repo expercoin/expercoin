@@ -3,9 +3,10 @@ class Profile < ApplicationRecord
   has_and_belongs_to_many :categories
   has_many :reviews
   has_many :created_reviews, class_name: 'Review', foreign_key: :author_id
-
   has_many :requests, foreign_key: :expert_id
   has_many :created_requests, class_name: 'Request', foreign_key: :requester_id
+  has_many :service_providers
+  has_many :services, through: :service_providers
   has_one :wallet, dependent: :destroy
 
   validates_presence_of :first_name, :last_name
