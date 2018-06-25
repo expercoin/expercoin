@@ -9,4 +9,14 @@ class Group < ApplicationRecord
   mount_uploader :icon_active, IconUploader
 
   validates_presence_of :title
+
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
+  def slug_candidates
+    [
+      :title,
+      %i[title parent_id]
+    ]
+  end
 end
