@@ -5,7 +5,7 @@ class Group < ApplicationRecord
   has_many :groups, foreign_key: :parent_id
   has_many :services
   scope :main, -> { where(parent_id: nil) }
-  scope :subcategories, -> { where.not(parent_id: nil) }
+  scope :children, -> { where.not(parent_id: nil) }
   mount_uploader :icon_static, IconUploader
   mount_uploader :icon_active, IconUploader
 
@@ -19,5 +19,9 @@ class Group < ApplicationRecord
       :title,
       %i[title parent_id]
     ]
+  end
+
+  def subgroups
+    Group.where(parent_id: self.id)
   end
 end
