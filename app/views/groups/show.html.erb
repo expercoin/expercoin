@@ -5,11 +5,11 @@
       <p><%= @group.subtitle %></p>
     </div>  
   </header>
-  <section class="services-filterable">
+  <section class="groups-filterable">
     <div class="content-container">
-      <div class="services">
+      <div class="groups">
         <% @subgroups.each do |subgroup| %>
-          <%= render 'shared/msp/service_card', service: subgroup, service_url: group_subgroup_path(@group, subgroup) %>
+          <%= render 'shared/msp/group_card', group: subgroup, group_url: group_subgroup_path(@group, subgroup) %>
         <% end %>
       </div>
     </div>
