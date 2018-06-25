@@ -8,6 +8,7 @@ class CreateGroups < ActiveRecord::Migration[5.2]
       t.string :icon_active
       t.text :summary
       t.string :cover
+      t.string :slug
 
       t.timestamps
     end

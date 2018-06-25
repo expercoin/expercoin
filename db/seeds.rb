@@ -12,4 +12,6 @@ if Rails.env.development?
   Rake::Task['messages:create_test_parent_messages'].invoke
   Rake::Task['payments:create_test_payments'].invoke
   Rake::Task['payments:create_test_payments_with_parent'].invoke
+  Rake::Task['groups:create'].invoke
+  Rake::Task['services:create'].invoke
 end

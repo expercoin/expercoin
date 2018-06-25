@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 2018_06_25_090705) do
     t.string "icon_active"
     t.text "summary"
     t.string "cover"
+    t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
