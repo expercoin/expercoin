@@ -34,6 +34,7 @@ gem 'eth'
 gem 'webmock'
 gem 'carrierwave-video'
 gem 'activeadmin_quill_editor'
+gem 'faker'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
@@ -50,7 +51,6 @@ gem 'activeadmin_quill_editor'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'rspec-rails', '~> 3.7'
   gem 'simplecov', require: false
   gem 'sqlite3'
