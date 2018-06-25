@@ -4,7 +4,7 @@ ActiveAdmin.register Service do
   form do |f|
     f.inputs  do
       f.input :title
-      f.input :content
+      f.input :content, as: :quill_editor
       f.input :cover_image, as: :file
       f.input :cover_video, as: :file
       f.input :group_id, as: :select, collection: Group.subcategories
