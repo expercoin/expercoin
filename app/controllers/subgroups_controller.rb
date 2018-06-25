@@ -7,6 +7,7 @@ class SubgroupsController < ApplicationController
   private
 
   def set_group
-    @group = Group.friendly.find(params[:id])
+    parent = Group.friendly.find(params[:group_id])
+    @group = parent.subgroups.friendly.find(params[:id])
   end
 end
