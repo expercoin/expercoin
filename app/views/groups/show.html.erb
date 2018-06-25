@@ -1,17 +1,16 @@
 <main class="content">
-  <section class="mentors-filterable">
+  <header class="service-title">
     <div class="content-container">
-      <div class="">
-        <div class="">
-          <% @subgroups.each do |subgroup| %>
-            <%= subgroup.title %>
-          <% end %>
-        </div>
-        <div class="">
-          <div class="filter-group">
-
-          </div>
-        </div>
+      <h1><%= @group.title %></h1>
+      <p><%= @group.subtitle %></p>
+    </div>  
+  </header>
+  <section class="services-filterable">
+    <div class="content-container">
+      <div class="services">
+        <% @subgroups.each do |subgroup| %>
+          <%= render 'shared/msp/service_card', service: subgroup, service_url: group_subgroup_path(@group, subgroup) %>
+        <% end %>
       </div>
     </div>
   </section>

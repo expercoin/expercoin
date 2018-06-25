@@ -1,0 +1,10 @@
+<div class="service-container">
+  <%= link_to service_url, class: "service-card" do %> 
+    <div class="card-hero">
+      <%= render "shared/service_photo", photo: service.cover.thumb.url %>
+    </div>
+    <div class="card-body">
+      <h4><%= service.title %></h4>
+    </div>
+  <% end %>
+</div>

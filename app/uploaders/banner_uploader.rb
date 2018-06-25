@@ -20,4 +20,8 @@ class BannerUploader < BaseUploader
   end
 
   process resize_to_fit: [1500, 500]
+
+  version :thumb do
+    process resize_to_fill: [300,200]
+  end
 end

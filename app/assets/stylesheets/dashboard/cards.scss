@@ -394,3 +394,29 @@
     }
   }        
 }
+
+.service-card {
+  display: flex;
+  flex: 1;
+  position: relative;
+  background: #fff;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
+     -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
+          box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
+
+  .card-hero {
+    position: relative;
+    border-radius: 5px;
+  } 
+
+  .card-body {
+    padding: 15px 10px;
+
+    h4 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+    }
+  }       
+}          
