@@ -1,4 +1,4 @@
-class BannerUploader < BaseUploader
+class ServicesUploader < BaseUploader
   include CarrierWave::MiniMagick
 
   storage :file
@@ -19,5 +19,13 @@ class BannerUploader < BaseUploader
     "#{secure_token}.#{file.extension}" if original_filename.present?
   end
 
-  process resize_to_fit: [1500, 500]
+  process resize_to_fit: [1200, 1000]
+
+  version :medium do
+    process resize_to_fill: [600,400]
+  end
+
+  version :thumb do
+    process resize_to_fill: [300,200]
+  end
 end

@@ -397,6 +397,7 @@
 
 .service-card {
   display: flex;
+  flex-direction: column;
   flex: 1;
   position: relative;
   background: #fff;
@@ -407,14 +408,19 @@
 
   .card-hero {
     position: relative;
-    border-radius: 5px;
+    border-radius: 5px 5px 0 0;
+
+    img {
+      border-radius: 5px 5px 0 0;
+      width: 100%;
+    }
   } 
 
   .card-body {
     padding: 15px 10px;
 
     h4 {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 600;
       margin: 0;
     }

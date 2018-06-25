@@ -8,7 +8,7 @@ class Group < ApplicationRecord
   scope :children, -> { where.not(parent_id: nil) }
   mount_uploader :icon_static, IconUploader
   mount_uploader :icon_active, IconUploader
-  mount_uploader :cover, PhotoUploader
+  mount_uploader :cover, ServicesUploader
 
   validates_presence_of :title
 
