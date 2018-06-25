@@ -38,62 +38,12 @@
         </a>
         <div class="dropdown-menu services-menu" aria-labelledby="servicesDropdown">
           <div class="services">
-            <div class="service-item">
-              <span class="item-icon"></span>
-              <span class="item-title">Service</span>
-            </div>
-            <div class="service-item">
-              <span class="item-icon"></span>
-              <span class="item-title">Service</span>
-            </div>
-            <div class="service-item">
-              <span class="item-icon"></span>
-              <span class="item-title">Service</span>
-            </div>
-            <div class="service-item">
-              <span class="item-icon"></span>
-              <span class="item-title">Service</span>
-            </div>
-            <div class="service-item">
-              <span class="item-icon"></span>
-              <span class="item-title">Service</span>
-            </div>
-            <div class="service-item">
-              <span class="item-icon"></span>
-              <span class="item-title">Service</span>
-            </div>
-            <div class="service-item">
-              <span class="item-icon"></span>
-              <span class="item-title">Service</span>
-            </div>
-            <div class="service-item">
-              <span class="item-icon"></span>
-              <span class="item-title">Service</span>
-            </div>
-            <div class="service-item">
-              <span class="item-icon"></span>
-              <span class="item-title">Service</span>
-            </div>
-            <div class="service-item">
-              <span class="item-icon"></span>
-              <span class="item-title">Service</span>
-            </div>
-            <div class="service-item">
-              <span class="item-icon"></span>
-              <span class="item-title">Service</span>
-            </div>
-            <div class="service-item">
-              <span class="item-icon"></span>
-              <span class="item-title">Service</span>
-            </div>
-            <div class="service-item">
-              <span class="item-icon"></span>
-              <span class="item-title">Service</span>
-            </div>
-            <div class="service-item">
-              <span class="item-icon"></span>
-              <span class="item-title">Service</span>
-            </div>
+            <% Group.main.each do |group| %> 
+              <%= link_to group_path(group), class: 'service-item' do %>
+                <span class="item-icon"><%= image_tag group.icon_static.url %></span>
+                <span class="item-title"><%= group.title %></span>
+              <% end %>
+            <% end %>  
           </div>  
         </div>
       <li> 
