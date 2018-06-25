@@ -3,6 +3,7 @@ class CreateServices < ActiveRecord::Migration[5.2]
     create_table :services do |t|
       t.string :title
       t.string :cover_image
+      t.string :slug
       t.string :cover_video
       t.text :content
       t.belongs_to :group, foreign_key: true

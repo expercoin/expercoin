@@ -1,8 +1,7 @@
-class GroupsController < ApplicationController
+class SubgroupsController < ApplicationController
   before_action :set_group
 
   def show
-    @subgroups = Group.where(parent: @group)
   end
 
   private
