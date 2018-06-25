@@ -184,6 +184,7 @@ ActiveRecord::Schema.define(version: 2018_06_25_090705) do
   create_table "services", force: :cascade do |t|
     t.string "title"
     t.string "cover_image"
+    t.string "slug"
     t.string "cover_video"
     t.text "content"
     t.integer "group_id"
