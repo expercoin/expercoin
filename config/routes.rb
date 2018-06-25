@@ -54,4 +54,5 @@ Rails.application.routes.draw do
   end
   resources :callbacks, only: :create
   resources :groups
+  resources :services
 end

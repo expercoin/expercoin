@@ -162,6 +162,7 @@ ActiveRecord::Schema.define(version: 2018_06_25_090705) do
     t.integer "expert_id"
     t.integer "updated_by_id"
     t.string "tx_hash"
+    t.integer "service_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "inviter", default: false
