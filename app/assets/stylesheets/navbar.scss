@@ -123,3 +123,66 @@
     }
   }
 }
+
+// Services Dropdown
+//---------------------------------------------
+
+.services-dropdown {
+  .dropdown-menu {
+    padding: 0;
+    width: 500px;
+    left: -1px;
+    margin: 0;
+    border-radius: 0;
+    border-top-color: #fff;
+  }
+
+  &.show {
+    .dropdown-toggle {
+      background: #fff;
+    }
+  }
+
+  .services-menu {
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .service-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 0 0 20%;
+      padding: 10px 10px;
+      text-decoration: none;
+      color: #333;
+
+      .item-icon {
+        height: 48px;
+        width: 48px;
+        margin-bottom: 10px;
+        text-align: center;
+
+        img {
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+
+      .item-title {
+        font-size: 13px;
+        text-align: center;
+      }
+
+      &:hover,
+      &:focus {
+        background-color: #f7f9f6;
+
+        .item-title {
+          color: #318fd2;
+        }
+      }  
+    }
+  }
+}  
