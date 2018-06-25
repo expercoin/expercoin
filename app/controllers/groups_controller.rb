@@ -1,5 +1,15 @@
 class GroupsController < ApplicationController
+  before_action :set_group
+
   def index; end
 
-  def show; end
+  def show
+    @subgroups = Group.where(parent: @group)
+  end
+
+  private
+
+  def set_group
+    @group = Group.friendly.find(params[:id])
+  end
 end
