@@ -1,5 +1,5 @@
 ActiveAdmin.register Group do
-  permit_params :name, :banner, :logo, :hover_logo, :parent_id
+  permit_params :title, :subtitle, :summary, :icon_static, :icon_active, :parent_id
 
   form do |f|
     f.inputs  do
@@ -18,11 +18,5 @@ ActiveAdmin.register Group do
     column :parent
     column :title
     actions
-  end 
-
-  controller do
-    def find_resource
-      scoped_collection.friendly.find(params[:id])
-    end
   end
 end

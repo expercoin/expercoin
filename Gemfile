@@ -32,6 +32,7 @@ gem 'pg_search'
 gem 'ethereum.rb'
 gem 'eth'
 gem 'webmock'
+gem 'carrierwave-video'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
