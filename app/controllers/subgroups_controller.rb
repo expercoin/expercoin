@@ -1,5 +1,6 @@
 class SubgroupsController < ApplicationController
   before_action :set_group
+  layout 'dashboard'
 
   def show
   end

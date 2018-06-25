@@ -1,0 +1,10 @@
+<div class="group-container">
+  <%= link_to group_url, class: "group-card" do %> 
+    <div class="card-hero">
+      <%= render "shared/group_photo", photo: group.cover.thumb.url %>
+    </div>
+    <div class="card-body">
+      <h4><%= group.title %></h4>
+    </div>
+  <% end %>
+</div>
