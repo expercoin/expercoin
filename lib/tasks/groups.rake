@@ -29,7 +29,8 @@ namespace :groups do
     subgroups.each do |subgroup|
       Group.create!(
         parent: parent,
-        title: subgroup
+        title: subgroup,
+        cover: File.open("#{Rails.root}/public/images/fake/#{rand(1..8)}.jpg")
       )
       puts "Created subgroup with title #{subgroup}"
     end
@@ -58,7 +59,8 @@ namespace :groups do
     subgroups.each do |subgroup|
       Group.create!(
         parent: parent,
-        title: subgroup
+        title: subgroup,
+        cover: File.open("#{Rails.root}/public/images/fake/#{rand(1..8)}.jpg")
       )
       puts "Created subgroup with title #{subgroup}"
     end
