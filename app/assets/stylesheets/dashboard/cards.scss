@@ -425,4 +425,36 @@
       margin: 0;
     }
   }       
+}  
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+  background: #fff;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
+     -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
+          box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.15);
+
+  .card-hero {
+    position: relative;
+    border-radius: 5px 5px 0 0;
+
+    img {
+      border-radius: 5px 5px 0 0;
+      width: 100%;
+    }
+  } 
+
+  .card-body {
+    padding: 10px 10px;
+
+    h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0;
+    }
+  }       
 }          

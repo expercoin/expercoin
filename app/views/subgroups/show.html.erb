@@ -8,7 +8,9 @@
   <section class="services-filterable">
     <div class="content-container">
       <div class="services">
-
+        <% @services.each do |service| %>
+          <%= render 'shared/msp/services_card', service: service, service_url: service_path(service) %>
+        <% end %>
       </div>
     </div>
   </section>

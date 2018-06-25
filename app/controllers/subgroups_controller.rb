@@ -3,6 +3,7 @@ class SubgroupsController < ApplicationController
   layout 'dashboard'
 
   def show
+    @services = @group.services
   end
 
   private
