@@ -3,7 +3,7 @@ namespace :services do
   task create: :environment do
     subgroups = Group.where.not(parent: nil)
     subgroups.each do |subgroup|
-      13.times do
+      5.times do
         service = Service.create!(
           title: "I will #{['teach', 'help', 'show'].sample} you #{subgroup.title}",
           group: subgroup,
