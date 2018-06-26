@@ -10,6 +10,8 @@
       <div class="services">
         <% @services.each do |service| %>
           <%= render 'shared/msp/services_card', service: service, service_url: service_path(service) %>
+          <%= decorate(service).starting_price %>
+          <%= display_stars(decorate(service).rating) %>
         <% end %>
       </div>
     </div>
