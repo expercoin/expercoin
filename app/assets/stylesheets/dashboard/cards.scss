@@ -449,12 +449,44 @@
   } 
 
   .card-body {
-    padding: 10px 10px;
+    padding: 15px 0px 0;
 
     h4 {
       font-size: 16px;
       font-weight: 600;
-      margin: 0;
+      margin: 0 0 15px;
+      padding: 0 10px;
     }
-  }       
+  }  
+
+  .service-rating-and-prices {
+    color: #333;
+
+    .rating {
+      padding: 10px 10px;  
+      font-size: 14px;
+
+      i {
+        font-size: 12px;
+        color: #ff4d4d;
+      }
+    }
+
+    .pricing {
+      padding: 8px 10px; 
+      font-size: 14px;
+      
+      .value {
+        font-weight: 600;
+      }  
+    }
+
+    .rating,
+    .pricing {
+      background-image: linear-gradient(to right, #e3e2df 50%, rgba(#fff, 0) 0%);
+      background-position: top;
+      background-size: 2px 1px;
+      background-repeat: repeat-x;
+    }
+  }    
 }          
