@@ -26,8 +26,7 @@ class RequestsController < ApplicationController
       requester: current_user&.profile,
       expert: @profile,
       service: @service,
-      title: @service&.title,
-      message: @service&.content
+      title: @service&.title
     )
   end
 
