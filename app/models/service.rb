@@ -10,6 +10,8 @@ class Service < ApplicationRecord
 
   validates_presence_of :title, :content
 
+  accepts_nested_attributes_for :service_providers
+
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
