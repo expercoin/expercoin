@@ -9,6 +9,14 @@ class ServiceDecorator < BaseDecorator
     ProfileRating.new(featured_profile).average_rating
   end
 
+  def profile_photo
+    featured_profile.photo.thumb.url
+  end
+
+  def profile_full_name
+    ProfileDecorator.new(featured_profile).full_name
+  end
+
   private
 
   def featured_profile
