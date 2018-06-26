@@ -122,3 +122,36 @@
     }
   } 
 }
+
+.panel-service {
+  .panel-header {
+    .service-rating-and-prices {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+
+      .rating {
+        font-size: 18px;
+
+        i {
+          font-size: 15px;
+          color: #ff4d4d;
+        }
+      }
+      
+      .pricing {
+        font-size: 18px;
+
+        .value {
+          font-weight: 600;
+        }
+      }    
+    }
+  }
+
+  .panel-hero {
+    img {
+      width: 100%;
+    }
+  }
+}

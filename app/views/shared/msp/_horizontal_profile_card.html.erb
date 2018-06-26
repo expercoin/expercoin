@@ -33,7 +33,7 @@
     </div>
   </div>
   <div class="card-controls">
-    <%= link_to 'Schedule a Session', new_request_path(expert:mentor.slug), class: 'btn btn-block btn-with-icon btn-schedule' unless mentor == current_user.try(:profile) %>
+    <%= link_to 'Schedule a Session', request_url, class: 'btn btn-block btn-with-icon btn-schedule' unless mentor == current_user.try(:profile) %>
     <a class="btn btn-block btn-with-icon btn-message" href="#" data-toggle="modal" data-target="#message-mentor-modal-<%= mentor.id %>">Send Message</a>
   </div>
 </div>
