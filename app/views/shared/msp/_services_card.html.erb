@@ -10,7 +10,7 @@
           <%= decorate(service).rating %>
           <%= display_stars(decorate(service).rating) %>
         </div>
-        <div class="pricing" data-container="body" data-toggle="popover" data-placement="top" data-content="<%= ENV['CURRENCY'] %> <%= decorate(service).starting_price %>" data-trigger="hover">
+        <div class="pricing" data-container="body" data-toggle="popover" data-placement="top" data-content="<%= decorate(service).starting_price_full %>" data-trigger="hover">
           <span class="text">Starting at</span>
           <span class="value"><%= decorate(service).starting_price %></span>
         </div>
