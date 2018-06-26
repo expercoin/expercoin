@@ -8,7 +8,7 @@
   <div class="content-container">
     <div class="mentors mentors-landscape m-t-3">
       <% @mentors.each do |mentor| %>
-        <%= render 'shared/msp/horizontal_profile_card', mentor: mentor %>
+        <%= render 'shared/msp/horizontal_profile_card', mentor: mentor, request_url: new_request_path(expert: mentor.slug) %>
       <% end %>
     </div>
   </div>

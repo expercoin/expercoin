@@ -26,7 +26,7 @@ class ServicesUploader < BaseUploader
   process resize_to_fit: [1200, 1000]
 
   version :medium do
-    process resize_to_fill: [600, 400]
+    process resize_to_fill: [720, 480]
   end
 
   version :thumb do

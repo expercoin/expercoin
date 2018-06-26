@@ -1,24 +1,46 @@
 <main class="content">
+  <header class="content-container">
+    <div class="content-main service-header">
+      <div class="service-info">
+        <h1><%= @service.title %></h1>
+        <ol class="breadcrumb services-breadcrumb">
+          <li class="breadcrumb-item"><%= link_to @service.group.parent.title, group_subgroup_path(@service.group.parent) %></li>
+          <li class="breadcrumb-item"><%= link_to @service.group.title, group_subgroup_path(@service.group.parent, @service.group) %></li>
+        </ol>
+      </div>
+    </div>
+  </header>
   <section class="content-container content-with-aside">
-    <div class="content-main service-main">
+    <div class="content-main">
       <div class="panel panel-service">
         <div class="panel-header">
-          <h1></h1>
+          <div class="service-rating-and-prices">
+            <div class="rating">
+              <%= decorate(@service).rating %>
+              <%= display_stars(decorate(@service).rating) %>
+            </div>
+            <div class="pricing" data-container="body" data-toggle="popover" data-placement="left" data-content="<%= decorate(@service).starting_price_full %>" data-trigger="hover">
+              <span class="text">Starting at</span>
+              <span class="value"><%= decorate(@service).starting_price %></span>
+            </div>
+          </div>  
+        </div>
+        <div class="panel-hero">
+          <%= image_tag @service.cover_image.medium.url %>
         </div>
         <div class="panel-body">
-          
+          <%= @service.content %>
         </div>
       </div>
       <div class="service-experts">
-        
+        <% @providers.each do |provider| %>
+          <%= render 'shared/msp/horizontal_profile_card', mentor: provider, request_url: new_request_path(expert: provider.slug, service: @service.slug)  %>
+        <% end %>
       </div>
     </div>
     <div class="content-aside">
-      
+      <%= render 'shared/msp/profile_card', profile: @featured_provider %>
     </div>
   </section>
 </main>
-<% @providers.each do |provider| %>
-  <%= link_to "Schedule Session", new_request_path(expert: provider.slug, service: @service.slug), class: 'btn btn-footer' unless provider == current_user.try(:profile) %>
-<% end %>
 
