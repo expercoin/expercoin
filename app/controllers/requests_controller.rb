@@ -66,9 +66,10 @@ class RequestsController < ApplicationController
       title message category_id tag_list requested_length cell_number
       country_number first_date second_date third_date first_time
       second_time third_time expert_id recording selected_date time_zone
+      service_id
     ]
   end
-  
+
   def set_profile
     @profile = Profile.friendly.find(params[:expert])
     return if @profile
