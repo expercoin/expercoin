@@ -5,7 +5,7 @@ class RequestsController < ApplicationController
   before_action :set_profile, only: %i[new]
   before_action :set_request_and_expert, only: %i[show update]
   before_action :redirect_to_verify
-
+  before_action :set_service, only: %i[new]
 
   def index
     requests = SearchService.new(
@@ -22,7 +22,13 @@ class RequestsController < ApplicationController
   def thankyou; end
 
   def new
-    @request = Request.new(requester: current_user&.profile, expert: @profile)
+    @request = Request.new(
+      requester: current_user&.profile,
+      expert: @profile,
+      service: @service,
+      title: @service&.title,
+      message: @service&.content
+    )
   end
 
   def edit
@@ -72,6 +78,10 @@ class RequestsController < ApplicationController
   def set_request_and_expert
     @request = current_user.profile.created_requests.find_by_id(params[:id])
     @profile = @request.expert
+  end
+
+  def set_service
+    @service = Service.find_by_slug(params[:service])
   end
 
   def render_error_messages(action)
