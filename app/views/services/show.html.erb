@@ -29,7 +29,7 @@
           <%= image_tag @service.cover_image.medium.url %>
         </div>
         <div class="panel-body">
-          <%= @service.content %>
+          <%= @service.content.html_safe %>
         </div>
       </div>
       <div class="service-experts">
