@@ -10,6 +10,7 @@ class Service < ApplicationRecord
   mount_uploader :cover_video, VideoUploader
 
   validates_presence_of :title, :content
+  validates_presence_of :service_providers
 
   accepts_nested_attributes_for :service_providers
 

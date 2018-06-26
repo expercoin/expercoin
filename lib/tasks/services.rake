@@ -15,9 +15,9 @@ namespace :services do
           title: "I will #{['teach', 'help', 'show'].sample} you #{subgroup.title}",
           group: subgroup,
           content: content,
-          cover_image: File.open("#{Rails.root}/public/images/fake/#{rand(1..8)}.jpg")
+          cover_image: File.open("#{Rails.root}/public/images/fake/#{rand(1..8)}.jpg"),
+          profiles: providers
         )
-        service.profiles << providers
         service.service_providers.sample.update(featured: true)
         puts "Created service with title #{service.title}"
       end
