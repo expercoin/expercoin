@@ -39,7 +39,7 @@
       </div>
     </div>
     <div class="content-aside">
-      <%= render 'shared/msp/profile_card', profile: @featured_provider %>
+      <%= render 'shared/msp/profile_card', profile: @featured_provider, request_url: new_request_path(expert: @featured_provider.slug, service: @service.slug)  %>
     </div>
   </section>
 </main>
