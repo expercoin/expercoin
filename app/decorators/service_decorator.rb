@@ -5,6 +5,10 @@ class ServiceDecorator < BaseDecorator
     "#{ENV['CURRENCY']} #{FloatFormater.new(featured_profile.expercoin_rate).with_dots}"
   end
 
+  def starting_price_full
+    "#{ENV['CURRENCY']} #{featured_profile.expercoin_rate}"
+  end
+
   def rating
     ProfileRating.new(featured_profile).average_rating
   end

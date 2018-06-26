@@ -19,13 +19,17 @@ class ServicesUploader < BaseUploader
     "#{secure_token}.#{file.extension}" if original_filename.present?
   end
 
+  def default_url(*args)
+    ActionController::Base.helpers.asset_path("fallback/" + [version_name, "service.jpg"].compact.join('_'))
+  end
+
   process resize_to_fit: [1200, 1000]
 
   version :medium do
-    process resize_to_fill: [600,400]
+    process resize_to_fill: [600, 400]
   end
 
   version :thumb do
-    process resize_to_fill: [300,200]
+    process resize_to_fill: [300, 200]
   end
 end
