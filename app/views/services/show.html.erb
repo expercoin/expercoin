@@ -29,7 +29,7 @@
           <%= image_tag @service.cover_image.medium.url %>
         </div>
         <div class="panel-body">
-          <%= @service.content %>
+          <%= @service.content.html_safe %>
         </div>
       </div>
       <div class="service-experts">
@@ -40,7 +40,7 @@
       </div>
     </div>
     <div class="content-aside">
-      <%= render 'shared/msp/profile_card', profile: @featured_provider %>
+      <%= render 'shared/msp/profile_card', profile: @featured_provider, request_url: new_request_path(expert: @featured_provider.slug, service: @service.slug)  %>
     </div>
   </section>
 </main>

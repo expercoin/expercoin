@@ -15,7 +15,7 @@
       <div class="mentors-with-filters">
         <div class="mentors mentors-panoramic">
           <% @profiles.each do |profile| %>
-            <%= render 'shared/msp/profile_card', profile: profile %>
+            <%= render 'shared/msp/profile_card', profile: profile, request_url: new_request_path(expert: profile.slug) %>
           <% end %>
         </div>
         <div class="mentors-filters">
