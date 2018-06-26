@@ -10,7 +10,7 @@ class ServiceDecorator < BaseDecorator
   end
 
   def rating
-    ProfileRating.new(featured_profile).average_rating
+    ServiceRating.new(self).average_rating
   end
 
   def profile_photo
@@ -24,6 +24,6 @@ class ServiceDecorator < BaseDecorator
   private
 
   def featured_profile
-    service_providers.find_by(featured: true).try(:profile)
+    service_providers.find_by(featured: true).try(:profile) || service_providers.first.profile
   end
 end

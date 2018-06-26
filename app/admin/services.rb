@@ -36,7 +36,7 @@ ActiveAdmin.register Service do
       table_for service.profiles do
         column :id
         column 'Featured' do |profile|
-          profile == service.service_providers.find_by(featured: true).profile
+          profile == service.service_providers.find_by(featured: true).try(:profile)
         end
         column :first_name
         column :last_name

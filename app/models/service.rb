@@ -18,7 +18,7 @@ class Service < ApplicationRecord
   friendly_id :slug_candidates, use: :slugged
 
   def featured_profile
-    featured_service_providers.last&.profile
+    featured_service_providers.last&.profile || service_providers.first.profile
   end
 
   def slug_candidates
