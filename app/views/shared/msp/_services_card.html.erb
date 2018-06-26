@@ -1,10 +1,20 @@
 <div class="service-container">
   <%= link_to service_url, class: "service-card" do %> 
     <div class="card-hero">
-      
+      <%= render 'shared/service_photo', photo: service.cover_image.thumb.url %>
     </div>
     <div class="card-body">
       <h4><%= service.title %></h4>
+      <div class="service-rating-and-prices">
+        <div class="rating">
+          <%= decorate(service).rating %>
+          <%= display_stars(decorate(service).rating) %>
+        </div>
+        <div class="pricing" data-container="body" data-toggle="popover" data-placement="top" data-content="<%= ENV['CURRENCY'] %> <%= decorate(service).starting_price %>" data-trigger="hover">
+          <span class="text">Starting at</span>
+          <span class="value"><%= decorate(service).starting_price %></span>
+        </div>
+      </div>  
     </div>
   <% end %>
 </div>

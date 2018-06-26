@@ -5,7 +5,7 @@ class Service < ApplicationRecord
   has_many :service_providers
   has_many :profiles, through: :service_providers
 
-  mount_uploader :cover_image, BannerUploader
+  mount_uploader :cover_image, ServicesUploader
   mount_uploader :cover_video, VideoUploader
 
   validates_presence_of :title, :content
