@@ -1,0 +1,42 @@
+<div class="mentor-card mentor-card-landscape-two">
+  <div class="card-main">
+    <div class="card-hero">
+      <%= render "shared/profile_photo", photo: mentor.photo.thumb.url %>
+      <div class='hero-price' data-container="body" data-toggle="popover" data-placement="bottom" data-content="<%= decorate(mentor).expercoin_rate %>" data-trigger="hover">
+        <strong><%= decorate(mentor).display_rate %></strong>
+      </div>
+      <div class="hero-rating">
+        <%= rating = ProfileRating.new(mentor).average_rating %>
+        <%= display_stars(rating) %>
+      </div>
+    </div>
+    <div class="card-body">
+      <h4><%= link_to decorate(mentor).full_name, profile_path(mentor) %></h4>
+      <div class="mentor-title">
+        <%= mentor.title %>
+      </div>
+      <div class="mentor-location">
+        <i class="fa fa-map-marker"></i>
+        <%= decorate(mentor).display_location_with_abbreviation %>
+      </div>
+      <ul class="mentor-stats">
+        <li>
+          <%= display_stars(ProfileRating.new(mentor).student_rating(current_user), 'You Rated') %>
+        </li>
+        <li>Sessions <span class="strong"><%= mentor.requests.completed.count %></span></li>
+        <li>Last Session <span class="strong"><%= decorate(mentor).last_session %></span></li>
+      </ul>
+      <a class="mentor-bio-collapse-link" data-toggle="collapse" data-target='#<%= "collapse_#{ mentor.id }" %>' aria-expanded="false" aria-controls='<%= "collapse_#{ mentor.id }" %>"'>
+        View More
+      </a>
+      <div class="mentor-bio-collapse collapse" id='<%= "collapse_#{ mentor.id }" %>'>
+        <%= mentor.about %>
+      </div>
+    </div>
+  </div> 
+  <div class="card-controls">
+    <%= link_to 'Schedule a Session', request_url, class: 'btn btn-with-icon btn-schedule' unless mentor == current_user.try(:profile) %>
+    <a class="btn btn-with-icon btn-message" href="#" data-toggle="modal" data-target="#message-mentor-modal-<%= mentor.id %>">Send Message</a>
+  </div>
+</div>
+<%= render 'inbox/message_modal', profile: mentor %>

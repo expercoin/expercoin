@@ -1270,7 +1270,15 @@
   }
 }
 
-.service-main {
-  padding-top: 40px;
+.service-experts {
+  h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .mentor-card {
+    margin-bottom: 24px;
+  }
 }
 
