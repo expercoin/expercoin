@@ -2,11 +2,11 @@
 
 class ServiceDecorator < BaseDecorator
   def starting_price
-    "#{ENV['CURRENCY']} #{FloatFormater.new(featured_profile.expercoin_rate).with_dots}"
+    "#{ENV['CURRENCY']} #{FloatFormater.new(lowest_profile_rating).with_dots}"
   end
 
   def starting_price_full
-    "#{ENV['CURRENCY']} #{featured_profile.expercoin_rate}"
+    "#{ENV['CURRENCY']} #{lowest_profile_rating}"
   end
 
   def rating
@@ -25,5 +25,9 @@ class ServiceDecorator < BaseDecorator
 
   def featured_profile
     service_providers.find_by(featured: true).try(:profile) || service_providers.first.profile
+  end
+
+  def lowest_profile_rating
+    profiles.map(&:expercoin_rate).sort.first
   end
 end
