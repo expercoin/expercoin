@@ -4,13 +4,13 @@ namespace :services do
     subgroups = Group.where.not(parent: nil)
     subgroups.each do |subgroup|
       providers = Profile.all.sample(3)
-      title = "<h1>#{Faker::Movie.quote}</h1>"
-      body = []
-      rand(5..10).times do
-        body << "<p>#{Faker::Lorem.paragraph}</p>"
-      end
-      content = title + body.join
       5.times do
+        title = "<h1>#{Faker::Movie.quote}</h1>"
+        body = []
+        rand(5..10).times do
+          body << "<p>#{Faker::Lorem.paragraph}</p>"
+        end
+        content = title + body.join
         service = Service.create!(
           title: "I will #{['teach', 'help', 'show'].sample} you #{subgroup.title}",
           group: subgroup,
