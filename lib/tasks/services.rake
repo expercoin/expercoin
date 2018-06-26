@@ -4,11 +4,17 @@ namespace :services do
     subgroups = Group.where.not(parent: nil)
     subgroups.each do |subgroup|
       providers = Profile.all.sample(3)
+      title = "<h1>#{Faker::Movie.quote}</h1>"
+      body = []
+      rand(5..10).times do
+        body << "<p>#{Faker::Lorem.paragraph}</p>"
+      end
+      content = title + body.join
       5.times do
         service = Service.create!(
           title: "I will #{['teach', 'help', 'show'].sample} you #{subgroup.title}",
           group: subgroup,
-          content: Faker::Lorem.paragraph(30, true, 100),
+          content: content,
           cover_image: File.open("#{Rails.root}/public/images/fake/#{rand(1..8)}.jpg")
         )
         service.profiles << providers
