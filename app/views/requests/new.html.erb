@@ -42,6 +42,7 @@
       <div class='request-form'>
         <%= form_for @request, url: requests_path do |f| %>
          <%= f.hidden_field :expert_id, value: @profile.id %>
+          <%= f.hidden_field :service_id %>
           <section class='panel form-section'>
             <div class='section-title'>
               <div class='circle centered'>
