@@ -18,3 +18,7 @@
     </div>
   </section>
 </main>
+<% @providers.each do |provider| %>
+  <%= link_to "Schedule Session", new_request_path(expert: provider.slug, service: @service.slug), class: 'btn btn-footer' unless provider == current_user.try(:profile) %>
+<% end %>
+
