@@ -1,4 +1,6 @@
 class ServicesController < ApplicationController
+  layout 'dashboard'
+  
   def index; end
 
   def show
