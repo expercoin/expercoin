@@ -1,6 +1,8 @@
-<nav class="content-nav">
-  <%= render "shared/subnavbar", active: "mentors" if current_user %>
-</nav>
+<% if current_user %>
+  <nav class="content-nav">
+    <%= render "shared/subnavbar", active: "mentors" %>
+  </nav>
+<% end %>  
 <main class="content <%= 'content-with-nav' if current_user %>">
   <header class="content-container content-with-aside">
     <div class="mentor-header content-main">
