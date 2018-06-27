@@ -527,6 +527,13 @@
 
   .card-controls {
     position: absolute;
+    display: none;
+    top: 10px;
+    right: 10px;
+
+    a {
+      display: inline-block;
+    }
   }  
 
   .service-owner {
@@ -569,5 +576,11 @@
       background-size: 2px 1px;
       background-repeat: repeat-x;
     }
-  }    
+  }  
+
+  &:hover {
+    .card-controls {
+      display: block;
+    }
+  }  
 }          

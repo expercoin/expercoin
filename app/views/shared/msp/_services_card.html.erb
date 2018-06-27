@@ -25,8 +25,12 @@
       </div>  
     </div>
     <div class="card-controls">
-      <%= link_to 'Edit', edit_service_path(service) %>
-      <%= link_to 'Delete', service_path(service), method: :delete %>
+      <%= link_to edit_service_path(service) do %>
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+      <% end %>  
+      <%= link_to service_path(service), method: :delete do %>
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+      <% end %>
     </div>
   </div>
 </div>
