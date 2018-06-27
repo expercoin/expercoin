@@ -1,24 +1,30 @@
 <div class="service-container">
-  <%= link_to service_url, class: "service-card" do %> 
+  <div class="service-card"> 
     <div class="card-hero">
-      <%= render 'shared/service_photo', photo: service.cover_image.thumb.url %>
+      <%= link_to service_url do %>
+        <%= render 'shared/service_photo', photo: service.cover_image.thumb.url %>
+      <% end %>  
     </div>
     <div class="card-body">
-      <h4><%= service.title %></h4>
+      <div class="service-owner">
+        <%= render "shared/profile_photo", photo: Profile.first.photo.badge.url %>
+        <%= link_to decorate(Profile.first).full_name, profile_path(Profile.first) %>
+      </div>
+      <h4><%= link_to service.title, service_url %></h4>
       <div class="service-rating-and-prices">
-        <div class="rating">
-          <%= decorate(service).rating %>
-          <%= display_stars(decorate(service).rating) %>
-        </div>
         <div class="pricing" data-container="body" data-toggle="popover" data-placement="top" data-content="<%= decorate(service).starting_price_full %>" data-trigger="hover">
           <span class="text">Starting at</span>
           <span class="value"><%= decorate(service).starting_price %></span>
         </div>
+        <div class="rating">
+          <%= decorate(service).rating %>
+          <%= display_stars(decorate(service).rating) %>
+        </div>
       </div>  
     </div>
-    <div>
+    <div class="card-controls">
       <%= link_to 'Edit', edit_service_path(service) %>
       <%= link_to 'Delete', service_path(service), method: :delete %>
     </div>
-  <% end %>
+  </div>
 </div>

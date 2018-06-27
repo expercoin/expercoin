@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, :set_profiles, only: [:show]
+  before_action :set_category, :set_profiles, :set_services, only: [:show]
   layout 'dashboard'
 
   def show
@@ -23,4 +23,8 @@ class CategoriesController < ApplicationController
   def set_category
     @category = Category.main.friendly.find(params[:id])
   end
+
+  def set_services
+    @services = @category.categories
+  end  
 end

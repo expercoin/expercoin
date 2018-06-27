@@ -1,5 +1,5 @@
 class SubcategoriesController < ApplicationController
-  before_action :set_category, :set_profiles
+  before_action :set_category, :set_profiles, :set_services
   layout 'dashboard'
 
   def show
@@ -20,4 +20,8 @@ class SubcategoriesController < ApplicationController
     @category = Category.main.friendly.find(params[:category_id])
     @subcategory = category.categories.children.friendly.find(params[:subcategory_id])
   end
+
+  def set_services
+    @services = @subcategory.services
+  end 
 end
