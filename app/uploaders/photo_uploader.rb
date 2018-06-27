@@ -24,4 +24,8 @@ class PhotoUploader < BaseUploader
   version :thumb do
     process resize_to_fill: [240,240]
   end
+
+  version :badge do
+    process resize_to_fill: [32,32]
+  end
 end
