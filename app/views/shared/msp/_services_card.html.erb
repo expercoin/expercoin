@@ -10,6 +10,8 @@
         <% if service.owner.present? %>
           <%= render "shared/profile_photo", photo: service.owner.profile.photo.badge.url %>
           <%= link_to decorate(service.owner.profile).full_name, profile_path(service.owner.profile) %>
+        <% else %>
+          <%= image_tag "expercoin_logo.png", class: 'expercoin-service' %>  
         <% end %>
       </div>
       <h4><%= link_to service.title, service_url %></h4>
