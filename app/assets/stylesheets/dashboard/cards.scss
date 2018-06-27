@@ -527,6 +527,23 @@
 
   .card-controls {
     position: absolute;
+    display: none;
+    top: 8px;
+    right: 8px;
+
+    a {
+      display: inline-block;
+      background: #fff;
+      border-radius: 2px;
+      padding: 2px 5px;
+      text-align: center;
+      width: 24px;
+
+      &:hover,
+      &:focus {
+        background-color: #f7f9f6;
+      }
+    }
   }  
 
   .service-owner {
@@ -537,6 +554,10 @@
     img {
       border-radius: 50%;
       margin-right: 2px;
+    }
+
+    .expercoin-service {
+      height: 32px;
     }
   }
 
@@ -569,5 +590,11 @@
       background-size: 2px 1px;
       background-repeat: repeat-x;
     }
-  }    
+  }  
+
+  &:hover {
+    .card-controls {
+      display: block;
+    }
+  }  
 }          

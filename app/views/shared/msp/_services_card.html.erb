@@ -10,6 +10,8 @@
         <% if service.owner.present? %>
           <%= render "shared/profile_photo", photo: service.owner.profile.photo.badge.url %>
           <%= link_to decorate(service.owner.profile).full_name, profile_path(service.owner.profile) %>
+        <% else %>
+          <%= image_tag "expercoin_logo.png", class: 'expercoin-service' %>  
         <% end %>
       </div>
       <h4><%= link_to service.title, service_url %></h4>
@@ -26,8 +28,12 @@
     </div>
     <% if service.owner == current_user %>
       <div class="card-controls">
-        <%= link_to 'Edit', edit_service_path(service), class: 'btn btn-light' %>
-        <%= link_to 'Delete', service_path(service), class: 'btn btn-danger', method: :delete %>
+        <%= link_to edit_service_path(service) do %>
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        <% end %>  
+        <%= link_to service_path(service), method: :delete do %>
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+        <% end %>
       </div>
     <% end %>
   </div>
