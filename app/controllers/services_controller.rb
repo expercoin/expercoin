@@ -1,7 +1,10 @@
 class ServicesController < ApplicationController
   layout 'dashboard'
-  
-  def index; end
+
+  def index
+    @profile = current_user.profile
+    @services = @profile.services
+  end
 
   def show
     @service = Service.friendly.find(params[:id])

@@ -53,8 +53,5 @@ Rails.application.routes.draw do
     get 'received', on: :collection
   end
   resources :callbacks, only: :create
-  resources :groups, only: [:show] do
-    resources :subgroups, path: '', only: [:show]
-  end
   resources :services
 end

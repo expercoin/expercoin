@@ -16,5 +16,9 @@
         </div>
       </div>  
     </div>
+    <div>
+      <%= link_to 'Edit', edit_service_path(service) %>
+      <%= link_to 'Delete', service_path(service), method: :delete %>
+    </div>
   <% end %>
 </div>
