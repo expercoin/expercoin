@@ -528,11 +528,21 @@
   .card-controls {
     position: absolute;
     display: none;
-    top: 10px;
-    right: 10px;
+    top: 8px;
+    right: 8px;
 
     a {
       display: inline-block;
+      background: #fff;
+      border-radius: 2px;
+      padding: 2px 5px;
+      text-align: center;
+      width: 24px;
+
+      &:hover,
+      &:focus {
+        background-color: #f7f9f6;
+      }
     }
   }  
 
