@@ -1,0 +1,20 @@
+<header class="account-header-white">
+  <div class="content-container content-with-aside">
+    <div class="mentor-header content-main">
+      <div class="mentor-image">
+        <%= render "shared/profile_photo", photo: @profile.photo.thumb.url %>
+      </div>
+      <div class="mentor-info">
+        <h1><%= decorate(@profile).full_name %></h1>
+        <p><%= @profile.title %></p>
+        <div class="location">
+          <i class="fa fa-map-marker"></i>
+          <%= decorate(@profile).display_location_with_abbreviation %>
+        </div>
+      </div>
+    </div>
+    <div class="mentor-pricings content-aside">
+      <%= link_to "Create a new service", new_service_path , class: 'btn btn-success btn-block btn-upc' %>
+    </div>
+  </div>
+</header>
