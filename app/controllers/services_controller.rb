@@ -25,8 +25,7 @@ class ServicesController < ApplicationController
   def create
     @service = Service.new(service_params)
     @service.service_providers.new(profile: @profile, featured: true)
-    @service.save
-    redirect_to service_path(@service)
+    redirect_to service_path(@service) if @service.save
   end
 
   def update
