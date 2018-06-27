@@ -1,8 +1,8 @@
 class ServicesController < ApplicationController
   layout 'dashboard'
   before_action :authenticate_user!, except: [:show]
-  before_action :set_profile
-  before_action :set_categories
+  before_action :set_profile, except: [:show]
+  before_action :set_categories, only: [:new, :edit]
 
   def new
     @service = @profile.services.new
