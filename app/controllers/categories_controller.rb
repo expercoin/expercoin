@@ -25,6 +25,6 @@ class CategoriesController < ApplicationController
   end
 
   def set_services
-    @services = @category.categories
+    @services = @category.category_services
   end  
 end

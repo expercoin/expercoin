@@ -28,4 +28,8 @@ class Category < ApplicationRecord
   def children_profiles
     Profile.distinct.includes(:categories).where(categories: { id: categories.ids })
   end
+
+  def category_services
+    Service.where(category_id: category_ids)
+  end  
 end
