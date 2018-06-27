@@ -20,6 +20,10 @@ class ProfileDecorator < BaseDecorator
     "<strong>#{ENV['CURRENCY']} #{expercoin_rate}</strong>/min"
   end
 
+  def average_rating
+    ProfileRating.new(self).average_rating
+  end
+
   def display_rate
     FloatFormater.new(expercoin_rate.to_f).with_dots
   end

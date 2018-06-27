@@ -7,8 +7,10 @@
     </div>
     <div class="card-body">
       <div class="service-owner">
-        <%= render "shared/profile_photo", photo: Profile.first.photo.badge.url %>
-        <%= link_to decorate(Profile.first).full_name, profile_path(Profile.first) %>
+        <% if owner %>
+          <%= render "shared/profile_photo", photo: owner.photo.badge.url %>
+          <%= link_to decorate(owner).full_name, profile_path(owner) %>
+        <% end %>
       </div>
       <h4><%= link_to service.title, service_url %></h4>
       <div class="service-rating-and-prices">

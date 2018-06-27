@@ -4,8 +4,8 @@
       <div class="service-info">
         <h1><%= @service.title %></h1>
         <ol class="breadcrumb services-breadcrumb">
-          <li class="breadcrumb-item"><%= link_to @service.group.parent.title, group_subgroup_path(@service.group.parent) %></li>
-          <li class="breadcrumb-item"><%= link_to @service.group.title, group_subgroup_path(@service.group.parent, @service.group) %></li>
+          <li class="breadcrumb-item"><%= link_to @service.category.parent.name, category_path(@service.category.parent) %></li>
+          <li class="breadcrumb-item"><%= link_to @service.category.name, category_subcategory_path(@service.category.parent, @service.category) %></li>
         </ol>
       </div>
     </div>

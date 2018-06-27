@@ -6,6 +6,7 @@ document.addEventListener("turbolinks:load", function() {
   $('body').on('change','#profile_form_photo', function() {
     $('[name="commit"]').click();
   });
+
 });
 
 

@@ -10,6 +10,7 @@
 //= require bootstrap-datepicker
 //= require bootstrap-timepicker
 //= require star_ratings
+//= require photo_uploader
 //= require twilio
 //= require twilio_screen_share
 //= require twilio_video
