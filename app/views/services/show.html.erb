@@ -7,6 +7,10 @@
           <li class="breadcrumb-item"><%= link_to @service.category.parent.name, category_path(@service.category.parent) %></li>
           <li class="breadcrumb-item"><%= link_to @service.category.name, category_subcategory_path(@service.category.parent, @service.category) %></li>
         </ol>
+        <% if @service.owner.try(:id) == current_user.try(:id) %>
+          <%= link_to 'Edit', edit_service_path(@service), class: 'btn btn-info', data: { turbolinks: false } %>
+          <%= link_to 'Delete', service_path(@service), method: :delete, class: 'btn btn-danger' %>
+        <% end %>
       </div>
     </div>
   </header>

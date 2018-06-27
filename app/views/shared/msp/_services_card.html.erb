@@ -26,9 +26,9 @@
         </div>
       </div>  
     </div>
-    <% if service.owner == current_user %>
+    <% if service.owner.try(:id) == current_user.try(:id) %>
       <div class="card-controls">
-        <%= link_to edit_service_path(service) do %>
+        <%= link_to edit_service_path(service), data: { turbolinks: false } do %>
           <i class="fa fa-pencil" aria-hidden="true"></i>
         <% end %>  
         <%= link_to service_path(service), method: :delete do %>
