@@ -32,21 +32,6 @@
           </div>  
         </div>
       </li>
-      <li class="nav-item dropdown services-dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Services
-        </a>
-        <div class="dropdown-menu services-menu" aria-labelledby="servicesDropdown">
-          <div class="services">
-            <% Group.main.each do |group| %> 
-              <%= link_to group_path(group), class: 'service-item' do %>
-                <span class="item-icon"><%= image_tag group.icon_static.url %></span>
-                <span class="item-title"><%= group.title %></span>
-              <% end %>
-            <% end %>  
-          </div>  
-        </div>
-      <li> 
     </ul>
     <ul class="navbar-nav ml-auto">
       <% if current_user %>

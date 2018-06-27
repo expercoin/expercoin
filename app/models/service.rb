@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Service < ApplicationRecord
-  belongs_to :group
+  belongs_to :category
   has_many :service_providers
   has_many :profiles, through: :service_providers
   has_many :featured_service_providers, -> { featured }, class_name: 'ServiceProvider'

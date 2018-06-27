@@ -83,19 +83,6 @@ ActiveRecord::Schema.define(version: 2018_06_25_140423) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
-  create_table "groups", force: :cascade do |t|
-    t.integer "parent_id"
-    t.string "title"
-    t.string "subtitle"
-    t.string "icon_static"
-    t.string "icon_active"
-    t.text "summary"
-    t.string "cover"
-    t.string "slug"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "mail_records", force: :cascade do |t|
     t.integer "recipient_id"
     t.integer "sender_id"
@@ -197,10 +184,10 @@ ActiveRecord::Schema.define(version: 2018_06_25_140423) do
     t.string "slug"
     t.string "cover_video"
     t.text "content"
-    t.integer "group_id"
+    t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_services_on_group_id"
+    t.index ["category_id"], name: "index_services_on_category_id"
   end
 
   create_table "transactions", force: :cascade do |t|

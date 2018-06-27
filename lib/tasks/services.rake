@@ -1,10 +1,10 @@
 namespace :services do
   desc "Create services"
   task create: :environment do
-    subgroups = Group.where.not(parent: nil)
-    subgroups.each do |subgroup|
+    subcategories = Category.children
+    subcategories.each do |subcategory|
       providers = Profile.all.sample(3)
-      5.times do
+      rand(1..5).times do
         title = "<h1>#{Faker::Movie.quote}</h1>"
         body = []
         rand(5..10).times do
@@ -12,8 +12,8 @@ namespace :services do
         end
         content = title + body.join
         service = Service.create!(
-          title: "I will #{['teach', 'help', 'show'].sample} you #{subgroup.title}",
-          group: subgroup,
+          title: Faker::Commerce.product_name,
+          category: subcategory,
           content: content,
           cover_image: File.open("#{Rails.root}/public/images/fake/#{rand(1..8)}.jpg"),
           profiles: providers

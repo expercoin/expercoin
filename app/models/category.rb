@@ -1,6 +1,7 @@
 class Category < ApplicationRecord
   belongs_to :parent, class_name: 'Category', optional: true
   has_many :categories, foreign_key: :parent_id
+  has_many :services
   has_and_belongs_to_many :profiles
 
   validates_presence_of :name
