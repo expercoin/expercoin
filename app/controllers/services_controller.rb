@@ -18,8 +18,8 @@ class ServicesController < ApplicationController
 
   def show
     @service = Service.friendly.find(params[:id])
-    @providers = @service.profiles
     @featured_provider = @service.featured_profile
+    @providers = @service.profiles.where.not(id: @featured_provider.id)
   end
 
   def create
@@ -56,6 +56,6 @@ class ServicesController < ApplicationController
       :content,
       :cover_image,
       :category_id
-    )
+    ).merge(owner: current_user)
   end
 end
