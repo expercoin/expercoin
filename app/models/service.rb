@@ -2,6 +2,7 @@
 
 class Service < ApplicationRecord
   belongs_to :category
+  belongs_to :user, optional: true
   has_many :service_providers
   has_many :profiles, through: :service_providers
   has_many :featured_service_providers, -> { featured }, class_name: 'ServiceProvider'

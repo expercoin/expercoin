@@ -28,6 +28,6 @@ class ServiceDecorator < BaseDecorator
   end
 
   def lowest_profile_rating
-    profiles.map(&:expercoin_rate).sort.first
+    profiles.map(&:expercoin_rate).compact.sort.first
   end
 end

@@ -8,7 +8,7 @@ class ServicesController < ApplicationController
   end
 
   def index
-    @services = @profile.services
+    @services = Service.where(user: current_user)
   end
 
   def show

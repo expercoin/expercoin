@@ -185,9 +185,11 @@ ActiveRecord::Schema.define(version: 2018_06_25_140423) do
     t.string "cover_video"
     t.text "content"
     t.integer "category_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_services_on_category_id"
+    t.index ["user_id"], name: "index_services_on_user_id"
   end
 
   create_table "transactions", force: :cascade do |t|
