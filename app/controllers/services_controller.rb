@@ -8,7 +8,7 @@ class ServicesController < ApplicationController
   end
 
   def index
-    @services = Service.where(user: current_user)
+    @services = Service.where(owner: current_user)
   end
 
   def show

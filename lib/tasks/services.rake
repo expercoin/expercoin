@@ -20,7 +20,7 @@ namespace :services do
           profiles: providers
         )
         service.service_providers.find_by(profile: featured_provider).update(featured: true)
-        service.update(user: featured_provider.user)
+        service.update(owner: featured_provider.user)
         puts "Created service with title #{service.title}"
       end
     end
