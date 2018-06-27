@@ -24,9 +24,11 @@
         </div>
       </div>  
     </div>
-    <div class="card-controls">
-      <%= link_to 'Edit', edit_service_path(service) %>
-      <%= link_to 'Delete', service_path(service), method: :delete %>
-    </div>
+    <% if service.owner == current_user %>
+      <div class="card-controls">
+        <%= link_to 'Edit', edit_service_path(service), class: 'btn btn-light' %>
+        <%= link_to 'Delete', service_path(service), class: 'btn btn-danger', method: :delete %>
+      </div>
+    <% end %>
   </div>
 </div>
