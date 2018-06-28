@@ -3,7 +3,6 @@ ActiveAdmin.register Service do
     :title,
     :content,
     :cover_image,
-    :cover_video,
     :category_id,
     service_providers_attributes: %i[id profile_id featured]
   )
@@ -13,7 +12,6 @@ ActiveAdmin.register Service do
       f.input :title
       f.input :content, as: :quill_editor
       f.input :cover_image, as: :file
-      f.input :cover_video, as: :file
       f.input :category_id, as: :select, collection: Category.children
       f.has_many :service_providers do |service_provider_f|
         service_provider_f.input :profile, as: :select, collection: Profile.all.map{|u| ["#{u.last_name}, #{u.first_name}", u.id]}

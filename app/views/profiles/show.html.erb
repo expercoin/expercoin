@@ -83,7 +83,7 @@
                     <%= render 'shared/service_photo', photo: service.cover_image.thumb.url %>
                   </div>
                   <div class="service-body">
-                    <h4><%= link_to service.title, service_url %></h4>
+                    <h4><%= link_to service.title, service_path(service) %></h4>
                   </div> 
                   <div class="service-details">
                     <ul class="service-data">
