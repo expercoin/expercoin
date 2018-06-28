@@ -12,6 +12,7 @@ class CreateProfiles < ActiveRecord::Migration[5.2]
       t.integer :years_of_experience
       t.string :photo
       t.string :slug
+      t.string :video_url
       t.text :location
       t.text :about
       t.text :specialization

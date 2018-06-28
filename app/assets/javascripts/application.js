@@ -20,6 +20,7 @@
 //= require web3
 //= require web3_setup
 //= require tinymce/tinymce.min
+//= require video_uploader
 
 document.addEventListener("turbolinks:load", function() {
   $('.selectpicker').select2();
