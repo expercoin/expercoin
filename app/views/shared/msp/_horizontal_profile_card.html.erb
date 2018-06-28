@@ -29,7 +29,7 @@
       View More
     </a>
     <div class="mentor-bio-collapse collapse" id='<%= "collapse_#{ mentor.id }" %>'>
-      <%= mentor.about %>
+      <%= mentor.about&.html_safe %>
     </div>
   </div>
   <div class="card-controls">
