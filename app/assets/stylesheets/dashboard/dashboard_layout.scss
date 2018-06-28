@@ -1266,6 +1266,17 @@
 .service-header {
   padding: 35px 0 20px;
 
+  .service-info {
+    position: relative;
+    padding-right: 50px;
+
+    .service-controls {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+
   h1 {
     font-size: 32px;
     font-weight: 600;
