@@ -22,12 +22,16 @@
         </div>
         <div class="panel-hero">
           <div class="form-group">
-            <div class="image-place" id="user_photo_drop_zone">
-              <div class="profile-image">
-                <%= image_tag @service.cover_image.medium.url %>
-                <label class="btn btn-outline-light btn-block">
-                  <%= f.file_field :cover_image, style: '' %>
-                </label>
+            <div class="image-place">
+              <div class="cover-image">
+                <%= image_tag @service.cover_image.medium.url, id: 'photo_show', height: 420 %>
+                <div class="d-flex justify-content-center">
+                  <label class="btn btn-primary mt-2">
+                    Browse Photo
+                    <%= f.file_field :cover_image, style: 'display: none', id: 'photo_uploader' %>
+                  </label>  
+                </div>
+                
               </div>
             </div>
           </div>
