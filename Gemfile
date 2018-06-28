@@ -33,7 +33,6 @@ gem 'ethereum.rb'
 gem 'eth'
 gem 'webmock'
 gem 'carrierwave-video'
-gem 'activeadmin_quill_editor'
 gem 'faker'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
