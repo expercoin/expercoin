@@ -5,6 +5,7 @@ class ProfilesController < ApplicationController
   layout 'dashboard'
 
   def show
+    @profile_services = @profile.services.page(params[:page])
     render action: 'show', layout: 'dashboard'
   end
 

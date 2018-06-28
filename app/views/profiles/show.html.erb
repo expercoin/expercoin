@@ -33,6 +33,9 @@
           <li class="nav-item">
             <a class="nav-link active" data-toggle="tab" href="#reviews" role="tab">Reviews</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#services" role="tab">Services</a>
+          </li>
         </ul>
         <div class="tab-content">
           <div class="tab-pane" id="overview" role="tabpanel">
@@ -64,7 +67,30 @@
                     </ul>
                   </div>
                 </div>
-              <%end%>
+              <% end %>
+            </div>
+          </div>
+          <div class="tab-pane" id="services" role="tabpanel">
+            <div class="mentor-services">
+              <% @profile_services.each do |service| %>
+                <div class="service">
+                  <div class="service-hero">
+                    <%= render 'shared/service_photo', photo: service.cover_image.thumb.url %>
+                  </div>
+                  <div class="service-body">
+                    <h4><%= link_to service.title, service_url %></h4>
+                  </div> 
+                  <div class="service-details">
+                    <ul class="service-data">
+                      <li>
+                        Starting at <span class="strong" data-container="body" data-toggle="popover" data-placement="left" data-content="<%= decorate(service).starting_price_full %>" data-trigger="hover"><%= decorate(service).starting_price %></span>
+                      </li>
+                      <li>Created <span class="strong"><%= service.created_at.strftime("%b %d, %Y")  %></span>
+                      </li>
+                    </ul>
+                  </div> 
+                </div>
+              <% end %>
             </div>
           </div>
         </div>
