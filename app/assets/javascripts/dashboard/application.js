@@ -18,13 +18,13 @@
 //= require listeners
 //= require web3
 //= require web3_setup
-//= require tinymce/tinymce.min
+//= require tinymce
 
 document.addEventListener("turbolinks:load", function() {
   $('.selectpicker').select2();
   $('.selectpicker-time').select2();
   $('[data-toggle="popover"]').popover();
-  tinymce.init({
-    selector: '.wysiwyg'
-  });
+  // tinymce.init({
+  //   selector: '.wysiwyg'
+  // });
 });

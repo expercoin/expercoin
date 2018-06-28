@@ -1,8 +1,8 @@
 //= require active_admin/base
-//= require tinymce/tinymce.min
+//= require tinymce
 
-(function() {
-  tinymce.init({
-    selector: '.wysiwyg'
+$(document).ready(function() {
+  tinyMCE.init({
+    selector: '.tinymce',
   });
-})();
+});

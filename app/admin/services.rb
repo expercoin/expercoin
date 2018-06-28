@@ -15,7 +15,7 @@ ActiveAdmin.register Service do
       f.input :category_id, as: :select, collection: Category.children
     end
     f.inputs 'Content' do
-      f.input :content, input_html: { class: 'wysiwyg' }
+      f.input :content, input_html: { class: 'tinymce' }
     end
     f.inputs 'Providers' do
       f.has_many :service_providers do |service_provider_f|

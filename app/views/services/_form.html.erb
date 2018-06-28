@@ -1,3 +1,4 @@
+<%= tinymce %>
 <main class="content">
   <header class="content-container">
     <div class="content-main service-header">
@@ -37,7 +38,7 @@
           </div>
         </div>
         <div class="panel-body">
-          <%= f.text_area :content, class: 'wysiwyg', placeholder: 'Enter your content', rows: 12 %>
+          <%= f.text_area :content, class: 'tinymce', placeholder: 'Enter your content', rows: 12 %>
           <div class="form-group mt-3">  
             <label>Category</label>
             <%= f.collection_select :category_id, @categories, :id, :name, { selected: @service.category_id, include_blank: true }, { class: 'selectpicker form-control', 'data-live-search':"true" } %>

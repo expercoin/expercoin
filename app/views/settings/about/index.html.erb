@@ -1,3 +1,5 @@
+<%= tinymce %>
+
 <div class="profile-title-section">
   <div class="container">
     <h2 class="profile-name">
@@ -24,7 +26,7 @@
               <label>
                 About You and Your Service Offerings (Please note this is your marketing pitch)
               </label>
-              <%= f.text_area :about, class: 'wysiwyg', rows: 8 %>
+              <%= f.text_area :about, class: 'tinymce', rows: 8 %>
             </div>
             <div class="form-group" id="profile-specialization">
               <label>
