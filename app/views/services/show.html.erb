@@ -8,8 +8,14 @@
           <li class="breadcrumb-item"><%= link_to @service.category.name, category_subcategory_path(@service.category.parent, @service.category) %></li>
         </ol>
         <% if @service.owner.try(:id) == current_user.try(:id) %>
-          <%= link_to 'Edit', edit_service_path(@service), class: 'btn btn-info', data: { turbolinks: false } %>
-        <a href='javascript:void(0)' data-toggle="modal" data-target="#deleteServiceModal-<%= @service.id %>" class="btn btn-danger" >Delete</a>
+          <div class="service-controls">
+            <%= link_to edit_service_path(@service), class: 'btn btn-primary', data: { turbolinks: false } do %>
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+            <% end %>
+            <a href='javascript:void(0)' data-toggle="modal" data-target="#deleteServiceModal-<%= @service.id %>" class="btn btn-danger" >
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </a>
+          </div>  
         <% end %>
       </div>
     </div>
