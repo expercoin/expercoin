@@ -9,7 +9,7 @@
         </ol>
         <% if @service.owner.try(:id) == current_user.try(:id) %>
           <div class="service-controls">
-            <%= link_to edit_service_path(@service), class: 'btn btn-primary', data: { turbolinks: false } do %>
+            <%= link_to edit_service_path(@service), class: 'btn btn-primary' do %>
               <i class="fa fa-pencil" aria-hidden="true"></i>
             <% end %>
             <a href='javascript:void(0)' data-toggle="modal" data-target="#deleteServiceModal-<%= @service.id %>" class="btn btn-danger" >

@@ -10,26 +10,42 @@ ActiveAdmin.register Service do
   form do |f|
     f.inputs  do
       f.input :title
-      f.input :content, as: :quill_editor
       f.input :cover_image, as: :file
+      f.input :owner, as: :select, collection: User.all.map { |u| [u.email, u.id] }
       f.input :category_id, as: :select, collection: Category.children
+    end
+    f.inputs 'Content' do
+      f.input :content, input_html: { class: 'tinymce' }
+    end
+    f.inputs 'Providers' do
       f.has_many :service_providers do |service_provider_f|
-        service_provider_f.input :profile, as: :select, collection: Profile.all.map{|u| ["#{u.last_name}, #{u.first_name}", u.id]}
+        service_provider_f.input :profile, as: :select, collection: Profile.all.map{|u| ["#{u.first_name}, #{u.last_name}", u.id]}
         service_provider_f.input :featured
       end
-    end
+    end  
     f.actions
   end
 
   index do
     column :id
     column :title
-    column :group_id
+    column :category
     actions
   end 
 
   show do
-    default_main_content
+    attributes_table do
+      row :title
+      row :cover_image do |service|
+        image_tag service.cover_image.thumb.url
+      end
+      row :category
+      row :owner
+      row :content do |service|
+        service.content.html_safe
+      end
+      row :created_at
+    end
     panel "Profiles" do
       table_for service.profiles do
         column :id
