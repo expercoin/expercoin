@@ -17,6 +17,7 @@ class ProfileForm < FormObject
   attribute :about, String
   attribute :category_ids, Array
   attribute :specialization, Hash
+  attribute :video_url, String
 
   validate :entered_rate
 

@@ -7,6 +7,10 @@
           <li class="breadcrumb-item"><%= link_to @service.category.parent.name, category_path(@service.category.parent) %></li>
           <li class="breadcrumb-item"><%= link_to @service.category.name, category_subcategory_path(@service.category.parent, @service.category) %></li>
         </ol>
+        <% if @service.owner.try(:id) == current_user.try(:id) %>
+          <%= link_to 'Edit', edit_service_path(@service), class: 'btn btn-info', data: { turbolinks: false } %>
+        <a href='javascript:void(0)' data-toggle="modal" data-target="#deleteServiceModal-<%= @service.id %>" class="btn btn-danger" >Delete</a>
+        <% end %>
       </div>
     </div>
   </header>
@@ -33,9 +37,11 @@
         </div>
       </div>
       <div class="service-experts">
-        <h3>Services Experts</h3>
-        <% @providers.each do |provider| %>
-          <%= render 'shared/msp/horizontal_profile_card_two', mentor: provider, request_url: new_request_path(expert: provider.slug, service: @service.slug)  %>
+        <% unless @providers.empty? %>
+          <h3>Services Experts</h3>
+          <% @providers.each do |provider| %>
+            <%= render 'shared/msp/horizontal_profile_card_two', mentor: provider, request_url: new_request_path(expert: provider.slug, service: @service.slug) %>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -45,3 +51,4 @@
   </section>
 </main>
 
+<%= render 'shared/msp/delete_service_modal', service: @service %>

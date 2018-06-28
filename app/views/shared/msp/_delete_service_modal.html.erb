@@ -1,0 +1,16 @@
+<!-- Modal -->
+<div class="modal fade" id="deleteServiceModal-<%= service.id %>" tabindex="-1" role="dialog" aria-labelledby="deleteServiceModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        Are you sure that you want to delete service <%= service.title %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+        <%= link_to service_path(service), method: :delete do %>
+          <button type="button" class="btn btn-danger">Delete</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

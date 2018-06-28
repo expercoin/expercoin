@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 Rake::Task['categories:create_categories'].invoke
-if Rails.env.development? 
-  AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
-end
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 Rake::Task['users:create_test_users'].invoke
 Rake::Task['requests:create_test_requests'].invoke
 Rake::Task['requests:update_requests_to_accepted'].invoke
@@ -13,4 +11,4 @@ Rake::Task['messages:create_test_messages'].invoke
 Rake::Task['messages:create_test_parent_messages'].invoke
 Rake::Task['payments:create_test_payments'].invoke
 Rake::Task['payments:create_test_payments_with_parent'].invoke
-Rake::Task['services:create'].invoke
+Rake::Task['services:create'].invoke if Rails.env.development?

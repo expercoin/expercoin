@@ -1,0 +1,43 @@
+<div class="profile-title-section">
+  <div class="container">
+    <h2 class="profile-name">
+      <%= decorate(@profile).full_name %>
+      <span>
+        Profile
+      </span>
+    </h2>
+  </div>
+</div>
+<div class="container profile-form-container d-flex">
+  <%= form_with model: @profile_form, url: settings_video_index_path, class: 'd-flex' do |f| %>
+    <div class="row">
+      <div class="col-sm-3">
+        <%= render 'shared/profile_navigation', locals: {active: 'video'} %>
+      </div>
+      <div class="col-sm-9">
+        <div class="profile-panel">
+          <div class="panel-header">
+            <h4>Video Pitch (Optional)</h4>
+          </div>
+          <div class="panel-body">
+            <p>You can link to a video that describes your expertise, services and background. Go to your video on YouTube and then click on "Share" to grab a link to add here.</p>
+            <div class="jumbotron jumbotron-fluid">
+              <div class="container">
+                <p class="text-center">You can upload video link of your interview</p>
+                <iframe height="420" class="w-100" id="video_show" src="<%= @profile_form.video_url %>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <div class="form-group">
+                  <%= f.hidden_field :video_url %>
+                  <input type="text" id="video_uploader" class="form-control text-center" placeholder="https://www.youtube.com/watch?v=D2YTrX7X6rY" value="<%= @profile_form.video_url %>">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>    
+        <div class="d-flex justify-content-end mb-5">
+          <%= f.submit "Save", :class => "btn btn-primary btn-wide" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= render 'shared/notice_box', message: 'Successfully Saved!', type: 'success', name: '' %>

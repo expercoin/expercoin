@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :settings, only: [:index, :create]
   namespace :settings do
     resources :about, only: [:index, :create]
+    resources :video, only: [:index, :create]
     resources :categories, only: [:index, :create]
     resources :wallet, only: [:index, :create, :destroy, :update]
   end

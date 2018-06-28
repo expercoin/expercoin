@@ -26,13 +26,17 @@
         </div>
       </div>  
     </div>
-    <div class="card-controls">
-      <%= link_to edit_service_path(service) do %>
-        <i class="fa fa-pencil" aria-hidden="true"></i>
-      <% end %>  
-      <%= link_to service_path(service), method: :delete do %>
-        <i class="fa fa-trash-o" aria-hidden="true"></i>
-      <% end %>
-    </div>
+    <% if service.owner.try(:id) == current_user.try(:id) %>
+      <div class="card-controls">
+        <%= link_to edit_service_path(service), data: { turbolinks: false } do %>
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        <% end %>  
+        <a href='javascript:void(0)' data-toggle="modal" data-target="#deleteServiceModal-<%= service.id %>">
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+        </a>
+      </div>
+    <% end %>
   </div>
 </div>
+
+<%= render "shared/msp/delete_service_modal", service: service %>

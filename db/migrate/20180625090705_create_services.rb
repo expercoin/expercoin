@@ -4,7 +4,6 @@ class CreateServices < ActiveRecord::Migration[5.2]
       t.string :title
       t.string :cover_image
       t.string :slug
-      t.string :cover_video
       t.text :content
       t.belongs_to :category, foreign_key: true
       t.integer :owner_id

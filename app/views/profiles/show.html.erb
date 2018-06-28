@@ -39,6 +39,9 @@
         </ul>
         <div class="tab-content">
           <div class="tab-pane" id="overview" role="tabpanel">
+            <% if @profile.video_url %>
+                <iframe height="420" class="w-100" src="<%= @profile.video_url %>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <% end %>
             <%= @profile.about %>
           </div>
           <div class="tab-pane active" id="reviews" role="tabpanel">
