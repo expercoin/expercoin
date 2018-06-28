@@ -18,7 +18,8 @@ namespace :users do
       state: 'North',
       remote_photo_url: 'https://ksassets.timeincuk.net/wp/uploads/sites/55/2016/06/250116GOTJonSnow_SYK_250116-1-920x610.jpg',
       years_of_experience: 5,
-      specialization: { 'item_1': 'Death', 'item_2': 'Dragons', 'item_3': 'Ice' }
+      specialization: { 'item_1': 'Death', 'item_2': 'Dragons', 'item_3': 'Ice' },
+      video_url: 'https://player.vimeo.com/video/265272458'
     )
 
     12.times do

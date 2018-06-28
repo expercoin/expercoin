@@ -26,7 +26,7 @@
                 <p class="text-center">You can upload video link of your interview</p>
                 <iframe height="420" class="w-100" id="video_show" src="<%= @profile_form.video_url %>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 <div class="form-group">
-                  <%= f.hidden_field :video_url  %>
+                  <%= f.hidden_field :video_url %>
                   <input type="text" id="video_uploader" class="form-control text-center" placeholder="https://www.youtube.com/watch?v=D2YTrX7X6rY" value="<%= @profile_form.video_url %>">
                 </div>
               </div>
