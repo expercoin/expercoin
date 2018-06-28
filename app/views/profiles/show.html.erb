@@ -40,9 +40,11 @@
         <div class="tab-content">
           <div class="tab-pane" id="overview" role="tabpanel">
             <% if @profile.video_url %>
-                <iframe height="420" class="w-100" src="<%= @profile.video_url %>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+              <div class="embed-responsive embed-responsive-16by9 mb-4">
+                <iframe class="embed-responsive-item" src="<%= @profile.video_url %>" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+              </div>
             <% end %>
-            <%= @profile.about %>
+            <%= @profile.about&.html_safe %>
           </div>
           <div class="tab-pane active" id="reviews" role="tabpanel">
             <div class="mentor-reviews">
