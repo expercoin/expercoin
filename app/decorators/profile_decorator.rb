@@ -28,6 +28,10 @@ class ProfileDecorator < BaseDecorator
     FloatFormater.new(expercoin_rate.to_f).with_dots
   end
 
+  def display_rate_in_usd
+    Eth::UsdConverter.new(expercoin_rate).usd_value.round(2)
+  end
+
   def unread_messages
     user.messages.unread.count
   end

@@ -8,7 +8,6 @@ class Service < ApplicationRecord
   has_many :featured_service_providers, -> { featured }, class_name: 'ServiceProvider'
 
   mount_uploader :cover_image, ServicesUploader
-  mount_uploader :cover_video, VideoUploader
 
   validates_presence_of :title, :content
   validates_presence_of :service_providers
