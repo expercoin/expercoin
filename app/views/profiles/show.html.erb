@@ -31,10 +31,10 @@
             <a class="nav-link" data-toggle="tab" href="#overview" role="tab">Overview</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#reviews" role="tab">Reviews</a>
+            <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#services" role="tab">Services</a>
+            <a class="nav-link active" data-toggle="tab" href="#services" role="tab">Services</a>
           </li>
         </ul>
         <div class="tab-content">
@@ -46,7 +46,7 @@
             <% end %>
             <%= @profile.about&.html_safe %>
           </div>
-          <div class="tab-pane active" id="reviews" role="tabpanel">
+          <div class="tab-pane" id="reviews" role="tabpanel">
             <div class="mentor-reviews">
               <% @profile.reviews.each do |review| %>
                 <div class="review">
@@ -75,7 +75,7 @@
               <% end %>
             </div>
           </div>
-          <div class="tab-pane" id="services" role="tabpanel">
+          <div class="tab-pane active" id="services" role="tabpanel">
             <div class="mentor-services">
               <% @profile_services.each do |service| %>
                 <div class="service">
@@ -111,7 +111,7 @@
           </ul>
         </div>
         <div class="panel-body mentor-panel-bio">
-          <h5 class="strong">What can you ask?</h5>
+          <h5 class="strong">My Expertise</h5>
           <% @profile.specialization.each do |key, value| %>
             <div><%= value %></div>
           <% end %>
