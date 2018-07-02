@@ -13,6 +13,14 @@ class SettingsController < ApplicationController
     set_profile_form
   end
 
+  def states
+    @states= CitiesAndStatesFromCountry.new(profile_params[:country]).states
+  end
+
+  def cities
+    @cities= CitiesAndStatesFromCountry.new(profile_params[:country], profile_params[:state]).cities
+  end
+
   private
 
   def set_profile_form

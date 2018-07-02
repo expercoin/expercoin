@@ -1,4 +1,4 @@
-<% if valid_url(photo) %>
+<% if photo.present? %>
   <%= image_tag photo, class: "img-circle" %>
 <% else %>
   <%= image_tag 'empty_user.png', class: "img-circle" %>

@@ -1,0 +1,3 @@
+$('#profile_form_state').replaceWith(
+  "<%= j(select :profile_form, :state, @states.map { |s| s.second }, { include_blank: true }, { class: 'form-control', data: { remote: true, url: cities_settings_path, params: { profile_form: { country: params[:profile_form][:country]} }.to_param } })  %>"
+);

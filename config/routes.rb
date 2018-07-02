@@ -24,7 +24,10 @@ Rails.application.routes.draw do
   resources :dashboard, only: [:index]
   resources :account, only: [:index]
   resources :profiles, only: %i[show index]
-  resources :settings, only: [:index, :create]
+  resources :settings, only: [:index, :create] do
+    get :states, on: :collection
+    get :cities, on: :collection
+  end
   namespace :settings do
     resources :about, only: [:index, :create]
     resources :video, only: [:index, :create]
