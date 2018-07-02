@@ -6,8 +6,8 @@ class Category < ApplicationRecord
 
   validates_presence_of :name
 
-  scope :main, -> { where(parent_id: nil ) }
-  scope :children, -> { where.not(parent_id: nil ) }
+  scope :main, -> { where(parent_id: nil ).order(name: :asc) }
+  scope :children, -> { where.not(parent_id: nil ).order(name: :asc) }
 
   mount_uploader :banner, BannerUploader
 
