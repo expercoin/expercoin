@@ -35,6 +35,7 @@ gem 'webmock'
 gem 'carrierwave-video'
 gem 'faker'
 gem 'tinymce-rails'
+gem 'city-state'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
