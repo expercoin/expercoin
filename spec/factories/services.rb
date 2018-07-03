@@ -4,11 +4,11 @@ FactoryBot.define do
   factory :service do
     title Faker::Commerce.product_name
     remote_cover_image_url Faker::Avatar.image
-    category
+    category { create(:category, :with_parent) }
     content do
       title = "<h1>#{Faker::Movie.quote}</h1>"
       body = []
-      rand(5..10).times do
+      2.times do
         body << "<p>#{Faker::Lorem.paragraph}</p>"
       end
       title + body.join
