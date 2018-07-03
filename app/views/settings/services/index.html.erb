@@ -15,17 +15,42 @@
     </div>
     <div class="col-sm-9">
       <div class="profile-panel">
-        <div class="panel-header">
+        <div class="panel-header d-flex justify-content-between align-items-center">
           <h4>Your Services</h4>
-          <%= link_to "Create a new service", new_service_path , class: 'btn btn-success btn-upc' %>
+          <div class="panel-controls">
+            <%= link_to "Create a new service", new_service_path , class: 'btn btn-success' %>
+          </div>
         </div>
         <div class="panel-body">
-          <div class="services-filterable">
-            <div class="services">
-              <% @services.each do |service| %>
-                <%= render 'shared/msp/services_card', service: service, service_url: service_path(service) %>
-              <% end %>
-            </div> 
+          <div class="mentor-services">
+            <% @services.each do |service| %>
+              <div class="service">
+                <div class="service-hero">
+                  <%= render 'shared/service_photo', photo: service.cover_image.thumb.url %>
+                </div>
+                <div class="service-body">
+                  <h4><%= link_to service.title, service_path(service) %></h4>
+                  <div class="service-controls">
+                    <%= link_to edit_service_path(service), class: 'btn btn-primary btn-sm' do %>
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <% end %>
+                    <a href='javascript:void(0)' data-toggle="modal" data-target="#deleteServiceModal-<%= service.id %>" class="btn btn-danger btn-sm" >
+                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </a>
+                    <%= render 'shared/msp/delete_service_modal', service: service %>
+                  </div>
+                </div> 
+                <div class="service-details">
+                  <ul class="service-data">
+                    <li>
+                      Starting at <span class="strong" data-container="body" data-toggle="popover" data-placement="left" data-content="<%= decorate(service).starting_price_full %>" data-trigger="hover"><%= decorate(service).starting_price %></span>
+                    </li>
+                    <li>Created <span class="strong"><%= service.created_at.strftime("%b %d, %Y")  %></span>
+                    </li>
+                  </ul>
+                </div> 
+              </div>
+            <% end %>
           </div>
         </div>
       </div>

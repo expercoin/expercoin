@@ -118,4 +118,54 @@
       display: block;
     }
   }  
-}          
+}
+
+.mentor-services {
+  .service {
+    display: flex;
+    padding: 20px 0;
+
+    .service-hero {
+      padding-right: 16px;
+
+      img {
+        width: 120px;
+      }
+    }
+
+    .service-body {
+      flex: 1;
+
+      h4 {
+        font-size: 18px;
+        font-weight: 600;
+      }
+    }
+
+    .service-details {
+      .service-data {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          padding: 8px 0;
+          font-size: 14px;
+
+          i {
+            font-size: 12px;
+            color: #ff4d4d;
+          }
+        }
+
+        li + li {
+          border-top: 1px dotted #e3e2df;
+        }
+      }
+    }
+  }
+
+  .service + .service {
+    border-top: 1px solid #e3e2df;
+  }
+}
