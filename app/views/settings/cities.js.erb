@@ -1,3 +1,4 @@
 $('#profile_form_city').replaceWith(
-  "<%= j(select :profile_form, :city, @cities, {}, { class: 'form-control' })  %>"
+  "<%= j(select :profile_form, :city, @cities, {}, { class: 'form-control selectpicker' })  %>"
 );
+$('.selectpicker').select2();

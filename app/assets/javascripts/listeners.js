@@ -7,6 +7,14 @@ function listenersInitialize() {
     removeNotice();
   });
   removeNotice();
+
+  $('body').on('change', '[name="profile_form[country]"]', function(){
+    getStates();
+  });
+
+  $('body').on('change', '[name="profile_form[state]"]', function(){
+    getCities();
+  });
 }
 
 function removeNotice() {
@@ -20,4 +28,16 @@ function removeNotice() {
       $('[data-notice="error"]').removeClass('show');
     }, 3000);
   }
+}
+
+
+function getStates() {
+  var country = $('[name="profile_form[country]"]').val();
+  $.get('settings/states?profile_form[country]='+country);
+}
+
+function getCities() {
+  var country = $('[name="profile_form[country]"]').val();
+  var state = $('[name="profile_form[state]"]').val();
+  $.get('settings/cities?profile_form[country]='+country+'&profile_form[state]='+state);
 }
