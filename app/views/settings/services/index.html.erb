@@ -1,13 +1,34 @@
-<main class="content">
-  <%= render partial: 'header' %>
-  <section class="services-filterable">
-    <div class="content-container">
-      <h2 class="h5 mb-3">Your Services</h2>
-      <div class="services">
-        <% @services.each do |service| %>
-          <%= render 'shared/msp/services_card', service: service, service_url: service_path(service) %>
-        <% end %>
+<div class="profile-title-section">
+  <div class="container">
+    <h2 class="profile-name">
+      <%= decorate(@profile).full_name %>
+      <span>
+        Profile
+      </span>
+    </h2>
+  </div>
+</div>
+<div class="container profile-form-container d-flex">
+  <div class="row">
+    <div class="col-sm-3">
+      <%= render 'shared/profile_navigation', locals: {active: 'services'} %>
+    </div>
+    <div class="col-sm-9">
+      <div class="profile-panel">
+        <div class="panel-header">
+          <h4>Your Services</h4>
+          <%= link_to "Create a new service", new_service_path , class: 'btn btn-success btn-upc' %>
+        </div>
+        <div class="panel-body">
+          <div class="services-filterable">
+            <div class="services">
+              <% @services.each do |service| %>
+                <%= render 'shared/msp/services_card', service: service, service_url: service_path(service) %>
+              <% end %>
+            </div> 
+          </div>
+        </div>
       </div>
     </div>
-  </section>
-</main>
+  </div>
+</div>
