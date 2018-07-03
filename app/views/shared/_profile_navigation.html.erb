@@ -20,6 +20,14 @@
         Your Video Pitch
       </span>
     </a>
+    <a class="<%= ('active' if locals[:active] == 'services') %> list-group-item double-line-item" href="<%= settings_services_path %>">
+      <span>
+        <div class="help-grey"></div>
+      </span>
+      <span class="double-line">
+        Your Services
+      </span>
+    </a>
     <a class="<%= ('active' if locals[:active] == 'find') %> list-group-item double-line-item" href="<%= settings_categories_path %>">
       <span>
         <div class="help-grey"></div>

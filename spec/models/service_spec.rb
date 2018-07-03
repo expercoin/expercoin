@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Service, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:service) { build(:service) }
+
+  describe 'Factory' do
+    # it { expect(service).to be_valid }
+  end
 end

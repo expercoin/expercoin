@@ -1,0 +1,13 @@
+<main class="content">
+  <%= render partial: 'header' %>
+  <section class="services-filterable">
+    <div class="content-container">
+      <h2 class="h5 mb-3">Your Services</h2>
+      <div class="services">
+        <% @services.each do |service| %>
+          <%= render 'shared/msp/services_card', service: service, service_url: service_path(service) %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+</main>
