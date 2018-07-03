@@ -29,7 +29,7 @@ class ProfileDecorator < BaseDecorator
   end
 
   def display_rate_in_usd
-    Eth::UsdConverter.new(expercoin_rate).usd_value.round(2)
+    Eth::UsdConverter.new(expercoin_rate).usd_value&.round(2)
   end
 
   def unread_messages

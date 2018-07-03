@@ -50,6 +50,10 @@ RSpec.describe ProfileDecorator do
     it { expect(profile_decorator.unread_messages?).to be true }
   end
 
+  describe '.display_rate_in_usd' do
+    it { expect(profile_decorator.display_rate_in_usd.to_f).to be 0.27 }
+  end
+  
   describe '.status_calls_count' do
     # needs to be implemented with group examples
   end
