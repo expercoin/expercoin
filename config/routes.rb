@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   namespace :settings do
     resources :about, only: [:index, :create]
     resources :video, only: [:index, :create]
-    resources :services
+    resources :services, only: [:index]
     resources :categories, only: [:index, :create]
     resources :wallet, only: [:index, :create, :destroy, :update]
   end
@@ -58,5 +58,5 @@ Rails.application.routes.draw do
     get 'received', on: :collection
   end
   resources :callbacks, only: :create
-  resources :services
+  resources :services, except: [:index]
 end

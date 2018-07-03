@@ -12,10 +12,6 @@ class ServicesController < ApplicationController
     @service = @profile.services.friendly.find(params[:id])
   end
 
-  def index
-    @services = Service.where(owner: current_user)
-  end
-
   def show
     @service = Service.friendly.find(params[:id])
     @featured_provider = @service.featured_profile
@@ -36,7 +32,7 @@ class ServicesController < ApplicationController
   def destroy
     service = current_user.created_services.friendly.find(params[:id])
     ServiceProvider.where(service: service).destroy_all
-    redirect_to services_path if service.destroy
+    redirect_to settings_services_path if service.destroy
   end
 
   private
