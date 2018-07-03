@@ -1,8 +1,15 @@
 # frozen_string_literal: true
 
 class ServiceDecorator < BaseDecorator
-  def starting_price
+  include ActionView::Helpers::NumberHelper
+
+  def starting_price_in_usd
     "#{ENV['CURRENCY']} #{FloatFormater.new(lowest_profile_rating).with_dots}"
+  end
+
+  def starting_price_in_usd
+    number_to_currency(Eth::UsdConverter.new(lowest_profile_rating).usd_value.round(2))
+  rescue StandardError
   end
 
   def starting_price_full

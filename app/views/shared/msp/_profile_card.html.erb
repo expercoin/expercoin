@@ -12,11 +12,7 @@
         <%= profile.title %>
       </div>
       <div class="mentor-bio">
-<<<<<<< HEAD
-        <%= profile.about&.html_safe %>
-=======
         <%= profile.about.html_safe %>
->>>>>>> c1541b27eab752aee026f04a84342b1fa62f0571
       </div>
       <div class="mentor-location">
         <i class="fa fa-map-marker"></i>
@@ -25,7 +21,7 @@
     </div>
     <div class="card-footer">
       <div class="footer-block mentor-price" data-container="body" data-toggle="popover" data-placement="top" data-content="<%= ENV['CURRENCY'] %> <%= decorate(profile).expercoin_rate %>" data-trigger="hover">
-        <%= ENV['CURRENCY'] %> <%= decorate(profile).display_rate %>
+         <%=  number_to_currency(decorate(profile).display_rate_in_usd) %>
       </div>
       <div class="footer-block mentor-reviews">
         <%= rating = ProfileRating.new(profile).average_rating %>
