@@ -3,7 +3,7 @@
 class ServiceDecorator < BaseDecorator
   include ActionView::Helpers::NumberHelper
 
-  def starting_price_in_usd
+  def starting_price
     "#{ENV['CURRENCY']} #{FloatFormater.new(lowest_profile_rating).with_dots}"
   end
 
