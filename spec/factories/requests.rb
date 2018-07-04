@@ -19,7 +19,6 @@ FactoryBot.define do
     association :expert, factory: :profile, last_name: Faker::Name.last_name
     updated_by { requester }
 
-
     trait :pending do
       status 'pending'
     end
@@ -28,6 +27,7 @@ FactoryBot.define do
       pending
       status 'accepted'
       selected_date { sugested_times.first.formated_datetime }
+      requested_amount_eth 0.015
     end
 
     trait :verifying do

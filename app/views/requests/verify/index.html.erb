@@ -9,11 +9,11 @@
       </div>
       <div class="request-transaction">
         <div class="transaction-info">
-          <p>Please send amount of <%= "#{ENV['CURRENCY']} #{decorate(@request).amount}" %> to the following ETH address:</p>
+          <p>Please send amount of <%= "#{ENV['CURRENCY']} #{@eth_amount}" %> to the following ETH address:</p>
           <p class="eth-address">
           <%= ENV['ETH_ADDRESS'] %>
           </p>
-          <p>Price in USD: <%= number_to_currency(decorate(@request).usd_amount) %></p>
+          <p>Price in USD: <%= number_to_currency(@usd_amount) %></p>
           <div id='output' data-transaction-screen></div>
         </div>
         <div class="transaction-verification">
@@ -30,4 +30,4 @@
   </section>
 </main>
 <%= render 'shared/notice_box', message: @error_message, type: 'error', name: '' %>
-<%= render 'shared/eth/eth_transaction_trigger', amount: decorate(@request).amount %>
+<%= render 'shared/eth/eth_transaction_trigger', amount: @eth_amount %>

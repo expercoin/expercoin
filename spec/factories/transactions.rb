@@ -13,9 +13,7 @@ FactoryBot.define do
       create(:eth_address, wallet: wallet).public_key
     end
     eth_amount do
-      rate = request.expert.expercoin_rate
-      length = request.requested_length.to_i
-      (rate * length).to_f.round(18)
+      0.015
     end
   end
 end

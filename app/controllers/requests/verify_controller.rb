@@ -1,5 +1,7 @@
 module Requests
   class VerifyController < ApplicationController
+    include DecoratorHelper
+
     before_action :authenticate_user!
     before_action :set_request
     before_action :set_address
@@ -8,6 +10,9 @@ module Requests
 
     def index
       @addresses = current_user.profile.wallet.eth_addresses
+      @request.update(requested_amount_eth: decorate(@request).amount)
+      @eth_amount = @request.requested_amount_eth
+      @usd_amount = decorate(@request).usd_amount
     end
 
     def create

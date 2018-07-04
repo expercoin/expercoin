@@ -3,7 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe TransactionValidator do
-  let(:transaction) { create(:transaction) }
+  let(:request) { create(:request, requested_amount_eth: 0.015) }
+  let(:transaction) { create(:transaction, request: request) }
   let(:transaction_validator) { TransactionValidator.new(transaction) }
 
   describe '.initialize' do
@@ -16,7 +17,7 @@ RSpec.describe TransactionValidator do
     end
 
     context 'when wrong amount' do
-      let(:transaction) { create(:transaction, eth_amount: 0.00000000001) }
+      let(:transaction) { create(:transaction, eth_amount: 0.00000000001, request: request) }
       it { expect(transaction_validator.valid?).to be false }
     end
   end
@@ -25,13 +26,13 @@ RSpec.describe TransactionValidator do
     let(:error_messages) { transaction_validator.errors.full_messages.to_s.downcase }
 
     context 'when wrong amount' do
-      let(:transaction) { create(:transaction, eth_amount: 0.00000000001) }
+      let(:transaction) { create(:transaction, eth_amount: 0.00000000001, request: request) }
       before { transaction_validator.valid? }
       it { expect(error_messages).to include('amount must be valid') }
     end
 
     context 'when wrong address' do
-      let(:transaction) { create(:transaction, to_eth: '0x0123412341234') }
+      let(:transaction) { create(:transaction, to_eth: '0x0123412341234', request: request) }
       before { transaction_validator.valid? }
       it { expect(error_messages).to include('address is not included') }
     end
