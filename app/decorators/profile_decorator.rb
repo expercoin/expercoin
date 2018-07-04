@@ -20,12 +20,14 @@ class ProfileDecorator < BaseDecorator
   end
 
   def display_rate
+    return unless expercoin_rate.present?
     Eth::UsdConverter.new(expercoin_rate/100.0)
                      .eth_value
                      .yield_self { |v| v.to_f }
   end
 
   def display_rate_in_usd
+    return unless expercoin_rate.present?
     expercoin_rate / 100.0
   end
 
