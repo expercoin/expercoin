@@ -4,16 +4,16 @@ class ServiceDecorator < BaseDecorator
   include ActionView::Helpers::NumberHelper
 
   def starting_price
-    "#{ENV['CURRENCY']} #{FloatFormater.new(lowest_profile_rating).with_dots}"
+    "#{ENV['CURRENCY']} #{eth}"
   end
 
   def starting_price_in_usd
-    number_to_currency(Eth::UsdConverter.new(lowest_profile_rating).usd_value.round(2)) + ' per minute'
+    number_to_currency(lowest_profile_rating / 100) + ' per minute'
   rescue StandardError
   end
 
   def starting_price_full
-    "#{ENV['CURRENCY']} #{lowest_profile_rating}"
+    "#{ENV['CURRENCY']} #{eth}"
   end
 
   def rating
@@ -29,6 +29,12 @@ class ServiceDecorator < BaseDecorator
   end
 
   private
+
+  def eth
+    Eth::UsdConverter.new(lowest_profile_rating/100.0)
+                     .eth_value
+                     .yield_self { |v| v.to_f }
+  end
 
   def featured_profile
     service_providers.find_by(featured: true).try(:profile) || service_providers.first.profile

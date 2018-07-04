@@ -15,21 +15,18 @@ class ProfileDecorator < BaseDecorator
     requests.completed&.last&.created_at&.strftime('%b, %-d %Y')
   end
 
-  def exc_price
-    return '' unless rate.present?
-    "<strong>#{ENV['CURRENCY']} #{expercoin_rate}</strong>/min"
-  end
-
   def average_rating
     ProfileRating.new(self).average_rating
   end
 
   def display_rate
-    FloatFormater.new(expercoin_rate.to_f).with_dots
+    Eth::UsdConverter.new(expercoin_rate/100.0)
+                     .eth_value
+                     .yield_self { |v| v.to_f }
   end
 
   def display_rate_in_usd
-    Eth::UsdConverter.new(expercoin_rate).usd_value&.round(2)
+    expercoin_rate / 100
   end
 
   def unread_messages

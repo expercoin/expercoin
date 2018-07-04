@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="mentor-pricings content-aside">
-      <h2 data-container="body" data-toggle="popover" data-placement="top" data-content="<%= ENV['CURRENCY'] %> <%= decorate(@profile).expercoin_rate %>" data-trigger="hover"><span class="currency"></span><%= number_to_currency(decorate(@profile).display_rate_in_usd) %><span class="per"> per minute</span></h2>
+      <h2 data-container="body" data-toggle="popover" data-placement="top" data-content="<%= ENV['CURRENCY'] %> <%= decorate(@profile).display_rate %>" data-trigger="hover"><span class="currency"></span><%= number_to_currency(decorate(@profile).display_rate_in_usd) %><span class="per"> per minute</span></h2>
       <%= link_to "Schedule Session", new_request_path(expert: @profile) , class: 'btn btn-success btn-block btn-upc' unless @profile == current_user.try(:profile) %>
     </div>
   </header>
