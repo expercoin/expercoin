@@ -132,7 +132,7 @@
               <div data-block="length-info">
                 <div class='section-body-row'>
                   <span>Rate per minute</span>
-                  <span data-request="price"><%= "#{ENV['CURRENCY']} #{decorate(@profile).display_rate}" %></span>
+                  <span data-request="price"><%= "#{number_to_currency(decorate(@profile).display_rate_in_usd)}" %></span>
                 </div>
                 <div class='section-body-row'>
                   <span>Requested call length</span>
@@ -140,8 +140,7 @@
                 </div>
                 <div class='section-body-row'>
                   <span>Estimated cost</span>
-                  <% rate = decorate(@profile).display_rate %>
-                  <span data-request="cost"><%= "#{ENV['CURRENCY']} #{RequestCalculator.new(@request).calculate_cost(rate)}" %></span>
+                  <span data-request="cost"><%= "#{number_to_currency(decorate(@request).estimated_cost(decorate(@profile).display_rate_in_usd))}" %></span>
                 </div>
               </div>
               <div data-block="length-form" class="section-row">

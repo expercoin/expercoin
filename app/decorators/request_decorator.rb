@@ -18,6 +18,10 @@ class RequestDecorator < BaseDecorator
   def call_approved?
     (inprogress? || verified?) && call_ready?
   end
+  
+  def estimated_cost(rate)
+    RequestCalculator.new(self).calculate_cost(rate)
+  end
 
   def call_ready?
     selected_date_bigger_than_current_time && selected_date_not_bigger_than_two_hours
