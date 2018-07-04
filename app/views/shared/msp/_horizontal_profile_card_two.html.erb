@@ -3,7 +3,7 @@
     <div class="card-hero">
       <%= render "shared/profile_photo", photo: mentor.photo.thumb.url %>
       <div class='hero-price' data-container="body" data-toggle="popover" data-placement="bottom" data-content="<%= decorate(mentor).expercoin_rate %>" data-trigger="hover">
-        <strong><%= number_to_currency(decorate(mentor).display_rate_in_usd) %></strong>
+        <strong><%= number_to_currency(decorate(mentor).display_rate_in_usd) %> per minute</strong>
       </div>
       <div class="hero-rating">
         <%= rating = ProfileRating.new(mentor).average_rating %>

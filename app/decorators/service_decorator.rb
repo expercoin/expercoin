@@ -8,7 +8,7 @@ class ServiceDecorator < BaseDecorator
   end
 
   def starting_price_in_usd
-    number_to_currency(Eth::UsdConverter.new(lowest_profile_rating).usd_value.round(2))
+    number_to_currency(Eth::UsdConverter.new(lowest_profile_rating).usd_value.round(2)) + ' per minute'
   rescue StandardError
   end
 

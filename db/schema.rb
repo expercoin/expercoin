@@ -112,8 +112,8 @@ ActiveRecord::Schema.define(version: 2018_06_25_140423) do
     t.string "last_name"
     t.string "name"
     t.string "title"
-    t.decimal "expercoin_rate", precision: 36, scale: 18
-    t.decimal "rate", precision: 36, scale: 18
+    t.integer "expercoin_rate"
+    t.integer "rate"
     t.string "professional_role"
     t.integer "years_of_experience"
     t.string "photo"
