@@ -15,7 +15,7 @@
               <%= decorate(@profile).average_rating %>
               <%= display_stars(decorate(@profile).average_rating) %>
             </div>
-            <div class="pricing" data-container="body" data-toggle="popover" data-placement="left" data-content="<%= @profile.expercoin_rate %>" data-trigger="hover">
+            <div class="pricing" data-container="body" data-toggle="popover" data-placement="left" data-content="<%= decorate(@profile).display_rate %>" data-trigger="hover">
               <span class="text">Starting at</span>
               <span class="value"><%= number_to_currency(decorate(@profile).display_rate_in_usd) %> per minute</span>
             </div>
