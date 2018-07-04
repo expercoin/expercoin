@@ -39,7 +39,7 @@ function requestFormInitialize() {
     var cost = price * length;
     $('[data-request="length"]').html(length);
     var cryptocurrency = window._cryptocurrency;
-    $('[data-request="cost"]').html(cryptocurrency + ' ' + cost);
+    $('[data-request="cost"]').html('$' + cost);
     // --------------------------------------------
     $(this).html() === "Change" ? $(this).html('Cancel') : $(this).html('Change');
   });
@@ -82,11 +82,11 @@ function requestFormInitialize() {
     var usdEthRate = $("[data-request='usd_eth_rate']").val();
     var cryptocurrency = window._cryptocurrency;
 
-    exprLabel.html(cryptocurrency + ": " + RequestCostCalculactor(1));
-    usdLabel.html("USD: " + RequestCostCalculactor(usdEthRate).toFixed(2));
+    exprLabel.html(cryptocurrency + ": " + RequestCostCalculactor(usdEthRate));
+    usdLabel.html("USD: " + RequestCostCalculactor(1).toFixed(2));
     $("#request_requested_length").on("change", function() {
-      exprLabel.html(cryptocurrency + ": " + RequestCostCalculactor(1));
-      usdLabel.html("USD: " + RequestCostCalculactor(usdEthRate).toFixed(2));
+      exprLabel.html(cryptocurrency + ": " + RequestCostCalculactor(usdEthRate));
+      usdLabel.html("USD: " + RequestCostCalculactor(1).toFixed(2));
     });
   }
 }
