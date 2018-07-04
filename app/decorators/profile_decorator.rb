@@ -26,7 +26,7 @@ class ProfileDecorator < BaseDecorator
   end
 
   def display_rate_in_usd
-    expercoin_rate / 100
+    expercoin_rate / 100.0
   end
 
   def unread_messages

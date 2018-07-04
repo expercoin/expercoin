@@ -3,7 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe RequestDecorator do
-  let(:expert) { create(:profile, expercoin_rate: 0.5) }
+  let(:eth_amount) { Eth::UsdConverter.new(15).eth_value }
+  let(:expert) { create(:profile, expercoin_rate: 1500) }
   let(:request) { create(:request, expert: expert, requested_length: '30min') }
   let(:request_decorator) { RequestDecorator.new(request) }
 
@@ -34,14 +35,13 @@ RSpec.describe RequestDecorator do
 
   describe '.amount' do
     it 'should show correct amount' do
-      expect(request_decorator.amount).to eq 15
+      expect(request_decorator.amount).to eq eth_amount * 30
     end
   end
 
   describe '.usd_amount' do
     it 'should show correct usd amount' do
-      usd_amount = Eth::UsdConverter.new(15).usd_value.round(2)
-      expect(request_decorator.usd_amount).to eq usd_amount
+      expect(request_decorator.usd_amount).to eq 15 * 30
     end
   end
 

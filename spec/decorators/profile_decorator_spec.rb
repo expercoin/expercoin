@@ -3,8 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe ProfileDecorator do
-  let(:rate) { 0.0005 }
-  let(:profile) { create(:profile, expercoin_rate: rate) }
+  let(:eth_rate) { Eth::UsdConverter.new(1.5).eth_value }
+  let(:profile) { create(:profile, expercoin_rate: 150) }
+  let(:avg_rating) { ProfileRating.new(profile).average_rating }
   let(:completed_request) { create(:request, :completed, expert: profile) }
   let(:profile_decorator) { ProfileDecorator.new(profile) }
   let!(:message) { create(:message, :unread, receiver: profile.user) }
@@ -32,14 +33,16 @@ RSpec.describe ProfileDecorator do
     end
   end
 
-  describe '.exc_price' do
-    it 'should include rate in output' do
-      expect(profile_decorator.exc_price).to include(rate.to_s)
-    end
+  describe '.average_rating' do
+    it { expect(profile_decorator.average_rating).to eq avg_rating }
   end
 
   describe '.display_rate' do
-    it { expect(profile_decorator.display_rate).to eq rate }
+    it { expect(profile_decorator.display_rate).to eq eth_rate }
+  end
+
+  describe '.display_rate' do
+    it { expect(profile_decorator.display_rate_in_usd).to eq 1.5 }
   end
 
   describe '.unread_messages' do
@@ -50,10 +53,6 @@ RSpec.describe ProfileDecorator do
     it { expect(profile_decorator.unread_messages?).to be true }
   end
 
-  describe '.display_rate_in_usd' do
-    it { expect(profile_decorator.display_rate_in_usd.to_f).to be 0.27 }
-  end
-  
   describe '.status_calls_count' do
     # needs to be implemented with group examples
   end
