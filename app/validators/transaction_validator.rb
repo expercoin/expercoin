@@ -38,14 +38,14 @@ class TransactionValidator < BaseValidator
   end
 
   def amount_to_pay
-    (request.expert.expercoin_rate * request.requested_length.to_i).to_f.round(18)
+    request.requested_amount_eth
   end
 
   def transaction_amount
-    eth_amount || 0
-  end
+  eth_amount || 0
+end
 
-  def required_amount
+def required_amount
     return if amount_to_pay <= transaction_amount
     errors.add(:eth_amount, 'Must be valid')
   end

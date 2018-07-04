@@ -25,6 +25,7 @@ class CreateRequests < ActiveRecord::Migration[5.2]
       t.integer :updated_by_id
       t.string :tx_hash
       t.integer :service_id
+      t.decimal :requested_amount_eth, precision: 36, scale: 18
       t.timestamps
     end
   end

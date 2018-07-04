@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(version: 2018_06_25_140423) do
     t.integer "updated_by_id"
     t.string "tx_hash"
     t.integer "service_id"
+    t.decimal "requested_amount_eth", precision: 36, scale: 18
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "inviter", default: false
