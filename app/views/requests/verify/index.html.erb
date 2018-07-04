@@ -13,7 +13,7 @@
           <p class="eth-address">
           <%= ENV['ETH_ADDRESS'] %>
           </p>
-          <p>Price in USD: <%= decorate(@request).usd_amount %></p>
+          <p>Price in USD: <%= number_to_currency(decorate(@request).usd_amount) %></p>
           <div id='output' data-transaction-screen></div>
         </div>
         <div class="transaction-verification">
