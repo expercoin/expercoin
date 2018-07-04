@@ -48,6 +48,7 @@ RSpec.configure do |config|
 
   # Devise helpers for login, signup
   config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :system
   config.extend DeviseHelpers, type: :request
 
 
@@ -78,5 +79,8 @@ RSpec.configure do |config|
       with.test_framework :rspec
       with.library :rails
     end
+  end
+  config.before(:each, type: :system) do
+    driven_by :selenium_chrome_headless
   end
 end
