@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe VerifyRequestService do
-  let(:expert) { create(:profile, expercoin_rate: 0.0005, rate: 0.000465) }
+  let(:expert) { create(:profile) }
   let(:request) { create(:request, expert: expert, status: 'accepted', requested_length: '30min') }
   let(:params) do
     {

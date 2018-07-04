@@ -38,7 +38,12 @@ class TransactionValidator < BaseValidator
   end
 
   def amount_to_pay
-    request.requested_amount_eth
+    request.requested_amount_eth || calculated_amount
+  end
+
+  def calculated_amount
+    amount_in_usd = (request.expert.expercoin_rate / 100) * request.requested_length.to_i
+    Eth::UsdConverter.new(amount_in_usd).eth_value
   end
 
   def transaction_amount
