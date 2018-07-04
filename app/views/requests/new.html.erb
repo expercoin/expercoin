@@ -68,9 +68,9 @@
               <%= f.label :requested_length, 'Aproximate Session Length' %>
               <%= f.select :requested_length, options_for_select(Request.requested_lengths.keys.map {|k| ["#{k}", k]} ), {}, { class: 'selectpicker-time selectpicker-control', data: { request: 'length' } } %>
               <%= hidden_field_tag 'usd_eth_rate', number_to_currency(Eth::UsdConverter.new(1).usd_value, unit: ''), data: { request: 'usd_eth_rate' } %>
-              <%= hidden_field_tag 'price', decorate(@profile).display_rate, data: { request: 'expert_rate' } %>
-              <div class="sub-label mt-2" data-request-sublabel="expr-value"><%= ENV['CURRENCY'] %>: </div>
+              <%= hidden_field_tag 'price', decorate(@profile).display_rate_in_usd, data: { request: 'expert_rate' } %>
               <div class="sub-label mt-2" data-request-sublabel="usd-value">USD: </div>
+              <div class="sub-label mt-2" data-request-sublabel="expr-value"><%= ENV['CURRENCY'] %>: </div>
             </div>
 
             <div class='form-group'>
