@@ -30,4 +30,16 @@ RSpec.describe SettingsController, type: :request do
     it_behaves_like 'authenticated user'
     it { expect(contain_all?(profile_attributes, update_params.merge(expercoin_rate:40000, rate: 37200))).to eq true }
   end
+
+  describe 'GET states' do
+    let(:states_params) { { country: 'United States' } }
+    before { get states_settings_path, params: { profile_form: states_params }, xhr: true }
+    it_behaves_like 'authenticated user get ok'
+  end
+
+  describe 'GET states' do
+    let(:cities_params) { { country: 'United States', state: 'Massachusetts' } }
+    before { get cities_settings_path, params: { profile_form: cities_params }, xhr: true }
+    it_behaves_like 'authenticated user get ok'
+  end
 end
