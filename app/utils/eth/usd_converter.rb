@@ -2,14 +2,18 @@
 
 module Eth
   class UsdConverter
-    def initialize(eth_value)
-      @eth_value = eth_value
+    def initialize(value)
+      @value = value
     end
 
     def usd_value
-      @eth_value * price_usd
+      @value * price_usd
     rescue StandardError
       nil
+    end
+
+    def eth_value
+      @value / price_usd
     end
 
     private
