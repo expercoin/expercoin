@@ -34,6 +34,8 @@ class ProfileForm < FormObject
 
   def entered_rate
     return unless rate
-    return errors.add(:rate, 'Wrong number') unless rate.round(5) == calculated_rate.round(5)
+    return errors.add(:rate, 'Wrong number') unless rate.round(2) == calculated_rate.round(2)
+    self.expercoin_rate = expercoin_rate * 100
+    self.rate = rate * 100
   end
 end
