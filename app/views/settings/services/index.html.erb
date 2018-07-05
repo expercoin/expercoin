@@ -16,7 +16,7 @@
     <div class="col-sm-9">
       <div class="profile-panel">
         <div class="panel-header d-flex justify-content-between align-items-center">
-          <h4>Your Services</h4>
+          <h4>Your Offerings</h4>
           <div class="panel-controls">
             <%= link_to "Create a new service", new_service_path , class: 'btn btn-success' %>
           </div>
@@ -43,7 +43,7 @@
                 <div class="service-details">
                   <ul class="service-data">
                     <li>
-                      Starting at <span class="strong" data-container="body" data-toggle="popover" data-placement="left" data-content="<%= decorate(service).starting_price_full %>" data-trigger="hover"><%= decorate(service).starting_price %></span>
+                      <span class="strong" data-container="body" data-toggle="popover" data-placement="left" data-content="<%= decorate(service).display_rate %>" data-trigger="hover"><%= number_to_currency(decorate(service).display_rate_in_usd) %></span> per minute
                     </li>
                     <li>Created <span class="strong"><%= service.created_at.strftime("%b %d, %Y")  %></span>
                     </li>
