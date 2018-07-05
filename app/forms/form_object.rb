@@ -17,4 +17,9 @@ class FormObject
     return unless valid?
     object.update(attributes.compact)
   end
+
+  def create(object)
+    return unless valid?
+    object.create(attributes.compact)
+  end
 end

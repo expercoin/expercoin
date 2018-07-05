@@ -14,14 +14,11 @@ class ServicesController < ApplicationController
 
   def show
     @service = Service.friendly.find(params[:id])
-    @featured_provider = @service.featured_profile
-    @providers = @service.profiles.where.not(id: @featured_provider.id)
   end
 
   def create
-    @service = Service.new(service_params)
-    @service.service_providers.new(profile: @profile, featured: true)
-    redirect_to service_path(@service) if @service.save
+    @service_form = ServiceForm.new(service_params)
+    redirect_to service_path(@service) if @service_form.create
   end
 
   def update
@@ -50,7 +47,7 @@ class ServicesController < ApplicationController
       :title,
       :content,
       :cover_image,
-      :category_id
+      :category_id,
     ).merge(owner: current_user)
   end
 end
