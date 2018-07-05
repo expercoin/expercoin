@@ -26,12 +26,11 @@
         <div class="panel-header">
           <div class="service-rating-and-prices">
             <div class="rating">
-              <%= decorate(@service).rating %>
-              <%= display_stars(decorate(@service).rating) %>
+              <%= rating = ProfileRating.new(@service.owner.profile).average_rating %>
+              <%= display_stars(rating) %>
             </div>
-            <div class="pricing" data-container="body" data-toggle="popover" data-placement="left" data-content="<%= decorate(@service).starting_price_full %>" data-trigger="hover">
-              <span class="text">Starting at</span>
-              <span class="value"></span>
+            <div class="pricing" data-container="body" data-toggle="popover" data-placement="left" data-content="<%= decorate(@service).display_rate %>" data-trigger="hover">
+              <span class="value"><%= number_to_currency(decorate(@service).display_rate_in_usd) %></span>
             </div>
           </div>  
         </div>
@@ -44,7 +43,7 @@
       </div>
     </div>
     <div class="content-aside">
-      <%= render 'shared/msp/profile_card', profile: @service.owner.profile, request_url: new_request_path(expert: @service.owner.profile.slug, service: @service.slug)  %>
+      <%= render 'shared/msp/profile_card', profile: decorate(@service).owner_profile, request_url: new_request_path(expert: decorate(@service).owner_profile.slug, service: @service.slug)  %>
     </div>
   </section>
 </main>
