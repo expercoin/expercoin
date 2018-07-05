@@ -3,8 +3,7 @@ ActiveAdmin.register Service do
     :title,
     :content,
     :cover_image,
-    :category_id,
-    service_providers_attributes: %i[id profile_id featured]
+    :category_id
   )
 
   form do |f|
@@ -17,12 +16,6 @@ ActiveAdmin.register Service do
     f.inputs 'Content' do
       f.input :content, input_html: { class: 'tinymce' }
     end
-    f.inputs 'Providers' do
-      f.has_many :service_providers do |service_provider_f|
-        service_provider_f.input :profile, as: :select, collection: Profile.all.map{|u| ["#{u.first_name}, #{u.last_name}", u.id]}
-        service_provider_f.input :featured
-      end
-    end  
     f.actions
   end
 
@@ -49,9 +42,6 @@ ActiveAdmin.register Service do
     panel "Profiles" do
       table_for service.profiles do
         column :id
-        column 'Featured' do |profile|
-          profile == service.service_providers.find_by(featured: true).try(:profile)
-        end
         column :first_name
         column :last_name
         column 'email' do |profile|
