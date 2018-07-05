@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   # resources :pages, only: [:show]
   root 'pages#business_home'
+  get '/auth/:provider/callback', to: 'oauth#callback', as: 'oauth_callback'
+  get '/auth/failure', to: 'oauth#failure', as: 'oauth_failure'
   resources :categories do
     get ':subcategory_id', to: 'subcategories#show', as: :subcategory
   end 

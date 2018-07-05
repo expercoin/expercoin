@@ -6,8 +6,11 @@ class CreateServices < ActiveRecord::Migration[5.2]
       t.string :slug
       t.text :content
       t.belongs_to :category, foreign_key: true
+      t.integer :status
       t.integer :owner_id
-
+      t.integer :expercoin_rate
+      t.integer :rate
+      
       t.timestamps
     end
   end

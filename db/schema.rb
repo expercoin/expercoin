@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_25_140423) do
+ActiveRecord::Schema.define(version: 2018_07_05_081048) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -106,6 +106,19 @@ ActiveRecord::Schema.define(version: 2018_06_25_140423) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "oauth_accounts", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "uid"
+    t.string "provider"
+    t.string "image_url"
+    t.string "profile_url"
+    t.string "access_token"
+    t.text "raw_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_oauth_accounts_on_user_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.integer "user_id"
     t.string "first_name"
@@ -152,7 +165,6 @@ ActiveRecord::Schema.define(version: 2018_06_25_140423) do
     t.integer "updated_by_id"
     t.string "tx_hash"
     t.integer "service_id"
-    t.decimal "requested_amount_eth", precision: 36, scale: 18
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "inviter", default: false
@@ -186,7 +198,10 @@ ActiveRecord::Schema.define(version: 2018_06_25_140423) do
     t.string "slug"
     t.text "content"
     t.integer "category_id"
+    t.integer "status"
     t.integer "owner_id"
+    t.integer "expercoin_rate"
+    t.integer "rate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_services_on_category_id"

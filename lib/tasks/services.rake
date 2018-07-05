@@ -11,11 +11,14 @@ namespace :services do
         rand(5..10).times do
           body << "<p>#{Faker::Lorem.paragraph}</p>"
         end
+        rate = rand(100..800)
         content = title + body.join
         service = Service.create!(
           title: Faker::Commerce.product_name,
           category: subcategory,
           content: content,
+          rate: rate,
+          expercoin_rate: rate * 1.07,
           cover_image: File.open("#{Rails.root}/public/images/fake/#{rand(1..8)}.jpg"),
           profiles: providers
         )
