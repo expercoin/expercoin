@@ -11,6 +11,7 @@ class ServicesController < ApplicationController
 
   def edit
     @service = @profile.services.friendly.find(params[:id])
+    @service_form = ServiceForm.new(@service)
   end
 
   def show
@@ -30,7 +31,8 @@ class ServicesController < ApplicationController
 
   def update
     @service = @profile.services.friendly.find(params[:id])
-    redirect_to service_path(@service) if @service.update(service_params)
+    @service_form = ServiceForm.new(service_params)
+    redirect_to service_path(@service) if @service_form.update(@service)
   end
 
   def destroy
@@ -57,6 +59,6 @@ class ServicesController < ApplicationController
       :category_id,
       :expercoin_rate,
       :rate
-    ).merge(owner: current_user)
+    ).merge(owner_id: current_user.id)
   end
 end
