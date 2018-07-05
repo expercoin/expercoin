@@ -36,6 +36,7 @@ gem 'carrierwave-video'
 gem 'faker'
 gem 'tinymce-rails'
 gem 'city-state'
+gem 'omniauth-linkedin-oauth2'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
