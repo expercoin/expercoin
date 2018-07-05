@@ -18,7 +18,8 @@ namespace :services do
           rate: rate,
           expercoin_rate: rate * 1.07,
           cover_image: File.open("#{Rails.root}/public/images/fake/#{rand(1..8)}.jpg"),
-          owner: User.all.sample
+          owner: User.all.sample,
+          featured: [true, false].sample
         )
         puts "Created service with title #{service.title}"
       end

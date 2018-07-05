@@ -61,5 +61,5 @@ Rails.application.routes.draw do
     get 'received', on: :collection
   end
   resources :callbacks, only: :create
-  resources :services, path: 'offerings', except: [:index]
+  resources :services, path: 'offerings'
 end

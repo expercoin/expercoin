@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class ServicesController < ApplicationController
   layout 'dashboard'
-  before_action :authenticate_user!, except: [:show]
-  before_action :set_profile, except: [:show]
-  before_action :set_categories, only: [:new, :edit]
+  before_action :authenticate_user!, except: %i[show index]
+  before_action :set_profile, except: %i[show index]
+  before_action :set_categories, only: %i[new edit]
 
   def new
     @service = @profile.services.new(
@@ -15,6 +17,11 @@ class ServicesController < ApplicationController
   def edit
     @service = @profile.services.friendly.find(params[:id])
     @service_form = ServiceForm.new(@service)
+  end
+
+  def index
+    @services = Service.where(featured: true).page(params[:page]).per(9)
+    @categories = Category.main
   end
 
   def show
