@@ -7,14 +7,12 @@ class OauthController < ApplicationController
         redirect_to root_path
       end
     rescue => e
-      binding.pry
       flash[:alert] = "There was an error while trying to authenticate your account."
       redirect_to root_path
     end
   end
 
   def failure
-    binding.pry
     flash[:alert] = "There was an error while trying to authenticate your account."
     redirect_to root_path
   end
