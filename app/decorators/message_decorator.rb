@@ -3,10 +3,6 @@
 # Message Class for Decorators pattern
 class MessageDecorator < BaseDecorator
 
-  def full_name
-    "#{first_name} #{last_name}"
-  end
-
   def status
     return 'unread' if unread
     'read'

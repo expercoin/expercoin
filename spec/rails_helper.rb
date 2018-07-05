@@ -74,6 +74,7 @@ RSpec.configure do |config|
 
   # include helpers
   config.include Helpers
+  config.include OmniauthMacros
   Shoulda::Matchers.configure do |config|
     config.integrate do |with|
       with.test_framework :rspec
