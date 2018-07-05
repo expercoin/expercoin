@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   namespace :settings do
     resources :about, only: [:index, :create]
     resources :video, only: [:index, :create]
-    resources :services, only: [:index]
+    resources :services, path: 'offerings', only: [:index]
     resources :categories, only: [:index, :create]
     resources :wallet, only: [:index, :create, :destroy, :update]
   end

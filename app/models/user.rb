@@ -19,6 +19,8 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :profile
 
+  enum status: %i[pending verified]
+
   def create_profile
     Profile.create!(user_id: id, first_name: first_name, last_name: last_name)
   end

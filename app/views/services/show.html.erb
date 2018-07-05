@@ -31,6 +31,7 @@
             </div>
             <div class="pricing" data-container="body" data-toggle="popover" data-placement="left" data-content="<%= decorate(@service).display_rate %>" data-trigger="hover">
               <span class="value"><%= number_to_currency(decorate(@service).display_rate_in_usd) %></span>
+              <span class="text">per minute</span>
             </div>
           </div>  
         </div>

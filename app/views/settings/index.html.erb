@@ -63,7 +63,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text">$</span>
                   </div>
-                  <%= f.text_field :expercoin_rate,'data-rate': 'expercoin', 'data-fee': @profile.commission_fee, :class => "form-control", value: number_to_currency(@profile_form.expercoin_rate / 100, unit: '') %>
+                  <%= f.text_field :expercoin_rate,'data-rate': 'expercoin', 'data-fee': @profile.commission_fee, :class => "form-control", value: decorate(@profile).display_rate_in_usd %>
                   <div class="input-group-prepend">
                     <span class="input-group-text"> / min</span>
                   </div>
@@ -84,7 +84,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text">$</span>
                   </div>
-                  <%= f.text_field :rate, class: "form-control", 'data-rate': 'hourly', 'data-fee': @profile.commission_fee, value: number_to_currency(@profile_form.rate / 100, unit: '') %>
+                  <%= f.text_field :rate, class: "form-control", 'data-rate': 'hourly', 'data-fee': @profile.commission_fee, value: decorate(@profile).display_rate_in_usd %>
                   <div class="input-group-prepend">
                     <span class="input-group-text"> / min</span>
                   </div>
@@ -100,7 +100,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><%= ENV['CURRENCY'] %></span>
                   </div>
-                  <%= label_tag :expercoin_eth_rate, Eth::UsdConverter.new(number_to_currency(@profile_form.expercoin_rate / 100, unit: '').to_i).eth_value, unit: '' ,'data-rate': 'expercoin-eth', 'data-eth-usd-rate': Eth::UsdConverter.new(1).usd_value, class: "form-control" %>
+                  <%= label_tag :expercoin_eth_rate, Eth::UsdConverter.new(decorate(@profile).display_rate_in_usd.to_i).eth_value, unit: '' ,'data-rate': 'expercoin-eth', 'data-eth-usd-rate': Eth::UsdConverter.new(1).usd_value, class: "form-control" %>
                   <div class="input-group-prepend">
                     <span class="input-group-text"> / min</span>
                   </div>
