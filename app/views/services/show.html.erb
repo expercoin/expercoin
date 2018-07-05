@@ -31,7 +31,7 @@
             </div>
             <div class="pricing" data-container="body" data-toggle="popover" data-placement="left" data-content="<%= decorate(@service).starting_price_full %>" data-trigger="hover">
               <span class="text">Starting at</span>
-              <span class="value"><%= decorate(@service).starting_price_in_usd %></span>
+              <span class="value"></span>
             </div>
           </div>  
         </div>
@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="content-aside">
-      <%= render 'shared/msp/profile_card', profile: @featured_provider, request_url: new_request_path(expert: @featured_provider.slug, service: @service.slug)  %>
+      <%= render 'shared/msp/profile_card', profile: @service.owner.profile, request_url: new_request_path(expert: @service.owner.profile.slug, service: @service.slug)  %>
     </div>
   </section>
 </main>

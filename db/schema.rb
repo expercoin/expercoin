@@ -125,8 +125,8 @@ ActiveRecord::Schema.define(version: 2018_07_05_081048) do
     t.string "last_name"
     t.string "name"
     t.string "title"
-    t.integer "expercoin_rate"
-    t.integer "rate"
+    t.decimal "expercoin_rate", precision: 36, scale: 18
+    t.decimal "rate", precision: 36, scale: 18
     t.string "professional_role"
     t.integer "years_of_experience"
     t.string "photo"
@@ -198,10 +198,7 @@ ActiveRecord::Schema.define(version: 2018_07_05_081048) do
     t.string "slug"
     t.text "content"
     t.integer "category_id"
-    t.integer "status"
     t.integer "owner_id"
-    t.integer "expercoin_rate"
-    t.integer "rate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_services_on_category_id"

@@ -28,6 +28,10 @@ class ServiceDecorator < BaseDecorator
     ProfileDecorator.new(featured_profile).full_name
   end
 
+  def owner_profile
+    owner.profile
+  end  
+
   private
 
   def eth
@@ -40,7 +44,7 @@ class ServiceDecorator < BaseDecorator
     service_providers.find_by(featured: true).try(:profile) || service_providers.first.profile
   end
 
-  def lowest_profile_rating
-    profiles.map(&:expercoin_rate).compact.sort.first
-  end
+  # def lowest_profile_rating
+  #   profiles.map(&:expercoin_rate).compact.sort.first
+  # end
 end
