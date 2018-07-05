@@ -6,9 +6,6 @@ class Service < ApplicationRecord
 
   mount_uploader :cover_image, ServicesUploader
 
-  validates_presence_of :title, :content
-  validates_presence_of :service_providers
-
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
