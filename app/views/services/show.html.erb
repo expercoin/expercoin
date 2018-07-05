@@ -42,14 +42,6 @@
           <%= @service.content.html_safe %>
         </div>
       </div>
-      <div class="service-experts">
-        <% unless @providers.empty? %>
-          <h3>Services Experts</h3>
-          <% @providers.each do |provider| %>
-            <%= render 'shared/msp/horizontal_profile_card_two', mentor: provider, request_url: new_request_path(expert: provider.slug, service: @service.slug) %>
-          <% end %>
-        <% end %>
-      </div>
     </div>
     <div class="content-aside">
       <%= render 'shared/msp/profile_card', profile: @featured_provider, request_url: new_request_path(expert: @featured_provider.slug, service: @service.slug)  %>
