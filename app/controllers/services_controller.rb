@@ -23,7 +23,8 @@ class ServicesController < ApplicationController
     if @service
       redirect_to service_path(@service)
     else
-      render :new
+      flash[:alert] = @service_form.errors.full_messages
+      redirect_to new_service_path
     end
   end
 
