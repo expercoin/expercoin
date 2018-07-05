@@ -16,20 +16,14 @@ class ServiceDecorator < BaseDecorator
   end 
 
   def display_rate
-    return unless owner_profile.expercoin_rate.present?
-    Eth::UsdConverter.new(owner_profile.expercoin_rate/100.0)
+    return unless expercoin_rate.present?
+    Eth::UsdConverter.new(expercoin_rate/100.0)
                      .eth_value
                      .yield_self { |v| v.to_f }
   end 
 
   def display_rate_in_usd
-    return unless owner_profile.expercoin_rate.present?
-    owner_profile.expercoin_rate / 100.0
-  end
-
-  private
-
-  def featured_profile
-    service_providers.find_by(featured: true).try(:profile) || service_providers.first.profile
+    return unless expercoin_rate.present?
+    expercoin_rate / 100.0
   end
 end
