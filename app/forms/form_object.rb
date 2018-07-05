@@ -20,6 +20,6 @@ class FormObject
 
   def create(object)
     return unless valid?
-    object.create(attributes.compact)
+    object.create!(attributes.compact)
   end
 end

@@ -8,7 +8,7 @@ class ServiceForm < FormObject
   attribute :owner_id, Integer
 
   validate :entered_rate
-  validates_presence_of :title, :content
+  validates_presence_of :title, :content, :category_id, :owner_id
 
   private
 

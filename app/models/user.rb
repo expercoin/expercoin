@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :created_services, class_name: 'Service', foreign_key: 'owner_id'
   has_many :messages, foreign_key: :receiver_id
   has_many :transactions, foreign_key: :sender_id
+  has_many :services, foreign_key: :owner_id
 
   attr_accessor :first_name, :last_name
 
