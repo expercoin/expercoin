@@ -19,18 +19,14 @@
           <h4>Verify Your Identity</h4>
         </div>
         <div class="panel-body">
-          <% if current_user.pending? %>
-            <h5>Authenticate Your Identity with LinkedIn</h5>
-            <p>
-            Our clients are going to trust you with their confidential data. We, therefore, need to verify your identity. You can always change the information on your profile later.
-            </p>
-            <div class='d-flex justify-content-center'>
-              <a class="btn btn-primary" href="/auth/linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i> Apply with LinkedIn</a>
-            </div>
+          <h5>Authenticate Your Identity with LinkedIn</h5>
+          <p>
+          Our clients are going to trust you with their confidential data. We, therefore, need to verify your identity. You can always change the information on your profile later.
+          </p>
+          <div class='d-flex justify-content-center'>
+            <a class="btn btn-primary" href="/auth/linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i> Apply with LinkedIn</a>
+          </div>
         </div>
-      <% else %>
-        <h4 class="d-flex justify-content-center align-items-center">You have verified your account</h4>
-      <% end %>
       </div>    
     </div>
   </div>
