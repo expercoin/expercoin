@@ -12,18 +12,13 @@
   <section class="providers-filterable">
     <div class="content-container">
       <div class="content-title">
-        <h3>Top Expercoin Services and Mentors for <%= @category.name %></h3>
+        <h3>Top Expercoin Offerings for <%= @category.name %></h3>
       </div>
       <div class="providers-with-filters">
         <div class="providers-groups">
           <div class="providers providers-panoramic">
             <% @services.each do |service| %>
               <%= render 'shared/msp/services_card', service: service, service_url: service_path(service) %>
-            <% end %>
-          </div>
-          <div class="providers providers-panoramic">
-            <% @profiles.each do |profile| %>
-              <%= render 'shared/msp/profile_card', profile: profile, request_url: new_request_path(expert: profile.slug) %>
             <% end %>
           </div>
         </div>
@@ -36,7 +31,7 @@
           </div>
         </div>
       </div>
-      <%= paginate @profiles %>
+      <%= paginate @services %>
     </div>
   </section>
 </main>

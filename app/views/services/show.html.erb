@@ -26,12 +26,11 @@
         <div class="panel-header">
           <div class="service-rating-and-prices">
             <div class="rating">
-              <%= decorate(@service).rating %>
-              <%= display_stars(decorate(@service).rating) %>
+              <%= rating = ProfileRating.new(@service.owner.profile).average_rating %>
+              <%= display_stars(rating) %>
             </div>
-            <div class="pricing" data-container="body" data-toggle="popover" data-placement="left" data-content="<%= decorate(@service).starting_price_full %>" data-trigger="hover">
-              <span class="text">Starting at</span>
-              <span class="value"><%= decorate(@service).starting_price_in_usd %></span>
+            <div class="pricing" data-container="body" data-toggle="popover" data-placement="left" data-content="<%= decorate(@service).display_rate %>" data-trigger="hover">
+              <span class="value"><%= number_to_currency(decorate(@service).display_rate_in_usd) %></span>
             </div>
           </div>  
         </div>
@@ -42,17 +41,9 @@
           <%= @service.content.html_safe %>
         </div>
       </div>
-      <div class="service-experts">
-        <% unless @providers.empty? %>
-          <h3>Services Experts</h3>
-          <% @providers.each do |provider| %>
-            <%= render 'shared/msp/horizontal_profile_card_two', mentor: provider, request_url: new_request_path(expert: provider.slug, service: @service.slug) %>
-          <% end %>
-        <% end %>
-      </div>
     </div>
     <div class="content-aside">
-      <%= render 'shared/msp/profile_card', profile: @featured_provider, request_url: new_request_path(expert: @featured_provider.slug, service: @service.slug)  %>
+      <%= render 'shared/msp/profile_card', profile: decorate(@service).owner_profile, request_url: new_request_path(expert: decorate(@service).owner_profile.slug, service: @service.slug)  %>
     </div>
   </section>
 </main>

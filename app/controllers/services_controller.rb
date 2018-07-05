@@ -15,8 +15,6 @@ class ServicesController < ApplicationController
 
   def show
     @service = Service.friendly.find(params[:id])
-    @featured_provider = @service.featured_profile
-    @providers = @service.profiles.where.not(id: @featured_provider.id)
   end
 
   def create

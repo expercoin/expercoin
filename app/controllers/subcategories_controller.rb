@@ -1,5 +1,5 @@
 class SubcategoriesController < ApplicationController
-  before_action :set_category, :set_profiles, :set_services
+  before_action :set_category, :set_services
   layout 'dashboard'
 
   def show
@@ -10,11 +10,11 @@ class SubcategoriesController < ApplicationController
 
   attr_reader :category, :subcategory
 
-  def set_profiles
-    @profiles = subcategory.profiles
-                           .except(current_user.try(:profile))
-                           .page(params[:page]).per(9)
-  end
+  # def set_profiles
+  #   @profiles = subcategory.profiles
+  #                          .except(current_user.try(:profile))
+  #                          .page(params[:page]).per(9)
+  # end
 
   def set_category
     @category = Category.main.friendly.find(params[:category_id])
@@ -22,6 +22,6 @@ class SubcategoriesController < ApplicationController
   end
 
   def set_services
-    @services = @subcategory.services
+    @services = @subcategory.services.page(params[:page]).per(15)
   end 
 end

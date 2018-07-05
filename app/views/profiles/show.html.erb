@@ -34,7 +34,7 @@
             <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#services" role="tab">Services</a>
+            <a class="nav-link active" data-toggle="tab" href="#offerings" role="tab">Offerings</a>
           </li>
         </ul>
         <div class="tab-content">
@@ -75,7 +75,7 @@
               <% end %>
             </div>
           </div>
-          <div class="tab-pane active" id="services" role="tabpanel">
+          <div class="tab-pane active" id="offerings" role="tabpanel">
             <div class="mentor-services">
               <% @profile_services.each do |service| %>
                 <div class="service">
@@ -88,7 +88,7 @@
                   <div class="service-details">
                     <ul class="service-data">
                       <li>
-                        Starting at <span class="strong" data-container="body" data-toggle="popover" data-placement="left" data-content="<%= decorate(service).starting_price_full %>" data-trigger="hover"><%= decorate(service).starting_price_in_usd %></span>
+                        Starting at <span class="strong" data-container="body" data-toggle="popover" data-placement="left" data-content="<%= %>" data-trigger="hover"><%= decorate(service).starting_price_in_usd %></span>
                       </li>
                       <li>Created <span class="strong"><%= service.created_at.strftime("%b %d, %Y")  %></span>
                       </li>
