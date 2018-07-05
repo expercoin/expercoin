@@ -22,6 +22,6 @@ class SubcategoriesController < ApplicationController
   end
 
   def set_services
-    @services = @subcategory.services.page(params[:page]).per(15)
+    @services = @subcategory.services.published.page(params[:page]).per(15)
   end 
 end

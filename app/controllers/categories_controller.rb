@@ -21,6 +21,6 @@ class CategoriesController < ApplicationController
   end
 
   def set_services
-    @services = @category.category_services.page(params[:page]).per(15)
+    @services = @category.category_services.published.page(params[:page]).per(15)
   end  
 end
