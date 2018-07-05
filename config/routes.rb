@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   namespace :calls do
     resources :history, only: [:index]
   end
-  resources :calls, only: [:index, :show, :update]
+  resources :calls, only: [:index, :show, :update] do
+    get :reject, on: :member
+  end
   resources :conference, only: [:show, :create, :update, :destroy]
   resources :dashboard, only: [:index]
   resources :account, only: [:index]
