@@ -183,23 +183,13 @@ ActiveRecord::Schema.define(version: 2018_07_05_081048) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "service_providers", force: :cascade do |t|
-    t.integer "service_id"
-    t.integer "profile_id"
-    t.boolean "featured", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["profile_id"], name: "index_service_providers_on_profile_id"
-    t.index ["service_id"], name: "index_service_providers_on_service_id"
-  end
-
   create_table "services", force: :cascade do |t|
     t.string "title"
     t.string "cover_image"
     t.string "slug"
     t.text "content"
     t.integer "category_id"
-    t.integer "status"
+    t.integer "status", default: 0
     t.integer "owner_id"
     t.integer "expercoin_rate"
     t.integer "rate"

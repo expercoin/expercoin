@@ -17,6 +17,7 @@ class RequestsController < ApplicationController
 
   def show
     @room_sid = @request.room_sid
+    @service = @request.service
   end
 
   def thankyou; end
@@ -32,6 +33,7 @@ class RequestsController < ApplicationController
 
   def edit
     @request = current_user.profile.created_requests.draft.find(params[:id])
+    @service = @request.service
     @profile = @request.expert
   end
 
