@@ -14,11 +14,11 @@ class SettingsController < ApplicationController
   end
 
   def states
-    @states= CitiesAndStatesFromCountry.new(profile_params[:country]).states
+    @states = CitiesAndStatesFromCountry.new(profile_params[:country]).states
   end
 
   def cities
-    @cities= CitiesAndStatesFromCountry.new(profile_params[:country], profile_params[:state]).cities
+    @cities = CitiesAndStatesFromCountry.new(profile_params[:country], profile_params[:state]).cities
   end
 
   private

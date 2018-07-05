@@ -186,7 +186,10 @@ ActiveRecord::Schema.define(version: 2018_06_25_140423) do
     t.string "slug"
     t.text "content"
     t.integer "category_id"
+    t.integer "status"
     t.integer "owner_id"
+    t.integer "expercoin_rate"
+    t.integer "rate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_services_on_category_id"
