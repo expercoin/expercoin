@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="mentor-pricing-and-rating content-aside">   
-      <p class="pricing" data-container="body" data-toggle="popover" data-placement="top" data-content="<%= ENV['CURRENCY'] %> <%= decorate(@profile).display_rate %>" data-trigger="hover"><span class="currency"></span><%= number_to_currency(decorate(@profile).display_rate_in_usd) %><span class="per"> per minute</span></h2>
+      <p class="pricing" data-container="body" data-toggle="popover" data-placement="top" data-content="<%= ENV['CURRENCY'] %> <%= decorate(@profile).display_rate(@service) %>" data-trigger="hover"><span class="currency"></span><%= number_to_currency(decorate(@profile).display_rate_in_usd(@service)) %><span class="per"> per minute</span></h2>
       <p class="rating">
         <%= display_stars ProfileRating.new(@profile).average_rating, 'Rating' %>
       </p>   
@@ -68,7 +68,7 @@
               <%= f.label :requested_length, 'Aproximate Session Length' %>
               <%= f.select :requested_length, options_for_select(Request.requested_lengths.keys.map {|k| ["#{k}", k]} ), {}, { class: 'selectpicker-time selectpicker-control', data: { request: 'length' } } %>
               <%= hidden_field_tag 'usd_eth_rate', number_to_currency(Eth::UsdConverter.new(1).usd_value, unit: ''), data: { request: 'usd_eth_rate' } %>
-              <%= hidden_field_tag 'price', decorate(@profile).display_rate_in_usd, data: { request: 'expert_rate' } %>
+              <%= hidden_field_tag 'price', decorate(@profile).display_rate_in_usd(@service), data: { request: 'expert_rate' } %>
               <div class="sub-label mt-2" data-request-sublabel="usd-value">USD: </div>
               <div class="sub-label mt-2" data-request-sublabel="expr-value"><%= ENV['CURRENCY'] %>: </div>
             </div>

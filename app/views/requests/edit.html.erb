@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="mentor-pricing-and-rating content-aside">   
-      <p class="pricing" data-container="body" data-toggle="popover" data-placement="top" data-content="<%= ENV['CURRENCY'] %> <%= decorate(@profile).display_rate %>" data-trigger="hover"><span class="currency"> </span><%= number_to_currency(decorate(@profile).display_rate_in_usd) %><span class="per"> per minute</span></h2>
+      <p class="pricing" data-container="body" data-toggle="popover" data-placement="top" data-content="<%= ENV['CURRENCY'] %> <%= decorate(@profile).display_rate(@service) %>" data-trigger="hover"><span class="currency"> </span><%= number_to_currency(decorate(@profile).display_rate_in_usd(@service)) %><span class="per"> per minute</span></h2>
       <p class="rating">
         <%= display_stars ProfileRating.new(@profile).average_rating, 'Rating' %>
       </p>   
@@ -132,7 +132,7 @@
               <div data-block="length-info">
                 <div class='section-body-row'>
                   <span>Rate per minute</span>
-                  <span data-request="price"><%= "#{number_to_currency(decorate(@profile).display_rate_in_usd)}" %></span>
+                  <span data-request="price"><%= "#{number_to_currency(decorate(@profile).display_rate_in_usd(@service))}" %></span>
                 </div>
                 <div class='section-body-row'>
                   <span>Requested call length</span>
@@ -140,7 +140,7 @@
                 </div>
                 <div class='section-body-row'>
                   <span>Estimated cost</span>
-                  <span data-request="cost"><%= "#{number_to_currency(decorate(@request).estimated_cost(decorate(@profile).display_rate_in_usd))}" %></span>
+                  <span data-request="cost"><%= "#{number_to_currency(decorate(@request).estimated_cost(decorate(@profile).display_rate_in_usd(@service)))}" %></span>
                 </div>
               </div>
               <div data-block="length-form" class="section-row">

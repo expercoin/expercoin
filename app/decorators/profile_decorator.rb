@@ -19,16 +19,18 @@ class ProfileDecorator < BaseDecorator
     ProfileRating.new(self).average_rating
   end
 
-  def display_rate
-    return unless expercoin_rate.present?
-    Eth::UsdConverter.new(expercoin_rate/100.0)
+  def display_rate(service=nil)
+    exp_rate = service&.expercoin_rate || expercoin_rate
+    return unless exp_rate.present?
+    Eth::UsdConverter.new((exp_rate)/100.0)
                      .eth_value
                      .yield_self { |v| v.to_f }
   end
 
-  def display_rate_in_usd
-    return unless expercoin_rate.present?
-    expercoin_rate / 100.0
+  def display_rate_in_usd(service=nil)
+    exp_rate = service&.expercoin_rate || expercoin_rate
+    return unless exp_rate.present?
+    exp_rate / 100.0
   end
 
   def unread_messages
