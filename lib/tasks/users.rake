@@ -5,7 +5,8 @@ namespace :users do
       email: 'johnsnow@got.com',
       password: '123456',
       first_name: 'Jon',
-      last_name: 'Snow'
+      last_name: 'Snow',
+      status: 'verified'
     )
     user.confirm
     user.profile.update(
@@ -30,7 +31,8 @@ namespace :users do
         first_name: first_name,
         last_name: last_name,
         email: email,
-        password: '123456'
+        password: '123456',
+        status: 'verified'
       )
       user.confirm
       women = ['a', 'e'].include? first_name.last

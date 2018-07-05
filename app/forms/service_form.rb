@@ -8,6 +8,7 @@ class ServiceForm < FormObject
   attribute :owner_id, Integer
 
   validate :entered_rate
+  validates_presence_of :title, :content
 
   private
 
@@ -16,7 +17,6 @@ class ServiceForm < FormObject
   end
 
   def entered_rate
-    return unless rate
     return errors.add(:rate, 'Wrong number') unless rate.round(2) == calculated_rate.round(2)
     self.expercoin_rate = expercoin_rate * 100
     self.rate = rate * 100
