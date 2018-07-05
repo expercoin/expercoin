@@ -2,10 +2,15 @@ ActiveAdmin.register User do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
+  scope :all
+  scope("Pending") { |scope| scope.pending  }
+  scope("Verified") { |scope| scope.verified } 
+
   permit_params(
     :id,
     :email,
     :password,
+    :status,
     profile_attributes: %i[id first_name last_name title rate photo]
   )
   #
@@ -30,6 +35,7 @@ ActiveAdmin.register User do
       row :current_sign_in_ip
       row :last_sign_in_ip
       row :confirmed_at
+      row :status
     end
   end
 
@@ -37,7 +43,10 @@ ActiveAdmin.register User do
   form do |f|
     f.inputs do
       f.input :email
-      f.input :password
+      if f.object.new_record?
+        f.input :password
+      end
+      f.input :status
     end
     f.has_many :profile do |s|
       s.input :first_name
@@ -46,7 +55,6 @@ ActiveAdmin.register User do
       s.input :rate
       s.input :photo, as: :file
     end
-
     actions
   end
 end
