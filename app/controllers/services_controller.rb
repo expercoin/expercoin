@@ -5,7 +5,10 @@ class ServicesController < ApplicationController
   before_action :set_categories, only: [:new, :edit]
 
   def new
-    @service = @profile.services.new(expercoin_rate: @profile.expercoin_rate, rate: @profile.rate)
+    @service = @profile.services.new(
+      expercoin_rate: @profile.expercoin_rate,
+      rate: @profile.rate
+    )
     @service_form = ServiceForm.new(@service)
   end
 
@@ -19,12 +22,12 @@ class ServicesController < ApplicationController
   end
 
   def create
-    @service_form = ServiceForm.new(service_params)
+    @service_form = ServiceForm.new(service_params.merge(status: 'pending'))
     @service = @service_form.create(Service)
     if @service
       redirect_to service_path(@service)
     else
-      flash[:alert] = @service_form.errors.full_messages
+      flash[:alert] = @service_form.errors.full_messages&.join(', ')
       redirect_to new_service_path
     end
   end

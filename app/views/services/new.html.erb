@@ -1,6 +1,6 @@
 <%= form_with model: @service_form, url: services_path do |f| %>
   <%= render 'form', f: f %>
 <% end %>
-<% flash.each do |key, value| %>
-<%= render 'shared/notice_box', message: flash[:alert], type: 'success', name: '' %>
+<% if flash[:alert] %>
+<%= render 'shared/notice_box', message: flash[:alert], type: 'error', name: 'show' %>
 <% end %>

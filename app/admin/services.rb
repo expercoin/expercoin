@@ -1,9 +1,15 @@
 ActiveAdmin.register Service do
+  scope :all
+  scope("Draft") { |scope| scope.draft  }
+  scope("Pending") { |scope| scope.pending } 
+  scope("Published") { |scope| scope.published }
+
   permit_params(
     :title,
     :content,
     :cover_image,
-    :category_id
+    :category_id,
+    :status
   )
 
   form do |f|
@@ -12,6 +18,7 @@ ActiveAdmin.register Service do
       f.input :cover_image, as: :file
       f.input :owner, as: :select, collection: User.all.map { |u| [u.email, u.id] }
       f.input :category_id, as: :select, collection: Category.children
+      f.input :status
     end
     f.inputs 'Content' do
       f.input :content, input_html: { class: 'tinymce' }
@@ -34,24 +41,11 @@ ActiveAdmin.register Service do
       end
       row :category
       row :owner
+      row :status
       row :content do |service|
         service.content.html_safe
       end
       row :created_at
-    end
-    panel "Profiles" do
-      table_for service.profiles do
-        column :id
-        column :first_name
-        column :last_name
-        column 'email' do |profile|
-          profile.user.email
-        end
-        column 'Actions' do |profile|
-          link_to 'View', admin_profile_path(profile)
-        end
-      end
-
     end
   end
 
