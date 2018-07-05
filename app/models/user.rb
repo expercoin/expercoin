@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   attr_accessor :first_name, :last_name
 
-  validates_presence_of :first_name, :last_name
+  validates_presence_of :first_name, :last_name, on: :create
   validates_uniqueness_of :email
 
   after_commit :create_profile, on: :create
