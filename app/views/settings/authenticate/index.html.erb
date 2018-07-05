@@ -1,0 +1,34 @@
+<div class="profile-title-section">
+  <div class="container">
+    <h2 class="profile-name">
+      <%= decorate(@profile).full_name %>
+      <span>
+        Profile
+      </span>
+    </h2>
+  </div>
+</div>
+<div class="container profile-form-container d-flex">
+  <div class="row">
+    <div class="col-sm-3">
+      <%= render 'shared/profile_navigation', locals: {active: 'authenticate'} %>
+    </div>
+    <div class="col-sm-9">
+      <div class="profile-panel">
+        <div class="panel-header">
+          <h4>Verify Your Identity</h4>
+        </div>
+        <div class="panel-body">
+          <h5>Authenticate Your Identity with LinkedIn</h5>
+          <p>
+          Our clients are going to trust you with their confidential data. We, therefore, need to verify your identity. You can always change the information on your profile later.
+          </p>
+          <div class='d-flex justify-content-center'>
+            <a class="btn btn-primary" href="/auth/linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i> Apply with LinkedIn</a>
+          </div>
+        </div>
+      </div>    
+    </div>
+  </div>
+</div>
+<%= render 'shared/notice_box', message: 'Successfully Saved!', type: 'success', name: '' %>

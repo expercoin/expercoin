@@ -3,7 +3,6 @@ namespace :services do
   task create: :environment do
     subcategories = Category.children
     subcategories.each do |subcategory|
-      providers = Profile.all.sample(3)
       rand(1..5).times do
         title = "<h1>#{Faker::Movie.quote}</h1>"
         body = []
@@ -18,7 +17,8 @@ namespace :services do
           content: content,
           rate: rate,
           expercoin_rate: rate * 1.07,
-          cover_image: File.open("#{Rails.root}/public/images/fake/#{rand(1..8)}.jpg")
+          cover_image: File.open("#{Rails.root}/public/images/fake/#{rand(1..8)}.jpg"),
+          owner: User.all.sample
         )
         puts "Created service with title #{service.title}"
       end

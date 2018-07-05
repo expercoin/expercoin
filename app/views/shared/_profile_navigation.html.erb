@@ -12,6 +12,14 @@
       </span>
       About
     </a>
+    <% if current_user.pending? %>
+      <a class="<%= ('active' if locals[:active] == 'authenticate') %> list-group-item" href="<%= settings_authenticate_index_path %>">
+        <span>
+          <div class="basic-info-grey"></div>
+        </span>
+        Authenticate
+      </a>
+    <% end %>
     <a class="<%= ('active' if locals[:active] == 'video') %> list-group-item double-line-item" href="<%= settings_video_index_path %>">
       <span>
         <div class="help-grey"></div>
