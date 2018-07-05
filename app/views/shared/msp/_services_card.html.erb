@@ -16,13 +16,13 @@
       </div>
       <h4><%= link_to service.title, service_url %></h4>
       <div class="service-rating-and-prices">
-        <div class="pricing" data-container="body" data-toggle="popover" data-placement="top" data-content="<%= decorate(service).starting_price_full %>" data-trigger="hover">
-          <span class="text">Starting at</span>
-          <span class="value"><%= decorate(service).starting_price_in_usd %></span>
+        <div class="pricing" data-container="body" data-toggle="popover" data-placement="top" data-content="<%= decorate(service).display_rate %>" data-trigger="hover">
+          <span class="value"><%= number_to_currency(decorate(service).display_rate_in_usd) %></span>
+          <span class="text">per minute</span>
         </div>
         <div class="rating">
-          <%= decorate(service).rating %>
-          <%= display_stars(decorate(service).rating) %>
+          <%= decorate(service.owner.profile).average_rating %>
+          <%= display_stars(decorate(service.owner.profile).average_rating) %>
         </div>
       </div>  
     </div>

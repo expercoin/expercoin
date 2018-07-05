@@ -88,7 +88,7 @@
                   <div class="service-details">
                     <ul class="service-data">
                       <li>
-                        Starting at <span class="strong" data-container="body" data-toggle="popover" data-placement="left" data-content="<%= %>" data-trigger="hover"><%= decorate(service).starting_price_in_usd %></span>
+                        <span class="strong" data-container="body" data-toggle="popover" data-placement="left" data-content="<%= decorate(service).display_rate %>" data-trigger="hover"><%= number_to_currency(decorate(service).display_rate_in_usd) %></span> per minute
                       </li>
                       <li>Created <span class="strong"><%= service.created_at.strftime("%b %d, %Y")  %></span>
                       </li>
