@@ -5,7 +5,8 @@ class ServicesController < ApplicationController
   before_action :set_categories, only: [:new, :edit]
 
   def new
-    @service = @profile.services.new
+    @service = @profile.services.new(expercoin_rate: @profile.expercoin_rate, rate: @profile.rate)
+    @service_form = ServiceForm.new(@service)
   end
 
   def edit
@@ -20,7 +21,12 @@ class ServicesController < ApplicationController
 
   def create
     @service_form = ServiceForm.new(service_params)
-    redirect_to service_path(@service) if @service_form.create
+    @service = @service_form.create(Service)
+    if @service
+      redirect_to service_path(@service)
+    else
+      render :new
+    end
   end
 
   def update
@@ -45,11 +51,13 @@ class ServicesController < ApplicationController
   end
 
   def service_params
-    params.require(:service).permit(
+    params.require(:service_form).permit(
       :title,
       :content,
       :cover_image,
       :category_id,
+      :expercoin_rate,
+      :rate
     ).merge(owner: current_user)
   end
 end
