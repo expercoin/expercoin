@@ -47,7 +47,6 @@ class ServicesController < ApplicationController
 
   def destroy
     service = current_user.created_services.friendly.find(params[:id])
-    ServiceProvider.where(service: service).destroy_all
     redirect_to settings_services_path if service.destroy
   end
 

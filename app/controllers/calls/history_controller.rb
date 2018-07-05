@@ -1,5 +1,6 @@
 module Calls
   class HistoryController < ApplicationController
+    before_action :authenticate_user!
     layout 'dashboard'
 
     def index

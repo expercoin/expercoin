@@ -6,7 +6,12 @@ RSpec.shared_examples 'authenticated user' do
     expect(controller.authenticate_user!).not_to be_nil
   end
   it { expect(current_user.email).to eq user.email }
-  it { expect(response).not_to redirect_to user_session_path }
+  # it { expect(response).not_to redirect_to user_session_path }
+  it do
+    sign_out(current_user)
+    send(request.method.downcase, path)
+    expect(response).to redirect_to user_session_path
+  end
 end
 
 RSpec.shared_examples 'authenticated user get ok' do

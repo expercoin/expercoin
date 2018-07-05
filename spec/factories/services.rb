@@ -5,6 +5,8 @@ FactoryBot.define do
     title Faker::Commerce.product_name
     remote_cover_image_url Faker::Avatar.image
     category { create(:category, :with_parent) }
+    expercoin_rate { rand(100.1000) }
+    rate { expercoin_rate * 0.93 }
     content do
       title = "<h1>#{Faker::Movie.quote}</h1>"
       body = []
@@ -13,18 +15,6 @@ FactoryBot.define do
       end
       title + body.join
     end
-    profiles { create_list(:profile, 1) }
-    service_providers do
-      build_list(
-        :service_provider, 1,
-        service: @instance,
-        profile: profiles.first,
-        featured: true
-      )
-    end
-
-    trait :with_owner do
-      owner { profiles.first.user }
-    end
+    owner { create(:user) }
   end
 end
