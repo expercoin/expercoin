@@ -10,6 +10,7 @@ class CreateServices < ActiveRecord::Migration[5.2]
       t.integer :owner_id
       t.integer :expercoin_rate
       t.integer :rate
+      t.boolean :featured, default: false
       
       t.timestamps
     end

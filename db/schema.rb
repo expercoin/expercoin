@@ -193,6 +193,7 @@ ActiveRecord::Schema.define(version: 2018_07_05_081048) do
     t.integer "owner_id"
     t.integer "expercoin_rate"
     t.integer "rate"
+    t.boolean "featured", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_services_on_category_id"

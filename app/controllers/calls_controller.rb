@@ -1,6 +1,6 @@
 class CallsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_request_and_expert, only: %i[show edit update]
+  before_action :set_request_and_expert, except: [:index]
   layout 'dashboard'
 
   def index
@@ -20,6 +20,11 @@ class CallsController < ApplicationController
   def update
     return render :show unless @request.update(request_params)
     MSP::Email::Request.new(@request).email_to_requester
+    redirect_to calls_path
+  end
+
+  def reject
+    @request.update(status: 'rejected')
     redirect_to calls_path
   end
 
