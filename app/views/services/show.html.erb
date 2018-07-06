@@ -7,6 +7,11 @@
           <li class="breadcrumb-item"><%= link_to @service.category.parent.name, category_path(@service.category.parent) %></li>
           <li class="breadcrumb-item"><%= link_to @service.category.name, category_subcategory_path(@service.category.parent, @service.category) %></li>
         </ol>
+        <div class="tags">
+          <% @service.tags.each do |tag| %>
+            <span class="badge badge-pill badge-primary mr-1"><%= tag.name %></span>
+          <% end %>
+        </div>
         <% if @service.owner.try(:id) == current_user.try(:id) %>
           <div class="service-controls">
             <%= link_to edit_service_path(@service), class: 'btn btn-primary' do %>
