@@ -8,6 +8,7 @@ class Profile < ApplicationRecord
   has_many :services, through: :user
   has_one :wallet, dependent: :destroy
   has_many :wishlists
+  has_many :wishlisted_services, through: :wishlists
 
   validates_presence_of :first_name, :last_name
 
@@ -21,7 +22,7 @@ class Profile < ApplicationRecord
 
   def commission_fee
     7
-  end
+  end 
 
   private
 

@@ -3,7 +3,7 @@ class WishlistController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @services = Service.all.page(params[:page]).per(15)
+    @services = current_user.profile.wishlisted_services.page(params[:page]).per(15)
   end
   
   def create
