@@ -20,7 +20,7 @@ class ServicesController < ApplicationController
   end
 
   def index
-    @services = Service.where(featured: true).page(params[:page]).per(9)
+    @services = Service.published.page(params[:page]).per(9)
     @categories = Category.main
   end
 

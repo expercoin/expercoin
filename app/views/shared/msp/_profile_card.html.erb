@@ -1,3 +1,4 @@
+<% provider = service ? service : profile %>
 <div class="mentor-container">
   <div class="mentor-card mentor-card-panoramic">
     <%# <% if profile.country == 'United States' %>
@@ -20,15 +21,19 @@
       </div>
     </div>
     <div class="card-footer">
-      <div class="footer-block mentor-price" data-container="body" data-toggle="popover" data-placement="top" data-content="<%= ENV['CURRENCY'] %> <%= decorate(profile).display_rate %>" data-trigger="hover">
-         <%=  number_to_currency(decorate(profile).display_rate_in_usd) %> per minute
+      <div class="footer-block mentor-price" data-container="body" data-toggle="popover" data-placement="top" data-content="<%= ENV['CURRENCY'] %> <%= decorate(provider).display_rate %>" data-trigger="hover">
+          <%=  number_to_currency(decorate(provider).display_rate_in_usd) %> per minute
       </div>
       <div class="footer-block mentor-reviews">
         <%= rating = ProfileRating.new(profile).average_rating %>
         <%= display_stars(rating) %>
       </div>
       <div class="footer-block mentor-actions">
-        <%= link_to "Schedule Session", request_url, class: 'btn btn-footer' unless profile == current_user.try(:profile) %>
+        <% if profile == current_user.try(:profile) %>
+          <button class="btn btn-footer" disabled>Schedule Session</button>
+        <% else %>
+          <%= link_to "Schedule Session", request_url, class: 'btn btn-footer' %>
+        <% end %>  
         <!-- <a class="btn btn-footer-icon btn-message" href="#" data-toggle="modal" data-target="#message-mentor-modal-<%= profile.id %>"></a>
         <a class="btn btn-footer-icon btn-add"></a> -->
       </div>
