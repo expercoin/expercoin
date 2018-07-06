@@ -20,7 +20,8 @@ namespace :services do
           cover_image: File.open("#{Rails.root}/public/images/fake/#{rand(1..8)}.jpg"),
           owner: User.all.sample,
           featured: [true, false].sample,
-          status: rand(0..2)
+          status: rand(0..2),
+          tag_list: Faker::Commerce.department(4, true).gsub(' & ', ', ')
         )
         puts "Created service with title #{service.title}"
       end
