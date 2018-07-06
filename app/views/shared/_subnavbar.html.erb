@@ -13,9 +13,11 @@
       <%= link_to 'Payments', payments_path, class: "#{'active' if active == 'payments'}"  %>
     </li>
     <li>
-    <%= form_tag(url, method: :get, enforce_utf8: false) do %>
-      <i class="fa fa-search"></i>
-      <%= text_field_tag :search, params[:search], class: "", placeholder: "Search" %>
+    <% if url %>
+      <%= form_tag(url, method: :get, enforce_utf8: false) do %>
+        <i class="fa fa-search"></i>
+        <%= text_field_tag :search, params[:search], class: "", placeholder: "Search" %>
+      <% end %>
     <% end %>
     </li>
   </ul>
