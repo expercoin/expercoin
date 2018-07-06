@@ -7,6 +7,7 @@ class Profile < ApplicationRecord
   has_many :created_requests, class_name: 'Request', foreign_key: :requester_id
   has_many :services, through: :user
   has_one :wallet, dependent: :destroy
+  has_many :wishlists
 
   validates_presence_of :first_name, :last_name
 

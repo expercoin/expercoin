@@ -20,7 +20,7 @@ class ServiceDecorator < BaseDecorator
     Eth::UsdConverter.new(expercoin_rate/100.0)
                      .eth_value
                      .yield_self { |v| v.to_f }
-  end 
+  end
 
   def display_rate_in_usd
     return unless expercoin_rate.present?

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_05_081048) do
+ActiveRecord::Schema.define(version: 2018_07_06_092046) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -245,6 +245,15 @@ ActiveRecord::Schema.define(version: 2018_07_05_081048) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["profile_id"], name: "index_wallets_on_profile_id"
+  end
+
+  create_table "wishlists", force: :cascade do |t|
+    t.integer "profile_id"
+    t.integer "service_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_wishlists_on_profile_id"
+    t.index ["service_id"], name: "index_wishlists_on_service_id"
   end
 
 end

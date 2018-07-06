@@ -20,9 +20,20 @@
           <span class="value"><%= number_to_currency(decorate(service).display_rate_in_usd) %></span>
           <span class="text">per minute</span>
         </div>
-        <div class="rating">
-          <%= decorate(service.owner.profile).average_rating %>
-          <%= display_stars(decorate(service.owner.profile).average_rating) %>
+        <div class="rating-and-wishlist">
+          <div class="rating">
+            <%= decorate(service.owner.profile).average_rating %>
+            <%= display_stars(decorate(service.owner.profile).average_rating) %>
+          </div>
+          <div class="wishlist">
+            <% if current_user %>
+              <%= link_to wishlist_create_path(service), remote: true, method: :post do %>
+                <span id="wishlist-<%= service.id%>">
+                  <i class="fa <%= service.wishlisted_by(current_user.try(&:profile)) ? 'fa-heart' : 'fa-heart-o' %>" aria-hidden="true"></i>
+                </span>
+              <% end %>
+            <% end %>
+          </div>  
         </div>
       </div>  
     </div>

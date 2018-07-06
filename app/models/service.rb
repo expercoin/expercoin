@@ -3,6 +3,7 @@
 class Service < ApplicationRecord
   belongs_to :category
   belongs_to :owner, class_name: 'User', optional: true
+  has_many :wishlists
 
   mount_uploader :cover_image, ServicesUploader
 
@@ -16,5 +17,11 @@ class Service < ApplicationRecord
       :title,
       [:title, :id]
     ]
+  end
+
+  def wishlisted_by(profile)
+    if profile 
+      self.wishlists.exists?(profile_id: profile.id)
+    end
   end
 end

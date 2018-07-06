@@ -64,4 +64,6 @@ Rails.application.routes.draw do
   end
   resources :callbacks, only: :create
   resources :services, path: 'offerings'
+  resources :wishlist, only: :index
+  post 'wishlist/:service_id', to: 'wishlist#create', as: :wishlist_create
 end

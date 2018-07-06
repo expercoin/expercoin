@@ -615,14 +615,23 @@
   .service-rating-and-prices {
     color: #333;
 
-    .rating {
-      padding: 10px 10px;  
-      font-size: 14px;
+    .rating-and-wishlist {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 10px;
 
-      i {
-        font-size: 12px;
-        color: #ff4d4d;
-      }
+      .rating {  
+        font-size: 14px;
+
+        i {
+          font-size: 12px;
+          color: #ff4d4d;
+        }
+      } 
+
+      .wishlist {
+        line-height: 1!important; 
+      } 
     }
 
     .pricing {
@@ -634,7 +643,7 @@
       }  
     }
 
-    .rating,
+    .rating-and-wishlist,
     .pricing {
       background-image: linear-gradient(to right, #e3e2df 50%, rgba(#fff, 0) 0%);
       background-position: top;
