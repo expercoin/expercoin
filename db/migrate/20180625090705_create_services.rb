@@ -8,8 +8,8 @@ class CreateServices < ActiveRecord::Migration[5.2]
       t.belongs_to :category, foreign_key: true
       t.integer :status, default: 0
       t.integer :owner_id
-      t.integer :expercoin_rate
-      t.integer :rate
+      t.integer :expercoin_rate, default: 0
+      t.integer :rate, default: 0
       t.boolean :featured, default: false
       
       t.timestamps
