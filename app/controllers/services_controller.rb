@@ -20,7 +20,11 @@ class ServicesController < ApplicationController
   end
 
   def index
-    @services = Service.published.page(params[:page]).per(9)
+    services = SearchService.new(
+      Service.published,
+      params[:search]
+    ).perform
+    @services = services.page(params[:page]).per(9)
     @categories = Category.main
   end
 
