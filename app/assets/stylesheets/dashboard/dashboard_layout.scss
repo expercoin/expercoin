@@ -1282,6 +1282,10 @@
     font-weight: 600;
     margin-bottom: 4px;
   }
+
+  .breadcrumb + .tags {
+    margin-top: 10px;
+  }
 }
 
 .service-experts {

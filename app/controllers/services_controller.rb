@@ -20,7 +20,11 @@ class ServicesController < ApplicationController
   end
 
   def index
-    @services = Service.published.page(params[:page]).per(9)
+    services = SearchService.new(
+      Service.published,
+      params[:search]
+    ).perform
+    @services = services.page(params[:page]).per(9)
     @categories = Category.main
   end
 
@@ -67,7 +71,8 @@ class ServicesController < ApplicationController
       :cover_image,
       :category_id,
       :expercoin_rate,
-      :rate
+      :rate,
+      tag_list: []
     ).merge(owner_id: current_user.id)
   end
 end

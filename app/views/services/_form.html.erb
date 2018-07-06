@@ -39,6 +39,10 @@
             <label>Category</label>
             <%= f.collection_select :category_id, @categories, :id, :name, { selected: @service.category_id, include_blank: true }, { class: 'selectpicker form-control', 'data-live-search':"true" } %>
           </div>
+          <div class="form-group mt-3">  
+            <label>tags</label>
+            <%= f.collection_select :tag_list, ActsAsTaggableOn::Tag.all, :name, :name, { selected: @service.tags }, { class: 'selectpicker-tags form-control', 'data-live-search':"true" , multiple: true } %>
+          </div>
           <div class="row form-group form-group-inline">
             <div class="col-sm-4 d-flex va-flex">
               <label>Expercoin will charge X/min:</label>
@@ -97,7 +101,7 @@
       </div>
     </div>
     <div class="content-aside">
-      <%= render 'shared/msp/profile_card', profile: @profile, request_url: new_request_path(expert: @profile.slug, service: @service.slug)  %>
+      <%= render 'shared/msp/profile_card', profile: @profile, request_url: new_request_path(expert: @profile.slug, service: @service.slug), service: @service  %>
     </div>
   </section>
 

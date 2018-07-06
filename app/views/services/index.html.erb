@@ -1,6 +1,6 @@
 <% if current_user %>
   <nav class="content-nav">
-    <%= render "shared/subnavbar", active: "mentors" %>
+    <%= render "shared/subnavbar",  url: services_path, active: "mentors"%>
   </nav>
 <% end %>
 <main class="content <%= 'content-with-nav' if current_user %>">

@@ -145,7 +145,16 @@
         .value {
           font-weight: 600;
         }
-      }    
+      } 
+
+      .price-and-wishlist {
+        display: flex;
+        align-items: center;
+
+        .wishlist {
+          margin-left: 16px;
+        }
+      }   
     }
   }
 

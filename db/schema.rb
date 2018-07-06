@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_06_092046) do
+ActiveRecord::Schema.define(version: 2018_07_06_092234) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -125,8 +125,8 @@ ActiveRecord::Schema.define(version: 2018_07_06_092046) do
     t.string "last_name"
     t.string "name"
     t.string "title"
-    t.integer "expercoin_rate"
-    t.integer "rate"
+    t.integer "expercoin_rate", default: 0
+    t.integer "rate", default: 0
     t.string "professional_role"
     t.integer "years_of_experience"
     t.string "photo"
@@ -191,12 +191,37 @@ ActiveRecord::Schema.define(version: 2018_07_06_092046) do
     t.integer "category_id"
     t.integer "status", default: 0
     t.integer "owner_id"
-    t.integer "expercoin_rate"
-    t.integer "rate"
+    t.integer "expercoin_rate", default: 0
+    t.integer "rate", default: 0
     t.boolean "featured", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_services_on_category_id"
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer "tag_id"
+    t.string "taggable_type"
+    t.integer "taggable_id"
+    t.string "tagger_type"
+    t.integer "tagger_id"
+    t.string "context", limit: 128
+    t.datetime "created_at"
+    t.index ["context"], name: "index_taggings_on_context"
+    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+    t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy"
+    t.index ["taggable_id"], name: "index_taggings_on_taggable_id"
+    t.index ["taggable_type"], name: "index_taggings_on_taggable_type"
+    t.index ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type"
+    t.index ["tagger_id"], name: "index_taggings_on_tagger_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.integer "taggings_count", default: 0
+    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   create_table "transactions", force: :cascade do |t|

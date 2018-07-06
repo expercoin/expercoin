@@ -33,6 +33,12 @@ class ProfileDecorator < BaseDecorator
     exp_rate / 100.0
   end
 
+  def display_expert_rate_in_usd(service=nil)
+    exp_rate = service&.rate || rate
+    return unless exp_rate.present?
+    exp_rate / 100.0
+  end
+
   def unread_messages
     user.messages.unread.count
   end

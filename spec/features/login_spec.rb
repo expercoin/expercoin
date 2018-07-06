@@ -8,15 +8,8 @@ RSpec.describe 'Login', type: :system do
 
   feature 'login on home page' do
     it 'Log in successfully' do
-      visit root_path
-      find('a.nav-link', text: 'Login').click
-      sleep 0.5
-      fill_in 'Email Address', with: user.email
-      sleep 0.5
-      fill_in 'Password', with: user.password
-      sleep 0.5
-      click_on 'Login'
-      sleep 0.5
+      login_page = LoginModalPage.new(root_path, user)
+      login_page.fill_and_submit_form
       expect(current_path).to eq dashboard_index_path
     end
   end

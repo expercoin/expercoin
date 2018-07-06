@@ -1,5 +1,5 @@
 <nav class="content-nav">
-  <%= render "shared/subnavbar", active: "requests" %>
+  <%= render "shared/subnavbar",  url: services_path, active: "requests" %>
 </nav>
 <% if @request.errors.any? %>
   <div id="error_explanation">
