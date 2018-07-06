@@ -136,3 +136,20 @@
     margin-right: 10px;
   }
 }
+
+.btn-default {
+  border: 1px solid #e3e2df;
+
+  span {
+    margin-left: 5px;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: #fdfdfd;
+  }
+}
+
+.btn-strong {
+  font-weight: 600;
+}
