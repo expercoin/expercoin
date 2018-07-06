@@ -1,0 +1,41 @@
+<% if current_user %>
+  <nav class="content-nav">
+    <%= render "shared/subnavbar",  url: wishlist_index_path, active: "wishlist"%>
+  </nav>
+<% end %>
+<main class="content <%= 'content-with-nav' if current_user %>">
+  <% if flash.any? %>
+    <div id="error_explanation" class="mt-0">
+      <div class="content-container">
+          <ul>
+            <% flash.each do |key, value| %>
+              <%= content_tag :li, value, class: "flash #{key}" %>
+            <% end %>
+          </ul>
+      </div>
+    </div>
+  <% end %>
+  <section class="mentors-filterable">
+    <div class="content-container">
+      <div class="content-title">
+        <h3>Wishlist of Offerings</h3>
+      </div>
+      <div class="mentors-with-filters">
+        <div class="providers-groups">
+          <div class="providers providers-panoramic">
+            <% @services.each do |service| %>
+              <%= render 'shared/msp/services_card', service: service, service_url: service_path(service) %>
+            <% end %>
+          </div>
+        </div>
+        <div class="mentors-filters">
+          <div class="filter-group">
+
+          </div>
+        </div>
+      </div>
+      <%= paginate @services %>
+    </div>
+  </section>
+</main>
+

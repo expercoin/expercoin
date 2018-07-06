@@ -24,7 +24,7 @@ class ServicesController < ApplicationController
       Service.published,
       params[:search]
     ).perform
-    @services = services.page(params[:page]).per(9)
+    @services = services.page(params[:page]).per(15)
     @categories = Category.main
   end
 
