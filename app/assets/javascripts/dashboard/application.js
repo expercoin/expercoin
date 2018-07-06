@@ -23,6 +23,11 @@
 
 document.addEventListener("turbolinks:load", function() {
   $('.selectpicker').select2();
+  $('.selectpicker-tags').select2({
+    'tags': true,
+    'allowClear': true,
+    'multiple': true,
+  });
   $('.selectpicker-time').select2();
   $('[data-toggle="popover"]').popover();
   // tinymce.init({
