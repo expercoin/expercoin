@@ -22,7 +22,7 @@ module OmniauthMacros
       'extra' => {
         'raw_info' => '{"json":"data"}'
       }
-    })
+    }.with_indifferent_access)
     OmniAuth.config.test_mode = true
   end
 end

@@ -1,10 +1,9 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :oauth_account do
-    user nil
-    uid "MyString"
-    image_url "MyString"
-    profile_url "MyString"
-    access_token "MyString"
-    raw_data "MyText"
+    user
+    uid '12345'
+    image_url Faker::Avatar.image
   end
 end
