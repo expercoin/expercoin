@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="content-aside">
-      <%= render 'shared/msp/profile_card', profile: decorate(@service).owner_profile, request_url: new_request_path(expert: decorate(@service).owner_profile.slug, service: @service.slug)  %>
+      <%= render 'shared/msp/profile_card', profile: decorate(@service).owner_profile, request_url: new_request_path(decorate(@service).owner_profile.slug, @service.slug), service: @service  %>
     </div>
   </section>
 </main>
