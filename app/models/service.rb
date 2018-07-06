@@ -11,7 +11,14 @@ class Service < ApplicationRecord
   acts_as_taggable
 
   include PgSearch
-  pg_search_scope :search, against: [:title, :slug, :content], using: { tsearch: {prefix: true} }
+  pg_search_scope(:search,
+    against: [:title, :slug, :content],
+    associated_against: {
+      tags: [:name],
+      category: [:name]
+    },
+    using: { tsearch: {prefix: true} }
+  )
 
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
