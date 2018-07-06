@@ -125,8 +125,8 @@ ActiveRecord::Schema.define(version: 2018_07_06_092234) do
     t.string "last_name"
     t.string "name"
     t.string "title"
-    t.integer "expercoin_rate"
-    t.integer "rate"
+    t.integer "expercoin_rate", default: 0
+    t.integer "rate", default: 0
     t.string "professional_role"
     t.integer "years_of_experience"
     t.string "photo"
@@ -191,8 +191,8 @@ ActiveRecord::Schema.define(version: 2018_07_06_092234) do
     t.integer "category_id"
     t.integer "status", default: 0
     t.integer "owner_id"
-    t.integer "expercoin_rate"
-    t.integer "rate"
+    t.integer "expercoin_rate", default: 0
+    t.integer "rate", default: 0
     t.boolean "featured", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
