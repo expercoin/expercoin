@@ -7,6 +7,7 @@ class ServiceForm < FormObject
   attribute :category_id, Integer
   attribute :owner_id, Integer
   attribute :status, Integer
+  attribute :tag_list, Array
 
   validate :entered_rate
   validates_presence_of :title, :content, :category_id, :owner_id

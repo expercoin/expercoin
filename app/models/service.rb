@@ -8,6 +8,8 @@ class Service < ApplicationRecord
 
   enum status: %i[draft pending published]
 
+  acts_as_taggable
+
   include PgSearch
   pg_search_scope :search, against: [:title, :slug, :content], using: { tsearch: {prefix: true} }
 

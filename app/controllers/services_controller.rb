@@ -71,7 +71,8 @@ class ServicesController < ApplicationController
       :cover_image,
       :category_id,
       :expercoin_rate,
-      :rate
+      :rate,
+      tag_list: []
     ).merge(owner_id: current_user.id)
   end
 end
