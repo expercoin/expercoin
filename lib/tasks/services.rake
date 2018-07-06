@@ -4,7 +4,7 @@ namespace :services do
     subcategories = Category.children
     subcategories.each do |subcategory|
       rand(1..5).times do
-        title = "<h1>#{Faker::Movie.quote}</h1>"
+        title = "<h3>#{Faker::Movie.quote}</h3>"
         body = []
         rand(5..10).times do
           body << "<p>#{Faker::Lorem.paragraph}</p>"
