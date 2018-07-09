@@ -34,11 +34,5 @@ module Requests
     def set_request
       @request = current_user.profile.created_requests.find_by_id(params[:id])
     end
-
-    def render_error_messages(action)
-      @profile = @request.expert
-      flash.now[:alert] = @request.errors.full_messages.join(', ')
-      render action
-    end
   end
 end

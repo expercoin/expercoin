@@ -24,4 +24,12 @@ RSpec.describe WishlistController, type: :request do
     it_behaves_like 'authenticated user'
     it { expect(profile.wishlisted_services.count).to eq 1 }
   end
+
+  describe 'POST create with existing wishlist' do
+    before do
+      wishlist
+      post wishlist_create_path(service), xhr: true
+    end
+    it { expect(profile.wishlisted_services.count).to eq 0 }
+  end
 end
