@@ -6,7 +6,7 @@ RSpec.describe Settings::ServicesController, type: :request do
   let(:profile) { create(:profile) }
   let(:user) { profile.user }
   let!(:logged_user) { sign_in(user) }
-  let!(:service) { create(:service, owner: user) }
+  let!(:service) { create(:service, owner: profile) }
 
   describe '.index' do
     before { get settings_services_path }

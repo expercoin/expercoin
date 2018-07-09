@@ -31,7 +31,7 @@
         <div class="panel-header">
           <div class="service-rating-and-prices">
             <div class="rating">
-              <%= rating = ProfileRating.new(@service.owner.profile).average_rating %>
+              <%= rating = ProfileRating.new(@service.owner).average_rating %>
               <%= display_stars(rating) %>
             </div>
             <div class="pricing" data-container="body" data-toggle="popover" data-placement="left" data-content="<%= decorate(@service).display_rate %>" data-trigger="hover">
@@ -63,7 +63,7 @@
           <% end %>
         </div>
       </div>
-      <%= render 'shared/msp/profile_card', profile: decorate(@service).owner_profile, request_url: new_request_path(expert: decorate(@service).owner_profile.slug, service: @service.slug), service: @service %>
+      <%= render 'shared/msp/profile_card', profile: decorate(@service).owner, request_url: new_request_path(expert: decorate(@service).owner.slug, service: @service.slug), service: @service %>
     </div>
   </section>
 </main>

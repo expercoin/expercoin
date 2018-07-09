@@ -6,7 +6,7 @@ RSpec.describe ServicesController, type: :request do
   let(:profile) { create(:profile) }
   let(:user) { profile.user }
   let!(:logged_user) { sign_in(user) }
-  let(:service) { create(:service, owner: user) }
+  let(:service) { create(:service, owner: profile) }
   let(:category) { create(:category) }
   let(:service_params) do
     {

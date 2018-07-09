@@ -8,8 +8,8 @@
     <div class="card-body">
       <div class="service-owner">
         <% if service.owner.present? %>
-          <%= render "shared/profile_photo", photo: service.owner.profile.photo.badge.url %>
-          <%= link_to decorate(service.owner.profile).full_name, profile_path(service.owner.profile) %>
+          <%= render "shared/profile_photo", photo: service.owner.photo.badge.url %>
+          <%= link_to decorate(service.owner).full_name, profile_path(service.owner) %>
         <% else %>
           <%= image_tag "expercoin_logo.png", class: 'expercoin-service' %>  
         <% end %>
@@ -22,8 +22,8 @@
         </div>
         <div class="rating-and-wishlist">
           <div class="rating">
-            <%= decorate(service.owner.profile).average_rating %>
-            <%= display_stars(decorate(service.owner.profile).average_rating) %>
+            <%= decorate(service.owner).average_rating %>
+            <%= display_stars(decorate(service.owner).average_rating) %>
           </div>
           <div class="wishlist">
             <% if current_user %>

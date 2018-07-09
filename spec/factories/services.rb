@@ -15,6 +15,6 @@ FactoryBot.define do
       end
       title + body.join
     end
-    owner { create(:user) }
+    owner { create(:profile) }
   end
 end
