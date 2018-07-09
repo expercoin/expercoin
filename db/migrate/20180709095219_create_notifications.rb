@@ -6,6 +6,7 @@ class CreateNotifications < ActiveRecord::Migration[5.2]
       t.string  :resource_type
       t.string :title
       t.string :content
+      t.integer :status, default: 0
 
       t.timestamps
     end
