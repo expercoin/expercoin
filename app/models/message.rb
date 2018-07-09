@@ -1,7 +1,7 @@
 class Message < ApplicationRecord
   validates :title, :body, presence: true
   belongs_to :sender, class_name: 'User'
-  belongs_to :receiver, class_name: 'User'
+  belongs_to :receiver, class_name: 'User', optional: true
   belongs_to :parent, class_name: 'Message', optional: true
   belongs_to :request, optional: true
   has_many :assets, as: :resource

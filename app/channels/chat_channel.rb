@@ -1,18 +1,18 @@
 class ChatChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "chat_channel"
+    stream_from "chat_#{params[:room]}"
   end
 
   def unsubscribed
   end
 
   def send_message(data)
-    puts 'sss'
-    message = current_user.messages.build(body: data['message'])
-    if data['file_uri']
-      message.attachment_name = data['original_name']
-      message.attachment_data_uri = data['file_uri']
-    end
+    request = Request.find_by_room_sid(data['chatroom_id']) if data['chatroom_id'].present?
+    message = request.messages.build(
+      sender: current_user,
+      title: 'Conferance',
+      body: data['message']
+    )
     message.save
   end
 end
