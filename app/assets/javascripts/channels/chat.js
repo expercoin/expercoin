@@ -1,12 +1,14 @@
 $(document).on('turbolinks:load', function() {
-  var $messages, $new_message_attachment, $new_message_body, $new_message_form;
+  var $messages, $new_message_attachment, $new_message_body, $new_message_form,  $room_id;
   $messages = $('#messages');
   $new_message_form = $('#new-message');
   $new_message_body = $new_message_form.find('#message-body');
   $new_message_attachment = $new_message_form.find('#message-attachment');
+  $room_id = $('#room-sid').attr('data-room-sid');
+
   if ($messages.length > 0) {
     App.chat = App.cable.subscriptions.create({
-      channel: "ChatChannel"
+      channel: "ChatChannel", room: $room_id
     }, {
       connected: function() {},
       disconnected: function() {},
@@ -20,12 +22,12 @@ $(document).on('turbolinks:load', function() {
         return this.perform('send_message', {
           message: message,
           file_uri: file_uri,
-          original_name: original_name
+          original_name: original_name,
+          chatroom_id: $room_id
         });
       }
     });
     return $new_message_form.submit(function(e) {
-      console.log('sss')
       var $this, file_name, message_body, reader;
       $this = $(this);
       message_body = $new_message_body.val();

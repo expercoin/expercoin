@@ -1,0 +1,13 @@
+<div id='room-sid' data-room-sid='<%= params[:id] %>'></div>
+<div class='session-call-chat' >
+  <div id="messages">
+    <%= render @messages %>
+  </div>
+  <div class="session-chat-input">
+    <span class="fa fa-comment-o" aria-hidden="true"></span>
+    <%= form_with url: '#', html: {id: 'new-message'} do |f| %>
+      <%= f.text_field :body, id: 'message-body',class: "form-control message-input" %>
+      <% f.submit %>
+    <% end %>
+  </div>
+</div>
