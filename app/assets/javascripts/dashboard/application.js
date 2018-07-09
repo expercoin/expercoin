@@ -20,6 +20,7 @@
 //= require web3_setup
 //= require tinymce
 //= require commission_fee
+//= require assets
 
 document.addEventListener("turbolinks:load", function() {
   $('.selectpicker').select2();

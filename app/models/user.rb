@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_one :profile
   has_many :messages, foreign_key: :receiver_id
   has_many :transactions, foreign_key: :sender_id
+  has_many :assets, as: :resource
 
   attr_accessor :first_name, :last_name
 

@@ -14,3 +14,7 @@
   </div>
 </main>
 
+<%= form_with scope: :asset, url: assets_path do |f| %>
+  <%= f.file_field :file, class: 'hide' %>
+  <%= f.submit 'save', class: 'hide' %>
+<% end %>
