@@ -9,4 +9,12 @@ class Message < ApplicationRecord
 
   include PgSearch
   pg_search_scope :search, against: [:title, :body], using: { tsearch: {prefix: true} }
+
+  after_create_commit :broadcast_message
+
+  private
+
+  def broadcast_message
+    MessageBroadcastJob.perform_later(self)
+  end
 end
