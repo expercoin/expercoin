@@ -20,6 +20,7 @@
 //= require web3_setup
 //= require tinymce
 //= require commission_fee
+//= require assets
 //= require cable
 
 document.addEventListener("turbolinks:load", function() {

@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :messages, foreign_key: :receiver_id
   has_many :sent_messages, class_name: 'Message', foreign_key: :sender_id
   has_many :transactions, foreign_key: :sender_id
+  has_many :assets, as: :resource
+  has_many :notifications
 
   attr_accessor :first_name, :last_name
 

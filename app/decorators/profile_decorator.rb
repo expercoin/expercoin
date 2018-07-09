@@ -47,6 +47,14 @@ class ProfileDecorator < BaseDecorator
     user.messages.unread.present?
   end
 
+  def unread_notifications
+    user.notifications.unread.count
+  end
+
+  def unread_notifications?
+    user.notifications.unread.present?
+  end  
+
   Request.statuses.keys.each do |status|
     define_method "#{status}_calls_count" do
       requests.send(status).count

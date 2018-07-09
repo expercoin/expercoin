@@ -1,0 +1,6 @@
+$(document).on("turbolinks:load",function(){
+  $('#asset_file').on('change', function(event) {
+    $(this).parent('form').find(':submit').click();
+  });
+});
+

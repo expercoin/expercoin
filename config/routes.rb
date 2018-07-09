@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     resources :wallet, only: [:index, :create, :destroy, :update]
   end
 
+  resources :assets, path: 'files'
   namespace :requests do
     resources :times, only: [:edit, :update]
   end

@@ -4,6 +4,8 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.create(messages_params)
+    @message.assets = current_user.assets
+    current_user.assets.clear
   end
 
   private
