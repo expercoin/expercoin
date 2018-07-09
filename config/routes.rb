@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
     devise_for :users, path: '', 

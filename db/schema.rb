@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_09_085509) do
+ActiveRecord::Schema.define(version: 2018_07_09_095219) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -114,6 +114,18 @@ ActiveRecord::Schema.define(version: 2018_07_09_085509) do
     t.boolean "unread", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "resource_id"
+    t.string "resource_type"
+    t.string "title"
+    t.string "content"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "oauth_accounts", force: :cascade do |t|

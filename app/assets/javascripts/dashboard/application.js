@@ -21,6 +21,7 @@
 //= require tinymce
 //= require commission_fee
 //= require assets
+//= require cable
 
 document.addEventListener("turbolinks:load", function() {
   $('.selectpicker').select2();
