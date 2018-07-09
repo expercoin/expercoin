@@ -8,6 +8,11 @@ class AssetsController < ApplicationController
     @asset.save
   end
 
+  def destroy
+    @asset = current_user.assets.find_by(id: params[:id])
+    @asset.destroy
+  end
+
   private
 
   def asset_params

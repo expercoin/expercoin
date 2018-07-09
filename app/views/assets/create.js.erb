@@ -1,3 +1,6 @@
 $('.assets-container').append(
-  '<span class="badge badge-light d-block"><%= j(@asset.name) %></span> '
+  '<div class="d-block" id="asset-<%= @asset.id %>">'
+  + '<span class="badge badge-light"><%= j(@asset.name) %></span> '
+  + '<%= link_to '', asset_path(@asset), { data: { remote: true, method: :delete}, class: "fa fa-times" } %>'
+  + '</div>'
 );
