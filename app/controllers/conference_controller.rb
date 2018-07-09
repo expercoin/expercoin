@@ -28,6 +28,7 @@ class ConferenceController < ApplicationController
   def show
     @request = Request.find_by_room_sid(params[:id])
     @request ||= Request.find_by_id(params[:request_id])
+    @messages = @request.messages
     @expert = @request.expert
     raise ActionController::RoutingError.new('Not Found') if user_not_valid? || room_closed?
     @token = @video.access_token(
