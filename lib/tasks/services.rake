@@ -18,7 +18,7 @@ namespace :services do
           rate: rate,
           expercoin_rate: rate * 1.07,
           cover_image: File.open("#{Rails.root}/public/images/fake/#{rand(1..8)}.jpg"),
-          owner: User.all.sample,
+          owner: Profile.all.sample,
           featured: [true, false].sample,
           status: rand(0..2),
           tag_list: Faker::Commerce.department(4, true).gsub(' & ', ', ')

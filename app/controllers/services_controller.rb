@@ -50,7 +50,7 @@ class ServicesController < ApplicationController
   end
 
   def destroy
-    service = current_user.created_services.friendly.find(params[:id])
+    service = @profile.created_services.friendly.find(params[:id])
     redirect_to settings_services_path if service.destroy
   end
 
@@ -73,6 +73,6 @@ class ServicesController < ApplicationController
       :expercoin_rate,
       :rate,
       tag_list: []
-    ).merge(owner_id: current_user.id)
+    ).merge(owner_id: @profile.id)
   end
 end

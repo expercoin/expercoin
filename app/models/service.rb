@@ -2,7 +2,7 @@
 
 class Service < ApplicationRecord
   belongs_to :category
-  belongs_to :owner, class_name: 'User', optional: true
+  belongs_to :owner, class_name: 'Profile', optional: true
   has_many :wishlists
 
   mount_uploader :cover_image, ServicesUploader

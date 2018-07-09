@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe ServiceDecorator do
   let(:profile) { create(:profile, :with_photo) }
   let(:user) { profile.user }
-  let(:service) { create(:service, owner: user, expercoin_rate: 500, rate: 465) }
+  let(:service) { create(:service, owner: profile, expercoin_rate: 500, rate: 465) }
   let(:service_decorate) { described_class.new(service) }
   let(:eth_amount) { Eth::UsdConverter.new(5).eth_value }
 

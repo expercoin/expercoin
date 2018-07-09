@@ -4,15 +4,15 @@ class ServiceDecorator < BaseDecorator
   include ActionView::Helpers::NumberHelper
 
   def profile_photo
-    owner.profile.photo.thumb.url
+    owner.photo.thumb.url
   end
 
   def profile_full_name
-    ProfileDecorator.new(owner.profile).full_name
+    ProfileDecorator.new(owner).full_name
   end
 
   def owner_profile
-    owner.profile
+    owner
   end 
 
   def display_rate

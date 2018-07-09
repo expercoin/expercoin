@@ -5,8 +5,9 @@ class Profile < ApplicationRecord
   has_many :created_reviews, class_name: 'Review', foreign_key: :author_id
   has_many :requests, foreign_key: :expert_id
   has_many :created_requests, class_name: 'Request', foreign_key: :requester_id
-  has_many :services, through: :user
   has_one :wallet, dependent: :destroy
+  has_many :services, foreign_key: :owner_id
+  has_many :created_services, class_name: 'Service', foreign_key: 'owner_id'
   has_many :wishlists
   has_many :wishlisted_services, through: :wishlists
 
