@@ -38,6 +38,7 @@ gem 'twilio-ruby', '~> 5.6.1'
 gem 'uglifier', '>= 1.3.0'
 gem 'virtus'
 gem 'webmock'
+gem 'carrierwave-base64'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby

@@ -32,16 +32,16 @@ $(document).on('turbolinks:load', function() {
       $this = $(this);
       message_body = $new_message_body.val();
       if ($.trim(message_body).length > 0 || $new_message_attachment.get(0).files.length > 0) {
-        // if ($new_message_attachment.get(0).files.length > 0) {
-        //   reader = new FileReader();
-        //   file_name = $new_message_attachment.get(0).files[0].name;
-        //   reader.addEventListener("loadend", function() {
-        //     return App.chat.send_message(message_body, reader.result, file_name);
-        //   });
-        //   reader.readAsDataURL($new_message_attachment.get(0).files[0]);
-        // } else {
+        if ($new_message_attachment.get(0).files.length > 0) {
+          reader = new FileReader();
+          file_name = $new_message_attachment.get(0).files[0].name;
+          reader.addEventListener("loadend", function() {
+            return App.chat.send_message(message_body, reader.result, file_name);
+          });
+          reader.readAsDataURL($new_message_attachment.get(0).files[0]);
+        } else {
           App.chat.send_message(message_body);
-        // }
+        }
       }
       e.preventDefault();
       return false;
