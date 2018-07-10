@@ -18,13 +18,13 @@ en:
       accepted:
         title: 'Call Request Accepted'
         content: 'Your Call Request has been accepted'
-      accepted:
+      rejected:
         title: 'Call Request Rejected'
         content: 'Your Call Request has been rejected'
       verified:
         title: 'Call Request Verified'
         content: 'Your Call Request has been verified'
-    inbox:
+    message:
       new:
         title: 'New Message'
         content: 'You have a new message'

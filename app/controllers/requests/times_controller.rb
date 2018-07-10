@@ -1,5 +1,7 @@
 module Requests
   class TimesController < ApplicationController
+    include Notifiable
+
     layout 'dashboard'
     before_action :authenticate_user!
     before_action :set_request
@@ -11,6 +13,7 @@ module Requests
     def update
       return render :show unless @request.update(request_params)
       MSP::Email::Request.new(@request).email_to_expert
+      create_request_notification(@request.accepted? ? 'accepted' : 'time_change')
       redirect_to request_path(@request)
     end
 
