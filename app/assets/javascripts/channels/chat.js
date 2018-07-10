@@ -32,6 +32,7 @@ $(document).on('turbolinks:load', function() {
       $this = $(this);
       message_body = $new_message_body.val();
       if ($.trim(message_body).length > 0 || $new_message_attachment.get(0).files.length > 0) {
+        if(messageValidationFail(message_body, $new_message_attachment)) return;
         if ($new_message_attachment.get(0).files.length > 0) {
           reader = new FileReader();
           file_name = $new_message_attachment.get(0).files[0].name;
@@ -49,3 +50,12 @@ $(document).on('turbolinks:load', function() {
   }
 });
 
+function messageValidationFail(message_body, new_message_attachment) {
+  if(new_message_attachment.get(0).files[0] && new_message_attachment.get(0).files[0].size > 10000000){
+    return true;
+  }else if(message_body == ''){
+    return true;
+  }else{
+    return false;
+  }
+}
