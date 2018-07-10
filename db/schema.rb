@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 2018_07_09_095219) do
     t.integer "sender_id"
     t.integer "receiver_id"
     t.integer "parent_id"
+    t.integer "request_id"
     t.string "title"
     t.text "body"
     t.boolean "unread", default: true
