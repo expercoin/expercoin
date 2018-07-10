@@ -5,6 +5,7 @@ class Message < ApplicationRecord
   belongs_to :parent, class_name: 'Message', optional: true
   belongs_to :request, optional: true
   has_many :assets, as: :resource
+  has_many :notifications, as: :resource
 
   scope :unread,-> { where(unread: true) }
 

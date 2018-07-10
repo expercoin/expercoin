@@ -41,7 +41,6 @@ Rails.application.routes.draw do
     resources :categories, only: [:index, :create]
     resources :wallet, only: [:index, :create, :destroy, :update]
   end
-
   resources :assets, path: 'files'
   namespace :requests do
     resources :times, only: [:edit, :update]
@@ -57,7 +56,6 @@ Rails.application.routes.draw do
       get 'all'
     end
   end
-
   get 'requests/:id/thankyou', to: 'requests#thankyou', as: :requests_thankyou
   resources :reviews
   resources :my_mentors, path: 'my-mentors', only: [:index]
@@ -68,4 +66,5 @@ Rails.application.routes.draw do
   resources :services, path: 'offerings'
   resources :wishlist, only: :index
   post 'wishlist/:service_id', to: 'wishlist#create', as: :wishlist_create
+  resources :notifications, only: :show
 end

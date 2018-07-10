@@ -18,6 +18,7 @@ class Request < ApplicationRecord
   has_one :review
   has_many :eth_transactions, class_name: 'Transaction'
   has_many :messages
+  has_many :notifications, as: :resource
 
   enum requested_length: %w[15min 30min 45min 60min 90min 120min]
   enum status: %I[draft pending accepted inprogress completed rejected upcoming expired closed verified verifying]
@@ -114,4 +115,8 @@ class Request < ApplicationRecord
     update!(status: 'verified', tx_hash: nil, started_at: nil, ended_at: nil, room_sid: nil, updated_by: expert, inviter: false, invitee: false)
     eth_transactions&.destroy_all
   end
+
+  def requester?(user)
+    requester.user.id == user.id 
+  end 
 end
