@@ -23,4 +23,13 @@ RSpec.describe CallsController, type: :request do
     it_behaves_like 'authenticated user'
     it { expect(response).to redirect_to calls_path }
   end
+
+  describe 'GET reject' do
+    before do
+      get reject_call_path(request_made)
+      request_made.reload
+    end
+    it_behaves_like 'authenticated user'
+    it { expect(request_made.status).to eq 'rejected' }
+  end
 end
