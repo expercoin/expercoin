@@ -2,11 +2,11 @@ module MSP
   module Conference
     # Stup class for Twilio
     class Video
-      ACCOUNT_SID = 'AC8890c403b19f0c845249f6e09ebf230a'.freeze
-      AUTH_TOKEN = 'c38f89bd9fff1f9ee210ff1bf68db00b'.freeze
-      API_VIDEO_KEY_SID = 'SK70e2491c882f13e113678adb032608c1'.freeze
-      API_VIDEO_KEY_SECRET = 'lWhQ85nnXT3XsppArBnj1B3BSs8p87Hm'.freeze
-
+      ACCOUNT_SID = ENV['TWILIO_ACCOUNT_SID']
+      AUTH_TOKEN =  ENV['TWILIO_AUTH_TOKEN']
+      API_VIDEO_KEY_SID = ENV['TWILIO_API_VIDEO_KEY_SID']
+      API_VIDEO_KEY_SECRET = ENV['TWILIO_API_VIDEO_KEY_SECRET']
+      
       attr_reader :client
 
       def initialize

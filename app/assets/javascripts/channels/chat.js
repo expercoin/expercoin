@@ -15,7 +15,10 @@ $(document).on('turbolinks:load', function() {
       received: function(data) {
         if (data['message']) {
           $new_message_body.val('');
-          return $messages.append(data['message']);
+          $messages.append(data['message']);
+          $messages.animate({
+            scrollTop: $('.chat-message:last').offset().top - $messages.offset().top + $messages.scrollTop()
+          });
         }
       },
       send_message: function(message, file_uri, original_name) {
@@ -44,6 +47,8 @@ $(document).on('turbolinks:load', function() {
           App.chat.send_message(message_body);
         }
       }
+      $('#chat-attachment-name').html('');
+      $('#message-attachment').val('');
       e.preventDefault();
       return false;
     });
