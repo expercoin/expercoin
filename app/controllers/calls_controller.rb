@@ -1,4 +1,6 @@
 class CallsController < ApplicationController
+  include Notifiable
+
   before_action :authenticate_user!
   before_action :set_request_and_expert, except: [:index]
   layout 'dashboard'
@@ -20,11 +22,13 @@ class CallsController < ApplicationController
   def update
     return render :show unless @request.update(request_params)
     MSP::Email::Request.new(@request).email_to_requester
+    create_request_notification(@request.accepted? ? 'accepted' : 'time_change')
     redirect_to calls_path
   end
 
   def reject
     @request.update(status: 'rejected')
+    create_request_notification('rejected')
     redirect_to calls_path
   end
 
