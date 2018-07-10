@@ -9,8 +9,9 @@ class AssetsController < ApplicationController
   end
 
   def destroy
-    @asset = current_user.assets.find_by(id: params[:id])
-    @asset.destroy
+    asset = current_user.assets.find_by(id: params[:id])
+    @id = asset.id
+    asset.destroy
   end
 
   private
