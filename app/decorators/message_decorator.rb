@@ -19,9 +19,9 @@ class MessageDecorator < BaseDecorator
   def sender_full_name
     sender.profile.first_name << ' ' << sender.profile.last_name 
   end
-  
-  def time
-    created_at.strftime('%l:%M %p')
+
+  def time(time_zone = ENV['TIME_ZONE'])
+    created_at.in_time_zone(time_zone).strftime('%l:%M %p')
   end
 
   def receiver_name
