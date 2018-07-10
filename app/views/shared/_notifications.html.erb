@@ -1,5 +1,5 @@
-<% user.notifications.unread.each do |notification| %>
-  <a class="notification">
+<% user.notifications.unread_desc.each do |notification| %>
+  <%= link_to notification_path(notification), class: "notification" do %>
     <div class="notification-header">
       <%= notification.title %>
       <span class="notification-date"><%= decorate(notification).format_date %></span>
@@ -7,5 +7,5 @@
     <div class="notification-body">
       <%= notification.content %>
     </div>  
-  </a>
+  <% end %>
 <% end %>

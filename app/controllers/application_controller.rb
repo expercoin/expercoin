@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
     dashboard_index_path
   end
 
+  def render_not_found
+    render :file => "#{RAILS_ROOT}/public/404.html",  :status => 404
+  end
+  
   protected
 
   def configure_permitted_parameters
