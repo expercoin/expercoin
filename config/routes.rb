@@ -67,4 +67,7 @@ Rails.application.routes.draw do
   resources :wishlist, only: :index
   post 'wishlist/:service_id', to: 'wishlist#create', as: :wishlist_create
   resources :notifications, only: :show
+  namespace :downloads do
+    resources :assets, only: [:show]
+  end
 end

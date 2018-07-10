@@ -19,5 +19,6 @@ RSpec.describe Message, type: :model do
     it { expect(message).to belong_to(:sender) }
     it { expect(message).to belong_to(:receiver) }
     it { expect(message).to belong_to(:parent) }
+    it { expect(message).to have_many(:assets) }
   end
 end
