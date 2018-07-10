@@ -930,6 +930,21 @@
       border-left: none;
       border-right: none;
     }
+
+    #message-attachment {
+      display: none;
+    }
+  }
+
+  .sesssion-chat-actions {
+    .fa-paperclip {
+      cursor: pointer;
+      padding: 10px 15px 10px;
+    }
+
+    #chat-attachment-name {
+      color: #009fe0;
+    }
   }
 }
 

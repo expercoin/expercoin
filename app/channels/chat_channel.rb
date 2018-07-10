@@ -13,6 +13,14 @@ class ChatChannel < ApplicationCable::Channel
       title: 'Conferance',
       body: data['message']
     )
-    message.save
+    return unless message.save
+    message.assets.create!(name: data['original_name'], file: data['file_uri']) if data['file_uri']
+    broadcast_message(message.id)
+  end
+
+  private
+
+  def broadcast_message(id)
+    MessageBroadcastJob.perform_later(id)
   end
 end
