@@ -42,6 +42,11 @@
           <p><%= @message.body %></p>
         </div>
       </div>
+      <% @message.assets.each do |asset| %>
+        <div>
+          <%= link_to asset.name, downloads_asset_path(asset), class: 'badge badge-light' %>
+        </div>
+      <% end %>
     </div>
     <div class="content-aside">
       <div class='panel'>
