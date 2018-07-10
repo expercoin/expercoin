@@ -3,7 +3,13 @@ $(document).on("turbolinks:load",function(){
 });
 
 function listenersInitialize() {
-  $("#message-attachment").change(function(){
+  if($('#messages').length > 0) {
+    $('#messages').animate({
+      scrollTop: $('.chat-message:last').offset().top - $('#messages').offset().top + $('#messages').scrollTop()
+    });
+  }
+ 
+  $('#message-attachment').change(function(){
     $('#chat-attachment-name').html($(this).get(0).files[0].name);
   });
 
