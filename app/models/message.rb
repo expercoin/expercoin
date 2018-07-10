@@ -5,17 +5,10 @@ class Message < ApplicationRecord
   belongs_to :parent, class_name: 'Message', optional: true
   belongs_to :request, optional: true
   has_many :assets, as: :resource
+  has_many :notifications, as: :resource
 
   scope :unread,-> { where(unread: true) }
 
   include PgSearch
   pg_search_scope :search, against: [:title, :body], using: { tsearch: {prefix: true} }
-
-  after_create_commit :broadcast_message
-
-  private
-
-  def broadcast_message
-    MessageBroadcastJob.perform_later(self)
-  end
 end

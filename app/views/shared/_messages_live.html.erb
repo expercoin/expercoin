@@ -1,4 +1,4 @@
-<div id='room-sid' data-room-sid='<%= params[:id] %>'></div>
+<div id='room-sid' data-room-sid='<%= @request.room_sid %>'></div>
 <div class='session-call-chat' >
   <div id="messages">
     <%= render @messages %>
@@ -7,7 +7,14 @@
     <span class="fa fa-comment-o" aria-hidden="true"></span>
     <%= form_with url: '#', html: {id: 'new-message'} do |f| %>
       <%= f.text_field :body, id: 'message-body',class: "form-control message-input" %>
+      <%= f.file_field :attachment, id: 'message-attachment' %>
       <% f.submit %>
     <% end %>
+  </div>
+  <div class="sesssion-chat-actions">
+    <span id='chat-attachment-upload'>
+      <i class="fa fa-paperclip fa-lg" aria-hidden="true"></i>
+    <span id='chat-attachment-name'></span>
+    </span>
   </div>
 </div>

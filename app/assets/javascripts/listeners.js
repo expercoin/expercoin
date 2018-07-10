@@ -3,6 +3,14 @@ $(document).on("turbolinks:load",function(){
 });
 
 function listenersInitialize() {
+  $("#message-attachment").change(function(){
+    $('#chat-attachment-name').html($(this).get(0).files[0].name);
+  });
+
+  $('body').on('click', '#chat-attachment-upload', function(){
+    $('#message-attachment').click();
+  });
+
   $('body').on('change', function(){
     removeNotice();
   });

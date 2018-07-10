@@ -27,4 +27,13 @@ class MessageDecorator < BaseDecorator
   def receiver_name
     receiver.profile.first_name
   end
+
+  def primary_asset_link
+    return '' unless last_asset
+    "<a href=#{last_asset&.file} target='_blank'>#{last_asset&.name}</a>".html_safe
+  end
+
+  def last_asset
+    assets.last
+  end
 end
