@@ -7,7 +7,8 @@ RSpec.describe User, type: :model do
   ASSOCIATIONS = [
     { model: :profile, association: 'have_one' },
     { model: :messages, association: 'have_many' },
-    { model: :transactions, association: 'have_many' }
+    { model: :transactions, association: 'have_many' },
+    { model: :assets, association: 'have_many' }
   ].freeze
 
   VALIDATIONS = [

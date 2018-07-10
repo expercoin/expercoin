@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :asset do
-    name "MyString"
-    file "MyString"
+    name 'expercoin_logo.png'
+    file { File.open("#{Rails.root}/public/images/expercoin_logo.png") }
+    resource { create(:message) }
   end
 end
