@@ -4,7 +4,6 @@ module Downloads
     before_action :set_asset
 
     def show
-      return unless @asset
       send_file @asset.file.path, filename: @asset.name, type: file_type, disposition: 'attachment'
     end
 
