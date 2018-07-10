@@ -48,10 +48,20 @@ class RequestsController < ApplicationController
       request_params.merge(requester: current_user&.profile, status: 0)
     )
     return render_error_messages :new unless @request.save
+    create_new_request_notification
     redirect_to edit_request_path(@request.id)
   end
 
   private
+  
+  def create_new_request_notification
+    Notifications::Create.new(
+      user_id: @request.expert.user_id,
+      resource_type: @request.class.name,
+      resource_id: @request.id,
+      type: :new
+    ).perform
+  end
 
   def redirect_to_verify
     redirect_to request_verify_index_path(@request) if @request&.accepted?

@@ -10,8 +10,21 @@ en:
   notification:
     request:
       new:
-        title: 'New Request'
-        content: 'You have a new request for mentorship'
+        title: 'New Call Request'
+        content: 'You have a new call request'
       time_change:
-        title: 'Time changed for request'
+        title: 'New Times For Request'
         content: 'Suggested times have been changed'
+      accepted:
+        title: 'Call Request Accepted'
+        content: 'Your Call Request has been accepted'
+      accepted:
+        title: 'Call Request Rejected'
+        content: 'Your Call Request has been rejected'
+      verified:
+        title: 'Call Request Verified'
+        content: 'Your Call Request has been verified'
+    inbox:
+      new:
+        title: 'New Message'
+        content: 'You have a new message'

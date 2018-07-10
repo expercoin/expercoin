@@ -1,5 +1,5 @@
 module Notifications
-  class CreateNotification
+  class Create
     def initialize(params)
       @params = params
       @user = User.find_by(id: params[:user_id])
