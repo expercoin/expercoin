@@ -8,4 +8,12 @@ class Transaction < ApplicationRecord
   scope :expert, -> { where.not(status: 'completed', parent_id: nil, to_eth: nil, receiver_id: nil, tx_hash: nil) }
 
   enum status: %i[pending completed]
-end
+
+  include PgSearch
+  pg_search_scope(:search,
+    against: [:eth_amount],
+    associated_against: {
+      request: [:title, :message]
+    },
+    using: { tsearch: { prefix: true } }
+  )end

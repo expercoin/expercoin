@@ -4,7 +4,7 @@
 <main class="content content-with-nav">
   <div class="content-container user-requests">
     <div class="content-main">
-      <%= render 'shared/search', url: inbox_index_path, title: 'Payments History' %>
+      <%= render 'shared/search', url: payments_path, title: 'Payments History' %>
 
       <div class="panel requests-list-container" data-ordered-by="none" data-order-direction="none">
         <header class="requests-list-header">
@@ -40,6 +40,7 @@
         </div>
       </div>
     </div>
+        <%= paginate @transactions %>
   </div>
 </main>
 
