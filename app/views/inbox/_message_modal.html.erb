@@ -9,6 +9,7 @@
       <div class="modal-body">
         <div class='request-form'>
           <%= form_with model: Message.new, url: messages_path do |f| %>
+              <%= f.hidden_field :parent_id, value: @message&.id %>
               <%= f.hidden_field :receiver_id, value: profile.user.id %>
               <div class='form-group'>
                 <%= f.label :subject, 'Message Subject' %>

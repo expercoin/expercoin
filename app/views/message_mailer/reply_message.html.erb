@@ -111,9 +111,6 @@
         <td>
           <table>
             <tr>
-              <td width="120" style="padding: 16px;">
-                <%= image_tag decorate(@message).sender_photo_thumb, class: 'rounded-0 img-height-thumb', style: 'border-radius: 50%; height: 100px;' %> 
-              </td>
               <td>
                 <h4 style="margin: 0;"> <%= decorate(@message.sender.profile).full_name %> </h4>
                 <div> <%= @message.sender.profile.title %> </div>
