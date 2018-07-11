@@ -3,9 +3,13 @@ class NotificationsController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    notification = Notification.find(params[:id])
-    notification.update(status: 1)
-    redirect_to redirection_path(notification)
+    notification = Notification.find(params[:id]) rescue nil
+    if notification
+      notification.update(status: 1)
+      redirect_to redirection_path(notification)
+    else
+      not_found
+    end  
   end
 
   private
@@ -23,7 +27,7 @@ class NotificationsController < ApplicationController
     when 'Message'
       inbox_path(resource)
     else
-      render_not_found  
+      not_found  
     end
   end  
 end 
