@@ -7,7 +7,8 @@ class ChatChannel < ApplicationCable::Channel
   end
 
   def send_message(data)
-    request = Request.find_by_room_sid(data['chatroom_id']) if data['chatroom_id'].present?
+    return unless data['chatroom_id'].present?
+    request = Request.find_by_room_sid(data['chatroom_id'])
     message = request.messages.build(
       sender: current_user,
       title: 'Conferance',

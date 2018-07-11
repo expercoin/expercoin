@@ -2,9 +2,9 @@ class MessageBroadcastJob < ApplicationJob
   queue_as :default
 
   def perform(message_id)
-    message = Message.find(message_id)
-    sid = message.request.room_sid
-    ActionCable.server.broadcast "chat_#{sid}", message: render_message(message)
+    Message.find(message_id).yield_self do |m|
+      ActionCable.server.broadcast "chat_#{m.request.room_sid}", message: render_message(m)
+    end
   end
 
   private
