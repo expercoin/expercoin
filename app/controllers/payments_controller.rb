@@ -8,6 +8,10 @@ class PaymentsController < ApplicationController
   end
 
   def index
-    @transactions = Transaction.where(sender: current_user.profile)
+    transactions = SearchService.new(
+      Transaction.where(sender: current_user.profile),
+      params[:search]
+    ).perform
+    @transactions = transactions.page(params[:page]).per(8)
   end
 end

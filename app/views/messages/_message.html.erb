@@ -1,7 +1,7 @@
   <div class="chat-message">
     <%= image_tag decorate(message).sender_photo_thumb, width: '48', height: '48', class: 'user-photo' %>
     <h3 class="user-name"><%= decorate(message).sender_full_name %></h3>
-    <span class="time-posted"><%= decorate(message).time(current_user.time_zone) %></span>
+    <span class="time-posted"><%= decorate(message).time(nil) %></span>
     <p class="message-content"><%= decorate(message).body %></p>
     <p class="message-assset"><%= decorate(message).primary_asset_link %></p>
   </div>

@@ -3,7 +3,7 @@ $(document).on("turbolinks:load",function(){
 });
 
 function listenersInitialize() {
-  if($('#messages').length > 0) {
+  if($('#messages .chat-message').length > 0) {
     $('#messages').animate({
       scrollTop: $('.chat-message:last').offset().top - $('#messages').offset().top + $('#messages').scrollTop()
     });
