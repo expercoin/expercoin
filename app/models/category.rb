@@ -10,6 +10,8 @@ class Category < ApplicationRecord
   scope :children, -> { where.not(parent_id: nil ).order(name: :asc) }
 
   mount_uploader :banner, BannerUploader
+  mount_uploader :logo, IconUploader
+  mount_uploader :logo_active, IconUploader
 
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
