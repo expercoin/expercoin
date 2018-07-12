@@ -103,7 +103,7 @@
       <% @categories.each do |category| %>
         <div class="category-container">
           <%= link_to category_path(category), class: "category" do %>
-            <span class="category-icon"></span>
+            <span class="category-icon"><%= decorate(category).category_icon %></span>
             <span class="category-title"><%= category.name %></span>
           <% end %>
         </div>
