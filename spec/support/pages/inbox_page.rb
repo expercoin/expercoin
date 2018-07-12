@@ -10,4 +10,10 @@ class InboxPage
   def open
     visit @url
   end
+
+  def click_details
+    visit @url
+    click_on 'Details'
+    sleep 0.1
+  end
 end

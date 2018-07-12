@@ -14,4 +14,10 @@ RSpec.describe 'Inbox', type: :system do
     before { inbox_page.open }
     it { expect(page.body).to include 'Joe Doe' }
   end
+
+  feature 'Open Message' do
+    before { inbox_page.click_details }
+    it { expect(page.body).to include message.body }
+    it { expect(page.body).to include message.title }
+  end
 end
