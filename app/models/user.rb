@@ -17,14 +17,15 @@ class User < ApplicationRecord
   validates_presence_of :first_name, :last_name, on: :create
   validates_uniqueness_of :email
 
-  after_commit :create_profile, on: :create
+  after_commit :set_profile, on: :create
 
   accepts_nested_attributes_for :profile
 
   enum status: %i[pending verified]
 
-  def create_profile
-    Profile.create!(user_id: id, first_name: first_name, last_name: last_name)
+  def set_profile
+    return if profile.present?
+    create_profile(first_name: first_name, last_name: last_name)
   end
 
   def send_confirmation_notification?

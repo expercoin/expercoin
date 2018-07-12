@@ -26,4 +26,16 @@ class RequestPage < UserPage
     click_on 'View Request'
     sleep 0.1
   end
+
+  def join_room
+    visit url
+    click_on 'Join Call'
+    sleep 0.1
+  end
+
+  def create_room
+    visit url
+    click_on 'Request Call'
+    sleep 0.1
+  end
 end

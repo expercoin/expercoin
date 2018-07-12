@@ -25,7 +25,7 @@ RSpec.feature 'Schedule Session', type: :system do
       request_page.confirm_new_request
     end
 
-    it 'creates request' do
+    scenario 'creates request' do
       full_name = "#{expert.first_name} #{expert.last_name}"
       includes_service_attrs = include_each?(page.body, [full_name, service.title])
       expect(includes_service_attrs).to eq true
@@ -41,7 +41,7 @@ RSpec.feature 'Schedule Session', type: :system do
       request_page.confirm_new_request
     end
 
-    it 'create request' do
+    scenario 'create request' do
       full_name = "#{expert.first_name} #{expert.last_name}"
       includes_service_attrs = include_each?(page.body, [full_name, request_params[:title]])
       expect(includes_service_attrs).to eq true

@@ -13,9 +13,7 @@ FactoryBot.define do
     country 'United States'
     city Faker::Address.city
     zip_code Faker::Address.zip_code
-    user do
-      create(:user, email: Faker::Internet.email)
-    end
+    association :user, factory: :user, strategy: :build
 
     trait :with_photo do
       remote_photo_url Faker::Avatar.image

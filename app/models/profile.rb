@@ -12,6 +12,7 @@ class Profile < ApplicationRecord
   has_many :wishlisted_services, through: :wishlists
 
   validates_presence_of :first_name, :last_name
+  validates_uniqueness_of :user_id
 
   mount_uploader :photo, PhotoUploader
   extend FriendlyId
