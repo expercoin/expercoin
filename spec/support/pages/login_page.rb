@@ -1,13 +1,12 @@
 class LoginPage
   include Capybara::DSL
 
-  def initialize(url, user)
-    @url = url
+  def initialize(user)
     @user = user
   end
 
   def fill_and_submit_form
-    visit @url
+    visit '/login'
     fill_in 'Email', with: @user.email
     fill_in 'Password', with: @user.password
     click_on 'Login'

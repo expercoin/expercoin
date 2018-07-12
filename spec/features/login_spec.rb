@@ -16,7 +16,7 @@ RSpec.describe 'Login', type: :system do
 
   feature 'login with /login route' do
     it 'Log in successfully' do
-      login_page = LoginPage.new(new_user_session_path, user)
+      login_page = LoginPage.new(user)
       login_page.fill_and_submit_form
       expect(current_path).to eq dashboard_index_path
     end

@@ -4,7 +4,7 @@ class DashboardPage
   def initialize(url, user)
     @url = url
     @user = user
-    LoginModalPage.new('/', user).fill_and_submit_form
+    LoginPage.new(user).fill_and_submit_form
   end
 
   def click_my_request
