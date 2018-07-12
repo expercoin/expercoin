@@ -99,7 +99,16 @@
 <section class="content-section business-home-categories">
   <div class="container">
     <h3 class="content-section-title h3-xl">Categories</h3>
-    
+    <div class="list-categories">
+      <% @categories.each do |category| %>
+        <div class="category-container">
+          <%= link_to category_path(category), class: "category" do %>
+            <span class="category-icon"></span>
+            <span class="category-title"><%= category.name %></span>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </section>
 <%= render 'shared/trusted' %>
