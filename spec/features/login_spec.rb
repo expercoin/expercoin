@@ -5,11 +5,19 @@ require 'rails_helper'
 RSpec.describe 'Login', type: :system do
   let(:profile) { create(:profile) }
   let(:user) { profile.user }
+  let(:user_params) do
+    {
+      email: user.email,
+      password: user.password
+    }
+  end
+
+  subject(:login_modal) { LoginModalPage.new(root_path) }
 
   feature 'login with modal' do
     it 'Log in successfully' do
-      login_page = LoginModalPage.new(root_path, user)
-      login_page.fill_and_submit_form
+      login_modal.open
+      login_modal.fill_and_submit_form('user', user_params, 'Login')
       expect(current_path).to eq dashboard_index_path
     end
   end

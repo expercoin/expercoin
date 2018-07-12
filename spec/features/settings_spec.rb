@@ -19,6 +19,7 @@ RSpec.feature 'Settings', type: :system do
 
   feature 'save text fileds' do
     before do
+      settings_page.open
       settings_page.fill_and_submit_form('profile_form', settings_params)
       visit current_path
     end

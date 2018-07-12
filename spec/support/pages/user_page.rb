@@ -10,13 +10,20 @@ class UserPage
   end
 
   def open
-    visit @url
+    visit url
   end
 
   def click_schedule_session
     visit @url
     click_on 'Schedule Session'
     sleep 0.1
+  end
+
+  def fill_and_submit_form(scope, params, submit = 'Save')
+    params.keys.each do |key|
+      fill_in "#{scope}[#{key}]", with: params[key]
+    end
+    click_on submit
   end
 
   private
