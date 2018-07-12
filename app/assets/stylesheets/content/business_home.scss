@@ -141,3 +141,57 @@
     }
   }
 }
+
+// List Categories
+//---------------------------------------------
+
+.list-categories {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 40px -2px;
+
+  .category-container {
+    display: flex;
+    width: percentage(1/6);
+    padding: 2px 2px;
+  }
+
+  .category {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+    background-color: #79c378;
+    color: #fff;
+    border-radius: 3px;
+    padding: 16px 16px;
+    transition: all 0.25s ease-in-out;
+
+    .category-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80px;
+      width: 100%;
+      margin-bottom: 5px;
+
+      img {
+        max-height: 100%;
+        max-width: 100%;
+      }
+    }
+
+    .category-title {
+      font-size: 16px;
+      font-weight: 200;
+      line-height: 1.25;
+      text-align: center;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: darken(#79c378, 8%);
+      text-decoration: none;
+    }
+  }
+}
