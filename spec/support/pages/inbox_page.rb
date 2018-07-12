@@ -1,18 +1,9 @@
-class InboxPage
-  include Capybara::DSL
+# frozen_string_literal: true
 
-  def initialize(url, user)
-    @url = url
-    @user = user
-    LoginPage.new(user).fill_and_submit_form
-  end
-
-  def open
-    visit @url
-  end
-
+require 'support/pages/user_page'
+class InboxPage < UserPage
   def click_details
-    visit @url
+    visit url
     click_on 'Details'
     sleep 0.1
   end
