@@ -18,6 +18,12 @@ class RequestPage
     sleep 0.1
   end
 
+  def fill_new_request_with(params)
+    fill_in 'request[title]', with: params[:title]
+    fill_in 'request[message]', with: params[:message]
+    fill_new_request
+  end
+
   def confirm_new_request
     click_on 'Submit Request'
     sleep 0.1

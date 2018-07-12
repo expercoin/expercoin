@@ -8,6 +8,7 @@ class LoginModalPage
 
   def fill_and_submit_form
     visit @url
+    sleep 0.1
     find('a.nav-link', text: 'Login').click
     sleep 0.1
     fill_in 'Email Address', with: @user.email
@@ -15,6 +16,5 @@ class LoginModalPage
     fill_in 'Password', with: @user.password
     sleep 0.1
     click_on 'Login'
-    sleep 0.1
   end
 end
