@@ -1,12 +1,14 @@
 class ConferenceService
+  include Rails.application.routes.url_helpers
+
   def initialize(request, user)
     @request = request
     @user = user
     @video = video
+    not_found_expecation if user_not_valid?
   end
 
   def create
-    return if user_not_valid?
     return conference_path(@request.room_sid) if room_exists?
     create_room
     update_members
@@ -14,7 +16,34 @@ class ConferenceService
     conference_path(@request.room_sid) if @request.inprogress?
   end
 
+  def destroy
+    kill_room
+    update_ended_at_if_not_completed
+    status_update
+    release_funds
+    path_based_on_user
+  end
+
+  def valid?
+    not_found_expecation if room_closed?
+  end
+
+  def visit_setup
+    update_members
+    update_started_at
+  end
+
+  def token
+    @token = @video.access_token(
+      @user.email, @request.room_sid
+    )
+  end
+
   private
+
+  def not_found_expecation
+    raise ActionController::RoutingError.new('Not Found')
+  end
 
   def update_members
     @request.update(invitee: true) if user_request_expert?
@@ -35,16 +64,16 @@ class ConferenceService
   end
 
   def kill_room
-    @video.kill_room(params[:id])
+    @video.kill_room(@request.room_sid)
   end
 
   def status_update
     MSP::UpdateRequestStatus.new(@request).perform
   end
 
-  def redirect_based_on_user
-    redirect_to call_path(@request) if user_request_expert?
-    redirect_to request_path(@request) if user_request_requester?
+  def path_based_on_user
+    return call_path(@request) if user_request_expert?
+    request_path(@request) if user_request_requester?
   end
 
   def create_room
