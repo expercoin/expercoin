@@ -6,8 +6,8 @@ ActiveAdmin.register Category do
       f.input :name
       f.input :description
       f.input :banner, label: "Banner", as: :file
-      f.input :logo, label: "Logo", as: :file
-      f.input :hover_logo, label: "Hover Logo", as: :file
+      f.input :logo, label: "Logo", as: :file, hint: "Icons uploaded should have transparent background. Size of the icons is limited on 120 x 80 px. They can't be larger then this but can be smaller."
+      # f.input :hover_logo, label: "Hover Logo", as: :file
       f.input :parent_id, as: :select, collection: Category.main
     end
     f.actions
