@@ -20,7 +20,7 @@ class ConferenceController < ApplicationController
     @request ||= Request.find_by_id(params[:request_id])
     set_view_instance
     conference_service = ConferenceService.new(@request, current_user)
-    conference_service.valid?
+    conference_service.raise_error_if_room_closed
     @token = conference_service.token
     conference_service.visit_setup
   end
