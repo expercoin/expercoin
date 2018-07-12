@@ -1,21 +1,20 @@
 class LoginModalPage
   include Capybara::DSL
 
-  def initialize(url, data)
+  def initialize(url, user)
     @url = url
-    @data = data
+    @user = user
   end
 
   def fill_and_submit_form
     visit @url
-    sleep 0.4
     find('a.nav-link', text: 'Login').click
-    sleep 0.4
-    fill_in 'Email Address', with: @data.email
-    sleep 0.4
-    fill_in 'Password', with: @data.password
-    sleep 0.4
+    sleep 0.1
+    fill_in 'Email Address', with: @user.email
+    sleep 0.1
+    fill_in 'Password', with: @user.password
+    sleep 0.1
     click_on 'Login'
-    sleep 0.2
+    sleep 0.1
   end
 end
