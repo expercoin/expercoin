@@ -24,7 +24,7 @@ class ConferenceService
     path_based_on_user
   end
 
-  def valid?
+  def raise_error_if_room_closed
     not_found_expecation if room_closed?
   end
 
@@ -113,7 +113,7 @@ class ConferenceService
   end
 
   def release_funds
-    transaction = Transaction.find_by(receiver: @request.expert.user, request: @request)
-    ReleaseFundsJob.perform_now(transaction) if @request.completed?
+    # transaction = Transaction.find_by(receiver: @request.expert.user, request: @request)
+    # ReleaseFundsJob.perform_now(transaction) if @request.completed?
   end
 end
