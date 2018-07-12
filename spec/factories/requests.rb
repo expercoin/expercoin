@@ -46,7 +46,7 @@ FactoryBot.define do
       verified
       status 'inprogress'
       invitee true
-      room_sid 'RM1cfdb11a479b2f061fb498e416a08d8f'
+      room_sid 'RMe1491f9d09795f0ee843879b8eb92c17'
       started_at { "#{first_date} #{first_time}".to_datetime }
       ended_at nil
     end

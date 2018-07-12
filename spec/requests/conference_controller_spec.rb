@@ -25,6 +25,7 @@ RSpec.describe ConferenceController, type: :request do
   end
 
   describe 'DELETE destroy' do
+    let(:req) { create(:request, :inprogress, room_sid: 'RM1cfdb11a479b2f061fb498e416a08d8f') }
     before do
       delete conference_path(req.room_sid)
       req.reload
