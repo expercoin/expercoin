@@ -21,5 +21,5 @@ class IconUploader < BaseUploader
     "#{secure_token}.#{file.extension}" if original_filename.present?
   end
 
-  process resize_to_fit: [120, 80]
+  process resize_to_limit: [120, 80]
 end
