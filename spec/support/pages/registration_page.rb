@@ -8,19 +8,12 @@ class RegistrationPage
 
   def fill_and_submit_form
     visit @url
-    sleep 0.4
     fill_in 'First Name', with: first_name
-    sleep 0.4
     fill_in 'Last Name', with: last_name
-    sleep 0.4
     fill_in 'Email', with: email
-    sleep 0.4
     fill_in 'Password', with: password
-    sleep 0.4
     fill_in 'Password Confirmation', with: password
-    sleep 0.4
     click_on 'Sign up'
-    sleep 0.2
   end
 
   private
