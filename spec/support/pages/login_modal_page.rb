@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LoginModalPage
   include Capybara::DSL
 

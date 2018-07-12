@@ -1,14 +1,5 @@
-class ProfilePage
-  include Capybara::DSL
+# frozen_string_literal: true
 
-  def initialize(url, user = nil)
-    @url = url
-    LoginPage.new(user).fill_and_submit_form if user.present?
-  end
-
-  def click_schedule_session
-    visit @url
-    click_on 'Schedule Session'
-    sleep 0.1
-  end
+require 'support/pages/user_page'
+class ProfilePage < UserPage
 end

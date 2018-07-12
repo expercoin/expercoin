@@ -1,11 +1,7 @@
-class RequestPage
-  include Capybara::DSL
+# frozen_string_literal: true
 
-  def initialize(url = nil, user = nil)
-    @url = url
-    LoginPage.new(user).fill_and_submit_form if user.present?
-  end
-
+require 'support/pages/user_page'
+class RequestPage < UserPage
   def fill_new_request
     fill_in 'request[cell_number]', with: '1234567'
     find('input#request_first_date').click
