@@ -6,6 +6,7 @@
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'dashboard/application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'dashboard/application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_tag '$.fx.off = true;' if Rails.env.test? %>
   </head>
   <body>
     <script>

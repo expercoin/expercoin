@@ -6,4 +6,8 @@ module Helpers
     params = params.with_indifferent_access
     attrs.merge(params) == attrs
   end
+
+  def include_each?(object, attrs = [])
+    attrs.each { |attr| break false unless object.to_s.include?(attr) }.present?
+  end
 end

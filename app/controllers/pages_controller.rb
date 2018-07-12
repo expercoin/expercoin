@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   def show; end
 
   def business_home
-
+    @categories = Category.main
   end
   
   def mentors_home

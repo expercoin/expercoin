@@ -1,12 +1,8 @@
-class DashboardPage
-  include Capybara::DSL
+# frozen_string_literal: true
 
-  def initialize(url, user)
-    @url = url
-    @user = user
-    LoginPage.new(user).fill_and_submit_form
-  end
+require 'support/pages/user_page'
 
+class DashboardPage < UserPage
   def click_my_request
     click_on 'My Requests'
   end
