@@ -12,5 +12,12 @@ module Settings
         fill_in("profile_form_specialization_item_#{index + 1}", with: item)
       end
     end
+
+    def click_on_add(num = 1)
+      num.times do
+        click_on 'Add'
+        sleep 0.1
+      end
+    end
   end
 end
