@@ -27,12 +27,12 @@ RSpec.feature 'Settings About', type: :system do
     before do
       settings_about_page.open
       settings_about_page.click_on_add(2)
-      settings_about_page.add_specializations 'First', 'Second', 'Third', 'Fourth', 'Fifth'
+      settings_about_page.add_specializations 'Blockchain', 'Solidity', 'Mentoring', 'Crypto', 'Dollary'
       settings_about_page.submit_form
       settings_about_page.open
     end
     it do
-      params_saved = include_each?(page.body, [ 'First', 'Second', 'Third'] )
+      params_saved = include_each?(page.body, ['Blockchain', 'Solidity', 'Mentoring', 'Crypto', 'Dollary'] )
       expect(params_saved).to eq true
     end
   end
