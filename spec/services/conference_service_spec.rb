@@ -59,6 +59,7 @@ RSpec.describe  ConferenceService do
   end
 
   describe '.destroy return correct path' do
+    let(:request_inprogress) { create(:request, :inprogress, room_sid: 'RM1cfdb11a479b2f061fb498e416a08d8f') }
     before do
       request_inprogress.update(invitee: true, inviter: true, started_at: Time.now)
     end
