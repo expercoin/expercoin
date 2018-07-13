@@ -13,6 +13,10 @@ class UserPage
     visit url
   end
 
+  def submit_form(submit = 'Save')
+    click_on submit
+  end
+
   def click_schedule_session
     visit @url
     click_on 'Schedule Session'
