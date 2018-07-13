@@ -49,7 +49,7 @@ class RequestsController < ApplicationController
       request_params.merge(requester: current_user&.profile, status: 0)
     )
     return render_error_messages :new unless @request.save
-    create_request_notification('new')
+    create_notification('new', 'Request')
     redirect_to edit_request_path(@request.id)
   end
 

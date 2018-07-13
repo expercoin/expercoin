@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.create(messages_params)
-    create_message_notification('new')
+    create_notification('new', 'Message')
     @message.assets = current_user.assets
     current_user.assets.clear
     send_email

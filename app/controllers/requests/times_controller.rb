@@ -13,7 +13,7 @@ module Requests
     def update
       return render :show unless @request.update(request_params)
       MSP::Email::Request.new(@request).email_to_expert
-      create_request_notification(@request.accepted? ? 'accepted' : 'time_change')
+      create_notification(@request.accepted? ? 'accepted' : 'time_change', 'Request')
       redirect_to request_path(@request)
     end
 

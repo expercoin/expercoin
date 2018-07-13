@@ -22,13 +22,13 @@ class CallsController < ApplicationController
   def update
     return render :show unless @request.update(request_params)
     MSP::Email::Request.new(@request).email_to_requester
-    create_request_notification(@request.accepted? ? 'accepted' : 'time_change')
+    create_notification(@request.accepted? ? 'accepted' : 'time_change', 'Request')
     redirect_to calls_path
   end
 
   def reject
     @request.update(status: 'rejected')
-    create_request_notification('rejected')
+    create_notification('rejected', 'Request')
     redirect_to calls_path
   end
 

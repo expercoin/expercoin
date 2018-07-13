@@ -11,10 +11,10 @@ RSpec.feature 'Conference', type: :system do
 
   subject(:request_page) { RequestPage.new(request_path(req), user) }
 
-  # feature 'joins room' do
-  #   before { request_page.join_room }
-  #   it { expect(current_path).to eq conference_path(room.sid) }
-  # end
+  feature 'joins room' do
+    before { request_page.join_room }
+    it { expect(current_path).to eq conference_path(room.sid) }
+  end
 
   feature 'send message' do
     subject(:conference_page) { ConferencePage.new(conference_path(req.room_sid)) }
@@ -26,9 +26,9 @@ RSpec.feature 'Conference', type: :system do
     it { expect(page.body).to include 'Hello New Message' }
   end
 
-  # feature 'create room' do
-  #   let(:req) { create(:request, :verified, requester: profile, room_sid: 'RMe1491f9d09795f0ee843879b8eb92c17') }
-  #   before { request_page.create_room }
-  #   it { expect(page.body).to include 'End Session' }
-  # end
+  feature 'create room' do
+    let(:req) { create(:request, :verified, requester: profile, room_sid: 'RMe1491f9d09795f0ee843879b8eb92c17') }
+    before { request_page.create_room }
+    it { expect(page.body).to include 'End Session' }
+  end
 end
