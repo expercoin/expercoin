@@ -42,6 +42,12 @@ class RequestsController < ApplicationController
     return render :edit unless @request.update(request_params)
     MSP::UpdateRequestStatus.new(@request).perform
     MSP::Email::Request.new(@request).email_to_expert_new_request
+    create_delayed_notification(
+      
+      @request.selected_date,
+      '5_minute',
+      'Request'
+    ) if @request.accepted?
   end
 
   def create
