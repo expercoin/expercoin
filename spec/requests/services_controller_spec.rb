@@ -51,7 +51,7 @@ RSpec.describe ServicesController, type: :request do
     it_behaves_like 'authenticated user'
     it { expect(Service.first.title).to eq service_params[:title] }
     it { expect(response).to redirect_to service_path(service) }
-  end 
+  end
 
   describe 'DELETE destroy' do
     before { delete service_path(service) }

@@ -9,8 +9,8 @@ RSpec.describe CitiesAndStatesFromCountry do
   let(:class_with_country_and_state) { described_class.new(country, state) }
 
   describe '.initialize' do
-    it { expect{ class_with_country }.not_to raise_exception  }
-    it { expect{ class_with_country_and_state }.not_to raise_exception  }
+    it { expect { class_with_country }.not_to raise_exception }
+    it { expect { class_with_country_and_state }.not_to raise_exception }
   end
 
   describe '.states' do

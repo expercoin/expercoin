@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DeviseHelpers
   include Warden::Test::Helpers
 

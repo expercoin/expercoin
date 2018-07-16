@@ -20,25 +20,25 @@ RSpec.describe OauthController, type: :request do
 
   describe 'GET callback with rescue' do
     before do
-    OmniAuth.config.mock_auth[:linkedin] = OmniAuth::AuthHash.new({
-      'provider' => 'linkedin',
-      'uid' => '123545',
-      'info' => {
-        'name' => 'mockuser',
-        'image' => 'mock_user_thumbnail_url',
-        'urls' => {
-          'public_profile' => 'http://test.test/public_profile'
+      OmniAuth.config.mock_auth[:linkedin] = OmniAuth::AuthHash.new({
+        'provider' => 'linkedin',
+        'uid' => '123545',
+        'info' => {
+          'name' => 'mockuser',
+          'image' => 'mock_user_thumbnail_url',
+          'urls' => {
+            'public_profile' => 'http://test.test/public_profile'
+          }
+        },
+        'credentials' => {
+          'token' => 'mock_token',
+          'secret' => 'mock_secret'
+        },
+        'extra' => {
+          'raw_info' => '{"json":"data"}'
         }
-      },
-      'credentials' => {
-        'token' => 'mock_token',
-        'secret' => 'mock_secret'
-      },
-      'extra' => {
-        'raw_info' => '{"json":"data"}'
-      }
-    }.with_indifferent_access)
-    get oauth_callback_path('linkedin')
+      }.with_indifferent_access)
+      get oauth_callback_path('linkedin')
     end
 
     it { expect(flash[:alert]).not_to be_nil }

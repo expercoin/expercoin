@@ -15,5 +15,4 @@ RSpec.feature 'Settings Video', type: :system do
     end
     # it { expect(page.body).to include 'https://player.vimeo.com/video/265272458' }
   end
-
 end

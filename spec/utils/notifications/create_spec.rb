@@ -13,8 +13,7 @@ RSpec.describe Notifications::Create do
   end
 
   describe '.perform' do
-    it { expect(notification.perform.class.name).to eq 'Notification' }
-    it { expect(notification.perform.resource).to eq request }
-    it { expect(notification.perform.user).to eq user }
+    before { notification.perform }
+    it { expect(Notification.count).to eq 1 }
   end
 end

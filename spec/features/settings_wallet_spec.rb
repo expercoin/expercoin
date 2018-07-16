@@ -22,7 +22,7 @@ RSpec.feature 'Settings Wallet', type: :system do
     end
 
     scenario 'shows address' do
-      expect(page.body).to include '0x222334909e528d7ae5994225736942ca38ac87b0'
+      expect(page.body).to include eth_address
     end
 
     scenario 'set as default' do
@@ -30,6 +30,10 @@ RSpec.feature 'Settings Wallet', type: :system do
       set_as_default_field = find('li', text: eth_address).all('span', text: 'Set as Default')
       expect(set_as_default_field).to be_empty
     end
-  end
 
+    scenario 'delete address' do
+      settings_wallet_page.delete(eth_address)
+      expect(page.body).not_to include eth_address
+    end
+  end
 end
