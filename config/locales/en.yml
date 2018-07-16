@@ -24,7 +24,7 @@ en:
       verified:
         title: 'Call Request Verified'
         content: 'Your Call Request has been verified'
-      5_minute:
+      call_soon:
         title: 'Call Ready'
         content: 'Your Call is in 5 minutes'
     message:
