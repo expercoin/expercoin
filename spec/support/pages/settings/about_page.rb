@@ -4,7 +4,7 @@ require 'support/pages/user_page'
 module Settings
   class AboutPage < UserPage
     def fill_about(text)
-      fill_in('profile_form_about', visible: false, with: text)
+      fill_in('tinymce', with: text)
     end
 
     def add_specializations(*items)
