@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function() {
   $room_id = $notifications.attr('data-room-id');
 
   if ($notifications.length > 0) {
-    App.chat = App.cable.subscriptions.create({
+    App.notification = App.cable.subscriptions.create({
       channel: "NotificationChannel", room: $room_id
     }, {
       connected: function() {
