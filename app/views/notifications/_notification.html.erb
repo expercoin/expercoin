@@ -1,0 +1,9 @@
+<%= link_to notification_path(notification), class: "notification" do %>
+  <div class="notification-header">
+    <%= notification.title %>
+    <span class="notification-date"><%= decorate(notification).format_date %></span>
+  </div>
+  <div class="notification-body">
+    <%= notification.content %>
+  </div>  
+<% end %>
