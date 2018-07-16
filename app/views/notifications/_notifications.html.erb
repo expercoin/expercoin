@@ -1,3 +1,5 @@
-<% user.notifications.unread_desc.each do |notification| %>
-  <%= render 'notifications/notification', notification: notification %>
-<% end %>
+<div id='notifications' data-room-id='<%= user.id %>'>
+  <% user.notifications.unread_desc.each do |notification| %>
+    <%= render 'notifications/notification', notification: notification %>
+  <% end %>
+</div>

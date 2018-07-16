@@ -6,16 +6,20 @@ module Notifications
     end
 
     def perform
-      Notification.create!(
+      Notification.create(
         title: title,
         content: content,
         user: @user,
         resource_type: resource_type,
         resource_id: resource_id
-      )
+      ).yield_self { |n| broadcast_notification(n) }
     end
 
     private
+
+    def broadcast_notification(notification)
+      NotificationBroadcastJob.perform_now(notification.id)
+    end
 
     def resource_type
       @params[:resource_type]

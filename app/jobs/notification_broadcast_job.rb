@@ -9,7 +9,7 @@ class NotificationBroadcastJob < ApplicationJob
 
   private
 
-  def render_message(notification)
-    NotificationController.render partial: 'notifications/notification', locals: { notification: notification }
+  def render_notification(notification)
+    NotificationsController.render partial: 'notifications/notification', locals: { notification: notification }
   end
 end
