@@ -36,5 +36,4 @@ RSpec.feature 'Settings Wallet', type: :system do
       expect(page.body).not_to include eth_address
     end
   end
-
 end

@@ -21,5 +21,4 @@ RSpec.feature 'Settings Categories', type: :system do
 
     it { expect(page).to have_select('profile_form_category_ids', selected: categories) }
   end
-
 end

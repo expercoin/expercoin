@@ -8,7 +8,7 @@ RSpec.describe OauthService do
   let(:oauth_service) { OauthService.new(auth_hash) }
 
   describe '.initialize' do
-    it { expect{ oauth_service }.not_to raise_exception  }
+    it { expect { oauth_service }.not_to raise_exception }
   end
 
   describe '.create_oauth_account' do

@@ -51,7 +51,6 @@ RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :system
   config.extend DeviseHelpers, type: :request
 
-
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.
@@ -86,12 +85,13 @@ RSpec.configure do |config|
   end
 
   config.before(:each, type: :system, js: true) do
-    if ENV["SELENIUM_DRIVER_URL"].present?
+    if ENV['SELENIUM_DRIVER_URL'].present?
       driven_by :selenium, using: :chrome,
-        options: {
-        browser: :remote,
-        url: ENV.fetch("SELENIUM_DRIVER_URL"),
-        desired_capabilities: :chrome}
+                           options: {
+                             browser: :remote,
+                             url: ENV.fetch('SELENIUM_DRIVER_URL'),
+                             desired_capabilities: :chrome
+                           }
     else
       driven_by :selenium_chrome_headless
     end
