@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Requests::VerifyController, type: :request do
+  include ActiveJob::TestHelper
+
   let(:req) { create(:request, :accepted) }
   let(:profile) { req.requester }
   let(:user) { profile.user }
@@ -27,6 +29,21 @@ RSpec.describe Requests::VerifyController, type: :request do
     end
     it_behaves_like 'authenticated user'
     it { expect(req.status).to eq 'verified' }
+    it { expect(req.notifications.count).to eq 1 }
+    it { expect(enqueued_jobs.size).to eq(2)  }
+    it { expect(response).to redirect_to request_path(req) }
+  end
+
+  describe 'POST create invalidate date' do
+    before do
+      req.update_attribute(:selected_date, Time.now - 10.minutes)
+      post request_verify_index_path(req), params: { verify: verify_params }
+      req.reload
+    end
+    it_behaves_like 'authenticated user'
+    it { expect(req.status).to eq 'accepted' }
+    it { expect(req.notifications.count).to eq 1 }
+    it { expect(enqueued_jobs.size).to eq(0) }
     it { expect(response).to redirect_to request_path(req) }
   end
 end
