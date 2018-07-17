@@ -5,10 +5,13 @@ module Notifiable
     Notifications::Create.new(notification_params(type, resource_type)).perform
   end
 
-  def create_delayed_notification(date, type, resource_type)
+  def create_delayed_notification(user_id, date, type, resource_type)
     return unless from_now_positive?(date)
-    CreateNotificationJob.set(wait: from_now(date))
-                         .perform_now(resource_type, notification_params(type, resource_type))
+    CreateResourceJob.set(wait: from_now(date))
+                     .perform_later(
+                        'Notifications::Create',
+                        notification_params(type, resource_type).merge(user_id: user_id)
+                      )
   end
 
   private

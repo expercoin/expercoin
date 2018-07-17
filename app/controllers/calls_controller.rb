@@ -23,7 +23,6 @@ class CallsController < ApplicationController
     return render :show unless @request.update(request_params)
     MSP::Email::Request.new(@request).email_to_requester
     create_notification(@request.accepted? ? 'accepted' : 'time_change', 'Request')
-    create_delayed_notification(@request.selected_date, '5_minute', 'Request') if @request.accepted?
     redirect_to calls_path
   end
 
