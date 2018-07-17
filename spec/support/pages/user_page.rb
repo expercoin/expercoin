@@ -18,7 +18,7 @@ class UserPage
   end
 
   def click_schedule_session
-    visit @url
+    visit url
     click_on 'Schedule Session'
     sleep 0.1
   end
@@ -28,6 +28,22 @@ class UserPage
       fill_in "#{scope}[#{key}]", with: params[key]
     end
     click_on submit
+  end
+
+  def tinymce_fill_in name, options = {}
+    if page.driver.browser.browser == :chrome
+      page.driver.browser.switch_to.frame("#{name}_ifr")
+      page.find(:css, '#tinymce').native.send_keys(options[:with])
+      page.driver.browser.switch_to.default_content
+    else
+      page.execute_script("tinyMCE.get('#{name}').setContent('#{options[:with]}')")
+    end
+  end
+
+  def select(scope, params)
+    params.keys.each do |key|
+      page.select params[key], from: "#{scope}[#{key}]"
+    end
   end
 
   private
