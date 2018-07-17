@@ -7,7 +7,7 @@ RSpec.feature 'Services', type: :system do
   let(:user) { profile.user }
   let(:service) { create(:service, owner: profile) }
   let!(:categories) do
-    3.times { create(:category, :with_parent, name: Faker::ProgrammingLanguage.name) }
+    2.times { create(:category, :with_parent, name: Faker::ProgrammingLanguage.name) }
     Category.children.map(&:name)
   end
   let(:service_params) do
@@ -16,7 +16,7 @@ RSpec.feature 'Services', type: :system do
       expercoin_rate: '10',
       content: 'Test Service Content',
       category: categories.second,
-      tags: [ 'First', 'Second', 'Third' ]
+      tags: [ 'First Tag', 'Second Tag', 'Third Tag' ]
     }
   end
 
@@ -29,5 +29,6 @@ RSpec.feature 'Services', type: :system do
     end
     it { expect(page.body).to include 'Test service title' }
     it { expect(page.body).to include 'Test Service Content' }
+    it { expect(page.body).to include 'First Tag' }
   end
 end

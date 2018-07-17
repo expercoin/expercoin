@@ -21,7 +21,11 @@ class ServicePage < UserPage
     tinymce_fill_in 'service_form_content', with: text
   end
 
-  def select_tags(*tags)
-    find('#service_form_tag_list', visible: :all).set(tags.join(', '))
+  def select_tags(tags)
+    select2_field = all(".select2-selection")[1].click
+    tags.each do |tag|
+      select2_field.find('input').set(tag)
+      select2_field.find('input').native.send_keys(:return)
+    end
   end
 end
