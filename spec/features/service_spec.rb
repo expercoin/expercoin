@@ -13,21 +13,21 @@ RSpec.feature 'Services', type: :system do
   let(:service_params) do
     {
       title: 'Test service title',
-      expercoin_rate: '10'
+      expercoin_rate: '10',
+      content: 'Test Service Content',
+      category: categories.second,
+      tags: [ 'First', 'Second', 'Third' ]
     }
   end
-  let(:service_content) { 'Test Service Content' }
 
 
   feature 'New service' do
     subject(:service_page) { ServicePage.new(new_service_path, user) }
     before do
       service_page.open
-      service_page.fill_content service_content
-      service_page.select_category categories.second
-      # service_page.select_tags 'First', 'Second', 'Third'
-      service_page.fill_and_submit_form 'service_form', service_params
+      service_page.fill_new_service_fields(service_params)
     end
-    # it { expect(page.body).to include 'Test service title' }
+    it { expect(page.body).to include 'Test service title' }
+    it { expect(page.body).to include 'Test Service Content' }
   end
 end

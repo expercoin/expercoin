@@ -46,6 +46,10 @@ class UserPage
     end
   end
 
+  def attach_photo(element_id = 'photo_uploader')
+    attach_file(element_id, File.absolute_path("#{Rails.root}/public/images/fake/#{rand(1..8)}.jpg"), visible: :all)
+  end
+
   private
 
   attr_reader :url, :user

@@ -2,6 +2,17 @@
 
 require 'support/pages/user_page'
 class ServicePage < UserPage
+  def fill_new_service_fields(service_params)
+    fill_content service_params[:content]
+    select_category service_params[:category]
+    attach_photo
+    select_tags service_params[:tags]
+    fill_and_submit_form 'service_form', service_params.except(:content, :category, :tags)
+    sleep 1
+  end
+
+  private
+
   def select_category(category)
     select 'service_form', { category_id: category }
   end
@@ -11,6 +22,6 @@ class ServicePage < UserPage
   end
 
   def select_tags(*tags)
-    binding.pry
+    find('#service_form_tag_list', visible: :all).set(tags.join(', '))
   end
 end
