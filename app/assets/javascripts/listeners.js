@@ -3,6 +3,17 @@ $(document).on("turbolinks:load",function(){
 });
 
 function listenersInitialize() {
+  if($('#update-page').length > 0) {
+    var timeStamp = Math.floor(Date.now()/1000);
+    var callTime = parseInt($('#update-page').attr('date-time'));
+    var inSeconds = (callTime - timeStamp) * 1000;
+    if(inSeconds <= 0 || inSeconds > 300000) return;
+    window.setTimeout(function(){ 
+      if($('#update-page').length == 0) return;
+      location.reload();
+    }, inSeconds);
+  }
+
   if($('#messages .chat-message').length > 0) {
     $('#messages').animate({
       scrollTop: $('.chat-message:last').offset().top - $('#messages').offset().top + $('#messages').scrollTop()
