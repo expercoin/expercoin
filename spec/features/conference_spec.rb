@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.feature 'Conference', type: :system do
   let(:profile) { create(:profile) }
-  let(:req) { create(:request, :selected_time_in_ten_minutes, requester: profile) }
+  let(:req) { create(:request, :selected_time_ten_minutes_ago, requester: profile) }
   let(:user) { profile.user }
   let(:expert) { req.expert }
   let(:room) { MSP::Conference::Video.new.find_room(req.room_sid) }
@@ -24,11 +24,5 @@ RSpec.feature 'Conference', type: :system do
       conference_page.send_message('Hello New Message')
     end
     it { expect(page.body).to include 'Hello New Message' }
-  end
-
-  feature 'create room' do
-    let(:req) { create(:request, :selected_time_in_ten_minutes, status: 'verified', requester: profile) }
-    before { request_page.create_room }
-    it { expect(page.body).to include 'End Session' }
   end
 end

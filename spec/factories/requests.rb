@@ -64,10 +64,24 @@ FactoryBot.define do
       third_date nil
     end
 
-    trait :selected_time_in_ten_minutes do
+    trait :selected_time_ten_minutes_ago do
       time_zone 'Sarajevo'
       first_date { (Time.now - 10.minutes).to_date }
       first_time { (Time.now - 10.minutes).to_time.strftime('%I:%M %p') }
+      inprogress
+    end
+
+    trait :selected_time_ten_minutes_from_now do
+      time_zone 'Sarajevo'
+      first_date { (Time.now + 10.minutes).to_date }
+      first_time { (Time.now + 10.minutes).to_time.strftime('%I:%M %p') }
+      inprogress
+    end
+
+    trait :selected_time_fives_seconds_from_now do
+      time_zone 'Sarajevo'
+      first_date { (Time.now + 5.seconds).to_date }
+      first_time { (Time.now + 5.seconds).to_time.strftime('%I:%M:%S %p') }
       inprogress
     end
   end

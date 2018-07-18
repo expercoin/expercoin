@@ -14,7 +14,7 @@ RSpec.describe ConferenceController, type: :request do
   end
 
   describe 'POST create without room_sid' do
-    let(:req) { create(:request, :selected_time_in_ten_minutes, status: 'verified', room_sid: nil) }
+    let(:req) { create(:request, :selected_time_ten_minutes_ago, status: 'verified', room_sid: nil) }
     before do
       post conference_index_path, params: { request_id: req.id }
       req.reload
