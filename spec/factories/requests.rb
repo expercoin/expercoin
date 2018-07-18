@@ -77,5 +77,12 @@ FactoryBot.define do
       first_time { (Time.now + 10.minutes).to_time.strftime('%I:%M %p') }
       inprogress
     end
+
+    trait :selected_time_fives_seconds_from_now do
+      time_zone 'Sarajevo'
+      first_date { (Time.now + 5.seconds).to_date }
+      first_time { (Time.now + 5.seconds).to_time.strftime('%I:%M:%S %p') }
+      inprogress
+    end
   end
 end

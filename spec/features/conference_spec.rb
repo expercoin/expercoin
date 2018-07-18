@@ -25,16 +25,4 @@ RSpec.feature 'Conference', type: :system do
     end
     it { expect(page.body).to include 'Hello New Message' }
   end
-
-  feature 'create room' do
-    let(:req) { create(:request, :selected_time_ten_minutes_ago, status: 'verified', requester: profile) }
-    before { request_page.create_room }
-    it { expect(page.body).to include 'End Session' }
-  end
-
-  feature 'not showing create button with invalid time' do
-    let(:req) { create(:request, :selected_time_ten_minutes_from_now, status: 'verified', requester: profile) }
-    before { request_page.open }
-    it { expect(page.body).not_to include 'Request Call' }
-  end
 end
