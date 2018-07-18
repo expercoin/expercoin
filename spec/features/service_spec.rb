@@ -5,7 +5,6 @@ require 'rails_helper'
 RSpec.feature 'Services', type: :system do
   let(:profile) { create(:profile) }
   let(:user) { profile.user }
-  let(:service) { create(:service, owner: profile) }
   let!(:categories) do
     2.times { create(:category, :with_parent, name: Faker::ProgrammingLanguage.name) }
     Category.children.map(&:name)
@@ -20,12 +19,23 @@ RSpec.feature 'Services', type: :system do
     }
   end
 
-
   feature 'New service' do
     subject(:service_page) { ServicePage.new(new_service_path, user) }
     before do
       service_page.open
-      service_page.fill_new_service_fields(service_params)
+      service_page.fill_service_fields(service_params)
+    end
+    it { expect(page.body).to include 'Test service title' }
+    it { expect(page.body).to include 'Test Service Content' }
+    it { expect(page.body).to include 'First Tag' }
+  end
+
+  feature 'Edit service' do
+    let(:service) { create(:service, owner: profile) }
+    subject(:service_page) { ServicePage.new(edit_service_path(service), user) }
+    before do
+      service_page.open
+      service_page.fill_service_fields(service_params)
     end
     it { expect(page.body).to include 'Test service title' }
     it { expect(page.body).to include 'Test Service Content' }

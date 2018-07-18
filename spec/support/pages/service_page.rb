@@ -2,7 +2,7 @@
 
 require 'support/pages/user_page'
 class ServicePage < UserPage
-  def fill_new_service_fields(service_params)
+  def fill_service_fields(service_params)
     fill_content service_params[:content]
     select_category service_params[:category]
     attach_photo
