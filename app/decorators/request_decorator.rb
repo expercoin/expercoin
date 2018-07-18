@@ -26,15 +26,20 @@ class RequestDecorator < BaseDecorator
   end
 
   def call_ready?
-    selected_date_bigger_than_current_time && selected_date_not_bigger_than_two_hours
-    true
+    DatetimeValidator.new(
+      Time.now,
+      {
+        start_date: selected_date,
+        end_date: selected_date + requested_length_in_minutes
+      }
+    ).in_range
   end
 
-  def selected_date_bigger_than_current_time
-    selected_date.in_time_zone(time_zone) >= Time.now.in_time_zone(time_zone) - 15.minutes
-  end
+  # def selected_date_bigger_than_current_time
+  #   selected_date.in_time_zone(time_zone) >= Time.now.in_time_zone(time_zone) - 15.minutes
+  # end
 
-  def selected_date_not_bigger_than_two_hours
-    selected_date.in_time_zone(time_zone) < Time.now.in_time_zone(time_zone) + 2.hours
-  end
+  # def selected_date_not_bigger_than_two_hours
+  #   selected_date.in_time_zone(time_zone) < Time.now.in_time_zone(time_zone) + 2.hours
+  # end
 end

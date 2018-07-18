@@ -46,6 +46,7 @@ class ConferenceService
   end
 
   def update_members
+    return unless @request.room_sid
     @request.update(invitee: true) if user_request_expert?
     @request.update(inviter: true) if user_request_requester?
   end
@@ -84,7 +85,17 @@ class ConferenceService
   end
 
   def valid_request_for_room_creation?
-    @request.verified?
+    @request.verified? && time_in_range
+  end
+
+  def time_in_range
+    DatetimeValidator.new(
+      Time.now,
+      {
+        start_date: @request.selected_date,
+        end_date: @request.selected_date + @request.requested_length_in_minutes
+      }
+    ).in_range
   end
 
   def update_ended_at_if_not_completed
