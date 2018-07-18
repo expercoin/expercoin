@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.feature 'Conference', type: :system do
   let(:profile) { create(:profile) }
-  let(:req) { create(:request, :selected_time_in_ten_minutes, requester: profile) }
+  let(:req) { create(:request, :selected_time_ten_minutes_ago, requester: profile) }
   let(:user) { profile.user }
   let(:expert) { req.expert }
   let(:room) { MSP::Conference::Video.new.find_room(req.room_sid) }
@@ -27,8 +27,14 @@ RSpec.feature 'Conference', type: :system do
   end
 
   feature 'create room' do
-    let(:req) { create(:request, :selected_time_in_ten_minutes, status: 'verified', requester: profile) }
+    let(:req) { create(:request, :selected_time_ten_minutes_ago, status: 'verified', requester: profile) }
     before { request_page.create_room }
     it { expect(page.body).to include 'End Session' }
+  end
+
+  feature 'not showing create button with invalid time' do
+    let(:req) { create(:request, :selected_time_ten_minutes_from_now, status: 'verified', requester: profile) }
+    before { request_page.open }
+    it { expect(page.body).not_to include 'Request Call' }
   end
 end

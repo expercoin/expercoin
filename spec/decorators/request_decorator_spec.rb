@@ -46,7 +46,7 @@ RSpec.describe RequestDecorator do
   end
 
   describe '.call_approved? when true' do
-    let(:request) { create(:request, :selected_time_in_ten_minutes, expert: expert, requested_length: '30min') }
+    let(:request) { create(:request, :selected_time_ten_minutes_ago, expert: expert, requested_length: '30min') }
     it { expect(request_decorator.call_approved?).to be true }
   end
 end
