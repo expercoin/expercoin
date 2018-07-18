@@ -28,7 +28,7 @@ RSpec.describe SettingsController, type: :request do
       profile.reload
     end
     it_behaves_like 'authenticated user'
-    it { expect(contain_all?(profile_attributes, update_params.merge(expercoin_rate: 40_000, rate: 37_200))).to eq true }
+    it { expect(profile_attributes >= update_params.merge(expercoin_rate: 40_000, rate: 37_200)).to eq true }
   end
 
   describe 'GET states' do

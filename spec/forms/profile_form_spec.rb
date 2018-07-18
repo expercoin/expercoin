@@ -13,7 +13,7 @@ RSpec.describe ProfileForm do
   let(:profile_form_attributes) { profile.attributes }
 
   describe '.initialize' do
-    it { expect(contain_all?(profile_attributes, profile_form_attributes)).to eq true }
+    it { expect(profile_attributes >= profile_form_attributes).to eq true }
   end
 
   describe '.update_categories' do
