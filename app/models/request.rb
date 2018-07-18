@@ -43,6 +43,10 @@ class Request < ApplicationRecord
   validate :date_must_be_from_request_date_list, on: :update
   # validate :must_be_able_to_pay_call_on_accepts, on: :update
 
+  def requested_length_in_minutes
+    requested_length[/\d+/].to_i.minutes
+  end
+
   def eth_transaction
     eth_transactions.find_by_parent_id(nil)
   end
