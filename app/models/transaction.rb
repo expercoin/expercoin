@@ -16,4 +16,9 @@ class Transaction < ApplicationRecord
       request: [:title, :message]
     },
     using: { tsearch: { prefix: true } }
-  )end
+  )
+
+  def to_s
+    "#{from_eth}  amount: #{eth_amount}"
+  end
+end

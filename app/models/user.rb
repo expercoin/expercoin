@@ -35,4 +35,8 @@ class User < ApplicationRecord
   def time_zone
     ENV['TIME_ZONE']
   end
+
+  def to_s
+    email
+  end
 end
