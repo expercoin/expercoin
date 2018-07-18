@@ -63,5 +63,11 @@ FactoryBot.define do
       second_date nil
       third_date nil
     end
+
+    trait :selected_time_in_ten_minutes do
+      first_date { (DateTime.now + 10.minutes).to_date }
+      first_time { (DateTime.now + 10.minutes).to_time.strftime('%I:%M %p') }
+      inprogress
+    end
   end
 end
