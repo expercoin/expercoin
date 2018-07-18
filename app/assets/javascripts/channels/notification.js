@@ -22,5 +22,11 @@ $(document).on('turbolinks:load', function() {
 
 
 function updateNotifications() {
-  $('.notification-counter').html($('#notifications a').length);
+  var length = $('#notifications a').length;
+  if(length) {
+    $('#notification_dropdown').html(
+      '<i class="fa fa-bell" aria-hidden="true"></i>'+
+      '<span class="notification-counter">'+length+'</span>'
+    );
+  }
 }
