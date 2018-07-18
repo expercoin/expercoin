@@ -65,8 +65,9 @@ FactoryBot.define do
     end
 
     trait :selected_time_in_ten_minutes do
-      first_date { (DateTime.now + 10.minutes).to_date }
-      first_time { (DateTime.now + 10.minutes).to_time.strftime('%I:%M %p') }
+      time_zone 'Sarajevo'
+      first_date { (Time.now - 10.minutes).to_date }
+      first_time { (Time.now - 10.minutes).to_time.strftime('%I:%M %p') }
       inprogress
     end
   end
