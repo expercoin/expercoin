@@ -6,11 +6,11 @@
 .panel-get-started {
   .panel-header {
     border-bottom: none;
-    padding: 24px 60px 24px 32px;
+    padding: 24px 60px 16px 32px;
     position: relative;
 
     h1 {
-      font-size: 24px;
+      font-size: 28px;
       font-weight: 600;
     }
 
@@ -46,6 +46,23 @@
   }
 
   .panel-body {
-    padding: 24px 0;
+    display: flex;
+    padding: 16px 0;
+
+    .body-block {
+      width: 50%;
+      padding: 0 32px;
+    }
+
+    .body-block + .body-block {
+      border-left: 1px solid #e3e2df;
+    }
+  }
+
+  .body-block {
+    h3 {
+      font-size: 24px;
+      font-weight: 600;
+    }
   }
 }
