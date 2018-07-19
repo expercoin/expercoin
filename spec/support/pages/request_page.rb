@@ -5,11 +5,11 @@ class RequestPage < UserPage
   def fill_new_request
     fill_in 'request[cell_number]', with: '1234567'
     find('input#request_first_date').click
-    (find 'td.day', text: Time.new.next_day.day.to_s).click
+    all('td.day', text: Time.new.next_day.day.to_s).last.click
     find('input#request_second_date').click
-    (find 'td.day', text: Time.new.next_day(3).day.to_s).click
+    all('td.day', text: Time.new.next_day(3).day.to_s).last.click
     find('input#request_third_date').click
-    (find 'td.day', text: Time.new.next_day(5).day.to_s).click
+    all('td.day', text: Time.new.next_day(5).day.to_s).last.click
     click_on 'Continue'
     sleep 0.1
   end
