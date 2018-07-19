@@ -42,6 +42,11 @@ ActiveAdmin.register User do
       row 'Emails enabled' do
         resource.confirmed_at ? true : false
       end
+      row :linkedin do
+        if resource.oauth_account&.profile_url
+          link_to resource.oauth_account&.profile_url, resource.oauth_account&.profile_url, target: :blank
+        end
+      end
     end
   end
 
