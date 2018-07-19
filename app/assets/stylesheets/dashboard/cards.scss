@@ -658,3 +658,20 @@
     }
   }  
 }          
+
+.plus-wrapper {
+  padding: 50px 0px!important;
+  text-align: center;
+
+  .plus {
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    background-color: #00b4f7;
+    border-radius: 50%;
+    border-radius: 50%;
+    font-size: 75px;
+    color: #fff;
+    margin: 15px 25%;
+  }
+}
