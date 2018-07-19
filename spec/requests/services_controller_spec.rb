@@ -15,7 +15,7 @@ RSpec.describe ServicesController, type: :request do
       cover_image: File.open("#{Rails.root}/public/images/expercoin_logo.png"),
       category_id: category.id,
       expercoin_rate: 100,
-      rate: 93
+      rate: 80
     }
   end
 

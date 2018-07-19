@@ -11,8 +11,8 @@ RSpec.describe SettingsController, type: :request do
       first_name: 'Jon',
       last_name: 'Snow',
       title: 'King in the North',
-      expercoin_rate: 400.0,
-      rate: 372.0
+      expercoin_rate: 500.0,
+      rate: 400.0
     }.with_indifferent_access
   end
   let(:profile_attributes) { profile.attributes.with_indifferent_access }
@@ -28,7 +28,7 @@ RSpec.describe SettingsController, type: :request do
       profile.reload
     end
     it_behaves_like 'authenticated user'
-    it { expect(profile_attributes >= update_params.merge(expercoin_rate: 40_000, rate: 37_200)).to eq true }
+    it { expect(profile_attributes >= update_params.merge(expercoin_rate: 50_000, rate: 40_000)).to eq true }
   end
 
   describe 'GET states' do
