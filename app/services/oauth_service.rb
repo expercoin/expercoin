@@ -1,14 +1,16 @@
 class OauthService
   attr_reader :auth_hash
 
-  def initialize(auth_hash)
+  def initialize(auth_hash, user = nil)
     @auth_hash = auth_hash
-    @user = find_or_create_user
+    @user = user || find_or_create_user
   end
 
   def create_oauth_account!
     unless oauth_account = OauthAccount.where(uid: @auth_hash[:uid]).first
       oauth_account = OauthAccount.new(oauth_account_params)
+      @user.update(email: email)
+      @user.verified!
       oauth_account.user = @user
       oauth_account.save
     end
@@ -28,9 +30,7 @@ class OauthService
   end
 
   def find_or_create_user
-    user = User.find_by(email: email) || User.create!(user_params)
-    user.verified!
-    user
+    User.find_by(email: email) || User.create!(user_params)
   end
 
   def user_params

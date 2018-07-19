@@ -50,6 +50,20 @@ ActiveAdmin.register Service do
       end
       row :created_at
       row :featured
+
+      row :user do
+        user = resource.owner.user
+        if user
+          link_to user, admin_user_path(user.id), target: :blank
+        end
+      end
+
+      row :linkedin do
+        user = resource.owner.user
+        if user.oauth_account
+          link_to user.oauth_account&.profile_url, user.oauth_account&.profile_url, target: :blank
+        end
+      end
     end
   end
 
