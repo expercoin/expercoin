@@ -35,31 +35,37 @@
     </ul>
     <ul class="navbar-nav ml-auto">
       <% if current_user %>
-        <li class="nav-item dropdown notification-dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="notification_dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <% if decorate(current_user.profile).unread_notifications? %>
-              <i class="fa fa-bell" aria-hidden="true"></i>
-              <span class="notification-counter"><%= decorate(current_user.profile).unread_notifications %></span>
-            <% else %>
-              <i class="fa fa-bell-slash" aria-hidden="true"></i>
-            <% end %>  
-          </a>
-          <div class="dropdown-menu notifications" aria-labelledby="notification_dropdown">
-            <%= render 'notifications/notifications', user: current_user %> 
-          </div>
-        </li>
-        <li class="nav-item dropdown profile-dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="profile_dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= decorate(current_user.profile).full_name %>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="profile_dropdown">
-            <%= link_to 'Dashboard', dashboard_index_path, class: 'dropdown-item' %>
-            <%= link_to 'Inbox', inbox_index_path, class: 'dropdown-item' %>
-            <%= link_to 'Account', account_index_path, class: 'dropdown-item' %>
-            <%= link_to 'Edit Profile', settings_path, class: 'dropdown-item' %>
-            <%= link_to "Log Out", destroy_user_session_path,  method: :delete, class: "dropdown-item"%>
-          </div>
-        </li>
+        <% if current_user.first_time %>
+          <li class="nav-item">
+            <%= link_to "Log Out", destroy_user_session_path,  method: :delete, class: "nav-link"%>
+          </li>  
+        <% else %>
+          <li class="nav-item dropdown notification-dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="notification_dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <% if decorate(current_user.profile).unread_notifications? %>
+                <i class="fa fa-bell" aria-hidden="true"></i>
+                <span class="notification-counter"><%= decorate(current_user.profile).unread_notifications %></span>
+              <% else %>
+                <i class="fa fa-bell-slash" aria-hidden="true"></i>
+              <% end %>  
+            </a>
+            <div class="dropdown-menu notifications" aria-labelledby="notification_dropdown">
+              <%= render 'notifications/notifications', user: current_user %> 
+            </div>
+          </li>
+          <li class="nav-item dropdown profile-dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="profile_dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= decorate(current_user.profile).full_name %>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="profile_dropdown">
+              <%= link_to 'Dashboard', dashboard_index_path, class: 'dropdown-item' %>
+              <%= link_to 'Inbox', inbox_index_path, class: 'dropdown-item' %>
+              <%= link_to 'Account', account_index_path, class: 'dropdown-item' %>
+              <%= link_to 'Edit Profile', settings_path, class: 'dropdown-item' %>
+              <%= link_to "Log Out", destroy_user_session_path,  method: :delete, class: "dropdown-item"%>
+            </div>
+          </li>
+        <% end %>  
       <% else %>
         <li class="nav-item">
           <a class="nav-link" data-toggle="modal" data-target="#modal_signup">Sign up</a>
