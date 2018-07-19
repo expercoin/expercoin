@@ -15,7 +15,7 @@ RSpec.feature 'Services', type: :system do
       expercoin_rate: '10',
       content: 'Test Service Content',
       category: categories.second,
-      tags: [ 'First Tag', 'Second Tag', 'Third Tag' ]
+      tags: ['First Tag', 'Second Tag', 'Third Tag']
     }
   end
 
