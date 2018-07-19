@@ -1,6 +1,6 @@
 ActiveAdmin.register User do
-  member_action :disable_email do
-    resource.update(confirmed_at: nil)
+  member_action :toggle_email do
+    resource.update(confirmed_at: resource.confirmed? ? nil : Time.now)
     redirect_to admin_user_path(resource)
   end
 
@@ -46,7 +46,7 @@ ActiveAdmin.register User do
   end
 
   action_item :disable_email, only: :edit do
-    link_to 'Disable Emails', { action: :disable_email } if user.confirmed?
+    link_to "#{user.confirmed? ? 'Disable' : 'Enable' } Emails", { action: :toggle_email }
   end
 
 
