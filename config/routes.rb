@@ -70,4 +70,5 @@ Rails.application.routes.draw do
   namespace :downloads do
     resources :assets, only: [:show]
   end
+  resources :get_started, path: 'get-started', only: :index
 end
