@@ -5,7 +5,7 @@ FactoryBot.define do
     first_name Faker::Name.first_name
     last_name Faker::Name.last_name
     rate { 20 }
-    expercoin_rate { rate * 1.07 }
+    expercoin_rate { ::PercentageCalculate.new(ENV['EXPERCOIN_RATE'], rate).increase }
     title Faker::Job.title
     about Faker::Lorem.paragraph(2, true, 50)
     address Faker::Address.street_address

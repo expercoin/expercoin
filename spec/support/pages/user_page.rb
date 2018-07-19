@@ -30,7 +30,7 @@ class UserPage
     click_on submit
   end
 
-  def tinymce_fill_in name, options = {}
+  def tinymce_fill_in(name, options = {})
     if page.driver.browser.browser == :chrome
       page.driver.browser.switch_to.frame("#{name}_ifr")
       page.find(:css, '#tinymce').native.send_keys(options[:with])

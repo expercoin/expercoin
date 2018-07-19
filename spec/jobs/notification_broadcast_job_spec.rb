@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe NotificationBroadcastJob, type: :job do
   include ActiveJob::TestHelper
-  let(:notification) { create(:notification, ) }
+  let(:notification) { create(:notification) }
 
   subject(:job) { described_class.perform_later(notification.id) }
 

@@ -17,6 +17,5 @@ RSpec.describe EthAddress, type: :model do
 
   describe 'Associations' do
     it { expect(eth_address).to belong_to(:wallet) }
-    # it { expect(eth_address).to have_many(:transactions) }
   end
 end
