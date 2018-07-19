@@ -4,6 +4,7 @@ class SettingsController < ApplicationController
   layout 'profile'
 
   def index
+    @countries = CS.countries.except(:COUNTRY_ISO_CODE).map{ |c| c.second }.unshift('United States')
     set_profile_form
   end
 
