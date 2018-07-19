@@ -1,32 +1,45 @@
 <main class="content">
+
   <header class="account-header-white">
     <div class="content-container content-with-aside">
+
+
       <div class="mentor-header content-main mentor-header-aligned">
-          <div class="mentor-image mentor-image-sm">
-            <%= render "shared/profile_photo", photo: current_user&.profile.try(:photo).thumb.url %>
-          </div>
-          <div class="mentor-info">
-            <h1><%= decorate(current_user&.profile).full_name %></h1>
-            <p><%= current_user&.profile.title %></p>
-          </div>
+        <div class="mentor-image mentor-image-sm">
+          <%= render "shared/profile_photo", photo: current_user&.profile.try(:photo).thumb.url %>
         </div>
-        <div class="mentor-dashboards">
-          <ul class="mantor-dashboards-nav">
-            <li>
-              <%= link_to "My Requests", requests_path , class: '' %>
-            </li>
-            <li>
-              <%= link_to "My Calls", calls_path , class: '' %>
-            </li>  
-            <li>
-              <%= link_to inbox_index_path do %>
-                Inbox <span class="unread-messages <%= 'has-unread-messages' if decorate(@profile).unread_messages? %>">(<%= decorate(@profile).unread_messages %>)</span>
-              <% end %>  
-            </li>       
-          </ul>       
+        <div class="mentor-info">
+          <h1><%= decorate(current_user&.profile).full_name %></h1>
+          <p><%= current_user&.profile.title %></p>
         </div>
+      </div>
+      <div class="mentor-dashboards">
+        <ul class="mantor-dashboards-nav">
+          <li>
+            <%= link_to "My Requests", requests_path , class: '' %>
+          </li>
+          <li>
+            <%= link_to "My Calls", calls_path , class: '' %>
+          </li>  
+          <li>
+            <%= link_to inbox_index_path do %>
+              Inbox <span class="unread-messages <%= 'has-unread-messages' if decorate(@profile).unread_messages? %>">(<%= decorate(@profile).unread_messages %>)</span>
+            <% end %>  
+          </li>       
+        </ul>       
+      </div>
     </div>
   </header>
+  <div class="content-container">
+    <% if !current_user.verified? %>
+      <div class="alert alert-info text-center p-4" role="alert">
+        <h4 class="alert-heading">You are almost done with your Offer</h4>
+        <p class="mb-0">Before you start selling on Expercoin there is one lost thing we need you to do.</p>
+        <p>We require all of our sellers to verify their account with LinkedIn before we can publish your offer.</p>
+        <a class="btn btn-primary btn-ln" href="/auth/linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i> Apply with LinkedIn</a>
+      </div>
+    <% end %>
+  </div>
   <section class="content-container content-with-aside">
     <div class="content-main">
       <div class="content-title">
