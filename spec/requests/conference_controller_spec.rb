@@ -46,9 +46,4 @@ RSpec.describe ConferenceController, type: :request do
     before { get conference_path(req.room_sid) }
     it { expect(response).to have_http_status(:ok) }
   end
-
-  # describe 'PATCH update' do
-  #   before { patch conference_path(req.room_sid) }
-  #   it { expect(response).to have_http_status(:ok) }
-  # end
 end

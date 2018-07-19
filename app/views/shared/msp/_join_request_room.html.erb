@@ -1,6 +1,7 @@
+<% if decorate(@request).call_approved? %>
   <div class="request-accepted-time">
     <h6 class="request-time">Call session is schedulled for <%= decorate(@request).session_date %></h6>
-    <% if decorate(@request).call_approved? %>
+    <% if decorate(@request).call_ready? %>
       <% if @request.inprogress? %>
         <%= link_to "Join Call", conference_path(@request.room_sid), class: "btn btn-success btn-md btn-md-lgr" %>
       <% elsif @request.verified? %> 
@@ -10,7 +11,8 @@
         <% end %>
       <% end %>
     <% end %>
-  </div>  
+  </div>
+<% end %>  
 <% if @request.verified? %>
   <span id='update-page' date-time='<%= decorate(@request).selected_date.to_i %>'></span>
 <% end %>

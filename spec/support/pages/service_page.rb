@@ -14,7 +14,7 @@ class ServicePage < UserPage
   private
 
   def select_category(category)
-    select 'service_form', { category_id: category }
+    select 'service_form', category_id: category
   end
 
   def fill_content(text)
@@ -22,7 +22,7 @@ class ServicePage < UserPage
   end
 
   def select_tags(tags)
-    select2_field = all(".select2-selection")[1].click
+    select2_field = all('.select2-selection')[1].click
     tags.each do |tag|
       select2_field.find('input').set(tag)
       select2_field.find('input').native.send_keys(:return)

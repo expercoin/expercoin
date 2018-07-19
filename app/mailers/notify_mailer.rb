@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class NotifyMailer < ActionMailer::Base
+class NotifyMailer < ApplicationMailer
   default from: 'support@expercoin.com'
   helper :decorator
   TYPES = [
@@ -16,7 +16,21 @@ class NotifyMailer < ActionMailer::Base
       @body = body
       @request = request
       instance_variable_set("@#{type.role}", request.send(type.role))
+      mail_record = mail_record(email, request, subject)
+      return unless is_confirmed?(email)
       mail(to: email, subject: subject) unless Rails.env.test?
+      mail_record.update(sent: true)
     end
+  end
+
+  def mail_record(email, meta, subject)
+    recipient_id = User.find_by_email(email).id
+    MailRecord.create(
+      recipient_id: recipient_id,
+      sent: false,
+      subject: subject,
+      meta: meta.as_json,
+      mail_type: 'Notify'
+    )
   end
 end

@@ -30,7 +30,7 @@ RSpec.describe Requests::VerifyController, type: :request do
     it_behaves_like 'authenticated user'
     it { expect(req.status).to eq 'verified' }
     it { expect(req.notifications.count).to eq 1 }
-    it { expect(enqueued_jobs.size).to eq(2)  }
+    it { expect(enqueued_jobs.size).to eq(2) }
     it { expect(response).to redirect_to request_path(req) }
   end
 

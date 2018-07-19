@@ -18,7 +18,7 @@ class RequestDecorator < BaseDecorator
   end
 
   def call_approved?
-    (inprogress? || verified?) && call_ready?
+    (inprogress? || verified?)
   end
   
   def estimated_cost(rate)
