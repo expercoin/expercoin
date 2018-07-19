@@ -26,14 +26,19 @@
     </div> 
   </div>
 </header>
-<section class="business-home-tabs">
+<section class="content-section business-intro">
   <div class="container">
-    
+    <p class="m-b-0">Expercoin is an intellectual powerhouse where industry thought leaders  and practitioners are combining consulting and teaching to reinvent the future.  Our mentoring platform enables you to connect with an expert on-demand for one-on-one session or group sessions. Whether it is mastering a new technology, or troubleshooting a problem you have encountered  or  achieving more strategic business goals, our 30,000 vetted experts are standing by to help you speed up your learning.</p>
   </div>
 </section>
-<section class="content-section section-alternate business-intro">
+<section class="content-section section-alternate business-offers">
   <div class="container">
-    <p class="m-b-0">Experfy is an intellectual powerhouse where industry thought leaders  and practitioners are combining consulting and teaching to reinvent the future.  Our mentoring platform enables you to connect with an expert on-demand for one-on-one session or group sessions. Whether it is mastering a new technology, or troubleshooting a problem you have encountered  or  achieving more strategic business goals, our 30,000 vetted experts are standing by to help you speed up your learning.</p>
+    <h2>Popular Offers</h2>
+    <div class="featured-services">
+      <% @services.each do |service| %>
+        <%= render 'shared/msp/services_card', service: service, service_url: service_path(service) %>
+      <% end %>
+    </div>
   </div>
 </section>
 <section class="business-hiw">

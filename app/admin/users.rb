@@ -1,10 +1,13 @@
 ActiveAdmin.register User do
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
+  member_action :toggle_email do
+    resource.update(confirmed_at: resource.confirmed? ? nil : Time.now)
+    redirect_to admin_user_path(resource)
+  end
+
   scope :all
   scope("Pending") { |scope| scope.pending  }
   scope("Verified") { |scope| scope.verified } 
+
 
   permit_params(
     :id,
@@ -36,7 +39,14 @@ ActiveAdmin.register User do
       row :last_sign_in_ip
       row :confirmed_at
       row :status
+      row 'Emails enabled' do
+        resource.confirmed_at ? true : false
+      end
     end
+  end
+
+  action_item :disable_email, only: :edit do
+    link_to "#{user.confirmed? ? 'Disable' : 'Enable' } Emails", { action: :toggle_email }
   end
 
 
