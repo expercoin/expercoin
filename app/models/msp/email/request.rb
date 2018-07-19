@@ -44,7 +44,6 @@ module MSP
               body,
               @request
             ).deliver_now
-            create_email_record(@request.send(role).id, subject, meta)
           end
         end
       end
