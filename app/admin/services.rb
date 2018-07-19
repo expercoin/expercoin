@@ -9,7 +9,8 @@ ActiveAdmin.register Service do
     :content,
     :cover_image,
     :category_id,
-    :status
+    :status,
+    :featured
   )
 
   form do |f|
@@ -19,6 +20,7 @@ ActiveAdmin.register Service do
       f.input :owner, as: :select, collection: User.all.map { |u| [u.email, u.id] }
       f.input :category_id, as: :select, collection: Category.children
       f.input :status
+      f.input :featured
     end
     f.inputs 'Content' do
       f.input :content, input_html: { class: 'tinymce' }
@@ -30,6 +32,7 @@ ActiveAdmin.register Service do
     column :id
     column :title
     column :category
+    column :featured
     actions
   end 
 
@@ -46,6 +49,7 @@ ActiveAdmin.register Service do
         service.content.html_safe
       end
       row :created_at
+      row :featured
     end
   end
 

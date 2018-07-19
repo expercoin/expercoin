@@ -4,6 +4,7 @@ class PagesController < ApplicationController
 
   def business_home
     @categories = Category.main
+    @services = Service.published.featured
   end
   
   def mentors_home

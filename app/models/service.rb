@@ -9,6 +9,8 @@ class Service < ApplicationRecord
 
   enum status: %i[draft pending published]
 
+  scope :featured, -> { where(featured: true) }
+
   acts_as_taggable
 
   include PgSearch
