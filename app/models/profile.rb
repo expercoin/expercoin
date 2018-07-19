@@ -23,7 +23,7 @@ class Profile < ApplicationRecord
   serialize :specialization, Hash
 
   def commission_fee
-    7
+    ENV['EXPERCOIN_RATE']
   end 
 
   private
