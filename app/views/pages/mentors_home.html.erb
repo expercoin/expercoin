@@ -10,7 +10,7 @@
     <div class="row">
       <div class="col-xs-12 col-md-12 col-lg-10">
         <h1 class="h1-sm">Lucrative Rewards for Mentoring and Advising Individuals Seeking help with Blockchain and Crypto</h1>
-        <p>Experfy is working with many Fortune 500s to bring Mentoring and  Expert help from a click of a button. If you are a thought leader or a subject matter, it’s time to share your expertise with learners all around the world and get paid in the process.</p>
+        <p>Expercoin is working with many Fortune 500s to bring Mentoring and Expert help with a click of a button. If you are a thought leader or a subject matter expert, it’s time to share your expertise with learners all around the world and get paid in the process.</p>
       </div>
     </div>   
   </div>
@@ -85,9 +85,10 @@
       <li>They need help in evaualting a business opportunity.</li> 
     </ul>
     <h6>What is the Experfy’s service fee?</h6>
-    <p>Experfy takes a commission of 20% from your quoted price/per minute. For instance, if your profile states that your rate is $2 per minute, then our commission will be $0.4 per minute and you will receive $1.60 per minute.  In addition, Experfy also bills an administrative fee directly to clients for account management and platform use. When work is delivered and payment is made, we deduct our fee and transfer the payment to you. For corporate clients that are paying us per session for individuals and groups, our pricing is customized to suit the needs of the client. You will be paid based on your rate.</p>
+    <p>Expercoin takes a commission of 20% from your quoted price/per minute. For instance, if your profile states that your rate is $2 per minute, then our commission will be $0.4 per minute and you will receive $1.60 per minute.  In addition, Expercoin also bills an administrative fee directly to clients for account management and platform use. When work is delivered and payment is made, we deduct our fee and transfer the payment to you. For corporate clients that are paying us per session for individuals and groups, our pricing is customized to suit the needs of the client. You will be paid based on your rate.</p>
     <h6>How do I get paid?</h6>
-    <p>Payouts are done on a weekly basis via Stripe. Payouts will be received to your bank within one week of the payment remittance date. You will receive payout notifications via the email. You can view your total earnings by visiting your dashboard on the Experfy platform.</p>
+    <p>We deploy smart contracts to ensure that the funs are sent to your wallet address.</p>
+    <!-- <p>Payouts are done on a weekly basis via Stripe. Payouts will be received to your bank within one week of the payment remittance date. You will receive payout notifications via the email. You can view your total earnings by visiting your dashboard on the Experfy platform.</p> -->
     <h6>How much can I charge/earn?</h6>
     <p>Average rates range between $1 to $8 per minute, depending upon the market rate for your expertise and experience.  A good strategy would be to start with a low rate and increase it gradually, as you build a good reputation.  Clients can be budget sensitive so you should use a rate that will be seen as competitive.</p>
   </div>
@@ -120,7 +121,11 @@
     </div>
     <p class="uc ac h5 strong m-b-2">Start getting paid for your expertise by creating your profile</p>
     <div class="ac">
-      <button class="btn btn-primary btn-md btn-md-lgr">Apply Now</button>
+      <% if current_user %>
+        <%= link_to 'Apply Now', settings_path, class: 'btn btn-primary btn-md btn-md-lgr' %>
+      <% else %>
+        <button class="btn btn-primary btn-md btn-md-lgr" data-toggle="modal" data-target="#modal_signup">Apply Now</button>
+      <% end %>  
     </div>
   </div>
 </section>
