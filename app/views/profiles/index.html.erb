@@ -20,7 +20,7 @@
       <div class="content-title">
         <h3>Top Expercoin Mentors</h3>
       </div>
-      <div class="mentors-with-filters">
+      <div class="providers-with-filters">
         <div class="mentors mentors-panoramic">
           <% @profiles.each do |profile| %>
             <%= render 'shared/msp/profile_card', profile: profile, request_url: new_request_path(expert: profile.slug)  %>

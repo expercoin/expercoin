@@ -14,7 +14,9 @@
           <%= image_tag "expercoin_logo.png", class: 'expercoin-service' %>  
         <% end %>
       </div>
-      <h4><%= link_to service.title, service_url %></h4>
+      <div class="service-title">
+        <h4><%= link_to service.title, service_url %></h4>
+      </div>
       <div class="service-rating-and-prices">
         <div class="pricing" data-container="body" data-toggle="popover" data-placement="top" data-content="<%= decorate(service).display_rate %>" data-trigger="hover">
           <span class="value"><%= number_to_currency(decorate(service).display_rate_in_usd) %></span>

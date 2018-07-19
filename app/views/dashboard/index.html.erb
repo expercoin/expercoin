@@ -39,31 +39,58 @@
         <a class="btn btn-primary btn-ln" href="/auth/linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i> Apply with LinkedIn</a>
       </div>
     <% end %>
-    <div class="dashboard-panels">
-      <div class="dashboard-panel-container">
-        <div class="dashboard-panel">
-          <div class="panel-header"><h4>Requests</h4></div>
-          <div class="panel-body">
-            <ul class="list-requests">
-              <li>Pending <span><%= decorate(@profile).pending_requests_count %></span></li>
-              <li>Accepted <span><%= decorate(@profile).accepted_requests_count %></span></li>
-              <li>Verified <span><%= decorate(@profile).verified_requests_count %></span></li>
-            </ul>
+  </div>
+  <section class="content-container content-with-aside">
+    <div class="content-main">
+      <div class="content-title">
+        <h3>My Offers</h3>
+      </div>
+      <div class="provider-offers">
+        <% @services.each do |service| %>
+          <%= render 'shared/msp/services_card', service: service, service_url: service_path(service) %>
+        <% end %>
+        <div class="service-container"> 
+          <%= link_to new_service_path, class: 'service-card add-service' do %>
+              <div class='plus'>+</div>
+              Create A New Offer
+          <% end %>
+        </div>
+      </div>
+      <%= paginate @services %>
+    </div>
+    <div class="content-aside">
+      <div class="mentor-container">
+        <div class="mentor-card mentor-card-panoramic">
+          <div class="card-hero">
+            <%= render "shared/profile_photo", photo: @profile.photo.thumb.url %>
+          </div>
+          <div class="card-body">
+            <h4><%= link_to decorate(@profile).full_name, profile_path(@profile) %></h4>
+            <div class="mentor-title">
+              <%= @profile.title %>
+            </div>
+            <div class="mentor-bio">
+              <%= @profile.about&.html_safe %>
+            </div>
+            <div class="mentor-location">
+              <i class="fa fa-map-marker"></i>
+              <%= decorate(@profile).display_location_with_abbreviation %>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="footer-block mentor-price" data-container="body" data-toggle="popover" data-placement="top" data-content="<%= ENV['CURRENCY'] %> <%= decorate(@profile).display_rate %>" data-trigger="hover">
+                <%=  number_to_currency(decorate(@profile).display_rate_in_usd) %> per minute
+            </div>
+            <div class="footer-block mentor-reviews">
+              <%= rating = ProfileRating.new(@profile).average_rating %>
+              <%= display_stars(rating) %>
+            </div>
+            <div class="footer-block mentor-actions">
+              <%= link_to "Edit Profile", settings_path, class: 'btn btn-footer' %>
+            </div>
           </div>
         </div>
       </div>
-      <div class="dashboard-panel-container">
-        <div class="dashboard-panel">
-          <div class="panel-header"><h4>Calls</h4></div>
-          <div class="panel-body">
-            <ul class="list-requests">
-              <li>Pending <span><%= decorate(@profile).pending_calls_count %></span></li>
-              <li>Accepted <span><%= decorate(@profile).accepted_calls_count %></span></li>
-              <li>Verified <span><%= decorate(@profile).verified_calls_count %></span></li>
-            </ul>
-          </div>
-        </div>        
-      </div>
     </div>
-  </div>
+  </section>
 </main>

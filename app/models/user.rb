@@ -28,10 +28,6 @@ class User < ApplicationRecord
     create_profile(first_name: first_name, last_name: last_name)
   end
 
-  def send_confirmation_notification?
-    false
-  end
-
   def time_zone
     ENV['TIME_ZONE']
   end

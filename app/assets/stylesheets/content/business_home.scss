@@ -83,6 +83,8 @@
   } 
 
   .card-body {
+    display: flex;
+    flex-direction: column;
     padding: 15px 0px 0;
 
     h4 {
@@ -128,6 +130,11 @@
     .expercoin-service {
       height: 32px;
     }
+  }
+
+  .service-title {
+    padding: 0;
+    flex: 1;
   }
 
   .service-rating-and-prices {
