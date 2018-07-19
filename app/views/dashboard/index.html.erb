@@ -32,23 +32,15 @@
       <div class="content-title">
         <h3>My Offers</h3>
       </div>
-      <div class="providers-with-filters">
-        <div class="providers-groups">
-          <div class="providers providers-panoramic">
-            <% @services.each do |service| %>
-              <%= render 'shared/msp/services_card', service: service, service_url: service_path(service) %>
-            <% end %>
-            <div class="service-container">
-              <div class="service-card"> 
-                <%= link_to new_service_path do %>
-                  <div class="card-body plus-wrapper">
-                    <div class='plus d-flex justify-content-center align-items-center'>+</div>
-                    <span>Create A New Offer</span>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          </div>
+      <div class="provider-offers">
+        <% @services.each do |service| %>
+          <%= render 'shared/msp/services_card', service: service, service_url: service_path(service) %>
+        <% end %>
+        <div class="service-container"> 
+          <%= link_to new_service_path, class: 'service-card add-service' do %>
+              <div class='plus'>+</div>
+              Create A New Offer
+          <% end %>
         </div>
       </div>
       <%= paginate @services %>
