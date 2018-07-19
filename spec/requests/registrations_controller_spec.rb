@@ -14,7 +14,9 @@ RSpec.describe RegistrationsController, type: :request do
   end
 
   describe 'POST create' do
+    let(:user) { User.first }
     before { post user_registration_path, params: { user: user_params } }
+    it { expect(user.confirmed?).to be false }
     it { expect(response).to redirect_to dashboard_index_path }
   end
 end

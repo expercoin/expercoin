@@ -29,7 +29,6 @@ class OauthService
 
   def find_or_create_user
     user = User.find_by(email: email) || User.create!(user_params)
-    user.confirm
     user.verified!
     user
   end

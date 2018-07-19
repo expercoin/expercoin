@@ -5,10 +5,8 @@ namespace :users do
       email: 'johnsnow@got.com',
       password: '123456',
       first_name: 'Jon',
-      last_name: 'Snow',
-      status: 'verified'
+      last_name: 'Snow'
     )
-    user.confirm
     user.profile.update(
       rate: 500,
       expercoin_rate: (500 / 0.93).round,
@@ -34,7 +32,6 @@ namespace :users do
         password: '123456',
         status: 'verified'
       )
-      user.confirm
       women = ['a', 'e'].include? first_name.last
       photo = "https://randomuser.me/api/portraits/#{'wo' if women}men/#{rand(1..99)}.jpg"
       specialization = {}
