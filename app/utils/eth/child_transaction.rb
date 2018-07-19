@@ -2,7 +2,7 @@
 
 module Eth
   class ChildTransaction
-    EXPR_FEE = 0.07
+    EXPR_FEE = ENV['EXPERCOIN_RATE'].to_i / 100.0
 
     def initialize(parent)
       @parent = parent

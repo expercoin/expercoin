@@ -15,7 +15,7 @@ class ServiceForm < FormObject
   private
 
   def calculated_rate
-    ::PercentageCalculate.new(7, expercoin_rate).decrease
+    ::PercentageCalculate.new(ENV['EXPERCOIN_RATE'], expercoin_rate).decrease
   end
 
   def entered_rate

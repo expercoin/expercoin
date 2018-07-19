@@ -42,7 +42,7 @@ namespace :payments do
         parent: parent,
         sender: parent.sender,
         request: parent.request,
-        eth_amount: amount * 0.07,
+        eth_amount: amount * (ENV['EXPERCOIN_RATE'].to_i / 100.0),
         from_eth: parent.to_eth,
         status: 'completed'
       )
