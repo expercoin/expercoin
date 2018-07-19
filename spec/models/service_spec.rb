@@ -10,8 +10,6 @@ RSpec.describe Service, type: :model do
   end
 
   describe 'Validations' do
-    # it { expect(service).to validate_presence_of :title }
-    # it { expect(service).to validate_presence_of :content }
   end
 
   describe 'Associations' do
