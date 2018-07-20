@@ -24,6 +24,7 @@ class Request < ApplicationRecord
   enum status: %I[draft pending accepted inprogress completed rejected upcoming expired closed verified verifying]
 
   scope :tx_hash, -> { where.not(tx_hash: nil) }
+  scope :one_day_to_call, -> { where("selected_date < ?", (Time.now + 26.hours)) }
 
   validates(
     :title,
@@ -122,5 +123,9 @@ class Request < ApplicationRecord
 
   def requester?(user)
     requester.user.id == user.id 
-  end 
+  end
+
+  def email_identifier
+    "#{id}_call_event"
+  end
 end
