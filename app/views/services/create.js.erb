@@ -1,1 +1,4 @@
-$('.page-content').html("<%= escape_javascript(render(file: 'settings/index')) %>");
+$('body').append(
+  '<%= j(render('confirmation_modal')) %>'
+);
+$('#service-confirmation-modal').modal('show');
