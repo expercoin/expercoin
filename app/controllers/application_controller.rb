@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def first_time_redirect
-    return if ([params[:controller]] & ['get_started', 'sessions']).present?
+    return if ([params[:controller]] & ['get_started', 'sessions', 'services', 'dashboard']).present?
     return unless current_user&.first_time
     redirect_to get_started_index_path
   end
