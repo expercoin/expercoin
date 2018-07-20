@@ -28,11 +28,22 @@ RSpec.describe 'Get Started', type: :system do
     it { expect(page.body).to include 'My Requests' }
   end
 
-  # feature 'go to dashboard on close' do
-  #   before do
-  #     get_started_page.open
-  #     search_offers
-  #   end
-  #   it { expect(page.body).to include 'Top Expercoin Offerings' }
-  # end
+  feature 'search and go to offers' do
+    before do
+      user.update(first_time: true)
+      get_started_page.open
+      get_started_page.search_offers('hello')
+    end
+    it { expect(page.body).to include 'Top Expercoin Offerings' }
+  end
+
+  feature 'go to create offer' do
+    before do
+      user.update(first_time: true)
+      get_started_page.open
+      get_started_page.go_to_create_offers
+    end
+    it { expect(page.body).to include 'Not rated' }
+    it { expect(page.body).to include 'Save' }
+  end
 end

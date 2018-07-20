@@ -13,8 +13,10 @@
           <div class="body-block">
             <h3>As a Mentee (Buyer)</h3>
             <div class="form-group search-offers">
-              <input type="text" class="form-control" placeholder="Find Offers" />
-              <i class="fa fa-search" aria-hidden="true"></i>
+              <%= form_tag(services_path, method: :get, enforce_utf8: false) do %>
+                <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Find Offers" %>
+                <i class="fa fa-search" aria-hidden="true"></i>
+              <% end %>
             </div>
             <p>Popular searches</p>
             <ul class="popular-searches">
@@ -26,7 +28,7 @@
           <div class="body-block">
             <h3>As a Mentor (Seller)</h3>
             <div class="text-center">
-              <button class="btn btn-primary btn-md btn-md-lgr">Create your First Offer</button>
+              <%= link_to 'Create your First Offer', new_service_path, class: "btn btn-primary btn-md btn-md-lgr" %>
             </div>  
             <p>Your Offer is the service that you sell on Expercoin. Creating your Offer is an opportunity to show off your talent and provide buyers with all the information they need to help them decide to do business with</p>
           </div>
