@@ -77,5 +77,42 @@
     }
   }
 
+  .search-offers {
+    position: relative;
 
+    .form-control {
+      padding-left: 32px;
+    }  
+
+    .fa-search {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+  }
+
+  .popular-searches {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0;
+    margin: -6px -6px 0;
+
+    li {
+      padding: 6px;
+
+      a {
+        display: block;
+        background-color: #999;
+        color: #fff;
+        font-weight: 600;
+        padding: 4px 12px;
+
+        &:hover,
+        &:focus {
+          background-color: #777;
+        }
+      }
+    }
+  }
 }
