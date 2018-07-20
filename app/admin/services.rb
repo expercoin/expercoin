@@ -4,6 +4,12 @@ ActiveAdmin.register Service do
   scope("Pending") { |scope| scope.pending } 
   scope("Published") { |scope| scope.published }
 
+  member_action :publish do
+    resource.published!
+    ServiceMailer.published(resource).deliver_later
+    redirect_to action: :show
+  end
+
   permit_params(
     :title,
     :content,
@@ -26,6 +32,10 @@ ActiveAdmin.register Service do
       f.input :content, input_html: { class: 'tinymce' }
     end
     f.actions
+  end
+
+  action_item :publish, only: :edit do
+    link_to 'Publish', { action: :publish } unless resource.published?
   end
 
   index do
