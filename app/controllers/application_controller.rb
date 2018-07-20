@@ -5,7 +5,11 @@ class ApplicationController < ActionController::Base
   before_action :first_time_redirect
 
   def after_sign_in_path_for(resource)
-    dashboard_index_path
+    if resource.first_time
+      get_started_index_path
+    else
+      dashboard_index_path
+    end
   end
 
   def render_404
