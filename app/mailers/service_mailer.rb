@@ -3,6 +3,7 @@ class ServiceMailer < ApplicationMailer
   helper :decorator
 
   def published(service)
+    add_attachments
     @service = service
     email = service.owner.user.email
     subject = 'Your offer has been published'

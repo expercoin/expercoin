@@ -3,6 +3,7 @@ class MessageMailer < ApplicationMailer
   helper :decorator
 
   def new_message(message)
+    add_attachments
     @message = message
     email = message.receiver.email
     subject = 'New message on Expercoin'
@@ -13,6 +14,7 @@ class MessageMailer < ApplicationMailer
   end
 
   def reply_message(message)
+    add_attachments
     @message = message
     @parent = message.parent
     email = message.receiver.email

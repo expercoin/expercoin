@@ -87,7 +87,7 @@
         <td align="center">
           <table>
             <tr>
-              <td><img src="<%= "#{root_url}/images/expercoin_logo.png" %>"></td>
+              <td><%= image_tag(attachments['expercoin_logo.png'].url) %></td>
               <td>
                 <h1 style="color: #37a1d9;">Expercoin</h1>
               </td>
@@ -109,11 +109,11 @@
             <div class="service-card"> 
               <div class="card-hero">
                 <a href="<%= service_url(@offer) %>" target="_blank">
-                  <img src="<%= @offer.cover_image.thumb.url %>">
+                  <img src="<%= "#{root_url}#{@offer.cover_image.thumb.url}" %>">
                 </a>    </div>
                 <div class="card-body">
                   <div class="service-owner">
-                    <img class="img-circle" src="<%= @offer.owner.photo.badge.url %>">
+                    <img class="img-circle" src="<%= "#{root_url}#{@offer.owner.photo.badge.url}" %>">
 
 
                     <%= link_to decorate(@offer).profile_full_name, profile_url(@offer.owner), target: '_blank' %>

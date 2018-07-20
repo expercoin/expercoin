@@ -3,6 +3,7 @@ class AdminMailer < ApplicationMailer
   helper :decorator
 
   def new_offer(offer)
+    add_attachments
     @offer = offer
     subject = 'New Offer submitted'
     mail(to: 'mentor@expercoin.com', subject: subject)

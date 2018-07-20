@@ -7,4 +7,10 @@ class ApplicationMailer < ActionMailer::Base
   def is_confirmed?(email)
     User.find_by_email(email).confirmed?
   end
+
+  def add_attachments
+    attachments.inline['expercoin_logo.png'] = File.read(
+      "#{Rails.root}/public/images/expercoin_logo.png"
+    )
+  end
 end
