@@ -3,14 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe 'Get Started', type: :system do
-  let(:profile) { create(:profile) }
-  let(:user) { profile.user }
+  let(:user) { create(:user, :first_time) }
+  let(:profile) { create(:profile, user: user) }
 
   subject(:get_started_page) { GetStartedPage.new(get_started_index_path, user) }
 
   feature 'go to dashboard' do
     before do
-      user.update(first_time: true)
       get_started_page.open
       get_started_page.go_to_dashboard
     end
@@ -20,7 +19,6 @@ RSpec.describe 'Get Started', type: :system do
 
   feature 'go to dashboard on close' do
     before do
-      user.update(first_time: true)
       get_started_page.open
       get_started_page.close_modal_go_to_dashboard
     end
@@ -30,7 +28,6 @@ RSpec.describe 'Get Started', type: :system do
 
   feature 'search and go to offers' do
     before do
-      user.update(first_time: true)
       get_started_page.open
       get_started_page.search_offers('hello')
     end
@@ -39,7 +36,6 @@ RSpec.describe 'Get Started', type: :system do
 
   feature 'go to create offer' do
     before do
-      user.update(first_time: true)
       get_started_page.open
       get_started_page.go_to_create_offers
     end

@@ -16,5 +16,12 @@ FactoryBot.define do
       title + body.join
     end
     owner { create(:profile) }
+
+    trait :pending do
+      status 'pending'
+    end
+    trait :published do
+      status 'published'
+    end
   end
 end

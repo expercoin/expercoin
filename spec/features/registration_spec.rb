@@ -19,7 +19,7 @@ RSpec.describe 'Registration', type: :system do
       registration_page.open
       registration_page.fill_and_submit_form 'user', user_params, 'Sign Up'
     end
-    it { expect(current_path).to eq dashboard_index_path }
+    it { expect(current_path).to eq get_started_index_path }
   end
 
   feature 'registration with /signup route' do
@@ -28,6 +28,6 @@ RSpec.describe 'Registration', type: :system do
       registration_page.open
       registration_page.fill_and_submit_form 'user', user_params, 'Sign up'
     end
-    it { expect(current_path).to eq dashboard_index_path }
+    it { expect(current_path).to eq get_started_index_path }
   end
 end

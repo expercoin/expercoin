@@ -40,10 +40,9 @@ RSpec.describe ServicesController, type: :request do
   end
 
   describe 'POST create' do
-    before { post services_path, params: { service_form: service_params } }
+    before { post services_path, params: { service_form: service_params }, xhr: true }
     it_behaves_like 'authenticated user'
     it { expect(Service.count).to eq 1 }
-    it { expect(response).to redirect_to service_path(Service.first) }
   end
 
   describe 'PATCH update' do
