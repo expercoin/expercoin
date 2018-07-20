@@ -37,7 +37,6 @@ class ServicesController < ApplicationController
     @service = @service_form.create(Service)
     if @service
       AdminMailer.new_offer(@service)
-      redirect_to service_path(@service)
     else
       flash[:alert] = @service_form.errors.full_messages&.join(', ')
       redirect_to new_service_path
