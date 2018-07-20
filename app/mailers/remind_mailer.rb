@@ -3,6 +3,9 @@ class RemindMailer < ApplicationMailer
   helper :decorator
 
   def call_remind_expert(request)
+    attachments.inline['expercoin_logo.png'] = File.read(
+      "#{Rails.root}/public/images/expercoin_logo.png"
+    )
     @request = request
     email = request.expert.user.email
     subject = "You have scheduled call session at #{request.selected_date}"
@@ -13,6 +16,10 @@ class RemindMailer < ApplicationMailer
   end
 
   def call_remind_requester(request)
+    attachments.inline['expercoin_logo.png'] = File.read(
+      "#{Rails.root}/public/images/expercoin_logo.png"
+    )
+    @request = request
     @request = request
     email = request.requester.user.email
     subject = "You have scheduled call session at #{request.selected_date}"
