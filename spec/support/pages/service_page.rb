@@ -11,6 +11,11 @@ class ServicePage < UserPage
     sleep 1
   end
 
+  def click_view_service
+    click_on 'View Offer'
+    sleep 0.3
+  end
+
   private
 
   def select_category(category)

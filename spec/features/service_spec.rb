@@ -24,6 +24,7 @@ RSpec.feature 'Services', type: :system do
     before do
       service_page.open
       service_page.fill_service_fields(service_params)
+      service_page.click_view_service
     end
     it { expect(page.body).to include 'Test service title' }
     it { expect(page.body).to include 'Test Service Content' }

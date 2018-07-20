@@ -5,6 +5,7 @@ class ServicesController < ApplicationController
   before_action :authenticate_user!, except: %i[show index]
   before_action :set_profile, except: %i[show index]
   before_action :set_categories, only: %i[new edit]
+  before_action :update_first_time, only: %i[index new]
 
   def new
     @service = @profile.services.new(
@@ -37,7 +38,6 @@ class ServicesController < ApplicationController
     @service = @service_form.create(Service)
     if @service
       AdminMailer.new_offer(@service)
-      redirect_to service_path(@service)
     else
       flash[:alert] = @service_form.errors.full_messages&.join(', ')
       redirect_to new_service_path
@@ -56,6 +56,10 @@ class ServicesController < ApplicationController
   end
 
   private
+
+  def update_first_time
+    current_user.update(first_time: false)
+  end
 
   def set_profile
     @profile = current_user.profile
