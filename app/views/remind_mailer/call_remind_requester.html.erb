@@ -80,7 +80,7 @@
       <tr>
         <td>
           <p>
-          You have call request scheduled at <%= @request.selected_date %>
+          You have call request scheduled on <%= @request.selected_date.in_time_zone(@request.time_zone).strftime('%d %b. %Y at %I:%M %p %Z (%:z) ') %>
           </p>
 
           <%= link_to "View Request", request_url(@request), target: '_blank' %>
