@@ -8,7 +8,12 @@ class GetStartedPage < UserPage
   end
 
   def close_modal_go_to_dashboard
-    click_on 'x'
+    find('a.close-panel').click
+    sleep 1
+  end
+
+  def go_to_create_offers
+    click_on 'Create your First Offer'
     sleep 1
   end
 
@@ -17,13 +22,12 @@ class GetStartedPage < UserPage
     select_category service_params[:category]
     attach_photo
     select_tags service_params[:tags]
-    fill_and_submit_form 'service_form', service_params.except(:content, :category, :tags)
     sleep 1
   end
 
   def search_offers(text)
-    # fill_content text
-    # fill_and_submit_form 'search_form'
-    # sleep 1
+    find('#search').set(text)
+    find('#search').native.send_keys(:return)
+    sleep 1
   end
 end
