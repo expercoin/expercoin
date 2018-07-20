@@ -5,7 +5,9 @@
         <div class="panel-header">
           <h1>Hi <%= "#{current_user.profile.first_name}!" %> We'd like to welcome you to Expercoin.</h1>
           <p>Since you are new, there are three ways to get started. Choose the role that describes you the best.</p>
-          <a class="close-panel">&times</a>
+          <%= link_to dashboard_index_path, class: "close-panel" do %>
+            &times
+          <% end %>
         </div>
         <div class="panel-body">
           <div class="body-block">
@@ -24,7 +26,7 @@
           </div>
         </div>
         <div class="panel-footer">
-          <button class="btn btn-primary btn-md btn-md-lgr">Go to Dashboard</button>
+          <%= link_to 'Go to Dashboard', dashboard_index_path, class: "btn btn-primary btn-md btn-md-lgr" %>
         </div>
       </div>
     </div>

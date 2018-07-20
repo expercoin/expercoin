@@ -4,14 +4,15 @@ require 'rails_helper'
 
 RSpec.describe 'Get Started', type: :system do
   let(:profile) { create(:profile) }
-  let(:user) { profile.user.update(first_time: true) }
+  let(:user) { profile.user }
 
-  subject(:get_started_page) { GetStartedPage.new(get_started_path, user) }
+  subject(:get_started_page) { GetStartedPage.new(get_started_index_path, user) }
 
   feature 'go to dashboard' do
     before do
+      user.update(first_time: true)
       get_started_page.open
-      go_to_dashboard
+      get_started_page.go_to_dashboard
     end
     it { expect(page.body).to include 'My Calls' }
     it { expect(page.body).to include 'My Requests' }
@@ -19,8 +20,9 @@ RSpec.describe 'Get Started', type: :system do
 
   feature 'go to dashboard on close' do
     before do
+      user.update(first_time: true)
       get_started_page.open
-      close_modal_go_to_dashboard
+      get_started_page.close_modal_go_to_dashboard
     end
     it { expect(page.body).to include 'My Calls' }
     it { expect(page.body).to include 'My Requests' }

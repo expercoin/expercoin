@@ -8,7 +8,7 @@ class GetStartedPage < UserPage
   end
 
   def close_modal_go_to_dashboard
-    click_on 'x'
+    find('a.close-panel').click
     sleep 1
   end
 
