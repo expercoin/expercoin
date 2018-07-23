@@ -7,9 +7,8 @@ class OauthService
   end
 
   def create_oauth_account!
-    unless oauth_account = OauthAccount.where(uid: @auth_hash[:uid]).first
+    unless oauth_account = OauthAccount.where(uid: uid).first
       oauth_account = OauthAccount.new(oauth_account_params)
-      @user.update(email: email)
       @user.verified!
       oauth_account.user = @user
       oauth_account.save
@@ -30,7 +29,7 @@ class OauthService
   end
 
   def find_or_create_user
-    User.find_by(email: email) || User.create!(user_params)
+    OauthAccount.find_by(uid: uid).try(:user) || User.create!(user_params)
   end
 
   def user_params
@@ -40,6 +39,10 @@ class OauthService
       first_name: first_name,
       last_name: last_name
     }
+  end
+
+  def uid
+    @auth_hash[:uid]
   end
 
   def email
