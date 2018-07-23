@@ -9,7 +9,7 @@ RSpec.describe 'Admin Login', type: :system do
     it 'Log in successfully' do
       login_page = AdminLoginPage.new(admin_user)
       login_page.fill_and_submit_form
-      expect(current_path).to eq admin_dashboard_path
+      expect(current_path).to eq admin_root_path
     end
   end
 end
