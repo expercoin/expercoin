@@ -4,6 +4,7 @@ class Service < ApplicationRecord
   belongs_to :category
   belongs_to :owner, class_name: 'Profile', optional: true
   has_many :wishlists
+  has_one :page, as: :content, dependent: :destroy
 
   mount_uploader :cover_image, ServicesUploader
 

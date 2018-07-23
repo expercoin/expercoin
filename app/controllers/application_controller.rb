@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :first_time_redirect
+  before_action :set_meta_tags
 
   def after_sign_in_path_for(resource)
     if resource.class.name == 'AdminUser'
@@ -12,6 +13,10 @@ class ApplicationController < ActionController::Base
     else
       stored_location_for(resource) || dashboard_index_path
     end
+  end
+
+  def set_meta_tags
+    # meta_tags = MetaTagsFinder.new(params).perform
   end
 
   def render_404
