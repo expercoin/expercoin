@@ -4,6 +4,6 @@ class GetStartedController < ApplicationController
   layout 'get_started'
 
   def index
-
-  end  
-end  
+    @popular_tags = ActsAsTaggableOn::Tag.most_used.last(5)
+  end
+end
