@@ -4,7 +4,7 @@
       <div class="panel panel-get-started">
         <div class="panel-header">
           <h1>Hi <%= "#{current_user.profile.first_name}!" %> We'd like to welcome you to Expercoin.</h1>
-          <p>Since you are new, there are three ways to get started. Choose the role that describes you the best.</p>
+          <p>Since you are new, there are two ways to get started. Choose the role that describes you the best.</p>
           <%= link_to dashboard_index_path, class: "close-panel" do %>
             &times
           <% end %>
@@ -30,7 +30,7 @@
             <div class="text-center">
               <%= link_to 'Create your First Offer', new_service_path, class: "btn btn-primary btn-md btn-md-lgr" %>
             </div>  
-            <p>Your Offer is the service that you sell on Expercoin. Creating your Offer is an opportunity to show off your talent and provide buyers with all the information they need to help them decide to do business with</p>
+            <p>Your Offer is the service that you sell on Expercoin. Creating your Offer is an opportunity to show off your talent and provide buyers with all the information they need to help them decide to do business with you.</p>
           </div>
         </div>
         <div class="panel-footer">
