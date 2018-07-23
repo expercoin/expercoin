@@ -22,6 +22,7 @@ RSpec.feature 'Services', type: :system do
   feature 'New service' do
     subject(:service_page) { ServicePage.new(new_service_path, user) }
     before do
+      create(:service, owner: profile)
       service_page.open
       service_page.fill_service_fields(service_params)
       service_page.click_view_service

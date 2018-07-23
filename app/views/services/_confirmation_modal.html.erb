@@ -7,7 +7,7 @@
       <div class="modal-body text-center">
         <p>Thank you for posting your offer.</p>
         <p>Our Team will publish your listing after review process.</p>
-        <%= link_to 'View Offer', service_path(@service), class: "btn btn-primary request-btn btn-md btn-md-lgr" %>
+        <%= link_to 'View Offer', @path || service_path(@service), class: "btn btn-primary request-btn btn-md btn-md-lgr" %>
       </div>
     </div>
   </div>

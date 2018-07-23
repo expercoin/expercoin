@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if resource.class.name == 'AdminUser'
-      admin_root_path	
+      admin_root_path
     elsif resource.class.name == 'User' && resource.first_time
       get_started_index_path
     else

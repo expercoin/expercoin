@@ -32,5 +32,9 @@ FactoryBot.define do
     trait :verified do
       status 'verified'
     end
+
+    trait :unconfirmed do
+      confirmed_at nil
+    end
   end
 end

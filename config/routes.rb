@@ -9,7 +9,8 @@ Rails.application.routes.draw do
                     sign_out: 'logout',
                     sign_up: 'signup' },
       controllers: { registrations: 'registrations', 
-                    sessions: 'sessions' }
+                     confirmations: 'confirmations',
+                     sessions: 'sessions' }
 
   # resources :pages, only: [:show]
   root 'pages#business_home'

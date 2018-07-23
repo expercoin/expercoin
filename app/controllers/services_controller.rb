@@ -38,6 +38,7 @@ class ServicesController < ApplicationController
     @service = @service_form.new
     if @service_form.valid?
       @service.save
+      @path = dashboard_index_path if current_user.profile.services.count == 1
       AdminMailer.new_offer(@service)
     else
       flash.now[:alert] = @service_form.errors.full_messages&.join(', ')
