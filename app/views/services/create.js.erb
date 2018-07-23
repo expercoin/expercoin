@@ -1,4 +1,10 @@
-$('body').append(
-  '<%= j(render('confirmation_modal')) %>'
-);
+<% if flash[:alert] %>
+    $('.content').prepend(
+      '<%= j(render 'shared/notice_box', message: flash[:alert], type: 'error', name: 'show') %>'
+    );
+<% else %>
+    $('body').append(
+      '<%= j(render('confirmation_modal')) %>'
+    );
 $('#service-confirmation-modal').modal('show');
+<% end %>

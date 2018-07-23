@@ -4,7 +4,8 @@ class ServicesController < ApplicationController
   layout 'dashboard'
   before_action :authenticate_user!, except: %i[show index]
   before_action :set_profile, except: %i[show index]
-  before_action :set_categories, only: %i[new edit]
+  before_action :set_categories, except: %i[index]
+  before_action :set_main_categories, only: %i[index]
   before_action :update_first_time, only: %i[index new]
 
   def new
@@ -26,7 +27,6 @@ class ServicesController < ApplicationController
       params[:search]
     ).perform
     @services = services.page(params[:page]).per(15)
-    @categories = Category.main
   end
 
   def show
@@ -35,12 +35,12 @@ class ServicesController < ApplicationController
 
   def create
     @service_form = ServiceForm.new(service_params.merge(status: 'pending'))
-    @service = @service_form.create(Service)
-    if @service
+    @service = @service_form.new
+    if @service_form.valid?
+      @service.save
       AdminMailer.new_offer(@service)
     else
-      flash[:alert] = @service_form.errors.full_messages&.join(', ')
-      redirect_to new_service_path
+      flash.now[:alert] = @service_form.errors.full_messages&.join(', ')
     end
   end
 
@@ -67,6 +67,10 @@ class ServicesController < ApplicationController
 
   def set_categories
     @categories = Category.children
+  end
+
+  def set_main_categories
+    @categories = Category.main
   end
 
   def service_params

@@ -31,6 +31,21 @@ RSpec.feature 'Services', type: :system do
     it { expect(page.body).to include 'First Tag' }
   end
 
+  feature 'New service with invalid params' do
+    subject(:service_page) { ServicePage.new(new_service_path, user) }
+    before do
+      service_page.open
+      service_page.fill_service_fields(service_params.except(:content))
+    end
+    scenario 'Shows message for missing content' do
+      expect(page.body).to include "Content can't be blank"
+    end
+    scenario 'Shows old text in input' do
+      value = find('#service_form_title').value
+      expect(value).to eq 'Test service title'
+    end
+  end
+
   feature 'Edit service' do
     let(:service) { create(:service, owner: profile) }
     subject(:service_page) { ServicePage.new(edit_service_path(service), user) }

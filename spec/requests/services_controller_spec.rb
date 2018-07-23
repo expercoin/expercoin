@@ -61,6 +61,12 @@ RSpec.describe ServicesController, type: :request do
     it { expect(Service.count).to eq 1 }
   end
 
+  describe 'POST create fails' do
+    before { post services_path, params: { service_form: service_params.except(:title) }, xhr: true }
+    it_behaves_like 'authenticated user'
+    it { expect(flash[:alert]).not_to be_empty }
+  end
+
   describe 'PATCH update' do
     before { patch service_path(service), params: { service_form: service_params } }
     it_behaves_like 'authenticated user'

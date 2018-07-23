@@ -18,8 +18,13 @@ class FormObject
     object.update(attributes.compact)
   end
 
-  def create(object)
-    return unless valid?
-    object.create!(attributes.compact)
+  def new
+    class_name.constantize.new(attributes.compact)
+  end
+
+  private
+
+  def class_name
+    self.class.name.gsub('Form', '')
   end
 end
