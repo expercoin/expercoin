@@ -58,7 +58,7 @@ class ServicesController < ApplicationController
   private
 
   def update_first_time
-    current_user.update(first_time: false)
+    current_user&.update(first_time: false)
   end
 
   def set_profile

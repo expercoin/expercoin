@@ -34,8 +34,24 @@ RSpec.describe ServicesController, type: :request do
     it { expect(response).to have_http_status(:ok) }
   end
 
+  describe 'GET index not logged user' do
+    before do
+      sign_out(user)
+      get services_path
+    end
+    it { expect(response).to have_http_status(:ok) }
+  end
+
   describe 'GET show' do
     before { get service_path(service) }
+    it { expect(response).to have_http_status(:ok) }
+  end
+
+  describe 'GET show not logged user' do
+    before do
+      sign_out(user)
+      get service_path(service)
+    end
     it { expect(response).to have_http_status(:ok) }
   end
 
