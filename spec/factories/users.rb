@@ -28,5 +28,9 @@ FactoryBot.define do
     trait :first_time do
       first_time true
     end
+
+    trait :verified do
+      status 'verified'
+    end
   end
 end

@@ -9,10 +9,10 @@ class OauthService
   def create_oauth_account!
     unless oauth_account = OauthAccount.where(uid: uid).first
       oauth_account = OauthAccount.new(oauth_account_params)
-      @user.verified!
       oauth_account.user = @user
       oauth_account.save
     end
+    @user.verified!
     oauth_account
   end
 

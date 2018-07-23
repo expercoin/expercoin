@@ -6,6 +6,7 @@ class DashboardController < ApplicationController
   def index
     @profile = current_user.profile
     @services = @profile.services.page(params[:page]).per(5)
+    @message = DashboardMessageFinder.new(current_user).perform
   end
 
   private

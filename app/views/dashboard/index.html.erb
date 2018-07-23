@@ -31,14 +31,7 @@
     </div>
   </header>
   <div class="content-container">
-    <% if !current_user.verified? %>
-      <div class="alert alert-info text-center p-4" role="alert">
-        <h4 class="alert-heading">You are almost done with your Offer</h4>
-        <p class="mb-0">Before you start selling on Expercoin there is one lost thing we need you to do.</p>
-        <p>We require all of our sellers to verify their account with LinkedIn before we can publish your offer.</p>
-        <a class="btn btn-primary btn-ln" href="/auth/linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i> Apply with LinkedIn</a>
-      </div>
-    <% end %>
+      <%= render @message unless @message.nil? %>
   </div>
   <section class="content-container content-with-aside">
     <div class="content-main">
