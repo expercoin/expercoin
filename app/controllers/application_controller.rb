@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     elsif resource.class.name == 'User' && resource.first_time
       get_started_index_path
     else
-      dashboard_index_path
+      stored_location_for(resource) || dashboard_index_path
     end
   end
 
