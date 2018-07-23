@@ -20,9 +20,9 @@
             </div>
             <p>Popular searches</p>
             <ul class="popular-searches">
-              <li><a href="#">solidity</a></li>
-              <li><a href="#">International Taxation</a></li>
-              <li><a href="#">Company Formation</a></li>
+              <% @popular_tags.each do |tag| %>
+              <li><%= link_to tag.name, services_path(search: tag.name) %></li>
+              <% end %>
             </ul>
           </div>
           <div class="body-block">
