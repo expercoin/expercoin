@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'support/pages/admin/user_page'
+require 'support/pages/user_page'
 module Admin
   class LoginPage
     include Capybara::DSL
