@@ -21,9 +21,10 @@ module Eth
     private
 
     def price_usd
-      return 400.0 if Rails.env.development?
-      req = JSON.parse(open('https://api.coinmarketcap.com/v1/ticker/ethereum/').read)
-      req[0]['price_usd'].to_f
+      Rails.cache.fetch("eth_price_usd", expires_in: 2.hours) do
+        req = JSON.parse(open('https://api.coinmarketcap.com/v1/ticker/ethereum/').read)
+        req[0]['price_usd'].to_f
+      end
     rescue StandardError
       false
     end
