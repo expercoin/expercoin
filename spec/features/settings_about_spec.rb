@@ -32,8 +32,7 @@ RSpec.feature 'Settings About', type: :system do
       settings_about_page.open
     end
     it do
-      params_saved = include_each?(page.body, %w[Blockchain Solidity Mentoring Crypto Dollary])
-      expect(params_saved).to eq true
+      expect(page.body).to include 'Blockchain', 'Solidity', 'Mentoring', 'Crypto', 'Dollary'
     end
   end
 end

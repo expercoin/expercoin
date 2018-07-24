@@ -27,24 +27,7 @@ RSpec.feature 'Services', type: :system do
       service_page.fill_service_fields(service_params)
       service_page.click_view_service
     end
-    it { expect(page.body).to include 'Test service title' }
-    it { expect(page.body).to include 'Test Service Content' }
-    it { expect(page.body).to include 'First Tag' }
-  end
-
-  feature 'New service with invalid params' do
-    subject(:service_page) { ServicePage.new(new_service_path, user) }
-    before do
-      service_page.open
-      service_page.fill_service_fields(service_params.except(:content))
-    end
-    scenario 'Shows message for missing content' do
-      expect(page.body).to include "Content can't be blank"
-    end
-    scenario 'Shows old text in input' do
-      value = find('#service_form_title').value
-      expect(value).to eq 'Test service title'
-    end
+    it { expect(page.body).to include 'Test service title', 'Test Service Content', 'First Tag' }
   end
 
   feature 'Edit service' do
@@ -54,9 +37,7 @@ RSpec.feature 'Services', type: :system do
       service_page.open
       service_page.fill_service_fields(service_params)
     end
-    it { expect(page.body).to include 'Test service title' }
-    it { expect(page.body).to include 'Test Service Content' }
-    it { expect(page.body).to include 'First Tag' }
+    it { expect(page.body).to include 'Test service title', 'Test Service Content', 'First Tag' }
   end
 
   feature 'Meta Tags' do
@@ -65,7 +46,6 @@ RSpec.feature 'Services', type: :system do
 
     subject(:service_page) { ServicePage.new(service_path(service), user) }
     before { service_page.open }
-    it { expect(page.title).to include page_meta.title }
-    it { expect(page.body).to include page_meta.description }
+    it { expect(page.body).to include page_meta.title, page_meta.description }
   end
 end

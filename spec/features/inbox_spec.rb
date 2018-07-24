@@ -17,7 +17,6 @@ RSpec.describe 'Inbox', type: :system do
 
   feature 'Open Message' do
     before { inbox_page.click_details }
-    it { expect(page.body).to include message.body }
-    it { expect(page.body).to include message.title }
+    it { expect(page.body).to include message.body, message.title }
   end
 end

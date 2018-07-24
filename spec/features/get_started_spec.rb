@@ -13,8 +13,7 @@ RSpec.describe 'Get Started', type: :system do
       get_started_page.open
       get_started_page.go_to_dashboard
     end
-    it { expect(page.body).to include 'My Calls' }
-    it { expect(page.body).to include 'My Requests' }
+    it { expect(page.body).to include 'My Calls','My Requests' }
   end
 
   feature 'go to dashboard on close' do
@@ -22,8 +21,7 @@ RSpec.describe 'Get Started', type: :system do
       get_started_page.open
       get_started_page.close_modal_go_to_dashboard
     end
-    it { expect(page.body).to include 'My Calls' }
-    it { expect(page.body).to include 'My Requests' }
+    it { expect(page.body).to include 'My Calls', 'My Requests' }
   end
 
   feature 'search and go to offers' do
@@ -39,7 +37,6 @@ RSpec.describe 'Get Started', type: :system do
       get_started_page.open
       get_started_page.go_to_create_offers
     end
-    it { expect(page.body).to include 'Not rated' }
-    it { expect(page.body).to include 'Save' }
+    it { expect(page.body).to include 'Not rated', 'Save' }
   end
 end

@@ -32,8 +32,6 @@ RSpec.feature 'Settings Services', type: :system do
 
   feature 'Service Values' do
     before { settings_service_page.open }
-    it { expect(page.body).to include service_eth_price.to_s }
-    it { expect(page.body).to include "$#{service_usd_price}" }
-    it { expect(page.body).to include service.status.titleize }
+    it { expect(page.body).to include service_eth_price.to_s, "$#{service_usd_price}", service.status.titleize }
   end
 end
