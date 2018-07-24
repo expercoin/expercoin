@@ -40,6 +40,7 @@ gem 'virtus'
 gem 'webmock'
 gem 'carrierwave-base64'
 gem 'icalendar'
+gem 'meta-tags'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
