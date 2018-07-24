@@ -8,14 +8,14 @@ FactoryBot.define do
 
     trait :request do
       resource { Request.first || create(:request) }
-      title I18n.t("notification.request.new.title")
-      content I18n.t("notification.request.new.content")
+      title I18n.t('notification.request.new.title')
+      content I18n.t('notification.request.new.content')
     end
 
     trait :message do
       resource { Message.first || create(:message) }
-      title I18n.t("notification.message.new.title")
-      content I18n.t("notification.message.new.content")
+      title I18n.t('notification.message.new.title')
+      content I18n.t('notification.message.new.content')
     end
   end
 end

@@ -15,7 +15,7 @@ RSpec.describe PageMetaTagsOptions do
   end
 
   describe '.initialize' do
-    it { expect{ meta_tags_options }.not_to raise_error }
+    it { expect { meta_tags_options }.not_to raise_error }
   end
 
   describe '.default_options' do

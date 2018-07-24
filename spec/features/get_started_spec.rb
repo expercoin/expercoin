@@ -13,7 +13,7 @@ RSpec.describe 'Get Started', type: :system do
       get_started_page.open
       get_started_page.go_to_dashboard
     end
-    it { expect(page.body).to include 'My Calls','My Requests' }
+    it { expect(page.body).to include 'My Calls', 'My Requests' }
   end
 
   feature 'go to dashboard on close' do
