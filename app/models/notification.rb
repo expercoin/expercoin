@@ -5,4 +5,6 @@ class Notification < ApplicationRecord
   enum status: %i[unread read]  
 
   scope :unread_desc, -> { where(status: 0).order("created_at DESC") }
+
+  validates_presence_of :title
 end
