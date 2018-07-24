@@ -41,7 +41,7 @@ ActiveAdmin.register Service do
         f_page.input :keywords
         f_page.input :description
         f_page.input :name
-        f_page.input :url, input_html: { value: service_url(resource) }
+        f_page.input :url, input_html: { value: service_path(resource) }
       end
     end
     f.actions

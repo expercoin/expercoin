@@ -7,7 +7,7 @@ RSpec.describe 'Admin Login', type: :system do
 
   feature 'login with /admin/login route' do
     it 'Log in successfully' do
-      login_page = AdminLoginPage.new(admin_user)
+      login_page = Admin::LoginPage.new(admin_user)
       login_page.fill_and_submit_form
       expect(current_path).to eq admin_root_path
     end

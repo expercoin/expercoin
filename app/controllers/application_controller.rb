@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_meta_tags_options
-    page = Page.find_by(url: request.url)
+    page = Page.find_by(url: request.path)
     meta_tags_options = PageMetaTagsOptions.new(page).default_options
     set_meta_tags meta_tags_options if meta_tags_options
   end

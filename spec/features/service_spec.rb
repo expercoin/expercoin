@@ -58,4 +58,14 @@ RSpec.feature 'Services', type: :system do
     it { expect(page.body).to include 'Test Service Content' }
     it { expect(page.body).to include 'First Tag' }
   end
+
+  feature 'Meta Tags' do
+    let(:service) { create(:service, owner: profile) }
+    let!(:page_meta) { create(:page, :service, content: service) }
+
+    subject(:service_page) { ServicePage.new(service_path(service), user) }
+    before { service_page.open }
+    it { expect(page.title).to include page_meta.title }
+    it { expect(page.body).to include page_meta.description }
+  end
 end
