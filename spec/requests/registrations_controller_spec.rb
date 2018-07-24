@@ -17,7 +17,7 @@ RSpec.describe RegistrationsController, type: :request do
     let(:user) { User.first }
     before { post user_registration_path, params: { user: user_params } }
     it { expect(user.confirmed?).to be false }
-    it { expect(MailRecord.count).to eq 1 }
+    it { expect(MailRecord.last.recipient_id).to eq 1 }
     it { expect(response).to redirect_to get_started_index_path }
   end
 end

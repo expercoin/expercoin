@@ -26,7 +26,7 @@ RSpec.describe MSP::Email::Request do
                updated_by: requester)
       end
       before { msp_email_request.notify }
-      it { expect(MailRecord.first.recipient_id).to eq expert.id }
+      it { expect(MailRecord.last.recipient_id).to eq expert.id }
     end
 
     context 'requester' do
@@ -37,7 +37,7 @@ RSpec.describe MSP::Email::Request do
                updated_by: expert)
       end
       before { msp_email_request.notify }
-      it { expect(MailRecord.first.recipient_id).to eq requester.id }
+      it { expect(MailRecord.last.recipient_id).to eq requester.id }
     end
   end
 end

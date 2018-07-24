@@ -23,5 +23,10 @@ FactoryBot.define do
     trait :published do
       status 'published'
     end
+
+    trait :featured do
+      published
+      featured true
+    end
   end
 end
