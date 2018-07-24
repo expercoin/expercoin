@@ -14,6 +14,8 @@ class Service < ApplicationRecord
 
   acts_as_taggable
 
+  accepts_nested_attributes_for :page
+
   include PgSearch
   pg_search_scope(:search,
     against: [:title, :slug, :content],

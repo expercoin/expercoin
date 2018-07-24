@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Service do
   scope :all
-  scope("Draft") { |scope| scope.draft  }
-  scope("Pending") { |scope| scope.pending } 
-  scope("Published") { |scope| scope.published }
+  scope('Draft', &:draft)
+  scope('Pending', &:pending)
+  scope('Published', &:published)
 
   member_action :publish do
     resource.published!
@@ -11,12 +13,14 @@ ActiveAdmin.register Service do
   end
 
   permit_params(
+    :owner_id,
     :title,
     :content,
     :cover_image,
     :category_id,
     :status,
-    :featured
+    :featured,
+    page_attributes: %i[id title keywords description name url]
   )
 
   form do |f|
@@ -31,11 +35,20 @@ ActiveAdmin.register Service do
     f.inputs 'Content' do
       f.input :content, input_html: { class: 'tinymce' }
     end
+    f.inputs 'Meta Tags' do
+      f.has_many :page do |f_page|
+        f_page.input :title
+        f_page.input :keywords
+        f_page.input :description
+        f_page.input :name
+        f_page.input :url, input_html: { value: service_url(resource) }
+      end
+    end
     f.actions
   end
 
   action_item :publish, only: :edit do
-    link_to 'Publish', { action: :publish } unless resource.published?
+    link_to 'Publish', action: :publish unless resource.published?
   end
 
   index do
@@ -44,7 +57,7 @@ ActiveAdmin.register Service do
     column :category
     column :featured
     actions
-  end 
+  end
 
   show do
     attributes_table do
@@ -63,16 +76,12 @@ ActiveAdmin.register Service do
 
       row :user do
         user = resource.owner.user
-        if user
-          link_to user, admin_user_path(user.id), target: :blank
-        end
+        link_to user, admin_user_path(user.id), target: :blank if user
       end
 
       row :linkedin do
         user = resource.owner.user
-        if user.oauth_account
-          link_to user.oauth_account&.profile_url, user.oauth_account&.profile_url, target: :blank
-        end
+        link_to user.oauth_account&.profile_url, user.oauth_account&.profile_url, target: :blank if user.oauth_account
       end
     end
   end
