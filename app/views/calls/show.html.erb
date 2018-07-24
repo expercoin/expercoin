@@ -38,10 +38,10 @@
       </div>
     </div>
     <div class="mentor-pricing-and-rating content-aside"  >   
-      <p class="pricing" data-container="body" data-toggle="popover" data-placement="top" data-content="<%= ENV['CURRENCY'] %> <%= decorate(@profile).expercoin_rate %>" data-trigger="hover"><span class="currency"><%= ENV['CURRENCY'] %> </span><%= decorate(@profile).display_rate %><span class="per">/min</span></h2>
+      <p class="pricing" data-container="body" data-toggle="popover" data-placement="top" data-content="<%= ENV['CURRENCY'] %> <%= decorate(@profile).display_rate(@service) %>" data-trigger="hover"><span class="currency"></span><%= number_to_currency(decorate(@profile).display_rate_in_usd(@service)) %><span class="per"> per minute</span></h2>
       <p class="rating">
         <%= display_stars ProfileRating.new(@profile).average_rating, 'Rating' %>
-      </p>   
+      </p> 
     </div>  
   </header>
   <section class="content-container content-with-aside">
