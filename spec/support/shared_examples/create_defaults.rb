@@ -1,10 +1,14 @@
 shared_examples 'create user, profile, categories' do
-  let(:profile) { create(:profile) }
-  let(:user) { profile.user }
   let!(:categories) do
     3.times { create(:category, :with_parent, name: Faker::ProgrammingLanguage.name) }
     Category.children.map(&:name)
   end
+  include_examples 'create user, profile'
+end
+
+shared_examples 'create user, profile' do
+  let(:profile) { create(:profile) }
+  let(:user) { profile.user }
 end
 
 shared_examples 'initialize service params' do
@@ -19,4 +23,12 @@ shared_examples 'initialize service params' do
   end
 end
 
+shared_examples 'initialize request params' do
+  let(:request_params) do
+    {
+      title: 'Some test request title',
+      message: 'Some test request message'
+    }
+  end
 
+end
