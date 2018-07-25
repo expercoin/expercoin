@@ -49,6 +49,7 @@ class ConferenceService
     return unless @request.room_sid
     @request.update(invitee: true) if user_request_expert?
     @request.update(inviter: true) if user_request_requester?
+    RequestBroadcastJob.perform_now(@request.id)
   end
 
   def update_started_at
