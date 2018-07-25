@@ -8,7 +8,7 @@ class RequestDecorator < BaseDecorator
 
   def amount
     exp_rate = service&.expercoin_rate || expert.expercoin_rate
-    estimated_cost(exp_rate/100).yield_self {
+    estimated_cost(exp_rate/100.0).yield_self {
       |it| Eth::UsdConverter.new(it).eth_value
     }
   end

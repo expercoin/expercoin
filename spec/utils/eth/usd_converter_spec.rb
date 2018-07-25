@@ -17,4 +17,9 @@ RSpec.describe Eth::UsdConverter do
   describe '.usd_value' do
     it { expect(usd_converter.usd_value).to eq usd_rate * eth_value }
   end
+
+  describe '.eth_value' do
+    let(:usd_converter) { Eth::UsdConverter.new(0.01) }
+    it { expect(usd_converter.eth_value).to eq 0.01 / usd_rate  }
+  end
 end

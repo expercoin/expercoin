@@ -100,7 +100,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><%= ENV['CURRENCY'] %></span>
                   </div>
-                  <%= label_tag :expercoin_eth_rate, Eth::UsdConverter.new(decorate(@profile).display_rate_in_usd.to_i).eth_value, unit: '' ,'data-rate': 'expercoin-eth', 'data-eth-usd-rate': Eth::UsdConverter.new(1).usd_value, class: "form-control" %>
+                  <%= label_tag :expercoin_eth_rate, Eth::UsdConverter.new(decorate(@profile).display_rate_in_usd).eth_value, unit: '' ,'data-rate': 'expercoin-eth', 'data-eth-usd-rate': Eth::UsdConverter.new(1).usd_value, class: "form-control" %>
                   <div class="input-group-prepend">
                     <span class="input-group-text"> / min</span>
                   </div>
