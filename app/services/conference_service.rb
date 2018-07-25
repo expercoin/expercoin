@@ -13,6 +13,7 @@ class ConferenceService
     create_room
     update_members
     status_update
+    RequestBroadcastJob.perform_now(@request.id)
     conference_path(@request.room_sid) if @request.inprogress?
   end
 
@@ -49,7 +50,6 @@ class ConferenceService
     return unless @request.room_sid
     @request.update(invitee: true) if user_request_expert?
     @request.update(inviter: true) if user_request_requester?
-    RequestBroadcastJob.perform_now(@request.id)
   end
 
   def update_started_at
