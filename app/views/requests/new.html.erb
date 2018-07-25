@@ -61,7 +61,7 @@
                 <span class='sub-label'><span id="character-count">150</span> characters left</span>
               <% end %>
               </label>  
-              <%= f.text_area :message, { class: 'form-control', rows: 5, maxlength: 150, id: 'message-details', value: strip_tags(@service.try(:content)) }%>
+              <%= f.text_area :message, { class: 'form-control', rows: 5, maxlength: 150, id: 'message-details', value: strip_tags(@request.message || @service.try(:content)) }%>
             </div>
 
             <div class='form-group'>

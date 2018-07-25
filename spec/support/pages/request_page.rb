@@ -20,6 +20,14 @@ class RequestPage < UserPage
     fill_new_request
   end
 
+  def fill_missing_fields(params)
+    params.keys.each do |key|
+      fill_in "request[#{key}]", with: params[key]
+    end
+    click_on 'Continue'
+    sleep 0.1
+  end
+
   def confirm_new_request
     click_on 'Submit Request'
     sleep 0.1
