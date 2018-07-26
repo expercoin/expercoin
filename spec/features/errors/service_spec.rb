@@ -3,21 +3,8 @@
 require 'rails_helper'
 
 RSpec.feature 'Services Errors', type: :system do
-  let(:profile) { create(:profile) }
-  let(:user) { profile.user }
-  let!(:categories) do
-    2.times { create(:category, :with_parent, name: Faker::ProgrammingLanguage.name) }
-    Category.children.map(&:name)
-  end
-  let(:service_params) do
-    {
-      title: 'Test service title',
-      expercoin_rate: '10',
-      content: 'Test Service Content',
-      category: categories.second,
-      tags: ['First Tag', 'Second Tag', 'Third Tag']
-    }
-  end
+  include_examples 'create user, profile, categories'
+  include_examples 'initialize service params'
 
   feature 'New Service' do
     subject(:service_page) { ServicePage.new(new_service_path, user) }

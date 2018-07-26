@@ -46,4 +46,14 @@ class RequestPage < UserPage
     click_on 'Request Call'
     sleep 0.1
   end
+
+  def schedule_session_from_profile(params)
+    fill_new_request_with params
+    confirm_new_request
+  end
+
+  def schedule_session_from_service
+    fill_new_request
+    confirm_new_request
+  end
 end

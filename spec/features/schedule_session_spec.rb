@@ -3,16 +3,10 @@
 require 'rails_helper'
 
 RSpec.feature 'Schedule Session', type: :system do
-  let(:profile) { create(:profile) }
-  let(:user) { profile.user }
+  include_examples 'create user, profile'
   let(:expert) { create(:profile) }
   let(:service) { create(:service, owner: expert) }
-  let(:request_params) do
-    {
-      title: 'Some test request title',
-      message: 'Some test request message'
-    }
-  end
+  include_examples 'initialize request params'
 
   subject(:request_page) { RequestPage.new }
 
@@ -21,8 +15,7 @@ RSpec.feature 'Schedule Session', type: :system do
 
     before do
       service_page.click_schedule_session
-      request_page.fill_new_request
-      request_page.confirm_new_request
+      request_page.schedule_session_from_service
     end
 
     scenario 'creates request' do
@@ -35,8 +28,7 @@ RSpec.feature 'Schedule Session', type: :system do
 
     before do
       profile_page.click_schedule_session
-      request_page.fill_new_request_with request_params
-      request_page.confirm_new_request
+      request_page.schedule_session_from_profile request_params
     end
 
     scenario 'create request' do
