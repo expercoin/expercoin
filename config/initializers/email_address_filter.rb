@@ -7,6 +7,7 @@ class EmailAddressFilter
       return unless email.match(/@expercoin.com/) || user.try(:confirmed?)
     end
     message.perform_deliveries = true
+    MailRecord.last.update(sent: true)
   end
 end
 

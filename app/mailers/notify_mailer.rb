@@ -17,7 +17,7 @@ class NotifyMailer < ApplicationMailer
       @request = request
       instance_variable_set("@#{type.role}", request.send(type.role))
       mail_record = mail_record(email, request, subject, 'Notify')
-      send_mail(email, subject, mail_record)
+      mail(to: email, subject: subject)
     end
   end
 end

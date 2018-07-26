@@ -14,18 +14,13 @@ class ApplicationMailer < ActionMailer::Base
     )
   end
 
-  def send_mail(email, subject, mail_record)
-    send_mail = mail(to: email, subject: subject)
-    mail_record.update(sent: true) if EmailAddressFilter.delivering_email(send_mail)
-  end
-
   def mail_record(email, meta, subject, type)
     recipient_id = User.find_by_email(email).id
     MailRecord.create(
       recipient_id: recipient_id,
       sent: false,
       subject: subject,
-      meta: meta.email_identifier,
+      meta: meta.to_json,
       mail_type: type
     )
   end

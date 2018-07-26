@@ -6,8 +6,8 @@ class AdminMailer < ApplicationMailer
     add_attachments
     @offer = offer
     subject = 'New Offer submitted'
-    mail(to: 'mentor@expercoin.com', subject: subject)
     mail_record(offer, subject)
+    mail(to: 'mentor@expercoin.com', subject: subject)
   end
 
   private

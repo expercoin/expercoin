@@ -9,7 +9,7 @@ class RemindMailer < ApplicationMailer
     subject = "You have scheduled call session at #{request.selected_date}"
     mail_record = mail_record(email, request, subject, 'Remind')
     event
-    send_mail(email, subject, mail_record)
+    mail(to: email, subject: subject)
   end
 
   def call_remind_requester(request)
@@ -20,7 +20,7 @@ class RemindMailer < ApplicationMailer
     subject = "You have scheduled call session at #{request.selected_date}"
     mail_record = mail_record(email, request, subject, 'Remind')
     event
-    send_mail(email, subject, mail_record)
+    mail(to: email, subject: subject)
   end
 
   private

@@ -8,7 +8,7 @@ class MessageMailer < ApplicationMailer
     email = message.receiver.email
     subject = 'New message on Expercoin'
     mail_record = mail_record(email, message, subject, 'Message')
-    send_mail(email, subject, mail_record)
+    mail(to: email, subject: subject)
   end
 
   def reply_message(message)
@@ -18,6 +18,6 @@ class MessageMailer < ApplicationMailer
     email = message.receiver.email
     subject = 'New message on Expercoin'
     mail_record = mail_record(email, message, subject, 'Message')
-    send_mail(email, subject, mail_record)
+    mail(to: email, subject: subject)
   end
 end

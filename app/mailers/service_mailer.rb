@@ -8,6 +8,6 @@ class ServiceMailer < ApplicationMailer
     email = service.owner.user.email
     subject = 'Your offer has been published'
     mail_record = mail_record(email, service, subject, 'Service')
-    send_mail(email, subject, mail_record)
+    mail(to: email, subject: subject)
   end
 end
