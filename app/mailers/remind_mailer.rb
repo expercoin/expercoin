@@ -7,11 +7,9 @@ class RemindMailer < ApplicationMailer
     @request = request
     email = request.expert.user.email
     subject = "You have scheduled call session at #{request.selected_date}"
-    mail_record = mail_record(email, request, subject)
-    return unless is_confirmed?(email)
+    mail_record = mail_record(email, request, subject, 'Remind')
     event
-    mail(to: email, subject: subject)
-    mail_record.update(sent: true)
+    send_mail(email, subject, mail_record)
   end
 
   def call_remind_requester(request)
@@ -20,11 +18,9 @@ class RemindMailer < ApplicationMailer
     @request = request
     email = request.requester.user.email
     subject = "You have scheduled call session at #{request.selected_date}"
-    mail_record = mail_record(email, request, subject)
-    return unless is_confirmed?(email)
+    mail_record = mail_record(email, request, subject, 'Remind')
     event
-    mail(to: email, subject: subject)
-    mail_record.update(sent: true)
+    send_mail(email, subject, mail_record)
   end
 
   private
@@ -41,16 +37,5 @@ class RemindMailer < ApplicationMailer
     ical.add_event(e)
     ical.publish
     attachments['event.ics'] = { mime_type: 'text/calendar', content: ical.to_ical }
-  end
-
-  def mail_record(email, meta, subject)
-    recipient_id = User.find_by_email(email).id
-    MailRecord.create(
-      recipient_id: recipient_id,
-      sent: false,
-      subject: subject,
-      meta: meta.email_identifier,
-      mail_type: 'Remind'
-    )
   end
 end
