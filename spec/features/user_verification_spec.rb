@@ -3,8 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Dashboard User Verification', type: :system do
-  let(:profile) { create(:profile) }
-  let(:user) { profile.user }
+  include_examples 'create user, profile'
 
   subject(:dashboard_page) { DashboardPage.new(dashboard_index_path, user) }
 

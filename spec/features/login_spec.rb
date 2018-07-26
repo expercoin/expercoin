@@ -3,8 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Login', type: :system do
-  let(:profile) { create(:profile) }
-  let(:user) { profile.user }
+  include_examples 'create user, profile'
   let(:user_params) do
     {
       email: user.email,

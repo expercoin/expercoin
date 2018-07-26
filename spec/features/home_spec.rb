@@ -3,8 +3,7 @@
 require 'rails_helper'
 
 RSpec.feature 'Home', type: :system do
-  let(:profile) { create(:profile) }
-  let(:user) { profile.user }
+  include_examples 'create user, profile'
   let!(:featured_service) { create(:service, :featured, owner: profile) }
   let!(:service) { create(:service, owner: profile, title: 'Some Not Featured Service Title') }
 

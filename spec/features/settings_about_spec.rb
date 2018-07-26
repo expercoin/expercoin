@@ -3,13 +3,8 @@
 require 'rails_helper'
 
 RSpec.feature 'Settings About', type: :system do
-  let(:profile) { create(:profile) }
-  let(:user) { profile.user }
-  let(:settings_params) do
-    {
-      about: 'Some info about me'
-    }
-  end
+  include_examples 'create user, profile'
+  include_examples 'about params'
 
   subject(:settings_about_page) { Settings::AboutPage.new(settings_about_index_path, user) }
 

@@ -3,8 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Inbox', type: :system do
-  let(:profile) { create(:profile) }
-  let(:user) { profile.user }
+  include_examples 'create user, profile'
   let(:sender) { create(:user, first_name: 'Joe', last_name: 'Doe') }
   let!(:message) { create(:message, receiver: user, sender: sender) }
 

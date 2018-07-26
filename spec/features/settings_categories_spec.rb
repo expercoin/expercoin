@@ -3,12 +3,7 @@
 require 'rails_helper'
 
 RSpec.feature 'Settings Categories', type: :system do
-  let(:profile) { create(:profile) }
-  let(:user) { profile.user }
-  let!(:categories) do
-    3.times { create(:category, :with_parent, name: Faker::ProgrammingLanguage.name) }
-    Category.children.map(&:name)
-  end
+  include_examples 'create user, profile, categories'
 
   subject(:settings_categories_page) { Settings::CategoriesPage.new(settings_categories_path, user) }
 

@@ -25,6 +25,7 @@ class UserPage
 
   def fill_and_submit_form(scope, params, submit = 'Save')
     params.keys.each do |key|
+      next if all("[name='#{scope}[#{key}]']").empty?
       fill_in "#{scope}[#{key}]", with: params[key]
     end
     click_on submit

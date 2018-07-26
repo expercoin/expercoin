@@ -3,8 +3,7 @@
 require 'rails_helper'
 
 RSpec.feature 'Settings Video', type: :system do
-  let(:profile) { create(:profile) }
-  let(:user) { profile.user }
+  include_examples 'create user, profile'
 
   subject(:settings_video_page) { Settings::VideoPage.new(settings_video_index_path, user) }
 

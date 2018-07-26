@@ -3,14 +3,8 @@
 require 'rails_helper'
 
 RSpec.feature 'Settings Wallet', type: :system do
-  let(:profile) { create(:profile) }
-  let(:user) { profile.user }
-  let(:eth_address) { '0x222334909e528d7ae5994225736942ca38ac87b0' }
-  let(:eth_address_params) do
-    {
-      public_key: eth_address
-    }
-  end
+  include_examples 'create user, profile'
+  include_examples 'eth address params'
 
   subject(:settings_wallet_page) { Settings::WalletPage.new(settings_wallet_index_path, user) }
 

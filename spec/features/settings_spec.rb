@@ -3,24 +3,9 @@
 require 'rails_helper'
 
 RSpec.feature 'Settings', type: :system do
-  let(:profile) { create(:profile) }
-  let(:user) { profile.user }
-  let(:settings_params) do
-    {
-      first_name: 'Tom',
-      last_name: 'Jerry',
-      title: 'Hounter',
-      expercoin_rate: 10.5,
-      address: 'Home City'
-    }
-  end
-  let(:location_params) do
-    {
-      country: 'United Kingdom',
-      state: 'England',
-      city: 'London'
-    }
-  end
+  include_examples 'create user, profile'
+  include_examples 'settings params'
+  include_examples 'location params'
 
   subject(:settings_page) { SettingsPage.new(settings_path, user) }
 

@@ -3,9 +3,8 @@
 require 'rails_helper'
 
 RSpec.feature 'Settings Services', type: :system do
-  let(:profile) { create(:profile) }
-  let(:user) { profile.user }
-  let!(:service) { create(:service, owner: profile) }
+  include_examples 'create user, profile, service'
+
   let(:service_eth_price) { ServiceDecorator.new(service).display_rate }
   let(:service_usd_price) { ServiceDecorator.new(service).display_rate_in_usd }
 

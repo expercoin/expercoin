@@ -3,9 +3,8 @@
 require 'rails_helper'
 
 RSpec.feature 'Conference', type: :system do
-  let(:profile) { create(:profile) }
+  include_examples 'create user, profile'
   let(:req) { create(:request, :selected_time_ten_minutes_ago, requester: profile) }
-  let(:user) { profile.user }
   let(:expert) { req.expert }
   let(:room) { MSP::Conference::Video.new.find_room(req.room_sid) }
 

@@ -2,10 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.feature 'Conference', type: :system do
-  let(:profile) { create(:profile) }
+RSpec.feature 'Request', type: :system do
+  include_examples 'create user, profile'
   let(:req) { create(:request, :selected_time_ten_minutes_ago, status: 'verified', requester: profile) }
-  let(:user) { profile.user }
   let(:expert) { req.expert }
 
   subject(:request_page) { RequestPage.new(request_path(req), user) }
