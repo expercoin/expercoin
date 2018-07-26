@@ -3,5 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe GetStartedController, type: :request do
-  pending 'get started spec'
+  let(:user) { create(:user) }
+  let!(:logged_user) { sign_in(user) }
+
+  describe 'GET index' do
+    before { get get_started_index_path }
+    it_behaves_like 'authenticated user get ok'
+  end
 end

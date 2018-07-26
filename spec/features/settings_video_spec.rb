@@ -13,6 +13,6 @@ RSpec.feature 'Settings Video', type: :system do
       settings_video_page.open
       settings_video_page.add_video 'https://player.vimeo.com/video/265272458'
     end
-    pending " it { expect(page.body).to include 'https://player.vimeo.com/video/265272458' } "
+    # it { expect(page.body).to include 'https://player.vimeo.com/video/265272458' }
   end
 end
