@@ -20,3 +20,13 @@ shared_examples 'deleted model' do |args|
   it { expect(model.count).to eq 0 }
   include_examples 'authenticated user' if args[:authenticated_user]
 end
+
+shared_examples 'loaded page' do |args|
+  it do
+    sign_out user if args[:sign_out]
+    expect(response).to have_http_status(:ok)
+  end
+  include_examples 'authenticated user' if args[:authenticated_user]
+end
+
+
