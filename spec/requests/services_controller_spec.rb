@@ -57,27 +57,25 @@ RSpec.describe ServicesController, type: :request do
 
   describe 'POST create' do
     before { post services_path, params: { service_form: service_params }, xhr: true }
-    it_behaves_like 'authenticated user'
-    it { expect(Service.count).to eq 1 }
-  end
-
-  describe 'POST create fails' do
-    before { post services_path, params: { service_form: service_params.except(:title) }, xhr: true }
-    it_behaves_like 'authenticated user'
-    it { expect(flash[:alert]).not_to be_empty }
+    it_behaves_like 'created model',
+      model: Service,
+      params: {
+        title: 'Some test service',
+        content: 'Some content in service',
+      },
+      authenticated_user: true
   end
 
   describe 'PATCH update' do
     before { patch service_path(service), params: { service_form: service_params } }
-    it_behaves_like 'authenticated user'
-    it { expect(Service.first.title).to eq service_params[:title] }
-    it { expect(response).to redirect_to service_path(service) }
+    it_behaves_like 'updated model',
+      model: Service,
+      params: { title: 'Some test service' },
+      authenticated_user: true
   end
 
   describe 'DELETE destroy' do
     before { delete service_path(service) }
-    it_behaves_like 'authenticated user'
-    it { expect(Service.count).to eq 0 }
-    it { expect(response).to redirect_to settings_services_path }
+    it_behaves_like 'deleted model', model: Service, authenticated_user: true
   end
 end
