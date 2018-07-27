@@ -9,13 +9,11 @@ RSpec.describe PaymentsController, type: :request do
 
   describe 'GET index' do
     before { get payments_path }
-    it_behaves_like 'authenticated user'
-    it { expect(response).to have_http_status(:ok) }
+    it_behaves_like 'loaded page', authenticated_user: true
   end
 
   describe 'GET show' do
     before { get payment_path(transaction) }
-    it_behaves_like 'authenticated user'
-    it { expect(response).to have_http_status(:ok) }
+    it_behaves_like 'loaded page', authenticated_user: true
   end
 end

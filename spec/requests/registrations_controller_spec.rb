@@ -16,8 +16,11 @@ RSpec.describe RegistrationsController, type: :request do
   describe 'POST create' do
     let(:user) { User.first }
     before { post user_registration_path, params: { user: user_params } }
-    it { expect(user.confirmed?).to be false }
-    it { expect(MailRecord.last.recipient_id).to eq 1 }
-    it { expect(response).to redirect_to get_started_index_path }
+    it_behaves_like 'created model',
+                    model: User,
+                    params: {
+                      confirmed_at: nil,
+                      email: 'test@email.com'
+                    }
   end
 end

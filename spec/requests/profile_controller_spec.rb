@@ -7,7 +7,7 @@ RSpec.describe ProfilesController, type: :request do
 
   describe 'GET show' do
     before { get profile_path(profile) }
-    it { expect(response).to have_http_status(:ok) }
+    it_behaves_like 'loaded page'
   end
 
   describe 'GET show with invalid id' do
@@ -17,6 +17,6 @@ RSpec.describe ProfilesController, type: :request do
 
   describe 'GET index' do
     before { get profiles_path }
-    it { expect(response).to have_http_status(:ok) }
+    it_behaves_like 'loaded page'
   end
 end

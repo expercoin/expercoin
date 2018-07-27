@@ -16,7 +16,7 @@ RSpec.describe WishlistController, type: :request do
 
   describe 'GET index' do
     before { get wishlist_index_path }
-    it_behaves_like 'authenticated user get ok'
+    it_behaves_like 'loaded page', authenticated_user: true
   end
 
   describe 'POST create' do

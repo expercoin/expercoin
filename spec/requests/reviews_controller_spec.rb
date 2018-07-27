@@ -16,9 +16,9 @@ RSpec.describe ReviewsController, type: :request do
   describe 'POST create' do
     let(:review_params) { build(:review, request: req, author: user.profile).attributes }
     before { post reviews_path(params: { review: review_params }) }
-    it_behaves_like 'authenticated user'
-    it { expect(Review.count).to eq 1 }
-    it { expect(flash[:notice]).to eq('Your review has been submited') }
-    it { expect(response).to redirect_to(request_path(req)) }
+    it_behaves_like 'created model',
+                    model: Review,
+                    flash: { type: :notice, message: 'Your review has been submited' },
+                    authenticated_user: true
   end
 end

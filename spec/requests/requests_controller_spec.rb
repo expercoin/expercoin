@@ -23,38 +23,41 @@ RSpec.describe RequestsController, type: :request do
 
   describe 'GET index' do
     before { get requests_path }
-    it_behaves_like 'authenticated user get ok'
+    it_behaves_like 'loaded page', authenticated_user: true
   end
 
   describe 'GET new' do
     before { get new_request_path, params: { expert: expert.id } }
-    it_behaves_like 'authenticated user get ok'
+    it_behaves_like 'loaded page', authenticated_user: true
   end
 
   describe 'GET show' do
     before { get request_path(req) }
-    it_behaves_like 'authenticated user get ok'
+    it_behaves_like 'loaded page', authenticated_user: true
   end
 
   describe 'GET edit' do
     before { get edit_request_path(req) }
-    it_behaves_like 'authenticated user get ok'
+    it_behaves_like 'loaded page', authenticated_user: true
   end
 
   describe 'POST create' do
     before { post requests_path, params: { request: request_params } }
-    it_behaves_like 'authenticated user'
-    it { expect(Request.count).to eq 2 }
-    it { expect(response).to redirect_to edit_request_path(2) }
+    it_behaves_like 'created model',
+                    model: Request,
+                    authenticated_user: true
   end
 
   describe 'PATCH update' do
-    before do
-      patch request_path(req), params: { request: update_params }
-      req.reload
-    end
-    it_behaves_like 'authenticated user'
-    it { expect(req.status).to eq 'pending' }
+    before { patch request_path(req), params: { request: update_params } }
+    it_behaves_like 'updated model',
+                    model: Request,
+                    params: { 
+                      status: 'pending',
+                      title: 'Some Request Title',
+                      requested_length: '45min'
+                    },
+                    authenticated_user: true
   end
 
   describe '.render_error_messages' do

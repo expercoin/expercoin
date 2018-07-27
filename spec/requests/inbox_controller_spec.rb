@@ -9,16 +9,16 @@ RSpec.describe InboxController, type: :request do
 
   describe 'GET show' do
     before { get inbox_path(message) }
-    it_behaves_like 'authenticated user get ok'
+    it_behaves_like 'loaded page', authenticated_user: true
   end
 
   describe 'GET index' do
     before { get inbox_index_path }
-    it_behaves_like 'authenticated user get ok'
+    it_behaves_like 'loaded page', authenticated_user: true
   end
 
   describe 'GET all' do
     before { get all_inbox_index_path }
-    it_behaves_like 'authenticated user get ok'
+    it_behaves_like 'loaded page', authenticated_user: true
   end
 end

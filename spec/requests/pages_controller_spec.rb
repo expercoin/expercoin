@@ -7,11 +7,11 @@ RSpec.describe PagesController, type: :request do
 
   describe 'GET business_home' do
     before { get root_path }
-    it { expect(response).to have_http_status(:ok) }
+    it_behaves_like 'loaded page'
   end
 
   describe 'GET mentors_home' do
     before { get for_mentors_path }
-    it { expect(response).to have_http_status(:ok) }
+    it_behaves_like 'loaded page'
   end
 end

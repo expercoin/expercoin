@@ -10,6 +10,6 @@ RSpec.describe MyMentorsController, type: :request do
 
   describe 'GET index' do
     before { get my_mentors_path }
-    it_behaves_like 'authenticated user get ok'
+    it_behaves_like 'loaded page', authenticated_user: true
   end
 end

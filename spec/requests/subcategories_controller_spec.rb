@@ -8,6 +8,6 @@ RSpec.describe SubcategoriesController, type: :request do
 
   describe 'GET show' do
     before { get category_subcategory_path(category, subcategories.sample) }
-    it { expect(response).to have_http_status(:ok) }
+    it_behaves_like 'loaded page'
   end
 end
