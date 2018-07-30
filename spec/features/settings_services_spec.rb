@@ -11,19 +11,11 @@ RSpec.feature 'Settings Services', type: :system do
   subject(:settings_service_page) { Settings::ServicePage.new(settings_services_path, user) }
 
   feature 'Services Actions' do
-    before { settings_service_page.open }
-
-    scenario 'Opens new service page' do
+    scenario 'successfully click on new, edit and delete' do
       settings_service_page.open_new_service_page
       expect(current_path).to eq new_service_path
-    end
-
-    scenario 'Opens edit service page' do
       settings_service_page.edit_service
       expect(current_path).to eq edit_service_path(service)
-    end
-
-    scenario 'Delete service' do
       settings_service_page.delete_service
       expect(page.body).not_to include service.title
     end
@@ -31,6 +23,8 @@ RSpec.feature 'Settings Services', type: :system do
 
   feature 'Service Values' do
     before { settings_service_page.open }
-    it { expect(page.body).to include service_eth_price.to_s, "$#{service_usd_price}", service.status.titleize }
+    scenario 'include service price and status' do
+      expect(page.body).to include service_eth_price.to_s, "$#{service_usd_price}", service.status.titleize
+    end
   end
 end
