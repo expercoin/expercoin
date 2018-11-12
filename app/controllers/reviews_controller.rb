@@ -11,7 +11,9 @@
 
       def create
         @review = Review.new(review_params)
-        return unless review.save
+        @verify_review_service = VerifyReviewService.new(@review)
+        @verify_review_service.perform
+        return unless @verify_review_service.perform
         flash[:notice] = 'Your review has been submited'
         redirect_to request_path(@request)
       end
