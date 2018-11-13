@@ -12,9 +12,9 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @verify_review_service = VerifyReviewService.new(review: @review)
-    return unless @verify_review_service.perform
+    return if @verify_review_service.perform == false
     flash[:notice] = 'Your review has been submited'
-    redirect_to request.referer
+    redirect_to request.referer || request_path(@request)
   end
 
   private
