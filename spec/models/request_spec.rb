@@ -38,7 +38,7 @@ RSpec.describe Request, type: :model do
     it { expect(request).to belong_to(:requester) }
     it { expect(request).to belong_to(:expert) }
     it { expect(request).to belong_to(:updated_by) }
-    it { expect(request).to have_many(:review) }
+    it { expect(request).to have_many(:reviews) }
     it { expect(request).to have_many(:eth_transactions) }
   end
 end

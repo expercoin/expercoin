@@ -56,4 +56,12 @@ class RequestPage < UserPage
     fill_new_request
     confirm_new_request
   end
+
+  def click_to_rate(rate)
+    find("label[for='star_#{rate}']").click
+  end
+
+  def review_panel
+    find('.review').text
+  end
 end

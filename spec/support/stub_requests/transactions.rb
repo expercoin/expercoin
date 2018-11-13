@@ -82,6 +82,18 @@ RSpec.configure do |config|
           }).
           to_return(status: 200, body: "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"blockHash\":\"0x4e9de2ef4b2a42a7a65dde8e6dc73869b8ef7718acface3db7922d4bd49e4334\",\"blockNumber\":\"0x437449\",\"contractAddress\":null,\"cumulativeGasUsed\":\"0x18126e\",\"from\":\"0x1f606341b4785450e7c861374fe54f746100ae21\",\"gasUsed\":\"0x5bdc\",\"logs\":[],\"logsBloom\":\"0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000\",\"status\":\"0x1\",\"to\":\"0xcbde01a6de9e0bb6f4053df9423008b2f5b08d40\",\"transactionHash\":\"0xf104a50a3f09444cf0a964e47378d3a8c6280179d76fd3825dca493ed1172374\",\"transactionIndex\":\"0x18\"}}", headers: {})
 
+   stub_request(:post, "https://ropsten.infura.io/MjN1T5xZTKT9DP3KsBXr").
+     with(
+       body: "{\"jsonrpc\":\"2.0\",\"method\":\"eth_getTransactionByHash\",\"params\":[\"\"],\"id\":1}",
+       headers: {
+         'Accept'=>'*/*',
+         'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+         'Content-Type'=>'application/json',
+         'Host'=>'ropsten.infura.io',
+         'User-Agent'=>'Ruby'
+       }).
+       to_return(status: 200, body: "", headers: {})
+
     stub_request(:post, 'http://localhost:3001/transactions')
       .with(
         body: { 'address' => /0x\w{40}/, 'amount' => '2500000000000000', 'api_key' => 'MjN1T5xZTKT9DP3KsBXr', 'from' => /0x\w{40}/, 'key' => '710f751aa5f90f63597dac37fa339985bf635fa24c657a740fed26b13ca0fb11' },
