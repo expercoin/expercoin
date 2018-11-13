@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
     @verify_review_service = VerifyReviewService.new(review: @review)
     return unless @verify_review_service.perform
     flash[:notice] = 'Your review has been submited'
-    redirect_to request_path(@request)
+    redirect_to request.referer
   end
 
   private
@@ -27,12 +27,17 @@ class ReviewsController < ApplicationController
       :tx_hash
     ).merge(
       request_id: @request.id,
-      profile_id: @request.expert.id,
+      profile_id: review_receiver.id,
       author_id: current_user.profile.id
     )
   end
 
   def find_request
-    @request = current_user.profile.created_requests.find_by_id(params[:review][:request_id])
+    @request ||= current_user.profile.created_requests.find_by_id(params[:review][:request_id])
+    @request ||= current_user.profile.requests.find_by_id(params[:review][:request_id])
+  end
+
+  def review_receiver
+    current_user.profile == @request.expert ? @request.requester : @request.expert
   end
 end

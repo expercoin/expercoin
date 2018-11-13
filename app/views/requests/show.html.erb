@@ -38,7 +38,7 @@
          <!--  <span><%= decorate(@request).session_date %></span> -->
         </div>
         <%= render 'shared/msp/join_request_room'%>
-        <%= render 'completed' if @request.completed? %>
+        <%= render 'shared/request_review', req: @request, review: @review if @request.completed? %>
     </div>
     <div class="content-aside">
       <div class='panel'>

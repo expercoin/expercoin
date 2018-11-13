@@ -1,10 +1,10 @@
 <div class="mentor-reviews request-info-reviews">
   <h2 class="title">Your Review</h2>
   <div id='output' data-transaction-screen></div>
-  <% if @request.review.nil? %>
+  <% if review.nil? %>
     <%= form_for Review.new, url: reviews_path do |f| %>
       <%= f.hidden_field :tx_hash %>
-      <%= f.hidden_field :request_id, value: @request.id %>
+      <%= f.hidden_field :request_id, value: req.id %>
       <div class="form-group">
         <%= f.label :rate %>
         <ul class="rating-stars">
@@ -28,19 +28,19 @@
   <% else %>
     <div class="review">
       <div class="review-avatar">
-        <%= render "shared/profile_photo", photo: @request.review.author.photo&.url %>
+        <%= render "shared/profile_photo", photo: review.author.photo&.url %>
       </div>
       <div class="review-body">
-        <h4><a><%= decorate(@request.review.author).full_name %></a></h4>
-        <p class="quote">"<%= @request.review.message %>"</p>
+        <h4><a><%= decorate(review.author).full_name %></a></h4>
+        <p class="quote">"<%= review.message %>"</p>
       </div>
       <div class="review-rating">
         <ul class="rating-data">
           <li>
-            <%= display_stars @request.review.rate %>
-            (<%= @request.review.rate %>)
+            <%= display_stars review.rate %>
+            (<%= review.rate %>)
           </li>
-          <li>Posted <span class="strong"><%= @request.review.created_at.strftime("%b %d, %Y")  %></span>
+          <li>Posted <span class="strong"><%= review.created_at.strftime("%b %d, %Y")  %></span>
           </li>
         </ul>
       </div>

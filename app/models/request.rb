@@ -15,7 +15,7 @@ class Request < ApplicationRecord
   belongs_to :updated_by, class_name: 'Profile', foreign_key: 'updated_by_id'
   belongs_to :service, optional: true
 
-  has_one :review
+  has_many :reviews
   has_many :eth_transactions, class_name: 'Transaction'
   has_many :messages
   has_many :notifications, as: :resource
