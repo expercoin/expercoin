@@ -219,6 +219,7 @@ ActiveRecord::Schema.define(version: 2018_11_12_135935) do
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
     t.string "tx_hash"
+    t.string "description_hash"
   end
 
   create_table "services", force: :cascade do |t|

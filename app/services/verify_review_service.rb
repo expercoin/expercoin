@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class VerifyReviewService < BaseService
-  PARAMS_KEYS = %i[tx_hash review].freeze
-
   def initialize(params)
     @params = params
     @transaction = Eth::FindTransaction.new(tx_hash).perform
@@ -13,8 +11,7 @@ class VerifyReviewService < BaseService
   end
 
   def perform
-    debugger
-    return false unless @transaction.present?
+    return false unless valid?
 
     update_review_tx_hash
     update_status
@@ -33,8 +30,24 @@ class VerifyReviewService < BaseService
 
   private
 
+  def valid?
+    @transaction.present? && hex_value == @transaction['input']
+  end
+
+  def hex_value
+   '0x' + "Review message: #{review.message}, rate: #{review.rate}".each_byte.map { |b| b.to_s(16) }.join
+  end
+
+  def review
+    @params[:review]
+  end
+
+  def tx_hash
+    review.tx_hash
+  end
+
   def verifying_review_job
-    return if !review.verifying? || transaction_failed?
+    return if !review.verifying? || transaction_failed? || !review.id
 
     UpdateVerifyingReviewJob.set(wait: 2.minutes).perform_later(review)
   end
@@ -45,6 +58,7 @@ class VerifyReviewService < BaseService
 
   def update_review_tx_hash
     return unless AddressValidator.new(@transaction['to']).valid?
+    review.description_hash = hex_value
     review.save
     review.update(tx_hash: @transaction['hash'])
   end
@@ -60,10 +74,5 @@ class VerifyReviewService < BaseService
 
     'verifying'
   end
-
-  PARAMS_KEYS.each do |key|
-    define_method key.to_s do
-      @params[key]
-    end
-  end
 end
+
