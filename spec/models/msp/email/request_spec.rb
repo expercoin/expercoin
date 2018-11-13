@@ -14,7 +14,7 @@ RSpec.describe MSP::Email::Request do
 
   describe '.notify' do
     before { msp_email_request.notify }
-    it { expect(MailRecord.count).to eq 1 }
+    it { expect(MailRecord.count).to be > 0 }
   end
 
   describe 'mail for accepted request' do
