@@ -1,8 +1,8 @@
 class TransactionValidator < BaseValidator
   validate :required_amount
+  validate :contract_created
   validates_presence_of :block_number, :eth_amount
   validates :tx_hash, unique: true
-  validates :address, presence: true, inclusion: { in: [ENV['ETH_ADDRESS']] }
   validates :status, presence: true, inclusion: { in: ['completed'] }
 
   attr_reader :transaction
@@ -12,6 +12,11 @@ class TransactionValidator < BaseValidator
   end
 
   private
+
+  def contract_created
+    return if Eth::Contract.new(tx_hash, amount_to_pay).created?
+    errors.add(:tx_hash, 'Contract Must Be Valid')
+  end
 
   def status
     @transaction.status
@@ -52,6 +57,7 @@ class TransactionValidator < BaseValidator
 
   def required_amount
     return if amount_to_pay <= transaction_amount
+
     errors.add(:eth_amount, 'Must be valid')
   end
 end

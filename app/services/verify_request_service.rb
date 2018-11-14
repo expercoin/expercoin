@@ -25,7 +25,7 @@ class VerifyRequestService < BaseService
   end
 
   def pending?
-    @transaction['hash'] && !@transaction['blockNumber'] && AddressValidator.new(@transaction['to']).valid?
+    @transaction['hash'] && !@transaction['blockNumber']
   rescue StandardError
     false
   end
@@ -46,7 +46,6 @@ class VerifyRequestService < BaseService
   end
 
   def update_request_tx_hash
-    return unless AddressValidator.new(@transaction['to']).valid?
     request.update(tx_hash: @transaction['hash'])
   end
 
