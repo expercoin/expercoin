@@ -8,6 +8,7 @@ ActiveAdmin.register Request do
   scope("Upcoming") { |scope| scope.upcoming }
   scope("Expired") { |scope| scope.expired } 
   scope("Closed") { |scope| scope.closed }
+  scope("Completed Waiting For Release") { |scope| scope.completed }
 
   index do
     column :id

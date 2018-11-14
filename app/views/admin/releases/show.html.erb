@@ -1,0 +1,55 @@
+<script>
+  if (typeof web3 !== 'undefined') {
+    window.web3 = new Web3(web3.currentProvider);
+
+    var expertAddress = "<%= @expert_address %>";
+    var expertAmount =  web3.toWei(<%= @expert_amount %>);
+
+    var siteAmount = web3.toWei(<%= @site_amount %>, 'ether');
+
+    var abi = <%= raw Eth::Contract.abi.to_json %>;
+    var contractAddress = '<%= Eth::Contract.new(@request.tx_hash).contract_address %>';
+    var contract = web3.eth.contract(abi).at(contractAddress);
+
+    function withdrawFunds() {
+      contract.withdrawFunds.sendTransaction({
+        gas: '3000000',
+        gasPrice: 1000000000
+      },function (error, result){
+        if(!error){
+          console.log(result);
+        }else{
+          console.log(error);
+        }
+      });
+    };
+
+    function releaseSiteFunds() {
+      contract.releaseSiteFunds.sendTransaction(siteAmount, {
+        gas: '3000000',
+        gasPrice: 1000000000
+      },function (error, result){
+        if(!error){
+          console.log(result);
+        }else{
+          console.log(error);
+        }
+      });
+    };
+
+    function releaseExpertFunds() {
+      contract.releaseExpertFunds.sendTransaction(expertAmount, expertAddress, {
+        gas: '3000000',
+        gasPrice: 1000000000
+      },function (error, result){
+        if(!error){
+          console.log(result);
+        }else{
+          console.log(error);
+        }
+      });
+    };
+  } else {
+    $('#output').html('Please download and install Metamask: <a href="https://metamask.io/">https://metamask.io/</a>');
+  }
+</script>

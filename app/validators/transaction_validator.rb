@@ -17,8 +17,8 @@ class TransactionValidator < BaseValidator
   end
 
   def contract_created
-    debugger
     return if eth_contract.created? && eth_contract_valid_address? && eth_contract_valid_amount?
+
     errors.add(:tx_hash, 'Contract Must Be Valid')
   end
 

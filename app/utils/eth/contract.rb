@@ -11,6 +11,8 @@ module Eth
 
     def created?
       contract_address
+    rescue NoMethodError
+      false
     end
 
     %w[amount call_id site_address].each do |function|
@@ -20,27 +22,27 @@ module Eth
       end
     end
 
+    def contract_address
+      client.eth_get_transaction_receipt(@tx_hash)
+            .yield_self { |it| it['result']['contractAddress'] }
+    end
+
     private
 
     def client
       Ethereum::HttpClient.new(ENV['ETH_NODE_HTTP_PATH'])
     end
 
-    def contract_address
-      client.eth_get_transaction_receipt(@tx_hash)
-            .yield_self { |it| it['result']['contractAddress'] }
-    end
-
     def amount_signature
-      Ethereum::Function.new(Eth::Contract.abi[4].with_indifferent_access).signature
-    end
-
-    def call_id_signature
       Ethereum::Function.new(Eth::Contract.abi[5].with_indifferent_access).signature
     end
 
+    def call_id_signature
+      Ethereum::Function.new(Eth::Contract.abi[3].with_indifferent_access).signature
+    end
+
     def site_address_signature
-      Ethereum::Function.new(Eth::Contract.abi[6].with_indifferent_access).signature
+      Ethereum::Function.new(Eth::Contract.abi[1].with_indifferent_access).signature
     end
   end
 end
