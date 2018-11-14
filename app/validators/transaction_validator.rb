@@ -1,5 +1,4 @@
 class TransactionValidator < BaseValidator
-  validate :required_amount
   validate :contract_created
   validates_presence_of :block_number, :eth_amount
   validates :tx_hash, unique: true
@@ -13,9 +12,28 @@ class TransactionValidator < BaseValidator
 
   private
 
+  def eth_contract
+    Eth::Contract.new(tx_hash)
+  end
+
   def contract_created
-    return if Eth::Contract.new(tx_hash, amount_to_pay).created?
+    debugger
+    return if eth_contract.created? && eth_contract_valid_address? && eth_contract_valid_amount?
     errors.add(:tx_hash, 'Contract Must Be Valid')
+  end
+
+  def eth_contract_valid_address?
+    eth_contract_address_formated == ENV['ETH_ADDRESS']
+  rescue StandardError
+    false
+  end
+
+  def eth_contract_address_formated
+    eth_contract.site_address.sub('000000000000000000000000', '')
+  end
+
+  def eth_contract_valid_amount?
+    transaction_amount == amount_to_pay
   end
 
   def status
@@ -35,7 +53,9 @@ class TransactionValidator < BaseValidator
   end
 
   def eth_amount
-    @transaction.eth_amount
+    Eth::ValueFormatter.new(eth_contract.amount).from_hex
+  rescue StandardError
+    0
   end
 
   def tx_hash
@@ -53,11 +73,5 @@ class TransactionValidator < BaseValidator
 
   def transaction_amount
     eth_amount || 0
-  end
-
-  def required_amount
-    return if amount_to_pay <= transaction_amount
-
-    errors.add(:eth_amount, 'Must be valid')
   end
 end
