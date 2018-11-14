@@ -1,6 +1,7 @@
 class Admin::ReleasesController < ApplicationController
   before_action :authenticate_admin_user!
   before_action :set_request, :set_expert_transaction, :set_site_transaction, :set_client_transaction
+  before_action :authenticate_admin_user!
 
   def show
     @expert_address = @expert_transaction.to_eth
@@ -16,16 +17,19 @@ class Admin::ReleasesController < ApplicationController
       tx_hash: params[:tx_hash],
       status: 'pending'
     )
+    UpdateTransactionOnSuccessJob.perform_later(@client_transaction, 'destroy')
     redirect_to admin_release_path(@request)
   end
 
   def expert_payout
     @expert_transaction.update(tx_hash: params[:tx_hash])
+    UpdateTransactionOnSuccessJob.perform_later(@expert_transaction, 'update')
     redirect_to admin_release_path(@request)
   end
 
   def site_payout
     @site_transaction.update(tx_hash: params[:tx_hash])
+    UpdateTransactionOnSuccessJob.perform_later(@site_transaction, 'update')
     redirect_to admin_release_path(@request)
   end
 
