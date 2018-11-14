@@ -23,11 +23,15 @@ class UserPage
     sleep 0.1
   end
 
-  def fill_and_submit_form(scope, params, submit = 'Save')
+  def fill_form(scope, params)
     params.keys.each do |key|
       next if all("[name='#{scope}[#{key}]']").empty?
       fill_in "#{scope}[#{key}]", with: params[key]
     end
+  end
+
+  def fill_and_submit_form(scope, params, submit = 'Save')
+    fill_form(scope, params)
     click_on submit
   end
 
