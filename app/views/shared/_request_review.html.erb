@@ -56,23 +56,45 @@
           window.web3 = new Web3(web3.currentProvider);
           var toAddress = "<%= ENV['ETH_ADDRESS'] %>";
           var ethAmount = <%= 0.0417334991420286e0 %>;
-          var data = web3.fromAscii("Review message: " + $('#review_message').val() + ", rate: "+ $('[name="review[rate]"]:checked').last().val());
+          var data = "<% expert ? 'Expert' : 'Client' %>" + " Review message: " + $('#review_message').val() + ", rate: "+ $('[name="review[rate]"]:checked').last().val();
           if(!window.done) {
             window.done = true;
-            web3.eth.sendTransaction({
-              to: toAddress,
-              value: 0,
-              data: data,
-              gas: 210000
-            }, function (error, result) {
-              if (error) {
-                // $('#output').html("Something went wrong!");
-              } else {
-                $('#review_tx_hash').val(result);
-                $('[data-review-form-submit]').click();
-                // $('#output').html("Track the payment: <a href='https://etherscan.io/tx/" + result + "'>https://etherscan.io/tx/" + result + "'");
-              }
-            });
+            var abi = <%= raw Eth::Contract.abi.to_json %>;
+            var contractAddress = '<%= Eth::Contract.new(@request.tx_hash).contract_address %>';
+            var contract = web3.eth.contract(abi).at(contractAddress);
+
+            function expertReview() {
+              contract.expertReview.sendTransaction(data, {
+                gas: '3000000',
+                gasPrice: 1000000000
+              },function (error, result){
+                if(!error){
+                  $('#review_tx_hash').val(result);
+                  $('[data-review-form-submit]').click();
+                }else{
+                  console.log(error);
+                }
+              });
+            };
+
+            function clientReview() {
+              contract.clientReview.sendTransaction(data, {
+                gas: '3000000',
+                gasPrice: 1000000000
+              },function (error, result){
+                if(!error){
+                  $('#review_tx_hash').val(result);
+                  $('[data-review-form-submit]').click();
+                }else{
+                  console.log(error);
+                }
+              });
+            };
+            <% if expert %>
+              expertReview();
+            <% else %>
+              clientReview();
+            <% end %>
           }
         } else {
           $('#output').html('Please download and install Metamask: <a href="https://metamask.io/">https://metamask.io/</a>');
