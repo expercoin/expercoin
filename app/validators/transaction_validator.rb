@@ -13,7 +13,7 @@ class TransactionValidator < BaseValidator
   private
 
   def eth_contract
-    Eth::Contract.new(tx_hash)
+    @eth_contract ||= Eth::Contract.new(tx_hash)
   end
 
   def contract_created

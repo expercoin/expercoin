@@ -7,7 +7,7 @@ RSpec.describe VerifyRequestService do
   let(:request) { create(:request, expert: expert, status: 'accepted', requested_length: '30min') }
   let(:params) do
     {
-      tx_hash: '0xcce351e43a4c3ed8b9e4e96652992d1a9c1f928497eb0ba470997ccc6a56f917',
+      tx_hash: '0xe1b91f4418cefb8449b741285f8f59efc1b52ae08c5aac1dd63e293babef8539',
       sender: request.requester.user,
       request: request
     }
