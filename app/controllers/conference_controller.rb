@@ -15,6 +15,10 @@ class ConferenceController < ApplicationController
     redirect_to path
   end
 
+  def update
+    @request = Request.find_by_room_sid(params[:id])
+  end
+
   def show
     @request = Request.find_by_room_sid(params[:id])
     @request ||= Request.find_by_id(params[:request_id])
