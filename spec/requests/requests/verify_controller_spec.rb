@@ -11,7 +11,7 @@ RSpec.describe Requests::VerifyController, type: :request do
   let!(:signed_user) { sign_in(user) }
   let(:verify_params) do
     {
-      tx_hash: '0xcce351e43a4c3ed8b9e4e96652992d1a9c1f928497eb0ba470997ccc6a56f917',
+      tx_hash: '0xe1b91f4418cefb8449b741285f8f59efc1b52ae08c5aac1dd63e293babef8539',
       sender: user,
       request: req
     }
@@ -28,9 +28,8 @@ RSpec.describe Requests::VerifyController, type: :request do
       req.reload
     end
     it_behaves_like 'authenticated user'
-    it { expect(req.status).to eq 'verified' }
-    it { expect(req.notifications.count).to eq 1 }
-    it { expect(enqueued_jobs.size).to eq(2) }
+    it { expect(req.status).not_to eq 'accepted' }
+    it { expect(UpdateVerifyingRequestJob).to have_been_enqueued }
     it { expect(response).to redirect_to request_path(req) }
   end
 
@@ -42,7 +41,6 @@ RSpec.describe Requests::VerifyController, type: :request do
     end
     it_behaves_like 'authenticated user'
     it { expect(req.status).to eq 'accepted' }
-    it { expect(req.notifications.count).to eq 1 }
     it { expect(enqueued_jobs.size).to eq(0) }
     it { expect(response).to redirect_to request_path(req) }
   end
