@@ -32,7 +32,7 @@ module Eth
     def expercoin_tx_params
       tx_params.merge(
         eth_amount: expercoin_amount,
-        status: 'completed'
+        status: 'pending'
       )
     end
 

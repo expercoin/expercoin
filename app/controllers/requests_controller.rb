@@ -19,6 +19,7 @@ class RequestsController < ApplicationController
   def show
     @room_sid = @request.room_sid
     @service = @request.service
+    @review = Review.find_by(request: @request, author: current_user.profile)
   end
 
   def thankyou; end

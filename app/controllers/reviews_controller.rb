@@ -1,36 +1,43 @@
-    class ReviewsController < ApplicationController
-      before_action :authenticate_user!
-      before_action :find_request
-      attr_reader :review
+class ReviewsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :find_request
+  attr_reader :review
 
-      layout 'dashboard'
+  layout 'dashboard'
 
-      def new
-        @review = Review.new(rate: 5)
-      end
+  def new
+    @review = Review.new(rate: 5)
+  end
 
-      def create
-        @review = Review.new(review_params)
-        return unless review.save
-        flash[:notice] = 'Your review has been submited'
-        redirect_to request_path(@request)
-      end
+  def create
+    @review = Review.new(review_params)
+    @verify_review_service = VerifyReviewService.new(review: @review)
+    return if @verify_review_service.perform == false
+    flash[:notice] = 'Your review has been submited'
+    redirect_to request.referer || request_path(@request)
+  end
 
-      private
+  private
 
-      def review_params
-        params.except(:request_id).require(:review).permit(
-          :rate,
-          :message,
-          :title
-        ).merge(
-          request_id: @request.id,
-          profile_id: @request.expert.id,
-          author_id: current_user.profile.id
-        )
-      end
+  def review_params
+    params.except(:request_id).require(:review).permit(
+      :rate,
+      :message,
+      :title,
+      :tx_hash
+    ).merge(
+      request_id: @request.id,
+      profile_id: review_receiver.id,
+      author_id: current_user.profile.id
+    )
+  end
 
-      def find_request
-        @request = Request.find(params[:review][:request_id])
-      end
-    end
+  def find_request
+    @request ||= current_user.profile.created_requests.find_by_id(params[:review][:request_id])
+    @request ||= current_user.profile.requests.find_by_id(params[:review][:request_id])
+  end
+
+  def review_receiver
+    current_user.profile == @request.expert ? @request.requester : @request.expert
+  end
+end

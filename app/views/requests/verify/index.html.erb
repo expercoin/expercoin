@@ -9,9 +9,8 @@
       </div>
       <div class="request-transaction">
         <div class="transaction-info">
-          <p>Please send amount of <%= "#{ENV['CURRENCY']} #{@eth_amount}" %> to the following ETH address:</p>
+          <p>Please send fund contract with <%= "#{ENV['CURRENCY']} #{@eth_amount}" %> </p>
           <p class="eth-address">
-          <%= ENV['ETH_ADDRESS'] %>
           </p>
           <p>Price in USD: <%= number_to_currency(@usd_amount) %></p>
           <div id='output' data-transaction-screen></div>

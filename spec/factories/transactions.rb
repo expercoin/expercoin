@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :transaction do
-    tx_hash "0x#{Faker::Crypto.sha256}"
+    tx_hash '0xe1b91f4418cefb8449b741285f8f59efc1b52ae08c5aac1dd63e293babef8539'
     block_number "0x#{Faker::Number.hexadecimal(3)}"
     to_eth { ENV['ETH_ADDRESS'] }
     status 'completed'
@@ -13,7 +13,7 @@ FactoryBot.define do
       create(:eth_address, wallet: wallet).public_key
     end
     eth_amount do
-      0.015
+      0.00836774199713779
     end
   end
 end

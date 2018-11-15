@@ -3,24 +3,30 @@
   $(document).on("turbolinks:load",function(){
     if($('[data-transaction-screen]').length) {
       if (typeof web3 !== 'undefined') {
-        console.log('Web3 Detected! ' + web3.currentProvider.constructor.name)
         window.web3 = new Web3(web3.currentProvider);
-        var toAddress = "<%= ENV['ETH_ADDRESS'] %>";
-        var ethAmount = <%= amount %>;
         if(!window.done) {
           window.done = true;
-          web3.eth.sendTransaction({
-            to: toAddress,
-            value: web3.toWei(ethAmount, 'ether')
-          }, function (error, result) {
-              console.log(error, result)
-            if (error) {
-              // $('#output').html("Something went wrong!");
-            } else {
-              $('[data-tx-hash="true"]').val(result);
-              $('[data-verify-button]').click();
-              // $('#output').html("Track the payment: <a href='https://etherscan.io/tx/" + result + "'>https://etherscan.io/tx/" + result + "'");
-            }
+          var abi = <%= raw Eth::Contract.abi.to_json %>;
+          var contract = web3.eth.contract(abi);
+          var code = '<%= Eth::Contract.code %>';
+          var requestId = <%= @request.id %>;
+          var address = "<%= ENV['ETH_ADDRESS'] %>";
+          var ethAmount = <%= amount %>;
+          var expertAddress = "<%= @expert_account %>";
+          contract.new(
+            address,
+            expertAddress,
+            requestId,
+            {
+              data: code,
+              value: web3.toWei(ethAmount, 'ether'), 
+              gas: '3000000',
+              gasPrice: 1000000000
+            }, function (e, contract){
+                if (typeof contract.transactionHash !== 'undefined') {
+                  $('[data-tx-hash="true"]').val(contract.transactionHash);
+                  $('[data-verify-button]').click();
+                }
           });
         }
       } else {

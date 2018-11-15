@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   resources :calls, only: [:index, :show, :update] do
     get :reject, on: :member
   end
+
   resources :conference, only: [:show, :create, :update, :destroy]
   resources :dashboard, only: [:index]
   resources :account, only: [:index]
