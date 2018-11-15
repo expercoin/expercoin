@@ -31,11 +31,11 @@ class VerifyReviewService < BaseService
   private
 
   def valid?
-    @transaction.present? && hex_value == @transaction['input']
+    @transaction.present? && @transaction['input']&.include?(hex_value)
   end
 
   def hex_value
-   '0x' + "Review message: #{review.message}, rate: #{review.rate}".each_byte.map { |b| b.to_s(16) }.join
+    "Review message: #{review.message}, rate: #{review.rate}".each_byte.map { |b| b.to_s(16) }.join
   end
 
   def review
@@ -57,14 +57,13 @@ class VerifyReviewService < BaseService
   end
 
   def update_review_tx_hash
-    return unless AddressValidator.new(@transaction['to']).valid?
     review.description_hash = hex_value
     review.save
     review.update(tx_hash: @transaction['hash'])
   end
 
   def update_status
-    return if !AddressValidator.new(@transaction['to']).valid? || transaction_failed?
+    return if transaction_failed?
 
     review.update(status: status)
   end

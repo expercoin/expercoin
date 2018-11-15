@@ -59,7 +59,7 @@
       </div>
       <div class="panel">
         <%= render 'shared/msp/join_request_room'%>
-        <%= render 'shared/request_review', req: @request, review: @review if @request.completed? %>
+        <%= render 'shared/request_review', expert: true, req: @request, review: @review if @request.completed? %>
       </div>
     </div>
     <div class="content-aside">

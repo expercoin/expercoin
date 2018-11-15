@@ -1,21 +1,15 @@
 <%= decorate(@request).funds_message %>
 
-<% unless @client_transaction %>
-  <% unless @expert_transaction.tx_hash %>
+
     <button id='pay_expert'>
       Pay Expert
     </button>
-  <% end %>
-  <% unless @site_transaction.tx_hash && decorate(@request).expert_received_funds? %>
     <button id='pay_site'>
         Pay Site
     </button>
-  <% end %>
-  <% unless @expert_transaction.tx_hash || @site_transaction.tx_hash %>
     <button id='return_to_client'>
       Return To Client
     </button>
-  <% end %>
 
   <%= form_with url: withdraw_admin_release_path(@request), id: :withdraw_form do |f| %>
     <%= f.hidden_field :tx_hash %>
@@ -31,7 +25,6 @@
     <%= f.hidden_field :tx_hash %>
     <%= f.submit "Submit", class: 'hidden' %>
   <% end %>
-<% end %>
 <script>
   if (typeof web3 !== 'undefined') {
     window.web3 = new Web3(web3.currentProvider);
