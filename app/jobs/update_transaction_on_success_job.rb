@@ -3,9 +3,9 @@ class UpdateTransactionOnSuccessJob < ApplicationJob
 
   def perform(transaction, action)
     return if transaction.completed? || transaction.tx_hash.blank?
-    return UpdateTransactionOnSuccessJob.set(wait: 2.minutes).perform_later(transaction, action) unless Eth::FindTransaction.new(transaction.tx_hash).perform
     return send(action, transaction) if Eth::StatusTransaction.new(transaction.tx_hash).fail?
     return update_status(transaction) if Eth::StatusTransaction.new(transaction.tx_hash).success?
+    UpdateTransactionOnSuccessJob.set(wait: 1.minutes).perform_later(transaction, action)
   end
 
   private

@@ -42,4 +42,56 @@ class RequestDecorator < BaseDecorator
   # def selected_date_not_bigger_than_two_hours
   #   selected_date.in_time_zone(time_zone) < Time.now.in_time_zone(time_zone) + 2.hours
   # end
+
+  def funds_message
+    return 'Funds Withdrawn For This Call' if withdrawn?
+    return 'Expert and Site Funded' if expert_received_funds? && site_received_funds?
+    return 'Expert Funded' if expert_received_funds?
+    return 'Site Funded' if site_received_funds?
+  end
+
+  def withdrawn?
+    client_transaction&.completed?
+  end
+
+  def expert_received_funds?
+    !withdrawn? && expert_transaction.completed?
+  end
+
+  def site_received_funds?
+    !withdrawn? && site_transaction.completed?
+  end
+
+  def expert_transaction
+    eth_transaction.transactions.find_by(
+      request_id: id,
+      receiver_id: expert.user_id
+    )
+  end
+
+  def site_transaction
+    eth_transaction.transactions.find_by(
+      request_id: id,
+      receiver_id: nil
+    )
+  end
+
+  def client_transaction
+    eth_transaction.transactions.find_by(
+      request_id: id,
+      receiver_id: requester.user_id
+    )
+  end
+
+  def expert_address
+    default_expert_eth_address&.public_key
+  end
+
+  def default_expert_eth_address
+    expert_eth_addresses.find_by(default: true) || expert_eth_addresses.last
+  end
+
+  def expert_eth_addresses
+    expert.wallet.eth_addresses
+  end
 end

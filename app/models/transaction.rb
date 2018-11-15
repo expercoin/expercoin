@@ -5,6 +5,8 @@ class Transaction < ApplicationRecord
   belongs_to :parent, class_name: 'Transaction', optional: true
   belongs_to :request
 
+  has_many :transactions, class_name: 'Transaction', foreign_key: :parent_id
+
   scope :expert, -> { where.not(status: 'completed', parent_id: nil, to_eth: nil, receiver_id: nil, tx_hash: nil) }
 
   enum status: %i[pending completed]

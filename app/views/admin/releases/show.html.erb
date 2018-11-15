@@ -1,10 +1,12 @@
+<%= decorate(@request).funds_message %>
+
 <% unless @client_transaction %>
   <% unless @expert_transaction.tx_hash %>
     <button id='pay_expert'>
       Pay Expert
     </button>
   <% end %>
-  <% unless @site_transaction.tx_hash %>
+  <% unless @site_transaction.tx_hash && decorate(@request).expert_received_funds? %>
     <button id='pay_site'>
         Pay Site
     </button>
@@ -58,7 +60,7 @@
     };
 
     function releaseSiteFunds() {
-      contract.releaseSiteFunds.sendTransaction(siteAmount, {
+      contract.releaseSiteFunds.sendTransaction({
         gas: '3000000',
         gasPrice: 1000000000
       },function (error, result){
@@ -72,7 +74,7 @@
     };
 
     function releaseExpertFunds() {
-      contract.releaseExpertFunds.sendTransaction(expertAmount, expertAddress, {
+      contract.releaseExpertFunds.sendTransaction(expertAmount, {
         gas: '3000000',
         gasPrice: 1000000000
       },function (error, result){

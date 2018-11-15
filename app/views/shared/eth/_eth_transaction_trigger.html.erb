@@ -12,9 +12,10 @@
           var requestId = <%= @request.id %>;
           var address = "<%= ENV['ETH_ADDRESS'] %>";
           var ethAmount = <%= amount %>;
-          
+          var expertAddress = "<%= @expert_account %>";
           contract.new(
             address,
+            expertAddress,
             requestId,
             {
               data: code,

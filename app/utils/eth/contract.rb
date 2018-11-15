@@ -34,15 +34,15 @@ module Eth
     end
 
     def amount_signature
-      Ethereum::Function.new(Eth::Contract.abi[5].with_indifferent_access).signature
+      Ethereum::Function.new(Eth::Contract.abi[7].with_indifferent_access).signature
     end
 
     def call_id_signature
-      Ethereum::Function.new(Eth::Contract.abi[3].with_indifferent_access).signature
+      Ethereum::Function.new(Eth::Contract.abi[8].with_indifferent_access).signature
     end
 
     def site_address_signature
-      Ethereum::Function.new(Eth::Contract.abi[1].with_indifferent_access).signature
+      Ethereum::Function.new(Eth::Contract.abi[9].with_indifferent_access).signature
     end
   end
 end

@@ -14,6 +14,7 @@ module Requests
       @request.update(requested_amount_eth: decorate(@request).amount)
       @eth_amount = @request.requested_amount_eth
       @usd_amount = decorate(@request).usd_amount
+      @expert_account = helpers.decorate(@request).expert_address
     end
 
     def create
