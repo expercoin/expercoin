@@ -55,11 +55,11 @@ class RequestDecorator < BaseDecorator
   end
 
   def expert_received_funds?
-    !withdrawn? && expert_transaction.completed?
+    !withdrawn? && expert_transaction&.completed?
   end
 
   def site_received_funds?
-    !withdrawn? && site_transaction.completed?
+    !withdrawn? && site_transaction&.completed?
   end
 
   def expert_transaction
@@ -67,6 +67,8 @@ class RequestDecorator < BaseDecorator
       request_id: id,
       receiver_id: expert.user_id
     )
+  rescue NoMethodError
+    nil
   end
 
   def site_transaction
@@ -74,6 +76,8 @@ class RequestDecorator < BaseDecorator
       request_id: id,
       receiver_id: nil
     )
+  rescue NoMethodError
+    nil
   end
 
   def client_transaction
@@ -81,6 +85,16 @@ class RequestDecorator < BaseDecorator
       request_id: id,
       receiver_id: requester.user_id
     )
+  rescue NoMethodError
+    nil
+  end
+
+  def client_review_transaction
+    reviews.find_by(author_id: requester.user_id)
+  end
+
+  def expert_review_transaction
+    reviews.find_by(author_id: expert.user_id)
   end
 
   def expert_address

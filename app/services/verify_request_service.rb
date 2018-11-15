@@ -17,6 +17,7 @@ class VerifyRequestService < BaseService
     update_request_tx_hash
     create_transaction
     MSP::UpdateRequestStatus.new(request).perform
+    reset_if_failed
     verifying_request_job
   end
 
@@ -33,8 +34,15 @@ class VerifyRequestService < BaseService
   private
 
   def verifying_request_job
-    return if !request.verifying? || transaction_failed?
+    return if !request.verifying? || request.accepted?
+
     UpdateVerifyingRequestJob.set(wait: 2.minutes).perform_later(request)
+  end
+
+  def reset_if_failed
+    return unless transaction_failed?
+
+    request.update(tx_hash: nil, status: 'accepted')
   end
 
   def transaction_failed?

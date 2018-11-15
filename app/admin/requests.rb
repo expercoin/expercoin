@@ -38,12 +38,14 @@ ActiveAdmin.register Request do
                   :set_expert_transaction,
                   :set_site_transaction,
                   :set_client_transaction,
+                  :set_client_review_transaction,
+                  :set_expert_review_transaction,
                   only: %i[show withdraw site_payout expert_payout]
 
     def show
-      @expert_address = @expert_transaction.to_eth
-      @expert_amount = @expert_transaction.eth_amount
-      @site_amount = @site_transaction.eth_amount
+      @expert_address = @expert_transaction&.to_eth
+      @expert_amount = @expert_transaction&.eth_amount
+      @site_amount = @site_transaction&.eth_amount
     end
 
     private
@@ -60,6 +62,14 @@ ActiveAdmin.register Request do
       @client_transaction = helpers.decorate(resource).client_transaction
     end
 
+    def set_client_review_transaction
+      @client_review_transaction = helpers.decorate(resource).client_review_transaction
+    end
+
+    def set_expert_review_transaction
+      @expert_review_transaction = helpers.decorate(resource).expert_review_transaction
+    end
+
     def set_request
       @request = resource
     end
@@ -71,20 +81,23 @@ ActiveAdmin.register Request do
       receiver_id: @request.requester.user_id,
       tx_hash: params[:tx_hash],
       status: 'pending'
-    )
+    ) if params[:tx_hash].present?
+    flash[:notice] = 'Withdrawal In Process'
     UpdateTransactionOnSuccessJob.perform_later(@client_transaction, 'destroy')
-    redirect_to action: :show
+    redirect_to admin_request_path(@request)
   end
 
   member_action :expert_payout, method: :post do
-    @expert_transaction.update(tx_hash: params[:tx_hash])
+    @expert_transaction.update(tx_hash: params[:tx_hash]) if params[:tx_hash].present?
+    flash[:notice] = 'Expert Payout In Process'
     UpdateTransactionOnSuccessJob.perform_later(@expert_transaction, 'update')
-    redirect_to action: :show
+    redirect_to admin_request_path(@request)
   end
 
   member_action :site_payout, method: :post do
-    @site_transaction.update(tx_hash: params[:tx_hash])
+    @site_transaction.update(tx_hash: params[:tx_hash]) if params[:tx_hash].present?
+    flash[:notice] = 'Site Payout In Process'
     UpdateTransactionOnSuccessJob.perform_later(@site_transaction, 'update')
-    redirect_to action: :show
+    redirect_to admin_request_path(@request)
   end
 end

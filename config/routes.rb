@@ -27,16 +27,6 @@ Rails.application.routes.draw do
     get :reject, on: :member
   end
 
-  # namespace :admin do
-  #   resources :releases, only: [:show] do
-  #     member do
-  #       post :withdraw
-  #       post :expert_payout
-  #       post :site_payout
-  #     end
-  #   end
-  # end
-
   resources :conference, only: [:show, :create, :update, :destroy]
   resources :dashboard, only: [:index]
   resources :account, only: [:index]
