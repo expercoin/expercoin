@@ -1,4 +1,3 @@
-<%= decorate(@request).funds_message %>
 
 <% unless @client_transaction %>
   <% unless @expert_transaction.tx_hash %>
@@ -17,21 +16,23 @@
     </button>
   <% end %>
 
-  <%= form_with url: withdraw_admin_release_path(@request), id: :withdraw_form do |f| %>
+  <%= form_with url: withdraw_admin_request_path(resource), id: :withdraw_form do |f| %>
     <%= f.hidden_field :tx_hash %>
-    <%= f.submit "Submit", class: 'hidden' %>
+    <%#= f.submit "Submit", class: 'hidden' %>
   <% end %>
 
-  <%= form_with url: expert_payout_admin_release_path(@request), id: :expert_payout_form do |f| %>
+  <%= form_with url: expert_payout_admin_request_path(resource), id: :expert_payout_form do |f| %>
     <%= f.hidden_field :tx_hash %>
-    <%= f.submit "Submit", class: 'hidden' %>
+    <%#= f.submit "Submit", class: 'hidden' %>
   <% end %>
 
-  <%= form_with url: site_payout_admin_release_path(@request), id: :site_payout_form do |f| %>
+  <%= form_with url: site_payout_admin_request_path(resource), id: :site_payout_form do |f| %>
     <%= f.hidden_field :tx_hash %>
-    <%= f.submit "Submit", class: 'hidden' %>
+    <%#= f.submit "Submit", class: 'hidden' %>
   <% end %>
 <% end %>
+
+<%= decorate(@request).funds_message %>
 <script>
   if (typeof web3 !== 'undefined') {
     window.web3 = new Web3(web3.currentProvider);
@@ -52,7 +53,7 @@
       },function (error, result){
         if(!error){
           $('#withdraw_form').find('#tx_hash').val(result);
-          $('#withdraw_form').find('.hidden').click();
+          $('#withdraw_form').submit();
         }else{
           console.log(error);
         }
@@ -66,7 +67,7 @@
       },function (error, result){
         if(!error){
           $('#site_payout_form').find('#tx_hash').val(result);
-          $('#site_payout_form').find('.hidden').click();
+          $('#site_payout_form').submit();
         }else{
           console.log(error);
         }
@@ -80,7 +81,7 @@
       },function (error, result){
         if(!error){
           $('#expert_payout_form').find('#tx_hash').val(result);
-          $('#expert_payout_form').find('.hidden').click();
+          $('#expert_payout_form').submit();
         }else{
           console.log(error);
         }
