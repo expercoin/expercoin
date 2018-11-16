@@ -32,16 +32,4 @@ RSpec.describe Requests::VerifyController, type: :request do
     it { expect(UpdateVerifyingRequestJob).to have_been_enqueued }
     it { expect(response).to redirect_to request_path(req) }
   end
-
-  describe 'POST create invalidate date' do
-    before do
-      req.update_attribute(:selected_date, Time.now - 10.minutes)
-      post request_verify_index_path(req), params: { verify: verify_params }
-      req.reload
-    end
-    it_behaves_like 'authenticated user'
-    it { expect(req.status).to eq 'accepted' }
-    it { expect(enqueued_jobs.size).to eq(0) }
-    it { expect(response).to redirect_to request_path(req) }
-  end
 end
