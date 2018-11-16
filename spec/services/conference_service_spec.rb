@@ -4,7 +4,11 @@ require 'rails_helper'
 
 RSpec.describe  ConferenceService do
   let(:request) { create(:request) }
-  let(:request_verified) { create(:request, :selected_time_ten_minutes_ago, status: 'verified') }
+  let(:request_verified) do
+    req = build(:request, :selected_time_ten_minutes_ago, status: 'verified')
+    req.save validate: false
+    req
+  end
   let(:request_inprogress) { create(:request, :inprogress) }
   let(:client) { request_verified.requester.user }
   let(:expert) { request_verified.expert.user }
