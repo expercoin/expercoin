@@ -65,24 +65,20 @@ class Request < ApplicationRecord
   end
 
   def dates_cannot_be_in_past
-    return unless dates_changed?
+    return unless dates_or_times_changed?
     DATETIMES.each do |datetime|
-      dt = "#{send(datetime[1])} #{send(datetime[0])}".to_datetime
-      next unless dt < Time.now
+      dtv = DateTimeValidator.new(send(datetime[1]), send(datetime[0]), time_zone)
+      next if dtv.date_time_in_future?
       errors.add(datetime[1], "can't be in the past")
-      times_cannot_be_in_past(datetime[0])
+      errors.add(datetime[0], "can't be in the past")
     rescue StandardError
       errors.add(datetime[1], "can't be in the past")
+      errors.add(datetime[0], "can't be in the past")
     end
   end
 
-  def times_cannot_be_in_past(time)
-    return unless times_changed?
-    dt = "#{Time.now.to_date} #{send(time)}".to_datetime
-    return unless dt < Time.now
-    errors.add(time, "can't be in the past")
-  rescue StandardError
-    errors.add(time, "can't be in the past")
+  def dates_or_times_changed?
+    dates_changed? || times_changed?
   end
 
   def dates_changed?
