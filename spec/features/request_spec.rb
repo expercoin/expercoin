@@ -4,7 +4,11 @@ require 'rails_helper'
 
 RSpec.feature 'Request', type: :system do
   include_examples 'create user, profile'
-  let(:req) { create(:request, :selected_time_ten_minutes_ago, status: 'verified', requester: profile) }
+  let(:req) do
+    req = build(:request, :selected_time_ten_minutes_ago, status: 'verified', requester: profile)
+    req.save validate: false
+    req
+  end
   let(:expert) { req.expert }
 
   subject(:request_page) { RequestPage.new(request_path(req), user) }

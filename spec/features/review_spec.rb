@@ -4,7 +4,11 @@ require 'rails_helper'
 
 RSpec.feature 'Request review', type: :system do
   include_examples 'create user, profile'
-  let(:req) { create(:request, :selected_time_ten_minutes_ago, status: 'completed', requester: profile) }
+  let(:req) do
+    req = build(:request, :selected_time_ten_minutes_ago, status: 'completed', requester: profile, tx_hash: '0xf104a50a3f09444cf0a964e47378d3a8c6280179d76fd3825dca493ed1172374')
+    req.save validate: false
+    req
+  end
   let(:expert) { req.expert }
 
   subject(:request_page) { RequestPage.new(request_path(req), user) }

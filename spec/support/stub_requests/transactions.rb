@@ -180,6 +180,19 @@ RSpec.configure do |config|
          }).
          to_return(status: 200, body: "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":\"0x000000000000000000000000000000000000000000000000000c1ad4277255ac\"}", headers: {})
 
+
+ stub_request(:post, "https://ropsten.infura.io/MjN1T5xZTKT9DP3KsBXr").
+   with(
+     body: "{\"jsonrpc\":\"2.0\",\"method\":\"eth_getTransactionReceipt\",\"params\":[\"0xb60ab7b1ec8a7fff017ec9f2c0ee615753ff62d47d125fe4aa5d1a4dfb590314\"],\"id\":1}",
+     headers: {
+ 	  'Accept'=>'*/*',
+ 	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+ 	  'Content-Type'=>'application/json',
+ 	  'Host'=>'ropsten.infura.io',
+ 	  'User-Agent'=>'Ruby'
+     }).
+     to_return(status: 200, body: "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":null}", headers: {})
+
    stub_request(:post, 'http://localhost:3001/transactions')
       .with(
         body: { 'address' => /0x\w{40}/, 'amount' => '2500000000000000', 'api_key' => 'MjN1T5xZTKT9DP3KsBXr', 'from' => /0x\w{40}/, 'key' => '710f751aa5f90f63597dac37fa339985bf635fa24c657a740fed26b13ca0fb11' },
