@@ -3,7 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe ConferenceController, type: :request do
-  let(:req) { create(:request, :inprogress) }
+  let(:req) do
+    req = build(:request, :inprogress)
+    req.save validate: false
+    req
+  end
   let(:room) { MSP::Conference::Video.new.find_room(req.room_sid) }
   let(:user) { req.expert.user }
   let!(:logged_user) { sign_in(user) }
@@ -14,7 +18,11 @@ RSpec.describe ConferenceController, type: :request do
   end
 
   describe 'POST create without room_sid' do
-    let(:req) { create(:request, :selected_time_ten_minutes_ago, status: 'verified', room_sid: nil) }
+    let(:req) do
+      req = build(:request, :selected_time_ten_minutes_ago, status: 'verified', room_sid: nil) 
+      req.save validate: false
+      req
+    end
     before do
       post conference_index_path, params: { request_id: req.id }
       req.reload
