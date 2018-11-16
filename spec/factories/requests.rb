@@ -27,7 +27,7 @@ FactoryBot.define do
       pending
       status 'accepted'
       selected_date { sugested_times.first.formated_datetime }
-      requested_amount_eth 0.015
+      requested_amount_eth 0.00836774199713779
     end
 
     trait :verifying do

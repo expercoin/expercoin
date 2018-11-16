@@ -67,7 +67,7 @@ class TransactionValidator < BaseValidator
   end
 
   def calculated_amount
-    amount_in_usd = (request.expert.expercoin_rate / 100) * request.requested_length.to_i
+    amount_in_usd = (request.expert.expercoin_rate / 100.0) * request.requested_length.to_i
     Eth::UsdConverter.new(amount_in_usd).eth_value
   end
 

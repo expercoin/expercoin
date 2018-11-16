@@ -4,10 +4,10 @@ require 'rails_helper'
 
 RSpec.describe VerifyRequestService do
   let(:expert) { create(:profile) }
-  let(:request) { create(:request, expert: expert, status: 'accepted', requested_length: '30min') }
+  let(:request) { create(:request, expert: expert, status: 'accepted', requested_length: '30min', requested_amount_eth: 0.00340719821772126) }
   let(:params) do
     {
-      tx_hash: '0xe1b91f4418cefb8449b741285f8f59efc1b52ae08c5aac1dd63e293babef8539',
+      tx_hash: '0x4e581a5bd3acdd90de0cbf052c966ae9101cadbd19eb59eababb37e6f629ea61',
       sender: request.requester.user,
       request: request
     }
